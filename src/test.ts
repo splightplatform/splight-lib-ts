@@ -1,4 +1,3 @@
-import { useBaseRestClient } from "./rest/useBaseRestClient.js";
 import setup from "./setup.js";
 
 const splight = setup.configure();
