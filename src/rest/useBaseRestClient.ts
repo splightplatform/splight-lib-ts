@@ -1,6 +1,6 @@
 import { get, post, patch, del } from "./base-methods.js";
-import { Input, PaginatedCollection } from "../types.js";
-
+import { Headers, Input, PaginatedCollection } from "../types.js";
+import { filterObject } from "../utils.js";
 export interface SplightCredentials {
   splight_access_id: string;
   splight_access_key: string;
@@ -21,7 +21,7 @@ export type BaseRestClient<T> = ReturnType<typeof useBaseRestClient>;
 
 export const useBaseRestClient = <T>(
   resource_url: string,
-  headers: Record<string, string>
+  headers: Headers
 ) => {
   return {
     list: (): Promise<PaginatedCollection<T>> => get(resource_url, headers),
