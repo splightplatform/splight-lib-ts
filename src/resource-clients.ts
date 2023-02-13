@@ -5,6 +5,7 @@ import {
   Asset,
   Attribute,
   Component,
+  Edge,
   Headers,
   PaginatedCollection,
 } from "./types.js";
@@ -34,6 +35,13 @@ export const useFileClient = (headers: Headers) => {
   const base_url = getResourceUrl("File");
   return {
     ...useBaseRestClient<Attribute>(base_url, headers),
+  };
+};
+
+export const useEdgeClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Edge");
+  return {
+    ...useBaseRestClient<Edge>(base_url, headers),
   };
 };
 

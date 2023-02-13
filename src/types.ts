@@ -14,6 +14,18 @@ export interface Attribute {
   name: string;
 }
 
+export interface Edge {
+  id?: string;
+  directed: boolean;
+  graph_id: string;
+  asset_id: string;
+  source_id: string;
+  target_id: string;
+  color: string;
+  source_handle: string;
+  target_handle: string;
+}
+
 export interface File {
   id: string;
   file: string;
