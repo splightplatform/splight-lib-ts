@@ -173,3 +173,48 @@ export interface Component {
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
 }
+
+export interface Filter extends AbstractComplexConfiguration {
+  _id?: string;
+  key: string;
+  value: string | number | boolean;
+}
+export type FilterGroup = Filter[];
+
+interface AbstractComplexConfiguration {
+  _meta: { valueLabel: string };
+}
+export interface OutputSource extends AbstractComplexConfiguration {
+  value: string | null | undefined;
+}
+
+export interface Query {
+  type: string;
+  selectedSource: OutputSource;
+  selectedSourceOutput: string;
+  selectedTarget: string;
+  filterGroup: FilterGroup;
+}
+
+export interface ApiQuery {
+  id?: string;
+  source_type: string;
+  name: string;
+  description: string;
+  output_format: string;
+  target: string;
+  source_component_id: string | null;
+  source_component_label: string | null;
+  filters: { [key: string]: string };
+  limit?: number;
+  skip?: number;
+  source?: string;
+  sort?: string;
+  add_fields?: string;
+  group_id?: string;
+  group_fields?: string;
+  rename_fields?: string;
+  project_fields?: string;
+  timezone_offset?: number;
+  query_params?: string;
+}

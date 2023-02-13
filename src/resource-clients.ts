@@ -2,6 +2,7 @@ import { getResourceRoute, getResourceUrl } from "./resource-routes.js";
 import { get } from "./rest/base-methods.js";
 import { useBaseRestClient } from "./rest/useBaseRestClient.js";
 import {
+  ApiQuery,
   Asset,
   Attribute,
   Component,
@@ -10,6 +11,7 @@ import {
   Edge,
   Headers,
   PaginatedCollection,
+  Query,
 } from "./types.js";
 
 export const useAssetClient = (headers: Headers) => {
@@ -38,6 +40,20 @@ export const useFileClient = (headers: Headers) => {
   };
 };
 
+export const useQueryClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Query");
+  return {
+    ...useBaseRestClient<Query>(base_url, headers),
+    // This method it's going to be the main way to interact with the datalake.
+    // It takes the query id or a query object and returns a promise with the data
+    execute: (
+      query: string | ApiQuery
+    ): Promise<unknown /*TODO: Define what this type should be, it's porbably going to be something like NativeValue | ComponentOutput*/> => {
+      throw Error("Not implemented");
+    },
+  };
+};
+
 // Components
 
 export const useComponentClient = (headers: Headers) => {
@@ -58,6 +74,14 @@ export const useComponentCommandClient = (headers: Headers) => {
   const base_url = getResourceUrl("ComponentCommand");
   return {
     ...useBaseRestClient<ComponentCommand>(base_url, headers),
+  };
+};
+
+// TODO: Do HubComponents need their own type?
+export const useHubComponentClient = (headers: Headers) => {
+  const base_url = getResourceUrl("HubComponent");
+  return {
+    ...useBaseRestClient<Component>(base_url, headers),
   };
 };
 

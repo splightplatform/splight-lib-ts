@@ -15,6 +15,7 @@ import {
   useEdgeClient,
   useGraphClient,
   useNodeClient,
+  useQueryClient,
 } from "./resource-clients.js";
 
 export const configure = () => {
@@ -28,6 +29,7 @@ export const configure = () => {
     assets: useAssetClient(headers),
     attributes: useAttributeClient(headers),
     components: useComponentClient(headers),
+    queries: useQueryClient(headers),
     component_objects: useComponentObjectClient(headers),
     component_commands: useComponentCommandClient(headers),
     /*

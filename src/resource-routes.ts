@@ -3,6 +3,7 @@ export const resource_urls = {
   Component: "engine/component/components",
   ComponentObject: "engine/component/objects",
   ComponentCommand: "engine/component/commands",
+  HubComponent: "engine/hub/component-versions",
   Attribute: "engine/attributes/",
   File: "engine/files/",
   Query: "engine/queries/",
