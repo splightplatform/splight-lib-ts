@@ -10,8 +10,6 @@ import {
   PaginatedCollection,
 } from "./types.js";
 
-const api_url = "http://integrationapi.splight-ai.com/v2";
-
 export const useAssetClient = (headers: Headers) => {
   const base_url = getResourceUrl("Asset");
   return {
@@ -38,6 +36,22 @@ export const useFileClient = (headers: Headers) => {
   };
 };
 
+export const useComponentClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Component");
+  return {
+    ...useBaseRestClient<Component>(base_url, headers),
+  };
+};
+
+//Graphs
+
+export const useGraphClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Graph");
+  return {
+    ...useBaseRestClient<Attribute>(base_url, headers),
+  };
+};
+
 export const useEdgeClient = (headers: Headers) => {
   const base_url = getResourceUrl("Edge");
   return {
@@ -49,12 +63,5 @@ export const useNodeClient = (headers: Headers) => {
   const base_url = getResourceUrl("Node");
   return {
     ...useBaseRestClient<Attribute>(base_url, headers),
-  };
-};
-
-export const useComponentClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Component");
-  return {
-    ...useBaseRestClient<Component>(base_url, headers),
   };
 };

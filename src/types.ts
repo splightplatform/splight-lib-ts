@@ -14,6 +14,12 @@ export interface Attribute {
   name: string;
 }
 
+export type Graph = {
+  id: string;
+  title: string;
+  description: string;
+};
+
 export interface Edge {
   id?: string;
   directed: boolean;

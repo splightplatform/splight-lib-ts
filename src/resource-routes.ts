@@ -5,6 +5,7 @@ export const resource_urls = {
   File: "engine/files/",
   Query: "engine/queries/",
   Dashboard: "engine/dashboard/dashboards",
+  Graph: "engine/graph/graphs",
   Edge: "engine/graph/edges",
   Node: "engine/graph/nodes",
 };
