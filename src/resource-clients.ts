@@ -45,6 +45,13 @@ export const useEdgeClient = (headers: Headers) => {
   };
 };
 
+export const useNodeClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Node");
+  return {
+    ...useBaseRestClient<Attribute>(base_url, headers),
+  };
+};
+
 export const useComponentClient = (headers: Headers) => {
   const base_url = getResourceUrl("Component");
   return {

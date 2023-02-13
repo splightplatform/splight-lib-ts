@@ -6,6 +6,7 @@ export const resource_urls = {
   Query: "engine/queries/",
   Dashboard: "engine/dashboard/dashboards",
   Edge: "engine/graph/edges",
+  Node: "engine/graph/nodes",
 };
 
 export const API_HOST = process.env.API_HOST ?? "http://api.splight-ai.com/v2";

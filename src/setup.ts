@@ -11,6 +11,7 @@ import {
   useAttributeClient,
   useComponentClient,
   useEdgeClient,
+  useNodeClient,
 } from "./resource-clients.js";
 
 export const configure = () => {
@@ -24,7 +25,9 @@ export const configure = () => {
     assets: useAssetClient(headers),
     attributes: useAttributeClient(headers),
     components: useComponentClient(headers),
+    //Should we group these together in a graphs module?
     edges: useEdgeClient(headers),
+    nodes: useNodeClient(headers),
   };
 };
 

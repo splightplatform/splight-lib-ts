@@ -26,6 +26,19 @@ export interface Edge {
   target_handle: string;
 }
 
+export interface Node {
+  id: string;
+  type: string;
+  position_x: string;
+  position_y: string;
+  width: string;
+  height: string;
+  asset_id: string;
+  color: string;
+  text: string;
+  fill_color: string;
+}
+
 export interface File {
   id: string;
   file: string;
