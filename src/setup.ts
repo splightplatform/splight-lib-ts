@@ -15,7 +15,9 @@ import {
   useEdgeClient,
   useGraphClient,
   useNodeClient,
+  useNotificationClient,
   useQueryClient,
+  useSecretClient,
 } from "./resource-clients.js";
 
 export const configure = () => {
@@ -30,6 +32,8 @@ export const configure = () => {
     attributes: useAttributeClient(headers),
     components: useComponentClient(headers),
     queries: useQueryClient(headers),
+    secrets: useSecretClient(headers),
+    notifications: useNotificationClient(headers),
     component_objects: useComponentObjectClient(headers),
     component_commands: useComponentCommandClient(headers),
     /*

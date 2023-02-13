@@ -218,3 +218,26 @@ export interface ApiQuery {
   timezone_offset?: number;
   query_params?: string;
 }
+
+export interface Secret {
+  id: string;
+  name: string;
+  value: string;
+}
+
+export interface Notification {
+  id: string;
+  message: string;
+  target_id?: string;
+  target_type?: string;
+  redirect_url?: string;
+  volatile?: boolean;
+  created_at?: string;
+  source_id?: string;
+  source_type?: string;
+  title?: string;
+  seen?: boolean;
+  scope?: string;
+  isError?: boolean;
+  timeAliveInMs?: number;
+}

@@ -10,8 +10,10 @@ import {
   ComponentObject,
   Edge,
   Headers,
+  Notification,
   PaginatedCollection,
   Query,
+  Secret,
 } from "./types.js";
 
 export const useAssetClient = (headers: Headers) => {
@@ -37,6 +39,20 @@ export const useFileClient = (headers: Headers) => {
   const base_url = getResourceUrl("File");
   return {
     ...useBaseRestClient<Attribute>(base_url, headers),
+  };
+};
+
+export const useSecretClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Secret");
+  return {
+    ...useBaseRestClient<Secret>(base_url, headers),
+  };
+};
+
+export const useNotificationClient = (headers: Headers) => {
+  const base_url = getResourceUrl("Notification");
+  return {
+    ...useBaseRestClient<Notification>(base_url, headers),
   };
 };
 
