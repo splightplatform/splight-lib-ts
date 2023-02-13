@@ -20,5 +20,9 @@ export const API_HOST = process.env.API_HOST ?? "http://api.splight-ai.com/v2";
 export const getResourceUrl = (resource_name: keyof typeof resource_urls) =>
   `${API_HOST}/${getResourceRoute(resource_name)}`;
 
+export const useActionUrl =
+  (base_url: string) => (pk: string, action: string) =>
+    `${base_url}${pk}/${action}/`;
+
 export const getResourceRoute = (resource_name: keyof typeof resource_urls) =>
   resource_urls[resource_name];

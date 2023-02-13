@@ -1,4 +1,8 @@
-import { getResourceRoute, getResourceUrl } from "./resource-routes.js";
+import {
+  useActionUrl,
+  getResourceRoute,
+  getResourceUrl,
+} from "./resource-routes.js";
 import { get } from "./rest/base-methods.js";
 import { useBaseRestClient } from "./rest/useBaseRestClient.js";
 import {
@@ -18,11 +22,12 @@ import {
 
 export const useAssetClient = (headers: Headers) => {
   const base_url = getResourceUrl("Asset");
+  const actionUrl = useActionUrl(base_url);
   return {
     ...useBaseRestClient<Asset>(base_url, headers),
     attributes: (asset_id: string) =>
       get<PaginatedCollection<Attribute>>(
-        `${base_url}${asset_id}/attributes`,
+        actionUrl(asset_id, "attributes"),
         headers
       ),
   };
