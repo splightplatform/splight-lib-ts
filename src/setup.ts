@@ -10,6 +10,8 @@ import {
   useAssetClient,
   useAttributeClient,
   useComponentClient,
+  useComponentCommandClient,
+  useComponentObjectClient,
   useEdgeClient,
   useGraphClient,
   useNodeClient,
@@ -26,7 +28,19 @@ export const configure = () => {
     assets: useAssetClient(headers),
     attributes: useAttributeClient(headers),
     components: useComponentClient(headers),
-    //Should we group these together in a graphs module?
+    component_objects: useComponentObjectClient(headers),
+    component_commands: useComponentCommandClient(headers),
+    /*
+    Typescript allows for implementing 'nested clients' like this:
+
+        components: {
+      ...useComponentClient(headers),
+      commands: useComponentCommandClient(headers),
+      objects: useComponentObjectClient(headers),
+    },
+
+    I think that this could be nice, but it may be hard to reproduce in Python.
+    */
     graphs: useGraphClient(headers),
     edges: useEdgeClient(headers),
     nodes: useNodeClient(headers),
