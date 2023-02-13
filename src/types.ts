@@ -1,5 +1,7 @@
 export type Input<T> = Omit<T, "id">;
 
+export type Headers = Record<string, string>;
+
 export interface PaginatedCollection<T> {
   count: number;
   next: string | null;
