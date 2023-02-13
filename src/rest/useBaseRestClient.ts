@@ -13,7 +13,7 @@ export interface Asset {
 export const getHeaders = (credentials: SplightCredentials) => {
   return {
     Authorization: `Splight ${credentials.splight_access_id} ${credentials.splight_access_key}`,
-  };
+  } as Headers;
 };
 
 export type BaseRestClient<T> = ReturnType<typeof useBaseRestClient>;

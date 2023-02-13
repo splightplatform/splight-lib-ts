@@ -5,7 +5,7 @@ import {
   useBaseRestClient,
 } from "./rest/index.js";
 import { getResourceRoute } from "./resource-routes.js";
-import { Component } from "./types.js";
+import { Component, Headers } from "./types.js";
 import {
   useAssetClient,
   useAttributeClient,
@@ -20,12 +20,12 @@ import {
   useSecretClient,
 } from "./resource-clients.js";
 
-export const configure = () => {
+export const configure = (requestHeaders?: Headers) => {
   const credentials: SplightCredentials = {
     splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? "",
     splight_access_key: process.env.SPLIGHT_ACCESS_KEY ?? "",
   };
-  const headers = getHeaders(credentials);
+  const headers = requestHeaders ?? getHeaders(credentials);
 
   return {
     assets: useAssetClient(headers),
