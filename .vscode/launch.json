@@ -1,8 +1,0 @@
-  {
-      "type": "node",
-      "name": "import-test-files",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "program": "${workspaceFolder}",
-      "runtimeArgs": ["-r", "esm"]
-  }
