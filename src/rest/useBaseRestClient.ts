@@ -1,6 +1,5 @@
 import { get, post, patch, del } from "./base-methods.js";
 import { Headers, Input, PaginatedCollection } from "../types.js";
-import { filterObject } from "../utils.js";
 export interface SplightCredentials {
   splight_access_id: string;
   splight_access_key: string;
