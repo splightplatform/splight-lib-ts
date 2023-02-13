@@ -5,6 +5,8 @@ import {
   Asset,
   Attribute,
   Component,
+  ComponentCommand,
+  ComponentObject,
   Edge,
   Headers,
   PaginatedCollection,
@@ -36,10 +38,26 @@ export const useFileClient = (headers: Headers) => {
   };
 };
 
+// Components
+
 export const useComponentClient = (headers: Headers) => {
   const base_url = getResourceUrl("Component");
   return {
     ...useBaseRestClient<Component>(base_url, headers),
+  };
+};
+
+export const useComponentObjectClient = (headers: Headers) => {
+  const base_url = getResourceUrl("ComponentObject");
+  return {
+    ...useBaseRestClient<ComponentObject>(base_url, headers),
+  };
+};
+
+export const useComponentCommandClient = (headers: Headers) => {
+  const base_url = getResourceUrl("ComponentCommand");
+  return {
+    ...useBaseRestClient<ComponentCommand>(base_url, headers),
   };
 };
 

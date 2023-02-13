@@ -1,6 +1,8 @@
 export const resource_urls = {
   Asset: "engine/assets/",
   Component: "engine/component/components",
+  ComponentObject: "engine/component/objects",
+  ComponentCommand: "engine/component/commands",
   Attribute: "engine/attributes/",
   File: "engine/files/",
   Query: "engine/queries/",
