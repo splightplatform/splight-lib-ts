@@ -6,7 +6,7 @@ import {
 } from "./rest/index.js";
 import { getResourceRoute } from "./resource-routes.js";
 import { Component } from "./types.js";
-import { getAssetClient, getComponentClient } from "./resource-clients.js";
+import { useAssetClient, useComponentClient } from "./resource-clients.js";
 
 export const configure = () => {
   const credentials: SplightCredentials = {
@@ -16,8 +16,8 @@ export const configure = () => {
   const headers = getHeaders(credentials);
 
   return {
-    assets: getAssetClient(headers),
-    components: getComponentClient(headers),
+    assets: useAssetClient(headers),
+    components: useComponentClient(headers),
   };
 };
 

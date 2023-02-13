@@ -6,7 +6,7 @@ import { Asset, Attribute, Component, PaginatedCollection } from "./types.js";
 //This will be stored in an env variable
 const base_url = "http://integrationapi.splight-ai.com/v2";
 
-export const getAssetClient = (headers: Record<string, string>) => {
+export const useAssetClient = (headers: Record<string, string>) => {
   const route = getResourceRoute("Asset");
   const url = `${base_url}/${route}`;
   return {
@@ -19,7 +19,7 @@ export const getAssetClient = (headers: Record<string, string>) => {
   };
 };
 
-export const getComponentClient = (headers: Record<string, string>) => {
+export const useComponentClient = (headers: Record<string, string>) => {
   const route = getResourceRoute("Component");
   const url = `${base_url}/${route}`;
   return {
