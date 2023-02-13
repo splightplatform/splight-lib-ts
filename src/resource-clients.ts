@@ -1,4 +1,4 @@
-import { getResourceRoute } from "./resource-routes.js";
+import { getResourceRoute, getResourceUrl } from "./resource-routes.js";
 import { get } from "./rest/base-methods.js";
 import { useBaseRestClient } from "./rest/useBaseRestClient.js";
 import {
@@ -9,34 +9,37 @@ import {
   PaginatedCollection,
 } from "./types.js";
 
-//This will be stored in an env variable
-const base_url = "http://integrationapi.splight-ai.com/v2";
+const api_url = "http://integrationapi.splight-ai.com/v2";
 
 export const useAssetClient = (headers: Headers) => {
-  const route = getResourceRoute("Asset");
-  const url = `${base_url}/${route}`;
+  const base_url = getResourceUrl("Asset");
   return {
-    ...useBaseRestClient<Asset>(url, headers),
+    ...useBaseRestClient<Asset>(base_url, headers),
     attributes: (asset_id: string) =>
       get<PaginatedCollection<Attribute>>(
-        `${url}${asset_id}/attributes`,
+        `${base_url}${asset_id}/attributes`,
         headers
       ),
   };
 };
 
 export const useAttributeClient = (headers: Headers) => {
-  const route = getResourceRoute("Attribute");
-  const url = `${base_url}/${route}`;
+  const base_url = getResourceUrl("Attribute");
   return {
-    ...useBaseRestClient<Attribute>(url, headers),
+    ...useBaseRestClient<Attribute>(base_url, headers),
+  };
+};
+
+export const useFileClient = (headers: Headers) => {
+  const base_url = getResourceUrl("File");
+  return {
+    ...useBaseRestClient<Attribute>(base_url, headers),
   };
 };
 
 export const useComponentClient = (headers: Headers) => {
-  const route = getResourceRoute("Component");
-  const url = `${base_url}/${route}`;
+  const base_url = getResourceUrl("Component");
   return {
-    ...useBaseRestClient<Component>(url, headers),
+    ...useBaseRestClient<Component>(base_url, headers),
   };
 };
