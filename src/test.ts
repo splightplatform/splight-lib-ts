@@ -1,7 +1,13 @@
 import setup from "./setup.js";
 
-const splight = setup.configure();
+const { engine, account } = setup.configure();
+const { results: assets, next } = await engine.assets.list();
 
-const { results: assets, next } = await splight.assets.list();
+const notifications = await account.notifications.list();
+notifications;
 
-assets;
+/* Alternatively:
+ * const splight = setup.configure();
+ * const { results: assets, next } = await splight.engine.assets.list();
+ *
+ */
