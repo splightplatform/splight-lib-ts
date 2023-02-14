@@ -4,7 +4,7 @@ import {
   SplightCredentials,
   useBaseRestClient,
 } from "./rest/index.js";
-import { getResourceRoute } from "./resource-routes.js";
+import { getResourceRoute } from "./urls.js";
 import { Component, Headers } from "./types.js";
 import {
   useAssetClient,

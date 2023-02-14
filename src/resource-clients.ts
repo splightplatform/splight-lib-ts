@@ -1,8 +1,4 @@
-import {
-  useActionUrl,
-  getResourceRoute,
-  getResourceUrl,
-} from "./resource-routes.js";
+import { useRouter, getResourceUrl } from "./urls.js";
 import { get } from "./rest/base-methods.js";
 import { useBaseRestClient } from "./rest/useBaseRestClient.js";
 import {
@@ -21,50 +17,49 @@ import {
 } from "./types.js";
 
 export const useAssetClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Asset");
-  const actionUrl = useActionUrl(base_url);
+  const router = useRouter("Asset");
   return {
-    ...useBaseRestClient<Asset>(base_url, headers),
-    attributes: (asset_id: string) =>
+    ...useBaseRestClient<Asset>(router, headers),
+    attributes: (pk: string) =>
       get<PaginatedCollection<Attribute>>(
-        actionUrl(asset_id, "attributes"),
+        router.detail(pk).action("attributes").url,
         headers
       ),
   };
 };
 
 export const useAttributeClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Attribute");
+  const router = useRouter("Attribute");
   return {
-    ...useBaseRestClient<Attribute>(base_url, headers),
+    ...useBaseRestClient<Attribute>(router, headers),
   };
 };
 
 export const useFileClient = (headers: Headers) => {
-  const base_url = getResourceUrl("File");
+  const router = useRouter("File");
   return {
-    ...useBaseRestClient<Attribute>(base_url, headers),
+    ...useBaseRestClient<Attribute>(router, headers),
   };
 };
 
 export const useSecretClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Secret");
+  const router = useRouter("Secret");
   return {
-    ...useBaseRestClient<Secret>(base_url, headers),
+    ...useBaseRestClient<Secret>(router, headers),
   };
 };
 
 export const useNotificationClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Notification");
+  const router = useRouter("Notification");
   return {
-    ...useBaseRestClient<Notification>(base_url, headers),
+    ...useBaseRestClient<Notification>(router, headers),
   };
 };
 
 export const useQueryClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Query");
+  const router = useRouter("Query");
   return {
-    ...useBaseRestClient<Query>(base_url, headers),
+    ...useBaseRestClient<Query>(router, headers),
     // This method it's going to be the main way to interact with the datalake.
     // It takes the query id or a query object and returns a promise with the data
     execute: (
@@ -78,53 +73,53 @@ export const useQueryClient = (headers: Headers) => {
 // Components
 
 export const useComponentClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Component");
+  const router = useRouter("Component");
   return {
-    ...useBaseRestClient<Component>(base_url, headers),
+    ...useBaseRestClient<Component>(router, headers),
   };
 };
 
 export const useComponentObjectClient = (headers: Headers) => {
-  const base_url = getResourceUrl("ComponentObject");
+  const router = useRouter("ComponentObject");
   return {
-    ...useBaseRestClient<ComponentObject>(base_url, headers),
+    ...useBaseRestClient<ComponentObject>(router, headers),
   };
 };
 
 export const useComponentCommandClient = (headers: Headers) => {
-  const base_url = getResourceUrl("ComponentCommand");
+  const router = useRouter("ComponentCommand");
   return {
-    ...useBaseRestClient<ComponentCommand>(base_url, headers),
+    ...useBaseRestClient<ComponentCommand>(router, headers),
   };
 };
 
 // TODO: Do HubComponents need their own type?
 export const useHubComponentClient = (headers: Headers) => {
-  const base_url = getResourceUrl("HubComponent");
+  const router = useRouter("HubComponent");
   return {
-    ...useBaseRestClient<Component>(base_url, headers),
+    ...useBaseRestClient<Component>(router, headers),
   };
 };
 
 //Graphs
 
 export const useGraphClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Graph");
+  const router = useRouter("Graph");
   return {
-    ...useBaseRestClient<Attribute>(base_url, headers),
+    ...useBaseRestClient<Attribute>(router, headers),
   };
 };
 
 export const useEdgeClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Edge");
+  const router = useRouter("Edge");
   return {
-    ...useBaseRestClient<Edge>(base_url, headers),
+    ...useBaseRestClient<Edge>(router, headers),
   };
 };
 
 export const useNodeClient = (headers: Headers) => {
-  const base_url = getResourceUrl("Node");
+  const router = useRouter("Node");
   return {
-    ...useBaseRestClient<Attribute>(base_url, headers),
+    ...useBaseRestClient<Attribute>(router, headers),
   };
 };

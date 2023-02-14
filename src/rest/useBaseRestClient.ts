@@ -1,5 +1,6 @@
 import { get, post, patch, del } from "./base-methods.js";
 import { Headers, Input, PaginatedCollection } from "../types.js";
+import { Router } from "../urls.js";
 export interface SplightCredentials {
   splight_access_id: string;
   splight_access_key: string;
@@ -18,17 +19,14 @@ export const getHeaders = (credentials: SplightCredentials) => {
 
 export type BaseRestClient<T> = ReturnType<typeof useBaseRestClient>;
 
-export const useBaseRestClient = <T>(
-  resource_url: string,
-  headers: Headers
-) => {
+export const useBaseRestClient = <T>(router: Router, headers: Headers) => {
   return {
-    list: (): Promise<PaginatedCollection<T>> => get(resource_url, headers),
-    retrieve: (pk: string): Promise<T> => get(`${resource_url}/${pk}`, headers),
-    create: (data: Input<T>): Promise<T> => post(resource_url, data, headers),
+    list: (): Promise<PaginatedCollection<T>> => get(router.base.url, headers),
+    retrieve: (pk: string): Promise<T> => get(router.detail(pk).url, headers),
+    create: (data: Input<T>): Promise<T> =>
+      post(router.base.url, data, headers),
     update: (pk: string, data: Partial<T>): Promise<T> =>
-      patch(`${resource_url}/${pk}`, data, headers),
-    destroy: (pk: string): Promise<void> =>
-      del(`${resource_url}/${pk}`, headers),
+      patch(router.detail(pk).url, data, headers),
+    destroy: (pk: string): Promise<void> => del(router.detail(pk).url, headers),
   };
 };
