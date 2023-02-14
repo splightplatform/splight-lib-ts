@@ -189,14 +189,6 @@ export interface OutputSource extends AbstractComplexConfiguration {
 }
 
 export interface Query {
-  type: string;
-  selectedSource: OutputSource;
-  selectedSourceOutput: string;
-  selectedTarget: string;
-  filterGroup: FilterGroup;
-}
-
-export interface ApiQuery {
   id?: string;
   source_type: string;
   name: string;

@@ -2,7 +2,6 @@ import { useRouter, getResourceUrl } from "./urls.js";
 import { get } from "./rest/base-methods.js";
 import { useBaseRestClient } from "./rest/useBaseRestClient.js";
 import {
-  ApiQuery,
   Asset,
   Attribute,
   Component,
@@ -63,7 +62,7 @@ export const useQueryClient = (headers: Headers) => {
     // This method it's going to be the main way to interact with the datalake.
     // It takes the query id or a query object and returns a promise with the data
     execute: (
-      query: string | ApiQuery
+      query: string | Query
     ): Promise<unknown /*TODO: Define what this type should be, it's porbably going to be something like NativeValue | ComponentOutput*/> => {
       throw Error("Not implemented");
     },
