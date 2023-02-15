@@ -25,6 +25,7 @@
   },
   "scripts": {
     "build": "tsup src/ --format cjs,esm --dts --clean",
+    "autobundle": "tsup src/ --format cjs,esm --dts --clean --watch",
     "lint": "tsc"
   }
 }

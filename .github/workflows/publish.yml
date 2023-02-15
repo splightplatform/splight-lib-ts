@@ -1,3 +1,4 @@
+#TODO: Refactor to use npm instead of pnpm
 name: Publish
 on:
   push:
