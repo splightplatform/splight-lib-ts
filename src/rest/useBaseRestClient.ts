@@ -1,6 +1,7 @@
 import { get, post, patch, del } from "./base-methods.js";
 import { Headers, Input, PaginatedCollection } from "../types.js";
 import { Router } from "../urls.js";
+import { withRetries } from "./withRetries.js";
 export interface SplightCredentials {
   splight_access_id: string;
   splight_access_key: string;
