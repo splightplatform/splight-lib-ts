@@ -1,6 +1,6 @@
 # Splight TypeScript Library
 
-The Splight TypeScript library provides convenient access to the Splight API from applications written in TypeScript and it's designed to work both in server-side and client-side runtimes.
+The Splight TypeScript library provides convenient access to the Splight API from applications written in TypeScript both in the client and the server.
 
 ## Development
 
