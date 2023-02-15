@@ -1,0 +1,26 @@
+name: Publish
+on:
+  push:
+    branches:
+      - hotfix/* # I'm not enablin this for master yet, because I need the env vars to be set up in deployment for this to work.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.APP_GITHUB_TOKEN }}

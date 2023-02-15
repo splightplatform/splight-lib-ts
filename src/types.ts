@@ -54,12 +54,13 @@ export interface File {
   encrypted: boolean;
 }
 
+//TODO: How to handle differences in the required fields for create and retrieve?
 export interface Asset {
   id: string;
   name: string;
-  verified?: boolean;
-  description?: string;
-  attributes?: Attribute[];
+  verified: boolean;
+  description: string;
+  attributes: Attribute[];
   latitude?: number;
   longitude?: number;
 }
