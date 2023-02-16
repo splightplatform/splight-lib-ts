@@ -19,7 +19,6 @@ jobs:
         with:
           node-version: "18.x"
           registry-url: "https://registry.npmjs.org"
-      - run: echo $NODE_AUTH_TOKEN
       - run: npm ci && npm run build
       - run: npm publish --access public
         env:
