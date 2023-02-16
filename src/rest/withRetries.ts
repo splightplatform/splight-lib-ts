@@ -12,7 +12,6 @@ export function withRetries<T extends (...args: any[]) => any>(
     } catch (err) {
       if (times > 0) {
         await sleep(delay);
-        console.log("Retrying");
         return await withRetries(fn, times - 1, delay * delay_factor)(...args);
       } else {
         throw err;
@@ -20,5 +19,3 @@ export function withRetries<T extends (...args: any[]) => any>(
     }
   };
 }
-
-type test = Parameters<typeof sleep>;
