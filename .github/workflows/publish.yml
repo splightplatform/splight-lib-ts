@@ -18,9 +18,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      - run: |
-          echo '//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}' > .npmrc
-          cat .npmrc
+          cache: npm
       - run: npm ci && npm run build
       - run: npm publish --access public
         env:
