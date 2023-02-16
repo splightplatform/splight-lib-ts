@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - master
-      - hotfix/* # I'm not enablin this for master yet, because I need the env vars to be set up in deployment for this to work.
+      - hotfix/*
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
@@ -18,6 +18,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18.x
+      - run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_AUTH_TOKEN}' > .npmrc
+          cat .npmrc
       - run: npm ci && npm run build
       - run: npm publish --access public
         env:
