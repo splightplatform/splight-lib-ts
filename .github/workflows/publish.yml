@@ -3,6 +3,7 @@ name: Publish
 on:
   push:
     branches:
+      - master
       - hotfix/* # I'm not enablin this for master yet, because I need the env vars to be set up in deployment for this to work.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
