@@ -10,6 +10,7 @@ import { Headers } from "./types.js";
 
 import { AssetsClient } from "./engine/asset.js";
 import { AttributesClient } from "./engine/attribute.js";
+import { FilesClient } from "./engine/files.js";
 
 export const configure = (requestHeaders?: Headers) => {
   const credentials: SplightCredentials = {
@@ -21,6 +22,7 @@ export const configure = (requestHeaders?: Headers) => {
     assets: AssetsClient(headers),
     attributes: AttributesClient(headers),
     components: ComponentsClient(headers),
+    files: FilesClient(headers),
   };
 
   return {

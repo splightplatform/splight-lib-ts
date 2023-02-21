@@ -51,6 +51,7 @@ export interface Query extends QueryParams {
 
 export const QueriesClient = (headers: Headers) => {
   const basePath = Path("engine/queries/");
+  const baseClient = BaseRestClient<QueryParams, Query>(basePath, headers);
 
   const getParams = async (query: QueryParams) => {
     const { query_params } = await post<QueryParams, { query_params: string }>(
@@ -61,7 +62,6 @@ export const QueriesClient = (headers: Headers) => {
     return query_params;
   };
 
-  const baseClient = BaseRestClient<QueryParams, Query>(basePath, headers);
   return {
     ...baseClient,
     // We should have a type for the results
