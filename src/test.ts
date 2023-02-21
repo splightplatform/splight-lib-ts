@@ -1,10 +1,9 @@
 import setup from "./setup.js";
 
-async function test() {
-  const { engine, account } = setup.configure();
-  const { results: assets, next } = await engine.assets.list();
-  const notifications = await account.notifications.list();
-  notifications;
+async function main() {
+  const { engine } = setup.configure();
+
+  const asset = await engine.assets.retrieve("test");
 }
 
-test();
+main();

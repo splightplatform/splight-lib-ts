@@ -1,18 +1,18 @@
 import axios from "axios";
 import { Headers, Input } from "../types.js";
-import { withRetries } from "./withRetries.js";
+import { withRetries } from "../decorators/with-retries.js";
 
 export const get = async <T>(url: string, headers: Headers): Promise<T> => {
   const { data } = await withRetries(axios<T>)(url, { headers });
   return data;
 };
 
-export const post = async <T>(
+export const post = async <I, O>(
   url: string,
-  data: Input<T>,
+  data: I,
   headers: Headers
-): Promise<T> => {
-  const { data: response } = await withRetries(axios<T>)(url, {
+): Promise<O> => {
+  const { data: response } = await withRetries(axios<O>)(url, {
     method: "post",
     data,
     headers,
@@ -20,12 +20,12 @@ export const post = async <T>(
   return response;
 };
 
-export const patch = async <T>(
+export const patch = async <I, O>(
   url: string,
-  data: Partial<T>,
+  data: I,
   headers: Headers
-): Promise<T> => {
-  const { data: response } = await withRetries(axios<T>)(url, {
+): Promise<O> => {
+  const { data: response } = await withRetries(axios<O>)(url, {
     method: "patch",
     data,
     headers,

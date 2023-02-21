@@ -2,23 +2,14 @@ import {
   Asset,
   getHeaders,
   SplightCredentials,
-  useBaseRestClient,
+  BaseRestClient,
 } from "./rest/index.js";
-import { getResourceRoute } from "./urls.js";
-import { Component, Headers } from "./types.js";
-import {
-  useAssetClient,
-  useAttributeClient,
-  useComponentClient,
-  useComponentCommandClient,
-  useComponentObjectClient,
-  useEdgeClient,
-  useGraphClient,
-  useNodeClient,
-  useNotificationClient,
-  useQueryClient,
-  useSecretClient,
-} from "./resource-clients.js";
+import { getResourcePath } from "./urls.js";
+import { ComponentsClient } from "./engine/component.js";
+import { Headers } from "./types.js";
+
+import { AssetsClient } from "./engine/asset.js";
+import { AttributesClient } from "./engine/attribute.js";
 
 export const configure = (requestHeaders?: Headers) => {
   const credentials: SplightCredentials = {
@@ -27,36 +18,13 @@ export const configure = (requestHeaders?: Headers) => {
   };
   const headers = requestHeaders ?? getHeaders(credentials);
   const engine = {
-    assets: useAssetClient(headers),
-    attributes: useAttributeClient(headers),
-    components: useComponentClient(headers),
-    queries: useQueryClient(headers),
-    secrets: useSecretClient(headers),
-    component_objects: useComponentObjectClient(headers),
-    component_commands: useComponentCommandClient(headers),
-    /*
-    Typescript allows for implementing 'nested clients' like this:
-    
-    components: {
-      ...useComponentClient(headers),
-      commands: useComponentCommandClient(headers),
-      objects: useComponentObjectClient(headers),
-    },
-    
-    I think that this could be nice, but it may be hard to reproduce in Python.
-    */
-    graphs: useGraphClient(headers),
-    edges: useEdgeClient(headers),
-    nodes: useNodeClient(headers),
-  };
-
-  const account = {
-    notifications: useNotificationClient(headers),
+    assets: AssetsClient(headers),
+    attributes: AttributesClient(headers),
+    components: ComponentsClient(headers),
   };
 
   return {
     engine,
-    account,
   };
 };
 
