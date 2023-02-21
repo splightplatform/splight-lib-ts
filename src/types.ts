@@ -46,15 +46,6 @@ export interface Node {
   fill_color: string;
 }
 
-export interface File {
-  id: string;
-  file: string;
-  description: string;
-  url: string;
-  extension: string;
-  encrypted: boolean;
-}
-
 export interface Dashboard {
   id: string;
   name: string;
