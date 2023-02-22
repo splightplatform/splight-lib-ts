@@ -1,10 +1,10 @@
-import { Headers } from "../types.js";
+import { Headers } from "./types.js";
 import {
   AssetsClient,
   AttributesClient,
   ComponentsClient,
   FilesClient,
-} from "./index.js";
+} from "./engine/index.js";
 
 export const Engine = (headers: Headers) => {
   return {

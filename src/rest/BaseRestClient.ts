@@ -1,5 +1,11 @@
 import { get, post, patch, del } from "./BaseMethods.js";
-import { Headers, Input, PaginatedCollection } from "../types.js";
+import {
+  BaseListParams,
+  Headers,
+  Input,
+  PaginatedCollection,
+  Params,
+} from "../types.js";
 import { Path } from "../Urls.js";
 
 export interface SplightCredentials {
@@ -20,9 +26,13 @@ export const getHeaders = (credentials: SplightCredentials) => {
 
 export type BaseRestClient<T> = ReturnType<typeof BaseRestClient>;
 
-export const BaseRestClient = <I, O = I>(base_path: Path, headers: Headers) => {
+export const BaseRestClient = <I, O = I, Q extends Params<O> = Params<O>>(
+  base_path: Path,
+  headers: Headers
+) => {
   return {
-    list: (): Promise<PaginatedCollection<O>> => get(base_path.url, headers),
+    list: (params?: Q) =>
+      get<PaginatedCollection<O>>(base_path.url, headers, params),
     retrieve: (pk: string): Promise<O> => get(base_path.slash(pk).url, headers),
     create: (data: I): Promise<O> => post(base_path.url, data, headers),
     update: (pk: string, data: Partial<I>): Promise<O> =>

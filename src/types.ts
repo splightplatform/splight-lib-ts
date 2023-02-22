@@ -8,6 +8,19 @@ export type Input<
 
 export type Headers = Record<string, string>;
 
+export type Unpaginate<T> = T extends PaginatedCollection<infer U> ? U : T;
+
+export type WithContainsFilters<T> = T extends { name: string }
+  ? T & { name__contains: string; name__icontains: string }
+  : T;
+
+export interface BaseListParams {
+  page?: number;
+  page_size?: number;
+  ordering?: string;
+}
+export type Params<T> = BaseListParams & Partial<WithContainsFilters<T>>;
+
 export interface PaginatedCollection<T> {
   count: number;
   next: string | null;

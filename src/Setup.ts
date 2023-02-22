@@ -5,8 +5,8 @@ import {
   BaseRestClient,
 } from "./rest/index.js";
 import { Headers } from "./types.js";
-import { Engine } from "./engine/Engine.js";
-import { Account } from "./account/Account.js";
+import { Engine } from "./Engine.js";
+import { Account } from "./Account.js";
 
 const credentials: SplightCredentials = {
   splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? "",
