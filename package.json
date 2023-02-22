@@ -26,6 +26,7 @@
   "scripts": {
     "build": "tsup src/ --format cjs,esm --dts --clean",
     "autobundle": "tsup src/ --format cjs,esm --dts --clean --watch",
-    "lint": "tsc"
+    "lint": "tsc",
+    "test": "env $(cat .env | xargs) node ./dist/test.js"
   }
 }

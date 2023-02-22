@@ -1,6 +1,6 @@
-import { get, post, patch, del } from "./base-methods.js";
+import { get, post, patch, del } from "./BaseMethods.js";
 import { Headers, Input, PaginatedCollection } from "../types.js";
-import { Path } from "../urls.js";
+import { Path } from "../Urls.js";
 
 export interface SplightCredentials {
   splight_access_id: string;

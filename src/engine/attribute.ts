@@ -1,6 +1,6 @@
-import { BaseRestClient } from "../rest/base-rest-client.js";
+import { BaseRestClient } from "../rest/BaseRestClient.js";
 import { Headers } from "../types.js";
-import { Path } from "../urls.js";
+import { Path } from "../Urls.js";
 
 export interface AttributeParams {
   name: string;

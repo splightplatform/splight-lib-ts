@@ -1,9 +1,9 @@
-import setup from "./setup.js";
+import setup from "./Setup.js";
 
 async function main() {
-  const { engine } = setup.configure();
+  const splight = setup.configure();
 
-  const asset = await engine.assets.retrieve("test");
+  const { results, next } = await splight.engine.assets.list();
+  console.log(results);
 }
-
 main();

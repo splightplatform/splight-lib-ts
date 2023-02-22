@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Headers, Input } from "../types.js";
-import { withRetries } from "../decorators/with-retries.js";
+import { withRetries } from "../decorators/WithRetries.js";
 
 export const get = async <T>(url: string, headers: Headers): Promise<T> => {
   const { data } = await withRetries(axios<T>)(url, { headers });
+
   return data;
 };
 

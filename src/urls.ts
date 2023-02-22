@@ -16,7 +16,7 @@ export const resource_paths = {
 };
 
 export const API_HOST =
-  process.env.API_BASE_URL ?? "http://integrationapi.splight-ai.com/v2/";
+  process.env.API_BASE_URL ?? "https://integrationapi.splight-ai.com/v2/";
 
 export const getResourceUrl = (resource_name: keyof typeof resource_paths) =>
   new URL(getResourcePath(resource_name), API_HOST);

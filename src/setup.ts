@@ -4,29 +4,21 @@ import {
   SplightCredentials,
   BaseRestClient,
 } from "./rest/index.js";
-import { getResourcePath } from "./urls.js";
-import { ComponentsClient } from "./engine/component.js";
 import { Headers } from "./types.js";
+import { Engine } from "./engine/Engine.js";
+import { Account } from "./account/Account.js";
 
-import { AssetsClient } from "./engine/asset.js";
-import { AttributesClient } from "./engine/attribute.js";
-import { FilesClient } from "./engine/files.js";
+const credentials: SplightCredentials = {
+  splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? "",
+  splight_access_key: process.env.SPLIGHT_ACCESS_KEY ?? "",
+};
 
 export const configure = (requestHeaders?: Headers) => {
-  const credentials: SplightCredentials = {
-    splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? "",
-    splight_access_key: process.env.SPLIGHT_ACCESS_KEY ?? "",
-  };
   const headers = requestHeaders ?? getHeaders(credentials);
-  const engine = {
-    assets: AssetsClient(headers),
-    attributes: AttributesClient(headers),
-    components: ComponentsClient(headers),
-    files: FilesClient(headers),
-  };
 
   return {
-    engine,
+    engine: Engine(headers),
+    account: Account(headers),
   };
 };
 
