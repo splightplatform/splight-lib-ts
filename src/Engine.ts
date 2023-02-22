@@ -4,6 +4,7 @@ import {
   AttributesClient,
   ComponentsClient,
   FilesClient,
+  QueriesClient,
 } from "./engine/index.js";
 
 export const Engine = (headers: Headers) => {
@@ -12,5 +13,6 @@ export const Engine = (headers: Headers) => {
     attributes: AttributesClient(headers),
     components: ComponentsClient(headers),
     files: FilesClient(headers),
+    queries: QueriesClient(headers),
   };
 };

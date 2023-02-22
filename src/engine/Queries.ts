@@ -67,12 +67,13 @@ export const QueriesClient = (headers: Headers) => {
     // We should have a type for the results
     execute: async (query: QueryParams) => {
       const params = await getParams(query);
-      const datalake_path = Path("engine/datalake/");
+      console.log(params);
+      /*       const datalake_path = Path("engine/datalake/");
       const { results } = await get<{ results: any }>(
         datalake_path.slash(params).url,
         headers
       );
-      return results;
+      return results; */
     },
   };
 };
