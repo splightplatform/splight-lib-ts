@@ -15,8 +15,7 @@ export const resource_paths = {
   Node: "engine/graph/nodes/", // What about bulk creation of nodes?
 };
 
-export const API_HOST =
-  process.env.API_BASE_URL ?? "http://integrationapi.splight-ai.com/v2/"; //"http://127.0.0.1:8000/";
+export const API_HOST = process.env.API_BASE_URL ?? "http://127.0.0.1:8000/"; //"https://integrationapi.splight-ai.com/v2/"
 
 export const getResourceUrl = (resource_name: keyof typeof resource_paths) =>
   new URL(getResourcePath(resource_name), API_HOST);
@@ -28,7 +27,12 @@ export const Path = (base_path: string) => {
   const base_url = new URL(base_path, API_HOST).href;
   return {
     url: base_url,
-    slash: (next_segment: string) => Path(`${base_url}${next_segment}/`),
+    slash: (next_segment: string, trailing_slash: boolean = true) =>
+      Path(
+        `${base_url}${base_url.endsWith("/") ? "" : "/"}${next_segment}${
+          trailing_slash ? "/" : ""
+        }`
+      ),
   };
 };
 

@@ -1,6 +1,6 @@
 import { get, post } from "../rest/BaseMethods.js";
 import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers } from "../types.js";
+import { Headers, PaginatedCollection } from "../types.js";
 import { Path } from "../Urls.js";
 
 // This name is a bit confusing, How could I make it less confusing without breaking
@@ -49,14 +49,26 @@ export interface Query extends QueryParams {
   query_params?: string;
 }
 
+export interface AnonymousQuery {
+  output_format: "Number" | "Boolean" | "String"; //TODO: Add remaining types;
+  filters?: { [key: string]: string };
+  target: string;
+  source_type: "Native" | "Component";
+  limit?: number;
+}
+
 export const QueriesClient = (headers: Headers) => {
   const basePath = Path("engine/queries/");
   const baseClient = BaseRestClient<QueryParams, Query>(basePath, headers);
 
-  const getParams = async (query: QueryParams) => {
-    const { query_params } = await post<QueryParams, { query_params: string }>(
+  const getParams = async (query: AnonymousQuery) => {
+    console.log(basePath.slash("get_query_params").url);
+    const { query_params } = await post<
+      AnonymousQuery & { name: string },
+      { query_params: string }
+    >(
       basePath.slash("get_query_params").url,
-      query,
+      { ...query, name: "default" },
       headers
     );
     return query_params;
@@ -64,16 +76,15 @@ export const QueriesClient = (headers: Headers) => {
 
   return {
     ...baseClient,
-    // We should have a type for the results
-    execute: async (query: QueryParams) => {
+    //Is returning the datalake as JSON good enough?
+    execute: async (query: AnonymousQuery) => {
       const params = await getParams(query);
       console.log(params);
-      /*       const datalake_path = Path("engine/datalake/");
-      const { results } = await get<{ results: any }>(
+      const datalake_path = Path("engine/datalake/data/");
+      return await get<PaginatedCollection<JSON>>(
         datalake_path.slash(params).url,
         headers
       );
-      return results; */
     },
   };
 };
