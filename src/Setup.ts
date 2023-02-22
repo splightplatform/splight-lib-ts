@@ -15,7 +15,6 @@ const credentials: SplightCredentials = {
 
 export const configure = (requestHeaders?: Headers) => {
   const headers = requestHeaders ?? getHeaders(credentials);
-
   return {
     engine: Engine(headers),
     account: Account(headers),

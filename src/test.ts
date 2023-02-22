@@ -1,5 +1,4 @@
 import setup from "./Setup.js";
-
 async function main() {
   const splight = setup.configure();
 
