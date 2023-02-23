@@ -1,5 +1,6 @@
 # Splight TypeScript Library
 
+![npm package](https://badge.fury.io/js/@splightplatform%2Fsplight-lib-ts.svg "npm package")
 ![build](https://github.com/splightplatform/splight-lib-ts/actions/workflows/build.yml/badge.svg "build")
 ![test](https://github.com/splightplatform/splight-lib-ts/actions/workflows/test.yml/badge.svg "test")
 
