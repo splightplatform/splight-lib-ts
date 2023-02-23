@@ -1,5 +1,7 @@
 # Splight TypeScript Library
 
+![CI](https://github.com/splightplatform/splight-lib-ts/actions/workflows/main.yml/badge.svg "CI")
+
 The Splight TypeScript library provides convenient access to the Splight API from applications written in TypeScript both in the client and the server.
 
 ## Development
