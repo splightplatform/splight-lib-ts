@@ -1,10 +1,8 @@
 # Splight TypeScript Library
 
 ![npm](https://img.shields.io/npm/v/@splightplatform/splight-lib-ts)
-
 ![build](https://github.com/splightplatform/splight-lib-ts/actions/workflows/build.yml/badge.svg "build")
 ![test](https://github.com/splightplatform/splight-lib-ts/actions/workflows/test.yml/badge.svg "test")
-
 ![npm](https://img.shields.io/npm/dw/@splightplatform/splight-lib-ts)
 
 The Splight TypeScript library provides convenient access to the Splight API from applications written in TypeScript both in the client and the server.
