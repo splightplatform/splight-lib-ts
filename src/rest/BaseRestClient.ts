@@ -32,7 +32,7 @@ export const BaseRestClient = <I, O = I, Q extends Params<O> = Params<O>>(
 ) => {
   return {
     list: (params?: Q) =>
-      get<PaginatedCollection<O>>(base_path.url, headers, params),
+      get<PaginatedCollection<O>>(base_path.url, headers, ...[params]),
     retrieve: (pk: string): Promise<O> => get(base_path.slash(pk).url, headers),
     create: (data: I): Promise<O> => post(base_path.url, data, headers),
     update: (pk: string, data: Partial<I>): Promise<O> =>
