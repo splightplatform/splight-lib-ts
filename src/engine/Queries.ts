@@ -11,8 +11,8 @@ export interface QueryParams {
   description?: string;
   output_format: string;
   target: string;
-  source_component_id: string | null;
-  source_component_label: string | null;
+  source_component_id?: string | null;
+  source_component_label?: string | null;
   filters: { [key: string]: string };
   limit?: number;
   skip?: number;
@@ -33,8 +33,8 @@ export interface Query extends QueryParams {
   description: string;
   output_format: string;
   target: string;
-  source_component_id: string | null;
-  source_component_label: string | null;
+  source_component_id?: string | null;
+  source_component_label?: string | null;
   filters: { [key: string]: string };
   limit?: number;
   skip?: number;

@@ -50,7 +50,7 @@ test("Retrieve attribute", async () => {
     data: MockAttribute,
     status: 200,
   });
-  const asset = await splight.engine.attributes.retrieve("123");
+  const attribute = await splight.engine.attributes.retrieve("123");
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}engine/attributes/123/`,
     {
@@ -64,7 +64,7 @@ test("Create attribute", async () => {
     data: MockAttribute,
     status: 201,
   });
-  const asset = await splight.engine.attributes.create(MockAttributeParams);
+  const attribute = await splight.engine.attributes.create(MockAttributeParams);
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
     data: MockAttributeParams,
     method: "post",
