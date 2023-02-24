@@ -156,7 +156,6 @@ export const ComponentsClient = (headers: Headers) => {
       commands: component.commands,
       endpoints: component.endpoints,
     };
-    console.log(new_component);
     return post<ComponentParams, Component>(
       basePath.url,
       new_component,
