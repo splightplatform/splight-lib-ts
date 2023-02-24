@@ -1,10 +1,11 @@
 #TODO: Refactor to use npm instead of pnpm
 name: publish
 on:
-  push:
-    branches:
-      - master
-      - hotfix/*
+  workflow_run:
+    workflows: ["test"]
+    branches: ["master", "hotfix/**"]
+    types:
+      - completed
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 jobs:
