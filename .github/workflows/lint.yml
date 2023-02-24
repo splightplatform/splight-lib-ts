@@ -1,0 +1,19 @@
+name: lint
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          version: 18.x
+      - run: npm ci
+      - run: npm run lint:typecheck
+      - run: npm run lint:prettier
+      # TODO: Add lint:eslint
+      - run: npm run lint:spellcheck

@@ -8,7 +8,9 @@ export type Input<
 
 export type Headers = Record<string, string>;
 
-export type Unpaginate<T> = T extends PaginatedCollection<infer U> ? U : T;
+export type WithoutPagination<T> = T extends PaginatedCollection<infer U>
+  ? U
+  : T;
 
 export type WithContainsFilters<T> = T extends { name: string }
   ? T & { name__contains: string; name__icontains: string }

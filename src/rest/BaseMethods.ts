@@ -1,11 +1,11 @@
 import axios from "axios";
-import { Headers, Input, Params, Unpaginate } from "../types.js";
+import { Headers, Input, Params, WithoutPagination } from "../types.js";
 import { withRetries } from "../decorators/WithRetries.js";
 
 export const get = async <T>(
   url: string,
   headers: Headers,
-  params?: Params<Unpaginate<T>>
+  params?: Params<WithoutPagination<T>>
 ): Promise<T> => {
   const { data } = await withRetries(axios<T>)(url, { headers, params });
   return data;
