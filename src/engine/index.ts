@@ -1,5 +1,5 @@
-export { AssetsClient } from "./Assets.js";
-export { AttributesClient } from "./Attributes.js";
-export { ComponentsClient } from "./Components.js";
-export { FilesClient } from "./Files.js";
-export { QueriesClient } from "./Queries.js";
+export { AssetsClient } from "./assets/Assets.js";
+export { AttributesClient } from "./attributes/Attributes.js";
+export { ComponentsClient } from "./components/Components.js";
+export { FilesClient } from "./files/Files.js";
+export { QueriesClient } from "./queries/Queries.js";

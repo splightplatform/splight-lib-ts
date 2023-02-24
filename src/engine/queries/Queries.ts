@@ -1,7 +1,7 @@
-import { get, post } from "../rest/BaseMethods.js";
-import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers, PaginatedCollection } from "../types.js";
-import { Path } from "../Urls.js";
+import { get, post } from "../../rest/BaseMethods.js";
+import { BaseRestClient } from "../../rest/BaseRestClient.js";
+import { Headers, PaginatedCollection } from "../../types.js";
+import { Path } from "../../Urls.js";
 
 // This name is a bit confusing, How could I make it less confusing without breaking
 // the Resource ResourceParams pattern?

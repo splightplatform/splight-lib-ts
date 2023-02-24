@@ -1,8 +1,8 @@
-import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers, PaginatedCollection } from "../types.js";
-import { Path } from "../Urls.js";
-import { get } from "../rest/BaseMethods.js";
-import { Attribute } from "./Attributes.js";
+import { BaseRestClient } from "../../rest/BaseRestClient.js";
+import { Headers, PaginatedCollection } from "../../types.js";
+import { Path } from "../../Urls.js";
+import { get } from "../../rest/BaseMethods.js";
+import { Attribute } from "../attributes/Attributes.js";
 
 export interface AssetParams {
   name: string;

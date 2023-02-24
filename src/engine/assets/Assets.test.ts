@@ -1,8 +1,8 @@
-import Setup from "../Setup.js";
-import { MockedAxios } from "../test/MockedAxios.js";
-import { API_HOST } from "../Urls.js";
+import Setup from "../../Setup.js";
+import { MockedAxios } from "../../test/MockedAxios.js";
+import { API_HOST } from "../../Urls.js";
 import { expect, jest, test } from "@jest/globals";
-import { splight, TestKeys } from "../test/setup.js";
+import { splight, TestKeys } from "../../test/setup.js";
 import { Asset, AssetParams } from "./Assets.js";
 
 const mockedAxios = MockedAxios();

@@ -1,9 +1,9 @@
 // Components
 
-import { get, post } from "../rest/BaseMethods.js";
-import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers } from "../types.js";
-import { Path } from "../Urls.js";
+import { get, post } from "../../rest/BaseMethods.js";
+import { BaseRestClient } from "../../rest/BaseRestClient.js";
+import { Headers } from "../../types.js";
+import { Path } from "../../Urls.js";
 
 export interface ComponentObject {
   id: string;
