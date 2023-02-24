@@ -1,4 +1,4 @@
-import { configure } from "./setup.js";
+import { configure } from "./Setup.js";
 
 export default {
   configure,
