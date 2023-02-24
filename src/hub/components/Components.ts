@@ -2,7 +2,7 @@
 
 import { get, post } from "../../rest/BaseMethods.js";
 import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers } from "../../types.js";
+import { Headers, PaginatedCollection } from "../../types.js";
 import { Path } from "../../Urls.js";
 
 export interface ComponentObject {
@@ -137,6 +137,10 @@ export const ComponentsClient = (headers: Headers) => {
   return {
     baseClient,
     versions: (params?: { name: string }) =>
-      get(componentVersionsPath.url, headers, params),
+      get<PaginatedCollection<Component>>(
+        componentVersionsPath.url,
+        headers,
+        params
+      ),
   };
 };

@@ -85,7 +85,6 @@ export interface Component {
   readme_text?: string;
   custom_types: CustomType[];
   input: ComponentParameter[];
-  output: ComponentParameter[];
   filters?: ComponentParameter[];
   type?: string;
   verification: string;
@@ -95,6 +94,7 @@ export interface Component {
   privacy_policy?: string;
   tags: string[];
   build_status: string;
+  output: ComponentParameter[];
   status: string;
   service_name: string;
   component_capacity?: string;
@@ -112,13 +112,16 @@ export interface ComponentParams {
   name: string;
   description?: string;
   picture_url?: string;
-  log_level: LogLevel;
+  log_level?: LogLevel;
+  type?: string;
   component_capacity: ComponentSize;
-  restart_policy: RestartPolicy;
+  restart_policy?: RestartPolicy;
   version: string;
   custom_types?: CustomType[];
   input?: ComponentParameter[];
+  output: ComponentParameter[];
   commands?: ComponentCommand[];
+  bindings?: Binding[];
   endpoints?: Endpoint[];
   active?: boolean;
 }
@@ -133,8 +136,37 @@ export const ComponentsClient = (headers: Headers) => {
     basePath,
     headers
   );
+
+  const fromHubComponent = (
+    name: string,
+    description: string,
+    component: Component
+  ) => {
+    const new_component: ComponentParams = {
+      name,
+      description,
+      component_capacity: component.min_component_capacity,
+      custom_types: component.custom_types,
+      picture_url: component.picture_url,
+      input: component.input,
+      output: component.output,
+      type: component.type,
+      version: `${component.name}-${component.version}`,
+      bindings: component.bindings,
+      commands: component.commands,
+      endpoints: component.endpoints,
+    };
+    console.log(new_component);
+    return post<ComponentParams, Component>(
+      basePath.url,
+      new_component,
+      headers
+    );
+  };
+
   return {
     ...baseClient,
+    fromHubComponent,
     start: (pk: string, data: ComponentParams) =>
       post(basePath.slash(pk).slash("start").url, data, headers),
     stop: (pk: string, data: ComponentParams) =>
