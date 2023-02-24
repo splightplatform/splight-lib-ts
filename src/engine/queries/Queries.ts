@@ -1,4 +1,4 @@
-import { get, post } from "../../rest/BaseMethods.js";
+import { post } from "../../rest/BaseMethods.js";
 import { BaseRestClient } from "../../rest/BaseRestClient.js";
 import { Headers, PaginatedCollection } from "../../types.js";
 import { Path } from "../../Urls.js";
@@ -61,27 +61,14 @@ export const QueriesClient = (headers: Headers) => {
   const basePath = Path("engine/queries/");
   const baseClient = BaseRestClient<QueryParams, Query>(basePath, headers);
 
-  const getParams = async (query: AnonymousQuery) => {
-    console.log(basePath.slash("get_query_params").url);
-    const { query_params } = await post<
-      AnonymousQuery & { name: string },
-      { query_params: string }
-    >(
-      basePath.slash("get_query_params").url,
-      { ...query, name: "default" },
-      headers
-    );
-    return query_params;
-  };
-
   return {
     ...baseClient,
     //Is returning the datalake as JSON good enough?
     execute: async (query: AnonymousQuery) => {
-      const params = await getParams(query);
-      const datalake_path = Path("engine/datalake/data/");
-      return await get<PaginatedCollection<JSON>>(
-        datalake_path.slash(params).url,
+      const datalake_path = Path("engine/datalake/data/query/");
+      return await post<AnonymousQuery, PaginatedCollection<JSON>>(
+        datalake_path.url,
+        query,
         headers
       );
     },

@@ -119,3 +119,21 @@ test("Delete query", async () => {
     headers: { Authorization: TestKeys },
   });
 });
+
+test("Execute query", async () => {
+  mockedAxios.mockResolvedValueOnce({
+    data: { results: [], next: "something" },
+    status: 200,
+  });
+  const { results, next } = await splight.engine.queries.execute(
+    MockAnonymousQuery
+  );
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}engine/datalake/data/query/`,
+    {
+      data: MockAnonymousQuery,
+      method: "post",
+      headers: { Authorization: TestKeys },
+    }
+  );
+});
