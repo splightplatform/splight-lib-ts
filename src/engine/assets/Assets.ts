@@ -11,6 +11,7 @@ export interface AssetParams {
   latitude?: number;
   longitude?: number;
 }
+
 export interface Asset extends AssetParams {
   id: string;
   verified: boolean;

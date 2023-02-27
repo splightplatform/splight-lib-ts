@@ -18,7 +18,11 @@ export interface Asset {
   name: string;
 }
 
-export const getHeaders = (credentials: SplightCredentials) => {
+export const getHeaders = () => {
+  const credentials: SplightCredentials = {
+    splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? "",
+    splight_access_key: process.env.SPLIGHT_ACCESS_KEY ?? "",
+  };
   return {
     Authorization: `Splight ${credentials.splight_access_id} ${credentials.splight_access_key}`,
   } as Headers;

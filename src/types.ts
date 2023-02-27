@@ -25,7 +25,7 @@ export type Params<T> = BaseListParams & Partial<WithContainsFilters<T>>;
 
 export interface PaginatedCollection<T> {
   count: number;
-  next: string | null;
+  next: string;
   previous: string | null;
   results: T[];
 }

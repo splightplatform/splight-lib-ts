@@ -54,7 +54,7 @@ test("Retrieve asset", async () => {
     data: MockAsset,
     status: 200,
   });
-  const asset = await splight.engine.assets.retrieve("123");
+  await splight.engine.assets.retrieve("123");
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/123/`, {
     headers: { Authorization: TestKeys },
   });
@@ -65,7 +65,7 @@ test("Create asset", async () => {
     data: MockAsset,
     status: 201,
   });
-  const asset = await splight.engine.assets.create(MockAssetParams);
+  await splight.engine.assets.create(MockAssetParams);
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/`, {
     data: MockAssetParams,
     method: "post",
@@ -78,7 +78,7 @@ test("Update asset", async () => {
     data: { ...MockAsset, name: "updated" },
     status: 200,
   });
-  const asset = await splight.engine.assets.update("123", {
+  await splight.engine.assets.update("123", {
     ...MockAssetParams,
     name: "updated",
   });

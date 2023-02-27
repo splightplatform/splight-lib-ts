@@ -1,0 +1,26 @@
+import { BaseRestClient } from "../rest/BaseRestClient.js";
+import { Headers } from "../types.js";
+import { Path } from "../Urls.js";
+
+export interface AgreementParams {
+  name: string;
+  description: string;
+  created_at: string;
+  updated_at: string;
+  type: "ECOSYSTEM" | "CUSTOMER" | "DEVELOPER";
+  file: string;
+  organization_id?: string;
+}
+
+export interface Agreement {
+  id: string;
+}
+
+export const AgreemetsClient = (headers: Headers) => {
+  const basePath = Path("backoffice/agreements/");
+  const baseClient = BaseRestClient<AgreementParams, Agreement>(
+    basePath,
+    headers
+  );
+  return baseClient;
+};

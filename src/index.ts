@@ -1,5 +1,3 @@
-import { configure } from "./Setup.js";
+import Splight from "./Setup.js";
 
-export default {
-  configure,
-};
+export default Splight;
