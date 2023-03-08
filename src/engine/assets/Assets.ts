@@ -12,10 +12,26 @@ export interface AssetParams {
   longitude?: number;
 }
 
-export interface Asset extends AssetParams {
+export type Asset = AssetParams & {
   id: string;
+  attributes: Attribute[];
   verified: boolean;
   description: string;
+  organization: string;
+};
+
+export interface Feature {
+  type: string;
+  geometry: {
+    type: string;
+    coordinates: number[];
+  };
+  properties: {
+    id: string;
+    name: string;
+    description?: string;
+    verified: boolean;
+  };
 }
 
 export const AssetsClient = (headers: Headers) => {
@@ -23,6 +39,13 @@ export const AssetsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
+    geojson: async () =>
+      (
+        await get<{ features: Feature[] }>(
+          basePath.slash("geojson").url,
+          headers
+        )
+      ).features,
     attributes: (pk: string) =>
       get<PaginatedCollection<Attribute>>(
         basePath.slash(pk).slash("attributes").url,

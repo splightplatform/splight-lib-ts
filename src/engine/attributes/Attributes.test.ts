@@ -1,4 +1,3 @@
-import Setup from "../../Setup.js";
 import { MockedAxios } from "../../test/MockedAxios.js";
 import { API_HOST } from "../../Urls.js";
 import { expect, jest, test } from "@jest/globals";

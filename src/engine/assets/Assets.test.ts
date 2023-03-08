@@ -17,6 +17,7 @@ const MockAsset: Asset = {
   name: "test",
   latitude: undefined,
   longitude: undefined,
+  organization: "Splight",
   verified: false,
   description: "test",
 };

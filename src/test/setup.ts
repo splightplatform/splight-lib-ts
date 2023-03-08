@@ -1,5 +1,4 @@
-import { jest } from "@jest/globals";
-import Splight from "../Setup.js";
+import { Splight } from "../Setup.js";
 
 jest.mock("axios");
 

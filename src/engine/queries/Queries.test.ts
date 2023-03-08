@@ -129,7 +129,7 @@ test("Execute query", async () => {
     MockAnonymousQuery
   );
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}engine/datalake/data/query/`,
+    `${API_HOST}engine/datalake/data/execute_query/`,
     {
       data: MockAnonymousQuery,
       method: "post",

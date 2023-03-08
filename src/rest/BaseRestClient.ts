@@ -30,7 +30,11 @@ export const getHeaders = () => {
 
 export type BaseRestClient<T> = ReturnType<typeof BaseRestClient>;
 
-export const BaseRestClient = <I, O = I, Q extends Params<O> = Params<O>>(
+export const BaseRestClient = <
+  I,
+  O = I,
+  Q extends Record<string, string | number | boolean> = {}
+>(
   base_path: Path,
   headers: Headers
 ) => {

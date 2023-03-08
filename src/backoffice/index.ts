@@ -1,3 +1,3 @@
-export { OrganizationRequestsClient } from "./organizationRequests.js";
-export { OrganizationsClient } from "./organizations.js";
-export { AgreemetsClient } from "./agreements.js";
+export { OrganizationRequestsClient } from "./OrganizationRequest.js";
+export { OrganizationsClient } from "./Organizations.js";
+export { AgreemetsClient } from "./Agreements.js";

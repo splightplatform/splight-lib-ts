@@ -65,7 +65,7 @@ export const QueriesClient = (headers: Headers) => {
     ...baseClient,
     //Is returning the datalake as JSON good enough?
     execute: async (query: AnonymousQuery) => {
-      const datalake_path = Path("engine/datalake/data/query/");
+      const datalake_path = Path("engine/datalake/data/execute_query/");
       return await post<AnonymousQuery, PaginatedCollection<JSON>>(
         datalake_path.url,
         query,

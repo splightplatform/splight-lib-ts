@@ -2,7 +2,7 @@ import { BaseRestClient } from "../rest/BaseRestClient.js";
 import { Headers } from "../types.js";
 import { Path } from "../Urls.js";
 
-export interface Organization {
+export interface OrganizationProfile {
   id: string;
   name: string;
   manager_email: string;
@@ -13,7 +13,7 @@ export interface Organization {
 
 export const OrganizationsClient = (headers: Headers) => {
   const basePath = Path("backoffice/organization/organizations/");
-  const baseClient = BaseRestClient<Organization>(basePath, headers);
+  const baseClient = BaseRestClient<OrganizationProfile>(basePath, headers);
   return {
     list: () => baseClient.list(),
     retrieve: (pk: string) => baseClient.retrieve(pk),

@@ -6,7 +6,7 @@ import { url } from "inspector";
 export const get = async <T>(
   url: string,
   headers: Headers,
-  params?: Params<WithoutPagination<T>>
+  params?: Record<string, string | number | boolean>
 ): Promise<T> => {
   const { data } = await withRetries(axios<T>)(url, { headers, params });
   return data;

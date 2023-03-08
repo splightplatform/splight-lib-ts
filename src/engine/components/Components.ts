@@ -2,7 +2,7 @@
 
 import { get, post } from "../../rest/BaseMethods.js";
 import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers } from "../../types.js";
+import { Headers, PaginatedCollection } from "../../types.js";
 import { Path } from "../../Urls.js";
 
 export interface ComponentObject {
@@ -10,6 +10,7 @@ export interface ComponentObject {
   name: string;
   description: string;
   component_id: string;
+  type: string;
   data: ComponentParameter[];
 }
 
@@ -166,12 +167,21 @@ export const ComponentsClient = (headers: Headers) => {
   return {
     ...baseClient,
     fromHubComponent,
-    start: (pk: string, data: ComponentParams) =>
-      post(basePath.slash(pk).slash("start").url, data, headers),
-    stop: (pk: string, data: ComponentParams) =>
-      post(basePath.slash(pk).slash("stop").url, data, headers),
-    objects: (pk: string) =>
-      get<ComponentObject[]>(basePath.slash(pk).slash("objects").url, headers),
+    hubComponent: (pk: string) =>
+      get<Component>(basePath.slash(pk).slash("hub-component").url, headers),
+    start: (pk: string) =>
+      post(basePath.slash(pk).slash("start").url, {}, headers),
+    stop: (pk: string) =>
+      post(basePath.slash(pk).slash("stop").url, {}, headers),
+    objects: (
+      pk: string,
+      params: { page?: number; page_size?: number; component_id?: string }
+    ) =>
+      get<ComponentObject[]>(
+        Path("engine/component/objects/").url,
+        headers,
+        params
+      ),
     commands: (pk: string) =>
       get<ComponentCommand[]>(
         basePath.slash(pk).slash("commands").url,
