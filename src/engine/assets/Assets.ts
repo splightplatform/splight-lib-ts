@@ -3,13 +3,24 @@ import { Headers, PaginatedCollection } from "../../types.js";
 import { Path } from "../../Urls.js";
 import { get } from "../../rest/BaseMethods.js";
 import { Attribute } from "../attributes/Attributes.js";
+import { Feature, GeoJsonProperties, LineString, Point } from 'geojson';
+
+export type AssetGeoJsonFeature = Feature<
+  Point | LineString,
+  GeoJsonProperties & {
+    id: string;
+    name: string;
+    description: string;
+    verified: boolean;
+    isCenterPoint: boolean;
+  }
+>;
 
 export interface AssetParams {
   name: string;
   description?: string;
   attributes?: Attribute[];
-  latitude?: number;
-  longitude?: number;
+  geo_data?: AssetGeoJsonFeature[];
 }
 
 export type Asset = AssetParams & {
@@ -20,20 +31,6 @@ export type Asset = AssetParams & {
   organization: string;
 };
 
-export interface Feature {
-  type: string;
-  geometry: {
-    type: string;
-    coordinates: number[];
-  };
-  properties: {
-    id: string;
-    name: string;
-    description?: string;
-    verified: boolean;
-  };
-}
-
 export const AssetsClient = (headers: Headers) => {
   const basePath = Path("engine/assets/");
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
@@ -41,7 +38,7 @@ export const AssetsClient = (headers: Headers) => {
     ...baseClient,
     geojson: async () =>
       (
-        await get<{ features: Feature[] }>(
+        await get<{ features: AssetGeoJsonFeature[] }>(
           basePath.slash("geojson").url,
           headers
         )
