@@ -135,7 +135,7 @@ export const ComponentsClient = (headers: Headers) => {
     headers
   );
   return {
-    baseClient,
+    ...baseClient,
     versions: (params?: { name: string }) =>
       get<PaginatedCollection<Component>>(
         componentVersionsPath.url,

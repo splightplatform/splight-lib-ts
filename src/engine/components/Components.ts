@@ -10,7 +10,7 @@ export interface ComponentObject {
   name: string;
   description: string;
   component_id: string;
-  type: string;
+  type?: string;
   data: ComponentParameter[];
 }
 
@@ -51,6 +51,7 @@ export type ComponentParameterType =
 export interface ComponentParameter {
   type: string;
   name: string;
+  description: string;
   required: boolean;
   value:
     | ComponentParameterType
@@ -177,7 +178,7 @@ export const ComponentsClient = (headers: Headers) => {
       pk: string,
       params: { page?: number; page_size?: number; component_id?: string }
     ) =>
-      get<ComponentObject[]>(
+      get<PaginatedCollection<ComponentObject>>(
         Path("engine/component/objects/").url,
         headers,
         params

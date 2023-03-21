@@ -3,6 +3,8 @@ import {
   AssetsClient,
   AttributesClient,
   CommunicationClient,
+  ComponentCommandsClient,
+  ComponentObjectsClient,
   ComponentsClient,
   FilesClient,
   QueriesClient,
@@ -16,5 +18,7 @@ export const Engine = (headers: Headers) => {
     files: FilesClient(headers),
     queries: QueriesClient(headers),
     communication: CommunicationClient(headers),
+    componentObjects: ComponentObjectsClient(headers),
+    componentCommands: ComponentCommandsClient(headers),
   };
 };
