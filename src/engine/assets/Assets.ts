@@ -26,13 +26,11 @@ export const AssetsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
-    geojson: async () =>
-      (
-        await get<FeatureCollection<GeometryCollection, Asset>>(
-          basePath.slash("geojson").url,
-          headers
-        )
-      ).features,
+    geojson: async (params: { name__icontains: string }) =>
+      await get<FeatureCollection<GeometryCollection, Asset>>(
+        basePath.slash("geojson").url,
+        headers
+      ),
     attributes: (pk: string) =>
       get<PaginatedCollection<Attribute>>(
         basePath.slash(pk).slash("attributes").url,
