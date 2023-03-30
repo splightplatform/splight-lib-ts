@@ -51,6 +51,7 @@ export const del = async <T>(url: string, headers: Headers): Promise<T> => {
 };
 
 export const options = async <T>(url: string, headers: Headers): Promise<T> => {
+  console.log("[Splight] OPTIONS", url);
   const { data: response } = await withRetries(axios<T>)(url, {
     method: "options",
     headers,

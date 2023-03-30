@@ -15,6 +15,7 @@ export {
   ComponentCommand,
   ComponentParameterType,
   ComponentObject,
+  Command,
 } from "./components/Components.js";
 export { File, FileParams } from "./files/Files.js";
 export { Query, QueryParams } from "./queries/Queries.js";

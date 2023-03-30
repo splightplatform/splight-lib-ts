@@ -25,6 +25,22 @@ export interface ComponentCommand {
   fields: ComponentParameter[];
 }
 
+interface CommandResponse {
+  id: string;
+  return_value: string;
+  error_detail: string;
+}
+
+export interface Command {
+  id: string;
+  description: string;
+  status: string;
+  component_id: string;
+  fields?: ComponentParameter[];
+  command: ComponentCommand;
+  response?: CommandResponse;
+}
+
 interface Endpoint {
   name: string;
   port: number;

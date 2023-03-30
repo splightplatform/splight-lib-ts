@@ -15,8 +15,10 @@ const MockAsset: Asset = {
   id: "123",
   attributes: [],
   name: "test",
-  latitude: undefined,
-  longitude: undefined,
+  geometry: {
+    type: "GeometryCollection",
+    geometries: [],
+  },
   organization: "Splight",
   verified: false,
   description: "test",
