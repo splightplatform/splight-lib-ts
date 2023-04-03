@@ -28,6 +28,7 @@ export interface QueryParams {
 }
 
 export interface Query extends QueryParams {
+  id: string;
   source_type: string;
   name: string;
   description: string;

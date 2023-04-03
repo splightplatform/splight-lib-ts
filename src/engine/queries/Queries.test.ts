@@ -12,6 +12,7 @@ afterEach(() => {
 });
 
 const MockQuery: Query = {
+  id: "123",
   name: "test",
   description: "",
   output_format: "Number",

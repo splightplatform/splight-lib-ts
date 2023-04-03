@@ -18,6 +18,7 @@ export type Asset = AssetParams & {
   verified: boolean;
   description: string;
   organization: string;
+  centroid_coordinates?: [number, number];
   geometry: GeometryCollection;
 };
 
@@ -26,10 +27,11 @@ export const AssetsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
-    geojson: async (params: { name__icontains: string }) =>
+    geojson: async (params?: { name__icontains: string }) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
         basePath.slash("geojson").url,
-        headers
+        headers,
+        params
       ),
     attributes: (pk: string) =>
       get<PaginatedCollection<Attribute>>(
