@@ -6,6 +6,7 @@ import {
   ComponentCommandsClient,
   ComponentObjectsClient,
   ComponentsClient,
+  DashboardsClient,
   FilesClient,
   QueriesClient,
 } from "./engine/index.js";
@@ -20,5 +21,6 @@ export const Engine = (headers: Headers) => {
     communication: CommunicationClient(headers),
     componentObjects: ComponentObjectsClient(headers),
     componentCommands: ComponentCommandsClient(headers),
+    dashboards: DashboardsClient(headers),
   };
 };

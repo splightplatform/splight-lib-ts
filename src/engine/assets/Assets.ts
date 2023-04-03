@@ -24,7 +24,11 @@ export type Asset = AssetParams & {
 
 export const AssetsClient = (headers: Headers) => {
   const basePath = Path("engine/assets/");
-  const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
+  const baseClient = BaseRestClient<
+    AssetParams,
+    Asset,
+    Partial<{ unpaginated: boolean; page_size: number; page: number }>
+  >(basePath, headers);
   return {
     ...baseClient,
     geojson: async (params?: { name__icontains: string }) =>

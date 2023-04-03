@@ -14,7 +14,7 @@ export interface Dashboard extends DashboardParams {
   created_at: string;
 }
 
-const DashboardsClient = (headers: Headers) => {
+export const DashboardsClient = (headers: Headers) => {
   const basePath = Path("engine/dashboards/");
   const baseClient = BaseRestClient<DashboardParams, Dashboard>(
     basePath,
