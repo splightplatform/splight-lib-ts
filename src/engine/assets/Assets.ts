@@ -9,6 +9,8 @@ export interface AssetParams {
   name: string;
   description?: string;
   attributes?: Attribute[];
+  organization?: string;
+  verified?: boolean;
   geometry?: GeometryCollection;
 }
 
@@ -31,7 +33,7 @@ export const AssetsClient = (headers: Headers) => {
   >(basePath, headers);
   return {
     ...baseClient,
-    geojson: async (params?: { name__icontains: string }) =>
+    geojson: async (params?: { name__icontains?: string }) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
         basePath.slash("geojson").url,
         headers,

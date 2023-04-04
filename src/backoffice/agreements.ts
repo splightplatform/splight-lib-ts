@@ -12,7 +12,7 @@ export interface AgreementParams {
   organization_id?: string;
 }
 
-export interface Agreement {
+export interface Agreement extends AgreementParams {
   id: string;
 }
 

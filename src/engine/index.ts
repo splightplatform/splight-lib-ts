@@ -5,11 +5,19 @@ export { FilesClient } from "./files/Files.js";
 export { QueriesClient } from "./queries/Queries.js";
 export { CommunicationClient } from "./communication/Communication.js";
 export { ComponentObjectsClient } from "./component-objects/ComponentObjects.js";
-export { ComponentCommandsClient } from "./component-commands/ComponentCommands.js";
-export { DashboardsClient } from "./dashboards/Dashboards.js";
+export {
+  ComponentCommandsClient,
+  CommandParams,
+} from "./component-commands/ComponentCommands.js";
+export {
+  DashboardsClient,
+  DashboardTabsClient,
+} from "./dashboards/Dashboards.js";
 export { GraphsClient } from "./graphs/Graphs.js";
 export { Asset, AssetParams } from "./assets/Assets.js";
 export { Attribute, AttributeParams } from "./attributes/Attributes.js";
+export { SecretsClient, Secret, SecretParams } from "./secrets/Secrets.js";
+
 export {
   Component,
   ComponentParams,

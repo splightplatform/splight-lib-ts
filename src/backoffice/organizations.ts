@@ -9,6 +9,7 @@ export interface OrganizationProfile {
   payment_account_id: string;
   payout_account_id: string;
   blockchain_id: string;
+  subscription_plan: string;
 }
 
 export const OrganizationsClient = (headers: Headers) => {
