@@ -1,1 +1,1 @@
-export { NotificationsClient } from "./Notifications.js";
+export { NotificationsClient } from './Notifications.js';

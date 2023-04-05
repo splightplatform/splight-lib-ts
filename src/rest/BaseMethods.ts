@@ -1,12 +1,13 @@
-import axios from "axios";
-import { Headers, Input, Params, WithoutPagination } from "../types.js";
-import { withRetries } from "../decorators/WithRetries.js";
+import axios from 'axios';
+import { Headers } from '../types.js';
+import { withRetries } from '../decorators/WithRetries.js';
 
 export const get = async <T>(
   url: string,
   headers: Headers,
-  params?: Params<WithoutPagination<T>>
+  params?: Record<string, string | number | boolean>
 ): Promise<T> => {
+  console.log('[Splight] GET', url);
   const { data } = await withRetries(axios<T>)(url, { headers, params });
   return data;
 };
@@ -16,8 +17,9 @@ export const post = async <I, O>(
   data: I,
   headers: Headers
 ): Promise<O> => {
+  console.log('[Splight] POST', url);
   const { data: response } = await withRetries(axios<O>)(url, {
-    method: "post",
+    method: 'post',
     data,
     headers,
   });
@@ -29,8 +31,9 @@ export const patch = async <I, O>(
   data: I,
   headers: Headers
 ): Promise<O> => {
+  console.log('[Splight] PATCH', url);
   const { data: response } = await withRetries(axios<O>)(url, {
-    method: "patch",
+    method: 'patch',
     data,
     headers,
   });
@@ -38,8 +41,18 @@ export const patch = async <I, O>(
 };
 
 export const del = async <T>(url: string, headers: Headers): Promise<T> => {
+  console.log('[Splight] DELETE', url);
   const { data: response } = await withRetries(axios<T>)(url, {
-    method: "delete",
+    method: 'delete',
+    headers,
+  });
+  return response;
+};
+
+export const options = async <T>(url: string, headers: Headers): Promise<T> => {
+  console.log('[Splight] OPTIONS', url);
+  const { data: response } = await withRetries(axios<T>)(url, {
+    method: 'options',
     headers,
   });
   return response;

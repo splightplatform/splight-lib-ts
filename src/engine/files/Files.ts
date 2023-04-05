@@ -1,6 +1,6 @@
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers } from "../../types.js";
-import { Path } from "../../Urls.js";
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers } from '../../types.js';
+import { Path } from '../../Urls.js';
 
 export interface FileParams {
   file: string;
@@ -18,7 +18,7 @@ export interface File extends FileParams {
 }
 
 export const FilesClient = (headers: Headers) => {
-  const basePath = Path("engine/files/");
+  const basePath = Path('engine/files/');
   const baseClient = BaseRestClient<FileParams, File>(basePath, headers);
   return baseClient;
 };

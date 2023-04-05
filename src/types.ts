@@ -25,7 +25,7 @@ export type Params<T> = BaseListParams & Partial<WithContainsFilters<T>>;
 
 export interface PaginatedCollection<T> {
   count: number;
-  next: string | null;
+  next: string;
   previous: string | null;
   results: T[];
 }
@@ -127,3 +127,6 @@ export interface Notification {
   isError?: boolean;
   timeAliveInMs?: number;
 }
+
+export type Empty = Record<string, never>;
+export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;

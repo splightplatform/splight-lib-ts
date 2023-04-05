@@ -1,6 +1,6 @@
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers } from "../../types.js";
-import { Path } from "../../Urls.js";
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers } from '../../types.js';
+import { Path } from '../../Urls.js';
 
 export interface SecretParams {
   name: string;
@@ -12,7 +12,7 @@ export interface Secret extends SecretParams {
 }
 
 export const SecretsClient = (headers: Headers) => {
-  const basePath = Path("engine/secrets/");
+  const basePath = Path('engine/secrets/');
   const baseClient = BaseRestClient<SecretParams, Secret>(basePath, headers);
   return baseClient;
 };

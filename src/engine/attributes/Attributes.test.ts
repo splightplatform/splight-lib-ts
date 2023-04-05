@@ -1,9 +1,8 @@
-import Setup from "../../Setup.js";
-import { MockedAxios } from "../../test/MockedAxios.js";
-import { API_HOST } from "../../Urls.js";
-import { expect, jest, test } from "@jest/globals";
-import { splight, TestKeys } from "../../test/setup.js";
-import { Attribute, AttributeParams } from "./Attributes.js";
+import { expect, test } from '@jest/globals';
+import { MockedAxios } from '../../test/MockedAxios.js';
+import { splight, TestKeys } from '../../test/setup.js';
+import { API_HOST } from '../../Urls.js';
+import { Attribute, AttributeParams } from './Attributes.js';
 
 const mockedAxios = MockedAxios();
 
@@ -12,31 +11,31 @@ afterEach(() => {
 });
 
 const MockAttribute: Attribute = {
-  id: "123",
-  name: "test",
+  id: '123',
+  name: 'test',
 };
 
 const MockAttributeParams: AttributeParams = {
-  name: "test",
+  name: 'test',
 };
 
-test("List attributes", async () => {
+test('List attributes', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { results: [], next: "something" },
+    data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.attributes.list();
+  await splight.engine.attributes.list();
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
     headers: { Authorization: TestKeys },
   });
 });
 
-test("List attributes with params", async () => {
+test('List attributes with params', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { results: [], next: "something" },
+    data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.attributes.list({
+  await splight.engine.attributes.list({
     page_size: 10,
   });
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
@@ -45,12 +44,12 @@ test("List attributes with params", async () => {
   });
 });
 
-test("Retrieve attribute", async () => {
+test('Retrieve attribute', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: MockAttribute,
     status: 200,
   });
-  const attribute = await splight.engine.attributes.retrieve("123");
+  await splight.engine.attributes.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}engine/attributes/123/`,
     {
@@ -59,47 +58,47 @@ test("Retrieve attribute", async () => {
   );
 });
 
-test("Create attribute", async () => {
+test('Create attribute', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: MockAttribute,
     status: 201,
   });
-  const attribute = await splight.engine.attributes.create(MockAttributeParams);
+  await splight.engine.attributes.create(MockAttributeParams);
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
     data: MockAttributeParams,
-    method: "post",
+    method: 'post',
     headers: { Authorization: TestKeys },
   });
 });
 
-test("Update attribute", async () => {
+test('Update attribute', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...MockAttribute, name: "updated" },
+    data: { ...MockAttribute, name: 'updated' },
     status: 200,
   });
-  const asset = await splight.engine.attributes.update("123", {
+  await splight.engine.attributes.update('123', {
     ...MockAttributeParams,
-    name: "updated",
+    name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}engine/attributes/123/`,
     {
-      data: { ...MockAttributeParams, name: "updated" },
-      method: "patch",
+      data: { ...MockAttributeParams, name: 'updated' },
+      method: 'patch',
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test("Delete attribute", async () => {
+test('Delete attribute', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.engine.attributes.destroy("123");
+  await splight.engine.attributes.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}engine/attributes/123/`,
     {
-      method: "delete",
+      method: 'delete',
       headers: { Authorization: TestKeys },
     }
   );

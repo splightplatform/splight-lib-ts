@@ -2,6 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/@splightplatform/splight-lib-ts)
 ![build](https://github.com/splightplatform/splight-lib-ts/actions/workflows/build.yml/badge.svg "build")
+![lint](https://github.com/splightplatform/splight-lib-ts/actions/workflows/lint.yml/badge.svg "lint")
 ![test](https://github.com/splightplatform/splight-lib-ts/actions/workflows/test.yml/badge.svg "test")
 ![npm](https://img.shields.io/npm/dw/@splightplatform/splight-lib-ts)
 

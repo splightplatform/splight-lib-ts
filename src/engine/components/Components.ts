@@ -1,27 +1,43 @@
+import { get, post } from '../../rest/BaseMethods.js';
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers, PaginatedCollection } from '../../types.js';
+import { Path } from '../../Urls.js';
+
 // Components
-
-import { get, post } from "../../rest/BaseMethods.js";
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers } from "../../types.js";
-import { Path } from "../../Urls.js";
-
 export interface ComponentObject {
   id: string;
   name: string;
   description: string;
   component_id: string;
+  type?: string;
   data: ComponentParameter[];
 }
 
 export interface Binding {
   name: string;
   object_type: string;
-  object_action: "CREATE" | "UPDATE" | "DELETE";
+  object_action: 'CREATE' | 'UPDATE' | 'DELETE';
 }
 
 export interface ComponentCommand {
   name: string;
   fields: ComponentParameter[];
+}
+
+interface CommandResponse {
+  id: string;
+  return_value: string;
+  error_detail: string;
+}
+
+export interface Command {
+  id: string;
+  description: string;
+  status: string;
+  component_id: string;
+  fields?: ComponentParameter[];
+  command: ComponentCommand;
+  response?: CommandResponse;
 }
 
 interface Endpoint {
@@ -30,10 +46,10 @@ interface Endpoint {
 }
 
 export enum ComponentSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-  VERY_LARGE = "very_large",
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+  VERY_LARGE = 'very_large',
 }
 
 export interface ObjectParameter {
@@ -50,6 +66,7 @@ export type ComponentParameterType =
 export interface ComponentParameter {
   type: string;
   name: string;
+  description: string;
   required: boolean;
   value:
     | ComponentParameterType
@@ -126,12 +143,12 @@ export interface ComponentParams {
   active?: boolean;
 }
 
-export type RestartPolicy = "Always" | "OnFailure" | "Never";
+export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
-export type LogLevel = "DEBUG" | "INFO" | "WARNING" | "ERROR" | "CRITICAL";
+export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
 export const ComponentsClient = (headers: Headers) => {
-  const basePath = Path("engine/component/components/");
+  const basePath = Path('engine/component/components/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
     basePath,
     headers
@@ -166,15 +183,24 @@ export const ComponentsClient = (headers: Headers) => {
   return {
     ...baseClient,
     fromHubComponent,
-    start: (pk: string, data: ComponentParams) =>
-      post(basePath.slash(pk).slash("start").url, data, headers),
-    stop: (pk: string, data: ComponentParams) =>
-      post(basePath.slash(pk).slash("stop").url, data, headers),
-    objects: (pk: string) =>
-      get<ComponentObject[]>(basePath.slash(pk).slash("objects").url, headers),
+    hubComponent: (pk: string) =>
+      get<Component>(basePath.slash(pk).slash('hub-component').url, headers),
+    start: (pk: string) =>
+      post(basePath.slash(pk).slash('start').url, {}, headers),
+    stop: (pk: string) =>
+      post(basePath.slash(pk).slash('stop').url, {}, headers),
+    objects: (
+      pk: string,
+      params: { page?: number; page_size?: number; component_id?: string }
+    ) =>
+      get<PaginatedCollection<ComponentObject>>(
+        Path('engine/component/objects/').url,
+        headers,
+        params
+      ),
     commands: (pk: string) =>
       get<ComponentCommand[]>(
-        basePath.slash(pk).slash("commands").url,
+        basePath.slash(pk).slash('commands').url,
         headers
       ),
   };

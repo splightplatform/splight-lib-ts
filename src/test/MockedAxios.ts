@@ -1,5 +1,5 @@
-import axios from "axios";
-import { expect, jest, test } from "@jest/globals";
+import { jest } from '@jest/globals';
+import axios from 'axios';
 
 export function MockedAxios() {
   return axios as jest.Mocked<typeof axios>;
