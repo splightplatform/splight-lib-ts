@@ -127,3 +127,6 @@ export interface Notification {
   isError?: boolean;
   timeAliveInMs?: number;
 }
+
+export type Empty = Record<string, never>;
+export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;

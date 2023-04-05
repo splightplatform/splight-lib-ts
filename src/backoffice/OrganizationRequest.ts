@@ -1,7 +1,7 @@
-import { options, post } from "../rest/BaseMethods.js";
-import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers } from "../types.js";
-import { Path } from "../Urls.js";
+import { options, post } from '../rest/BaseMethods.js';
+import { BaseRestClient } from '../rest/BaseRestClient.js';
+import { Headers } from '../types.js';
+import { Path } from '../Urls.js';
 
 export interface OrganizationRequestParams {
   name: string;
@@ -35,7 +35,7 @@ export interface SignUpField {
 }
 
 export const OrganizationRequestsClient = (headers: Headers) => {
-  const basePath = Path("backoffice/organization/requests/");
+  const basePath = Path('backoffice/organization/requests/');
   const baseClient = BaseRestClient<OrganizationRequest>(basePath, headers);
   return {
     ...baseClient,
@@ -47,6 +47,6 @@ export const OrganizationRequestsClient = (headers: Headers) => {
         )
       ).actions.POST,
     activate: (pk: string): Promise<void> =>
-      post(basePath.slash(pk).slash("activate").url, {}, headers),
+      post(basePath.slash(pk).slash('activate').url, {}, headers),
   };
 };

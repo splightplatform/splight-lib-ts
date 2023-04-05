@@ -1,2 +1,2 @@
-export * from "./BaseMethods.js";
-export * from "./BaseRestClient.js";
+export * from './BaseMethods.js';
+export * from './BaseRestClient.js';

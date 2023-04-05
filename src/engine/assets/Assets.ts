@@ -1,9 +1,9 @@
-import { FeatureCollection, GeometryCollection } from "geojson";
-import { get, post } from "../../rest/BaseMethods.js";
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers, PaginatedCollection } from "../../types.js";
-import { Path } from "../../Urls.js";
-import { Attribute } from "../attributes/Attributes.js";
+import { FeatureCollection, GeometryCollection } from 'geojson';
+import { get, post } from '../../rest/BaseMethods.js';
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers, PaginatedCollection } from '../../types.js';
+import { Path } from '../../Urls.js';
+import { Attribute } from '../attributes/Attributes.js';
 
 export interface AssetParams {
   name: string;
@@ -48,7 +48,7 @@ export interface SetpointResponse {
 }
 
 export const AssetsClient = (headers: Headers) => {
-  const basePath = Path("engine/assets/");
+  const basePath = Path('engine/assets/');
   const baseClient = BaseRestClient<
     AssetParams,
     Asset,
@@ -58,25 +58,25 @@ export const AssetsClient = (headers: Headers) => {
     ...baseClient,
     setAttribute: async (assetId: string, setpoint: SetpointParams) =>
       post<SetpointParams, Setpoint>(
-        basePath.slash(assetId).slash("set-attribute").url,
+        basePath.slash(assetId).slash('set-attribute').url,
         setpoint,
         headers
       ),
     getAttribute: async (assetId: string, attributeId: string) =>
       post<{ attribute: string }, { attribute: string; value: string }>(
-        basePath.slash(assetId).slash("get-attribute").url,
+        basePath.slash(assetId).slash('get-attribute').url,
         { attribute: attributeId },
         headers
       ),
     geojson: async (params?: { name__icontains?: string }) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
-        basePath.slash("geojson").url,
+        basePath.slash('geojson').url,
         headers,
         params
       ),
     attributes: (pk: string) =>
       get<PaginatedCollection<Attribute>>(
-        basePath.slash(pk).slash("attributes").url,
+        basePath.slash(pk).slash('attributes').url,
         headers
       ),
   };

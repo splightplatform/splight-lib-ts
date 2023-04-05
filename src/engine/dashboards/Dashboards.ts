@@ -1,6 +1,6 @@
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers } from "../../types.js";
-import { Path } from "../../Urls.js";
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers } from '../../types.js';
+import { Path } from '../../Urls.js';
 
 export interface DashboardParams {
   name: string;
@@ -85,26 +85,24 @@ export interface Chart {
   tab: string;
 }
 
-interface TabParams {
+export interface TabParams {
   name: string;
   dashboard: string;
 }
-interface Tab extends TabParams {
+
+export interface Tab extends TabParams {
   id: string;
   charts: Chart[];
 }
 
 export const DashboardTabsClient = (headers: Headers) => {
-  const basePath = Path("engine/dashboards/tabs/");
-  const baseClient = BaseRestClient<
-    { name: string; dashboard: string },
-    Dashboard
-  >(basePath, headers);
+  const basePath = Path('engine/dashboards/tabs/');
+  const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
   return baseClient;
 };
 
 export const DashboardsClient = (headers: Headers) => {
-  const basePath = Path("engine/dashboards/");
+  const basePath = Path('engine/dashboards/');
   const baseClient = BaseRestClient<DashboardParams, Dashboard>(
     basePath,
     headers

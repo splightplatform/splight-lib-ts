@@ -1,9 +1,8 @@
-import Setup from "../../Setup.js";
-import { MockedAxios } from "../../test/MockedAxios.js";
-import { API_HOST } from "../../Urls.js";
-import { expect, jest, test } from "@jest/globals";
-import { splight, TestKeys } from "../../test/setup.js";
-import { AnonymousQuery, Query, QueryParams } from "./Queries.js";
+import { MockedAxios } from '../../test/MockedAxios.js';
+import { API_HOST } from '../../Urls.js';
+import { expect, test } from '@jest/globals';
+import { splight, TestKeys } from '../../test/setup.js';
+import { AnonymousQuery, Query, QueryParams } from './Queries.js';
 
 const mockedAxios = MockedAxios();
 
@@ -12,56 +11,56 @@ afterEach(() => {
 });
 
 const MockQuery: Query = {
-  id: "123",
-  name: "test",
-  description: "",
-  output_format: "Number",
+  id: '123',
+  name: 'test',
+  description: '',
+  output_format: 'Number',
   filters: {
-    asset: "123",
+    asset: '123',
   },
-  target: "test",
-  source_type: "Native",
+  target: 'test',
+  source_type: 'Native',
   limit: 10,
 };
 
 const MockQueryParams: QueryParams = {
-  name: "test",
-  output_format: "Number",
+  name: 'test',
+  output_format: 'Number',
   filters: {
-    asset: "123",
+    asset: '123',
   },
-  target: "test",
-  source_type: "Native",
+  target: 'test',
+  source_type: 'Native',
   limit: 10,
 };
 
 const MockAnonymousQuery: AnonymousQuery = {
-  output_format: "Number",
+  output_format: 'Number',
   filters: {
-    asset: "123",
+    asset: '123',
   },
-  target: "test",
-  source_type: "Native",
+  target: 'test',
+  source_type: 'Native',
   limit: 10,
 };
 
-test("List queries", async () => {
+test('List queries', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { results: [], next: "something" },
+    data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.queries.list();
+  await splight.engine.queries.list();
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/`, {
     headers: { Authorization: TestKeys },
   });
 });
 
-test("List queries with params", async () => {
+test('List queries with params', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { results: [], next: "something" },
+    data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.queries.list({
+  await splight.engine.queries.list({
     page_size: 10,
   });
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/`, {
@@ -70,70 +69,68 @@ test("List queries with params", async () => {
   });
 });
 
-test("Retrieve queries", async () => {
+test('Retrieve queries', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: MockQuery,
     status: 200,
   });
-  const query = await splight.engine.queries.retrieve("123");
+  await splight.engine.queries.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/123/`, {
     headers: { Authorization: TestKeys },
   });
 });
 
-test("Create query", async () => {
+test('Create query', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: MockQuery,
     status: 201,
   });
-  const query = await splight.engine.queries.create(MockQueryParams);
+  await splight.engine.queries.create(MockQueryParams);
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/`, {
     data: MockQueryParams,
-    method: "post",
+    method: 'post',
     headers: { Authorization: TestKeys },
   });
 });
 
-test("Update query", async () => {
+test('Update query', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...MockQuery, name: "updated" },
+    data: { ...MockQuery, name: 'updated' },
     status: 200,
   });
-  const query = await splight.engine.queries.update("123", {
+  await splight.engine.queries.update('123', {
     ...MockQueryParams,
-    name: "updated",
+    name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/123/`, {
-    data: { ...MockQueryParams, name: "updated" },
-    method: "patch",
+    data: { ...MockQueryParams, name: 'updated' },
+    method: 'patch',
     headers: { Authorization: TestKeys },
   });
 });
 
-test("Delete query", async () => {
+test('Delete query', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.engine.queries.destroy("123");
+  await splight.engine.queries.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/123/`, {
-    method: "delete",
+    method: 'delete',
     headers: { Authorization: TestKeys },
   });
 });
 
-test("Execute query", async () => {
+test('Execute query', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { results: [], next: "something" },
+    data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.queries.execute(
-    MockAnonymousQuery
-  );
+  await splight.engine.queries.execute(MockAnonymousQuery);
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}engine/datalake/data/execute_query/`,
     {
       data: MockAnonymousQuery,
-      method: "post",
+      method: 'post',
       headers: { Authorization: TestKeys },
     }
   );

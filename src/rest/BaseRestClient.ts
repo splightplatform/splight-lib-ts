@@ -1,12 +1,6 @@
-import { get, post, patch, del } from "./BaseMethods.js";
-import {
-  BaseListParams,
-  Headers,
-  Input,
-  PaginatedCollection,
-  Params,
-} from "../types.js";
-import { Path } from "../Urls.js";
+import { get, post, patch, del } from './BaseMethods.js';
+import { Headers, PaginatedCollection } from '../types.js';
+import { Path } from '../Urls.js';
 
 export interface SplightCredentials {
   splight_access_id: string;
@@ -20,20 +14,23 @@ export interface Asset {
 
 export const getHeaders = () => {
   const credentials: SplightCredentials = {
-    splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? "",
-    splight_access_key: process.env.SPLIGHT_ACCESS_KEY ?? "",
+    splight_access_id: process.env.SPLIGHT_ACCESS_ID ?? '',
+    splight_access_key: process.env.SPLIGHT_ACCESS_KEY ?? '',
   };
   return {
     Authorization: `Splight ${credentials.splight_access_id} ${credentials.splight_access_key}`,
   } as Headers;
 };
 
-export type BaseRestClient<T> = ReturnType<typeof BaseRestClient>;
+export type BaseRestClient<T> = ReturnType<typeof BaseRestClient<T>>;
 
 export const BaseRestClient = <
   I,
   O = I,
-  Q extends Record<string, string | number | boolean> = {}
+  Q extends Record<string, string | number | boolean> = Record<
+    string,
+    string | number | boolean
+  >
 >(
   base_path: Path,
   headers: Headers

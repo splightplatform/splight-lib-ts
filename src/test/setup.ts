@@ -1,6 +1,6 @@
-import { Splight } from "../Setup.js";
+import { Splight } from '../Setup.js';
 
-jest.mock("axios");
+jest.mock('axios');
 
-export const TestKeys = "Splight 123 456";
-export const splight = Splight({ Authorization: "Splight 123 456" });
+export const TestKeys = 'Splight 123 456';
+export const splight = Splight({ Authorization: 'Splight 123 456' });

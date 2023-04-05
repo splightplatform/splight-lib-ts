@@ -1,6 +1,6 @@
-import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers } from "../types.js";
-import { Path } from "../Urls.js";
+import { BaseRestClient } from '../rest/BaseRestClient.js';
+import { Headers } from '../types.js';
+import { Path } from '../Urls.js';
 
 export interface Notification {
   id: string;
@@ -20,7 +20,7 @@ export interface Notification {
 }
 
 export const NotificationsClient = (headers: Headers) => {
-  const basePath = Path("account/notifications/");
+  const basePath = Path('account/notifications/');
   const baseClient = BaseRestClient<Notification>(basePath, headers);
   return {
     list: baseClient.list,

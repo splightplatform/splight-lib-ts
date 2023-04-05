@@ -1,9 +1,9 @@
 // Components
 
-import { get, post } from "../../rest/BaseMethods.js";
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers, PaginatedCollection } from "../../types.js";
-import { Path } from "../../Urls.js";
+import { get } from '../../rest/BaseMethods.js';
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers, PaginatedCollection } from '../../types.js';
+import { Path } from '../../Urls.js';
 
 export interface ComponentObject {
   id: string;
@@ -16,7 +16,7 @@ export interface ComponentObject {
 export interface Binding {
   name: string;
   object_type: string;
-  object_action: "CREATE" | "UPDATE" | "DELETE";
+  object_action: 'CREATE' | 'UPDATE' | 'DELETE';
 }
 
 export interface ComponentCommand {
@@ -30,10 +30,10 @@ interface Endpoint {
 }
 
 export enum ComponentSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-  VERY_LARGE = "very_large",
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+  VERY_LARGE = 'very_large',
 }
 
 export interface ObjectParameter {
@@ -123,13 +123,13 @@ export interface ComponentParams {
   active?: boolean;
 }
 
-export type RestartPolicy = "Always" | "OnFailure" | "Never";
+export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
-export type LogLevel = "DEBUG" | "INFO" | "WARNING" | "ERROR" | "CRITICAL";
+export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
 export const ComponentsClient = (headers: Headers) => {
-  const basePath = Path("hub/component/components/");
-  const componentVersionsPath = Path("hub/all/component-versions/");
+  const basePath = Path('hub/component/components/');
+  const componentVersionsPath = Path('hub/all/component-versions/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
     basePath,
     headers

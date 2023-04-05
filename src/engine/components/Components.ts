@@ -1,10 +1,9 @@
+import { get, post } from '../../rest/BaseMethods.js';
+import { BaseRestClient } from '../../rest/BaseRestClient.js';
+import { Headers, PaginatedCollection } from '../../types.js';
+import { Path } from '../../Urls.js';
+
 // Components
-
-import { get, post } from "../../rest/BaseMethods.js";
-import { BaseRestClient } from "../../rest/BaseRestClient.js";
-import { Headers, PaginatedCollection } from "../../types.js";
-import { Path } from "../../Urls.js";
-
 export interface ComponentObject {
   id: string;
   name: string;
@@ -17,7 +16,7 @@ export interface ComponentObject {
 export interface Binding {
   name: string;
   object_type: string;
-  object_action: "CREATE" | "UPDATE" | "DELETE";
+  object_action: 'CREATE' | 'UPDATE' | 'DELETE';
 }
 
 export interface ComponentCommand {
@@ -47,10 +46,10 @@ interface Endpoint {
 }
 
 export enum ComponentSize {
-  SMALL = "small",
-  MEDIUM = "medium",
-  LARGE = "large",
-  VERY_LARGE = "very_large",
+  SMALL = 'small',
+  MEDIUM = 'medium',
+  LARGE = 'large',
+  VERY_LARGE = 'very_large',
 }
 
 export interface ObjectParameter {
@@ -144,12 +143,12 @@ export interface ComponentParams {
   active?: boolean;
 }
 
-export type RestartPolicy = "Always" | "OnFailure" | "Never";
+export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
-export type LogLevel = "DEBUG" | "INFO" | "WARNING" | "ERROR" | "CRITICAL";
+export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
 export const ComponentsClient = (headers: Headers) => {
-  const basePath = Path("engine/component/components/");
+  const basePath = Path('engine/component/components/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
     basePath,
     headers
@@ -185,23 +184,23 @@ export const ComponentsClient = (headers: Headers) => {
     ...baseClient,
     fromHubComponent,
     hubComponent: (pk: string) =>
-      get<Component>(basePath.slash(pk).slash("hub-component").url, headers),
+      get<Component>(basePath.slash(pk).slash('hub-component').url, headers),
     start: (pk: string) =>
-      post(basePath.slash(pk).slash("start").url, {}, headers),
+      post(basePath.slash(pk).slash('start').url, {}, headers),
     stop: (pk: string) =>
-      post(basePath.slash(pk).slash("stop").url, {}, headers),
+      post(basePath.slash(pk).slash('stop').url, {}, headers),
     objects: (
       pk: string,
       params: { page?: number; page_size?: number; component_id?: string }
     ) =>
       get<PaginatedCollection<ComponentObject>>(
-        Path("engine/component/objects/").url,
+        Path('engine/component/objects/').url,
         headers,
         params
       ),
     commands: (pk: string) =>
       get<ComponentCommand[]>(
-        basePath.slash(pk).slash("commands").url,
+        basePath.slash(pk).slash('commands').url,
         headers
       ),
   };

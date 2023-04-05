@@ -16,9 +16,9 @@ class CommunicationChannelDataSerializer(serializers.Serializer):
 
 */
 
-import { get } from "../../rest/BaseMethods.js";
-import { Headers } from "../../types.js";
-import { Path } from "../../Urls.js";
+import { get } from '../../rest/BaseMethods.js';
+import { Headers } from '../../types.js';
+import { Path } from '../../Urls.js';
 
 export interface CommunicationChannelData {
   user_id: string;
@@ -36,9 +36,9 @@ export interface CommunicationContext {
 }
 
 export const CommunicationClient = (headers: Headers) => {
-  const basePath = Path("engine/communication/");
+  const basePath = Path('engine/communication/');
   return {
     context: () =>
-      get<CommunicationContext>(basePath.slash("context").url, headers),
+      get<CommunicationContext>(basePath.slash('context').url, headers),
   };
 };

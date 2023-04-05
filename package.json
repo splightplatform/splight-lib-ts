@@ -59,6 +59,7 @@
     "typescript": "^4.9.5"
   },
   "scripts": {
+    "prettify": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
     "build": "tsup src/ --format cjs,esm,iife --dts --clean",
     "autobundle": "tsup src/ --format cjs,esm,iife --dts --clean --watch",
     "lint:typecheck": "tsc",

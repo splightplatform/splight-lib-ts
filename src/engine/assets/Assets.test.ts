@@ -1,7 +1,6 @@
-import Setup from '../../Setup.js';
 import { MockedAxios } from '../../test/MockedAxios.js';
 import { API_HOST } from '../../Urls.js';
-import { expect, jest, test } from '@jest/globals';
+import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
 import { Asset, AssetParams } from './Assets.js';
 
@@ -34,7 +33,7 @@ test('List assets', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.assets.list();
+  await splight.engine.assets.list();
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/`, {
     headers: { Authorization: TestKeys },
   });
@@ -45,7 +44,7 @@ test('List assets with params', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.assets.list({ page_size: 10 });
+  await splight.engine.assets.list({ page_size: 10 });
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/`, {
     headers: { Authorization: TestKeys },
     params: { page_size: 10 },
@@ -108,7 +107,7 @@ test('Get asset attributes', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  const { results, next } = await splight.engine.assets.attributes('123');
+  await splight.engine.assets.attributes('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}engine/assets/123/attributes/`,
     {

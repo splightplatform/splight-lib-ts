@@ -1,7 +1,7 @@
-import { get } from "../rest/BaseMethods.js";
-import { BaseRestClient } from "../rest/BaseRestClient.js";
-import { Headers } from "../types.js";
-import { Path } from "../Urls.js";
+import { get } from '../rest/BaseMethods.js';
+import { BaseRestClient } from '../rest/BaseRestClient.js';
+import { Headers } from '../types.js';
+import { Path } from '../Urls.js';
 
 export interface SubscriptionPlanParams {
   name: string;
@@ -16,7 +16,7 @@ export interface SubscriptionPlan extends SubscriptionPlanParams {
 }
 
 export const SubscriptionPlansClient = (headers: Headers) => {
-  const basePath = Path("backoffice/subscription-plans/");
+  const basePath = Path('backoffice/subscription-plans/');
   const baseClient = BaseRestClient<SubscriptionPlanParams, SubscriptionPlan>(
     basePath,
     headers
@@ -25,13 +25,13 @@ export const SubscriptionPlansClient = (headers: Headers) => {
 };
 
 export const BillingClient = (headers: Headers) => {
-  const basePath = Path("backoffice/billing/");
+  const basePath = Path('backoffice/billing/');
 
   return {
-    options: () => get(basePath.slash("options/").url, headers),
+    options: () => get(basePath.slash('options/').url, headers),
     subscriptionPlans: SubscriptionPlansClient(headers),
     fixedInvoicePricing: BaseRestClient(
-      basePath.slash("fixed_invoice_pricing/"),
+      basePath.slash('fixed_invoice_pricing/'),
       headers
     ),
   };
