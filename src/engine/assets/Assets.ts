@@ -1,9 +1,9 @@
+import { FeatureCollection, GeometryCollection } from "geojson";
+import { get, post } from "../../rest/BaseMethods.js";
 import { BaseRestClient } from "../../rest/BaseRestClient.js";
 import { Headers, PaginatedCollection } from "../../types.js";
 import { Path } from "../../Urls.js";
-import { get, post } from "../../rest/BaseMethods.js";
 import { Attribute } from "../attributes/Attributes.js";
-import { FeatureCollection, GeometryCollection } from "geojson";
 
 export interface AssetParams {
   name: string;
