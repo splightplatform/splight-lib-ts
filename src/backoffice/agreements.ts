@@ -16,7 +16,7 @@ export interface Agreement extends AgreementParams {
   id: string;
 }
 
-export const AgreemetsClient = (headers: Headers) => {
+export const AgreementsClient = (headers: Headers) => {
   const basePath = Path("backoffice/agreements/");
   const baseClient = BaseRestClient<AgreementParams, Agreement>(
     basePath,
