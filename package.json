@@ -62,7 +62,7 @@
     "prettify": "prettier --write \"./**/*.{js,jsx,ts,tsx,json}\"",
     "build": "tsup src/ --format cjs,esm,iife --dts --clean",
     "autobundle": "tsup src/ --format cjs,esm,iife --dts --clean --watch",
-    "lint:typecheck": "tsc",
+    "lint:typecheck": "tsc --noEmit",
     "lint:eslint": "eslint src/ --ext .ts",
     "lint:prettier": "prettier --check src/ --ext .ts",
     "lint:spellcheck": "cspell --no-progress  ./src/**/*.ts",
