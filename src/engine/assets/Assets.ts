@@ -1,7 +1,7 @@
 import { BaseRestClient } from "../../rest/BaseRestClient.js";
 import { Headers, PaginatedCollection } from "../../types.js";
 import { Path } from "../../Urls.js";
-import { get } from "../../rest/BaseMethods.js";
+import { get, post } from "../../rest/BaseMethods.js";
 import { Attribute } from "../attributes/Attributes.js";
 import { FeatureCollection, GeometryCollection } from "geojson";
 
@@ -24,6 +24,29 @@ export type Asset = AssetParams & {
   geometry: GeometryCollection;
 };
 
+export interface SetpointParams {
+  type: string;
+  value: string;
+  attribute: string;
+}
+
+export interface Setpoint {
+  id: string;
+  type: string;
+  value: string;
+  asset: Asset;
+  attribute: Attribute;
+  created_at: string;
+}
+
+export interface SetpointResponse {
+  id: string;
+  setpoint: string;
+  component: string;
+  status: string;
+  created_at: string;
+}
+
 export const AssetsClient = (headers: Headers) => {
   const basePath = Path("engine/assets/");
   const baseClient = BaseRestClient<
@@ -33,6 +56,18 @@ export const AssetsClient = (headers: Headers) => {
   >(basePath, headers);
   return {
     ...baseClient,
+    setAttribute: async (assetId: string, setpoint: SetpointParams) =>
+      post<SetpointParams, Setpoint>(
+        basePath.slash(assetId).slash("set-attribute").url,
+        setpoint,
+        headers
+      ),
+    getAttribute: async (assetId: string, attributeId: string) =>
+      post<{ attribute: string }, { attribute: string; value: string }>(
+        basePath.slash(assetId).slash("get-attribute").url,
+        { attribute: attributeId },
+        headers
+      ),
     geojson: async (params?: { name__icontains?: string }) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
         basePath.slash("geojson").url,

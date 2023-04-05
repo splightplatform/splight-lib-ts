@@ -15,9 +15,5 @@ export interface OrganizationProfile {
 export const OrganizationsClient = (headers: Headers) => {
   const basePath = Path("backoffice/organization/organizations/");
   const baseClient = BaseRestClient<OrganizationProfile>(basePath, headers);
-  return {
-    list: () => baseClient.list(),
-    retrieve: (pk: string) => baseClient.retrieve(pk),
-    destroy: (pk: string) => baseClient.destroy(pk),
-  };
+  return baseClient;
 };
