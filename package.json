@@ -65,7 +65,8 @@
   },
   "cspell": {
     "ignoreWords": [
-      "splight"
+      "splight",
+      "backoffice"
     ]
   },
   "jest": {

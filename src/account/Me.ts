@@ -4,13 +4,13 @@ import { Headers } from "../types.js";
 import { Path } from "../Urls.js";
 import { OrganizationProfile } from "../backoffice/Organizations.js";
 
-export interface Organinzation {
+export interface Organization {
   id: string;
   name: string;
   display_name: string;
 }
 
-export type OrganinzationParams = Omit<Organinzation, "id">;
+export type OrganizationParams = Omit<Organization, "id">;
 
 export const MeClient = (headers: Headers) => {
   const basePath = Path("account/user/me/");
@@ -18,6 +18,6 @@ export const MeClient = (headers: Headers) => {
     profile: () => get(basePath.url, headers),
     permissions: () => get(basePath.slash("permissions").url, headers),
     organizations: () =>
-      get<Organinzation[]>(Path("account/user/organizations/").url, headers),
+      get<Organization[]>(Path("account/user/organizations/").url, headers),
   };
 };
