@@ -5,7 +5,7 @@ import { Account } from "./Account.js";
 import { Hub } from "./Hub.js";
 import { Backoffice } from "./Backoffice.js";
 
-export const Splight = (requestHeaders?: Headers, api_host?: string) => {
+export const Splight = (requestHeaders?: Headers) => {
   const headers = requestHeaders ?? getHeaders();
 
   return {

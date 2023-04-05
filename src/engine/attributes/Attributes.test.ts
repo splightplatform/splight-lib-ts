@@ -1,7 +1,7 @@
+import { expect, test } from "@jest/globals";
 import { MockedAxios } from "../../test/MockedAxios.js";
-import { API_HOST } from "../../Urls.js";
-import { expect, jest, test } from "@jest/globals";
 import { splight, TestKeys } from "../../test/setup.js";
+import { API_HOST } from "../../Urls.js";
 import { Attribute, AttributeParams } from "./Attributes.js";
 
 const mockedAxios = MockedAxios();

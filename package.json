@@ -50,6 +50,10 @@
     "@types/geojson": "^7946.0.10",
     "@types/jest": "^29.4.0",
     "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "^5.57.1",
+    "eslint": "^8.37.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "ts-jest": "^29.0.5",
     "tsup": "^6.6.3",
     "typescript": "^4.9.5"
@@ -69,7 +73,13 @@
       "backoffice"
     ]
   },
+  "prettier": {
+    "singleQuote": true
+  },
   "jest": {
+    "roots": [
+      "<rootDir>/src"
+    ],
     "setupFiles": [
       "./src/test/setup.ts"
     ],

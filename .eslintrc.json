@@ -5,7 +5,9 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+
     ],
     "overrides": [
     ],
@@ -18,5 +20,13 @@
         "@typescript-eslint"
     ],
     "rules": {
-    }
+        "react/prop-types": "off",
+        "linebreak-style": 1,
+        "quotes": ["error", "single"],
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": ["error", {"varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }],
+        "@typescript-eslint/no-non-null-assertion": "off"
+      }
 }
