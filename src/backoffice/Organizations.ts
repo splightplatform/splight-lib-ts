@@ -13,7 +13,7 @@ export interface OrganizationProfile {
 }
 
 export const OrganizationsClient = (headers: Headers) => {
-  const basePath = Path('backoffice/organization/organizations/');
+  const basePath = Path('backoffice/organization/profiles/');
   const baseClient = BaseRestClient<OrganizationProfile>(basePath, headers);
   return baseClient;
 };

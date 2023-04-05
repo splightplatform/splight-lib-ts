@@ -96,13 +96,13 @@ export interface Tab extends TabParams {
 }
 
 export const DashboardTabsClient = (headers: Headers) => {
-  const basePath = Path('engine/dashboards/tabs/');
+  const basePath = Path('engine/dashboard/tabs/');
   const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
   return baseClient;
 };
 
 export const DashboardsClient = (headers: Headers) => {
-  const basePath = Path('engine/dashboards/');
+  const basePath = Path('engine/dashboard/dashboards/');
   const baseClient = BaseRestClient<DashboardParams, Dashboard>(
     basePath,
     headers
