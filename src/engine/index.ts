@@ -12,6 +12,7 @@ export {
 export {
   DashboardsClient,
   DashboardTabsClient,
+  DashboardChartsClient,
 } from './dashboards/Dashboards.js';
 export { GraphsClient } from './graphs/Graphs.js';
 export { Asset, AssetParams } from './assets/Assets.js';

@@ -61,16 +61,22 @@ export interface ChartItem {
   height?: string;
 }
 
-export interface Chart {
-  id: string;
-  name: string;
+export interface ChartParams {
+  tab: string;
   type: string;
+  name: string;
+  refresh_interval: string;
+  relative_window_time: string;
   position_x: number;
   position_y: number;
   height: number;
   width: number;
-  min_height: number;
-  min_width: number;
+  min_height?: number;
+  min_width?: number;
+}
+export interface Chart extends ChartParams {
+  id: string;
+  name: string;
   asset_id: string;
   attribute_id: string;
   timeConfiguration: Configuration;
@@ -82,7 +88,8 @@ export interface Chart {
   items: ChartItem[];
   config: Record<string, string>;
   last_updated_by?: string;
-  tab: string;
+  timestamp_gte: string;
+  timestamp_lte: string;
 }
 
 export interface TabParams {
@@ -100,6 +107,11 @@ export const DashboardTabsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
   return baseClient;
 };
+export const DashboardChartsClient = (headers: Headers) => {
+  const basePath = Path('engine/dashboard/charts/');
+  const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
+  return baseClient;
+};
 
 export const DashboardsClient = (headers: Headers) => {
   const basePath = Path('engine/dashboard/dashboards/');
@@ -107,5 +119,5 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  return { ...baseClient, tabs: DashboardTabsClient(headers) };
+  return baseClient;
 };

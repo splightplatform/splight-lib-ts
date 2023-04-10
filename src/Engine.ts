@@ -6,6 +6,7 @@ import {
   ComponentCommandsClient,
   ComponentObjectsClient,
   ComponentsClient,
+  DashboardChartsClient,
   DashboardsClient,
   DashboardTabsClient,
   FilesClient,
@@ -25,6 +26,7 @@ export const Engine = (headers: Headers) => {
     componentCommands: ComponentCommandsClient(headers),
     dashboards: DashboardsClient(headers),
     dashboardTabs: DashboardTabsClient(headers),
+    dashboardCharts: DashboardChartsClient(headers),
     secrets: SecretsClient(headers),
   };
 };
