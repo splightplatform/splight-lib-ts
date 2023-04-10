@@ -6,6 +6,9 @@ import {
   ComponentCommandsClient,
   ComponentObjectsClient,
   ComponentsClient,
+  DashboardChartAdvancedFilters,
+  DashboardChartFilters,
+  DashboardChartItemsClient,
   DashboardChartsClient,
   DashboardsClient,
   DashboardTabsClient,
@@ -27,6 +30,9 @@ export const Engine = (headers: Headers) => {
     dashboards: DashboardsClient(headers),
     dashboardTabs: DashboardTabsClient(headers),
     dashboardCharts: DashboardChartsClient(headers),
+    dashboardChartItems: DashboardChartItemsClient(headers),
+    dashboardChartFilters: DashboardChartFilters(headers),
+    dashboardChartAdvancedFilters: DashboardChartAdvancedFilters(headers),
     secrets: SecretsClient(headers),
   };
 };
