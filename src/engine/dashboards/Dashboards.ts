@@ -21,16 +21,18 @@ export interface Configuration {
   relativeStartTime?: string;
 }
 
-interface Filter {
+export interface Filter {
   id?: string;
+  chart_item?: string;
   operator: string;
   key: string;
   value: string | number | boolean;
   label: string;
 }
 
-interface AdvancedFilter {
+export interface AdvancedFilter {
   id?: string;
+  chart_item?: string;
   field: string;
   key: string;
   value: string;
@@ -53,41 +55,47 @@ export interface ChartItem {
   filters: Filter[];
   advanced_filters: AdvancedFilter[];
   query_params?: string;
-  position?: {
-    x: string;
-    y: string;
-  };
+  position_x?: number;
+  position_y?: number;
   width?: string;
   height?: string;
 }
 
-export interface Chart {
-  id: string;
-  name: string;
+export interface ChartParams {
+  description?: string;
+  tab: string;
   type: string;
+  name: string;
+  refresh_interval: string | null;
+  relative_window_time: string | null;
   position_x: number;
   position_y: number;
   height: number;
   width: number;
-  min_height: number;
-  min_width: number;
+  min_height?: number;
+  min_width?: number;
+}
+export interface Chart extends ChartParams {
+  id: string;
+  name: string;
   asset_id: string;
   attribute_id: string;
   timeConfiguration: Configuration;
   chartItems: ChartItem[];
-  description: string;
   externalResource: string;
   external_resource?: string;
   external_resource_type?: string;
   items: ChartItem[];
   config: Record<string, string>;
   last_updated_by?: string;
-  tab: string;
+  timestamp_gte: string;
+  timestamp_lte: string;
 }
 
 export interface TabParams {
   name: string;
   dashboard: string;
+  order: number;
 }
 
 export interface Tab extends TabParams {
@@ -100,6 +108,29 @@ export const DashboardTabsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
   return baseClient;
 };
+export const DashboardChartsClient = (headers: Headers) => {
+  const basePath = Path('engine/dashboard/charts/');
+  const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
+  return baseClient;
+};
+export const DashboardChartItemsClient = (headers: Headers) => {
+  const basePath = Path('engine/dashboard/chartitems/');
+  const baseClient = BaseRestClient<ChartItem, ChartItem>(basePath, headers);
+  return baseClient;
+};
+export const DashboardChartFilters = (headers: Headers) => {
+  const basePath = Path('engine/dashboard/filters/');
+  const baseClient = BaseRestClient<Filter, Filter>(basePath, headers);
+  return baseClient;
+};
+export const DashboardChartAdvancedFilters = (headers: Headers) => {
+  const basePath = Path('engine/dashboard/advancedfilters/');
+  const baseClient = BaseRestClient<AdvancedFilter, AdvancedFilter>(
+    basePath,
+    headers
+  );
+  return baseClient;
+};
 
 export const DashboardsClient = (headers: Headers) => {
   const basePath = Path('engine/dashboard/dashboards/');
@@ -107,5 +138,5 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  return { ...baseClient, tabs: DashboardTabsClient(headers) };
+  return baseClient;
 };
