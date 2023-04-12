@@ -10,7 +10,7 @@ export interface Credential {
 }
 
 export const ActivityClient = (headers: Headers) => {
-  const basePath = Path('account/activity/');
+  const basePath = Path('v2/account/activity/');
   const { list } = BaseRestClient<Record<string, never>, Credential>(
     basePath,
     headers

@@ -104,27 +104,27 @@ export interface Tab extends TabParams {
 }
 
 export const DashboardTabsClient = (headers: Headers) => {
-  const basePath = Path('engine/dashboard/tabs/');
+  const basePath = Path('v2/engine/dashboard/tabs/');
   const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
   return baseClient;
 };
 export const DashboardChartsClient = (headers: Headers) => {
-  const basePath = Path('engine/dashboard/charts/');
+  const basePath = Path('v2/engine/dashboard/charts/');
   const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
   return baseClient;
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
-  const basePath = Path('engine/dashboard/chartitems/');
+  const basePath = Path('v2/engine/dashboard/chartitems/');
   const baseClient = BaseRestClient<ChartItem, ChartItem>(basePath, headers);
   return baseClient;
 };
 export const DashboardChartFilters = (headers: Headers) => {
-  const basePath = Path('engine/dashboard/filters/');
+  const basePath = Path('v2/engine/dashboard/filters/');
   const baseClient = BaseRestClient<Filter, Filter>(basePath, headers);
   return baseClient;
 };
 export const DashboardChartAdvancedFilters = (headers: Headers) => {
-  const basePath = Path('engine/dashboard/advancedfilters/');
+  const basePath = Path('v2/engine/dashboard/advancedfilters/');
   const baseClient = BaseRestClient<AdvancedFilter, AdvancedFilter>(
     basePath,
     headers
@@ -133,7 +133,7 @@ export const DashboardChartAdvancedFilters = (headers: Headers) => {
 };
 
 export const DashboardsClient = (headers: Headers) => {
-  const basePath = Path('engine/dashboard/dashboards/');
+  const basePath = Path('v2/engine/dashboard/dashboards/');
   const baseClient = BaseRestClient<DashboardParams, Dashboard>(
     basePath,
     headers

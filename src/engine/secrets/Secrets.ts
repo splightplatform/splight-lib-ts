@@ -12,7 +12,7 @@ export interface Secret extends SecretParams {
 }
 
 export const SecretsClient = (headers: Headers) => {
-  const basePath = Path('engine/secrets/');
+  const basePath = Path('v2/engine/secrets/');
   const baseClient = BaseRestClient<SecretParams, Secret>(basePath, headers);
   return baseClient;
 };

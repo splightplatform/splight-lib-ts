@@ -50,7 +50,7 @@ test('List queries', async () => {
     status: 200,
   });
   await splight.engine.queries.list();
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/queries/`, {
     headers: { Authorization: TestKeys },
   });
 });
@@ -63,7 +63,7 @@ test('List queries with params', async () => {
   await splight.engine.queries.list({
     page_size: 10,
   });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/queries/`, {
     headers: { Authorization: TestKeys },
     params: { page_size: 10 },
   });
@@ -75,9 +75,12 @@ test('Retrieve queries', async () => {
     status: 200,
   });
   await splight.engine.queries.retrieve('123');
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/123/`, {
-    headers: { Authorization: TestKeys },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/queries/123/`,
+    {
+      headers: { Authorization: TestKeys },
+    }
+  );
 });
 
 test('Create query', async () => {
@@ -86,7 +89,7 @@ test('Create query', async () => {
     status: 201,
   });
   await splight.engine.queries.create(MockQueryParams);
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/queries/`, {
     data: MockQueryParams,
     method: 'post',
     headers: { Authorization: TestKeys },
@@ -102,11 +105,14 @@ test('Update query', async () => {
     ...MockQueryParams,
     name: 'updated',
   });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/123/`, {
-    data: { ...MockQueryParams, name: 'updated' },
-    method: 'patch',
-    headers: { Authorization: TestKeys },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/queries/123/`,
+    {
+      data: { ...MockQueryParams, name: 'updated' },
+      method: 'patch',
+      headers: { Authorization: TestKeys },
+    }
+  );
 });
 
 test('Delete query', async () => {
@@ -114,10 +120,13 @@ test('Delete query', async () => {
     status: 204,
   });
   await splight.engine.queries.destroy('123');
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/queries/123/`, {
-    method: 'delete',
-    headers: { Authorization: TestKeys },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/queries/123/`,
+    {
+      method: 'delete',
+      headers: { Authorization: TestKeys },
+    }
+  );
 });
 
 test('Execute query', async () => {
@@ -127,7 +136,7 @@ test('Execute query', async () => {
   });
   await splight.engine.queries.execute(MockAnonymousQuery);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}engine/datalake/data/execute_query/`,
+    `${API_HOST}v2/engine/datalake/data/execute_query/`,
     {
       data: MockAnonymousQuery,
       method: 'post',

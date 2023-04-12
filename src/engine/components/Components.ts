@@ -149,7 +149,7 @@ export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
 export const ComponentsClient = (headers: Headers) => {
-  const basePath = Path('engine/component/components/');
+  const basePath = Path('v2/engine/component/components/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
     basePath,
     headers
@@ -195,7 +195,7 @@ export const ComponentsClient = (headers: Headers) => {
       params: { page?: number; page_size?: number; component_id?: string }
     ) =>
       get<PaginatedCollection<ComponentObject>>(
-        Path('engine/component/objects/').url,
+        Path('v2/engine/component/objects/').url,
         headers,
         params
       ),

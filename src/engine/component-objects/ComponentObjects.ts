@@ -11,7 +11,7 @@ export type ComponentObjectParams = Optional<
 >;
 
 export const ComponentObjectsClient = (headers: Headers) => {
-  const basePath = Path('engine/component/objects/');
+  const basePath = Path('v2/engine/component/objects/');
   const baseClient = BaseRestClient<ComponentObjectParams, ComponentObject>(
     basePath,
     headers
