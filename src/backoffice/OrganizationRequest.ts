@@ -35,7 +35,7 @@ export interface SignUpField {
 }
 
 export const OrganizationRequestsClient = (headers: Headers) => {
-  const basePath = Path('backoffice/organization/requests/');
+  const basePath = Path('v2/backoffice/organization/requests/');
   const baseClient = BaseRestClient<OrganizationRequest>(basePath, headers);
   return {
     ...baseClient,

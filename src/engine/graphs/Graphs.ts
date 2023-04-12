@@ -14,7 +14,7 @@ export interface GraphParams {
 }
 
 export const GraphsClient = (headers: Headers) => {
-  const basePath = Path('engine/graph/graphs/');
+  const basePath = Path('v2/engine/graph/graphs/');
   const baseClient = BaseRestClient<GraphParams, Graph>(basePath, headers);
   return baseClient;
 };

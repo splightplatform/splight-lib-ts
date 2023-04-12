@@ -20,7 +20,7 @@ export interface Notification {
 }
 
 export const NotificationsClient = (headers: Headers) => {
-  const basePath = Path('account/notifications/');
+  const basePath = Path('v2/account/notifications/');
   const baseClient = BaseRestClient<Notification>(basePath, headers);
   return {
     list: baseClient.list,
