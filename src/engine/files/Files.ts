@@ -18,7 +18,7 @@ export interface File extends FileParams {
 }
 
 export const FilesClient = (headers: Headers) => {
-  const basePath = Path('engine/files/');
+  const basePath = Path('v2/engine/files/');
   const baseClient = BaseRestClient<FileParams, File>(basePath, headers);
   return baseClient;
 };

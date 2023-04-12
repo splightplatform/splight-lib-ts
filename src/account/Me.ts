@@ -11,11 +11,11 @@ export interface Organization {
 export type OrganizationParams = Omit<Organization, 'id'>;
 
 export const MeClient = (headers: Headers) => {
-  const basePath = Path('account/user/me/');
+  const basePath = Path('v2/account/user/me/');
   return {
     profile: () => get(basePath.url, headers),
     permissions: () => get(basePath.slash('permissions').url, headers),
     organizations: () =>
-      get<Organization[]>(Path('account/user/organizations/').url, headers),
+      get<Organization[]>(Path('v2/account/user/organizations/').url, headers),
   };
 };

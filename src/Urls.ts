@@ -1,4 +1,6 @@
-export const API_HOST = 'https://integrationapi.splight-ai.com/v2/';
+type SplightWindow = typeof window & { ENV: Record<string, string> };
+
+export const API_HOST = 'https://api.splight-ai.com/v2/';
 
 export const Path = (base_path: string) => {
   const base_url = new URL(base_path, API_HOST).href;

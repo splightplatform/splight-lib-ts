@@ -48,7 +48,7 @@ export interface SetpointResponse {
 }
 
 export const AssetsClient = (headers: Headers) => {
-  const basePath = Path('engine/assets/');
+  const basePath = Path('v2/engine/assets/');
   const baseClient = BaseRestClient<
     AssetParams,
     Asset,

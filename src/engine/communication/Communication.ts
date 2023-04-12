@@ -36,7 +36,7 @@ export interface CommunicationContext {
 }
 
 export const CommunicationClient = (headers: Headers) => {
-  const basePath = Path('engine/communication/');
+  const basePath = Path('v2/engine/communication/');
   return {
     context: () =>
       get<CommunicationContext>(basePath.slash('context').url, headers),
