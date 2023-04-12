@@ -1,4 +1,4 @@
-export const API_HOST = 'https://integrationapi.splight-ai.com/v2/';
+export const API_HOST = 'http://host.docker.internal:8000/v2/'; // TODO solve this
 
 export const Path = (base_path: string) => {
   const base_url = new URL(base_path, API_HOST).href;

@@ -112,11 +112,12 @@ export interface Component {
   tags: string[];
   build_status: string;
   output: ComponentParameter[];
-  status: string;
   service_name: string;
-  component_capacity?: string;
-  log_level?: number;
-  restart_policy?: string;
+  deployment_capacity?: string;
+  deployment_log_level?: number;
+  deployment_status: string;
+  deployment_restart_policy?: string;
+  connections_active: boolean;
   organization_id?: string;
   usage_count?: number;
   bindings?: Binding[];
@@ -129,10 +130,7 @@ export interface ComponentParams {
   name: string;
   description?: string;
   picture_url?: string;
-  log_level?: LogLevel;
   type?: string;
-  component_capacity: ComponentSize;
-  restart_policy?: RestartPolicy;
   version: string;
   custom_types?: CustomType[];
   input?: ComponentParameter[];
@@ -141,6 +139,9 @@ export interface ComponentParams {
   bindings?: Binding[];
   endpoints?: Endpoint[];
   active?: boolean;
+  deployment_log_level?: LogLevel;
+  deployment_restart_policy?: RestartPolicy;
+  deployment_capacity: ComponentSize;
 }
 
 export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
@@ -162,7 +163,7 @@ export const ComponentsClient = (headers: Headers) => {
     const new_component: ComponentParams = {
       name,
       description,
-      component_capacity: component.min_component_capacity,
+      deployment_capacity: component.min_component_capacity,
       custom_types: component.custom_types,
       picture_url: component.picture_url,
       input: component.input,
