@@ -34,7 +34,7 @@ test('List assets', async () => {
     status: 200,
   });
   await splight.engine.assets.list();
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assets/`, {
     headers: { Authorization: TestKeys },
   });
 });
@@ -45,7 +45,7 @@ test('List assets with params', async () => {
     status: 200,
   });
   await splight.engine.assets.list({ page_size: 10 });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assets/`, {
     headers: { Authorization: TestKeys },
     params: { page_size: 10 },
   });
@@ -57,7 +57,7 @@ test('Retrieve asset', async () => {
     status: 200,
   });
   await splight.engine.assets.retrieve('123');
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/123/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assets/123/`, {
     headers: { Authorization: TestKeys },
   });
 });
@@ -68,7 +68,7 @@ test('Create asset', async () => {
     status: 201,
   });
   await splight.engine.assets.create(MockAssetParams);
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assets/`, {
     data: MockAssetParams,
     method: 'post',
     headers: { Authorization: TestKeys },
@@ -84,7 +84,7 @@ test('Update asset', async () => {
     ...MockAssetParams,
     name: 'updated',
   });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/123/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assets/123/`, {
     data: { ...MockAssetParams, name: 'updated' },
     method: 'patch',
     headers: { Authorization: TestKeys },
@@ -96,7 +96,7 @@ test('Delete asset', async () => {
     status: 204,
   });
   await splight.engine.assets.destroy('123');
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/assets/123/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assets/123/`, {
     method: 'delete',
     headers: { Authorization: TestKeys },
   });
@@ -109,7 +109,7 @@ test('Get asset attributes', async () => {
   });
   await splight.engine.assets.attributes('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}engine/assets/123/attributes/`,
+    `${API_HOST}v2/engine/assets/123/attributes/`,
     {
       headers: { Authorization: TestKeys },
     }

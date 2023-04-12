@@ -25,7 +25,7 @@ test('List attributes', async () => {
     status: 200,
   });
   await splight.engine.attributes.list();
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/attributes/`, {
     headers: { Authorization: TestKeys },
   });
 });
@@ -38,7 +38,7 @@ test('List attributes with params', async () => {
   await splight.engine.attributes.list({
     page_size: 10,
   });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/attributes/`, {
     headers: { Authorization: TestKeys },
     params: { page_size: 10 },
   });
@@ -51,7 +51,7 @@ test('Retrieve attribute', async () => {
   });
   await splight.engine.attributes.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}engine/attributes/123/`,
+    `${API_HOST}v2/engine/attributes/123/`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -64,7 +64,7 @@ test('Create attribute', async () => {
     status: 201,
   });
   await splight.engine.attributes.create(MockAttributeParams);
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}engine/attributes/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/attributes/`, {
     data: MockAttributeParams,
     method: 'post',
     headers: { Authorization: TestKeys },
@@ -81,7 +81,7 @@ test('Update attribute', async () => {
     name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}engine/attributes/123/`,
+    `${API_HOST}v2/engine/attributes/123/`,
     {
       data: { ...MockAttributeParams, name: 'updated' },
       method: 'patch',
@@ -96,7 +96,7 @@ test('Delete attribute', async () => {
   });
   await splight.engine.attributes.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}engine/attributes/123/`,
+    `${API_HOST}v2/engine/attributes/123/`,
     {
       method: 'delete',
       headers: { Authorization: TestKeys },
