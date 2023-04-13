@@ -10,7 +10,7 @@ export {
   CommandParams,
 } from './component-commands/ComponentCommands.js';
 export * from './dashboards/Dashboards.js';
-export { GraphsClient } from './graphs/Graphs.js';
+export * from './graphs/Graphs.js';
 export { Asset, AssetParams } from './assets/Assets.js';
 export { Attribute, AttributeParams } from './attributes/Attributes.js';
 export { SecretsClient, Secret, SecretParams } from './secrets/Secrets.js';

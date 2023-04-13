@@ -13,6 +13,11 @@ import {
   DashboardsClient,
   DashboardTabsClient,
   FilesClient,
+  GraphEdgesClient,
+  GraphNodesClient,
+  GraphsClient,
+  GraphsEdgesBulkClient,
+  GraphsNodesBulkClient,
   QueriesClient,
   SecretsClient,
 } from './engine/index.js';
@@ -33,6 +38,11 @@ export const Engine = (headers: Headers) => {
     dashboardChartItems: DashboardChartItemsClient(headers),
     dashboardChartFilters: DashboardChartFilters(headers),
     dashboardChartAdvancedFilters: DashboardChartAdvancedFilters(headers),
+    graphsClient: GraphsClient(headers),
+    graphNodesClient: GraphNodesClient(headers),
+    graphNodesBulkClient: GraphsNodesBulkClient(headers),
+    graphEdgesClient: GraphEdgesClient(headers),
+    graphEdgesBulkClient: GraphsEdgesBulkClient(headers),
     secrets: SecretsClient(headers),
   };
 };
