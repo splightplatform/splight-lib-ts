@@ -195,7 +195,7 @@ export const ComponentsClient = (headers: Headers) => {
     hubComponent: (pk: string) =>
       get<Component>(basePath.slash(pk).slash('hub-component').url, headers),
     start: (pk: string) =>
-      post<unknown, Deployment>(
+      post<Record<string, never>, Deployment>(
         basePath.slash(pk).slash('start').url,
         {},
         headers
