@@ -93,6 +93,14 @@ export interface CustomType {
   fields: ComponentParameter[];
 }
 
+export interface Deployment {
+  component_id: string;
+  capacity?: string;
+  log_level?: number;
+  status: string;
+  restart_policy?: string;
+}
+
 export interface Component {
   id: string;
   name: string;
@@ -187,7 +195,11 @@ export const ComponentsClient = (headers: Headers) => {
     hubComponent: (pk: string) =>
       get<Component>(basePath.slash(pk).slash('hub-component').url, headers),
     start: (pk: string) =>
-      post(basePath.slash(pk).slash('start').url, {}, headers),
+      post<Record<string, never>, Deployment>(
+        basePath.slash(pk).slash('start').url,
+        {},
+        headers
+      ),
     stop: (pk: string) =>
       post(basePath.slash(pk).slash('stop').url, {}, headers),
     objects: (
