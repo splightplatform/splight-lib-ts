@@ -103,6 +103,46 @@ export interface Tab extends TabParams {
   charts: Chart[];
 }
 
+export type Graph = {
+  id: string;
+  title: string;
+  description: string;
+};
+
+export interface GraphParams {
+  title: string;
+  description?: string;
+}
+
+export interface EdgeParams {
+  directed: boolean;
+  graph_id: string;
+  asset_id: string;
+  source_id: string;
+  target_id: string;
+  color: string;
+  source_handle: string;
+  target_handle: string;
+}
+export interface Edge extends EdgeParams {
+  id: string;
+}
+
+export interface NodeParams {
+  type: string;
+  position_x: string;
+  position_y: string;
+  width: string;
+  height: string;
+  asset_id: string;
+  color: string;
+  text: string;
+  fill_color: string;
+}
+export interface Node extends NodeParams {
+  id: string;
+}
+
 export const DashboardTabsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/tabs/');
   const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
@@ -138,5 +178,31 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
+  return baseClient;
+};
+
+export const DashboardGraphsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/dashboard/graphs/');
+  const baseClient = BaseRestClient<GraphParams, Graph>(basePath, headers);
+  return baseClient;
+};
+export const DashboardGraphNodesClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/dashboard/nodes/');
+  const baseClient = BaseRestClient<NodeParams, Node>(basePath, headers);
+  return baseClient;
+};
+export const DashboardGraphsNodesBulkClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/dashboard/nodes/bulk/');
+  const baseClient = BaseRestClient<NodeParams[], Node[]>(basePath, headers);
+  return baseClient;
+};
+export const DashboardGraphEdgesClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/dashboard/edges/');
+  const baseClient = BaseRestClient<EdgeParams, Edge>(basePath, headers);
+  return baseClient;
+};
+export const DashboardGraphsEdgesBulkClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/dashboard/edges/bulk/');
+  const baseClient = BaseRestClient<EdgeParams[], Edge[]>(basePath, headers);
   return baseClient;
 };

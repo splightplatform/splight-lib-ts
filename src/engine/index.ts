@@ -10,7 +10,6 @@ export {
   CommandParams,
 } from './component-commands/ComponentCommands.js';
 export * from './dashboards/Dashboards.js';
-export * from './graphs/Graphs.js';
 export { Asset, AssetParams } from './assets/Assets.js';
 export { Attribute, AttributeParams } from './attributes/Attributes.js';
 export { SecretsClient, Secret, SecretParams } from './secrets/Secrets.js';
@@ -26,5 +25,3 @@ export {
 } from './components/Components.js';
 export { File, FileParams } from './files/Files.js';
 export { Query, QueryParams } from './queries/Queries.js';
-export { Dashboard, DashboardParams } from './dashboards/Dashboards.js';
-export { Graph, GraphParams } from './graphs/Graphs.js';
