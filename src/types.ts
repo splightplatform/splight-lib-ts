@@ -60,6 +60,9 @@ export {
   ComponentObject,
   Command,
   CommandParams,
+  ComponentSize,
+  ComponentObjectParams,
+  ObjectParameter,
 } from './engine/components/Components.js';
 export { File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
@@ -69,3 +72,9 @@ export {
   Agreement,
   AgreementParams,
 } from './backoffice/agreements/Agreements.js';
+
+export {
+  EdgeParams,
+  NodeParams,
+  TabParams,
+} from './engine/dashboards/Dashboards.js';
