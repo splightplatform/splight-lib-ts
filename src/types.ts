@@ -30,44 +30,6 @@ export interface PaginatedCollection<T> {
   results: T[];
 }
 
-export type Graph = {
-  id: string;
-  title: string;
-  description: string;
-};
-
-export interface Edge {
-  id?: string;
-  directed: boolean;
-  graph_id: string;
-  asset_id: string;
-  source_id: string;
-  target_id: string;
-  color: string;
-  source_handle: string;
-  target_handle: string;
-}
-
-export interface Node {
-  id: string;
-  type: string;
-  position_x: string;
-  position_y: string;
-  width: string;
-  height: string;
-  asset_id: string;
-  color: string;
-  text: string;
-  fill_color: string;
-}
-
-export interface Dashboard {
-  id: string;
-  name: string;
-  description: string;
-  created_at: string;
-}
-
 export interface Filter extends AbstractComplexConfiguration {
   _id?: string;
   key: string;
@@ -82,51 +44,28 @@ export interface OutputSource extends AbstractComplexConfiguration {
   value: string | null | undefined;
 }
 
-export interface Query {
-  id?: string;
-  source_type: string;
-  name: string;
-  description: string;
-  output_format: string;
-  target: string;
-  source_component_id: string | null;
-  source_component_label: string | null;
-  filters: { [key: string]: string };
-  limit?: number;
-  skip?: number;
-  source?: string;
-  sort?: string;
-  add_fields?: string;
-  group_id?: string;
-  group_fields?: string;
-  rename_fields?: string;
-  project_fields?: string;
-  timezone_offset?: number;
-  query_params?: string;
-}
-
-export interface Secret {
-  id: string;
-  name: string;
-  value: string;
-}
-
-export interface Notification {
-  id: string;
-  message: string;
-  target_id?: string;
-  target_type?: string;
-  redirect_url?: string;
-  volatile?: boolean;
-  created_at?: string;
-  source_id?: string;
-  source_type?: string;
-  title?: string;
-  seen?: boolean;
-  scope?: string;
-  isError?: boolean;
-  timeAliveInMs?: number;
-}
-
 export type Empty = Record<string, never>;
 export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
+
+export { Asset, AssetParams } from './engine/assets/Assets.js';
+export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
+export { Secret, SecretParams } from './engine/secrets/Secrets.js';
+
+export {
+  Component,
+  ComponentParams,
+  ComponentParameter,
+  ComponentCommand,
+  ComponentParameterType,
+  ComponentObject,
+  Command,
+  CommandParams,
+} from './engine/components/Components.js';
+export { File, FileParams } from './engine/files/Files.js';
+export { Query, QueryParams } from './engine/queries/Queries.js';
+
+export { OrganizationProfile } from './backoffice/Organizations.js';
+export {
+  Agreement,
+  AgreementParams,
+} from './backoffice/agreements/Agreements.js';

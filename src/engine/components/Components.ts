@@ -1,6 +1,6 @@
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, PaginatedCollection } from '../../types.js';
+import { Headers, Optional, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 // Components
@@ -156,6 +156,13 @@ export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
 export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
+export type CommandParams = Optional<Command, 'fields' | 'id' | 'status'>;
+
+export type ComponentObjectParams = Optional<
+  Omit<ComponentObject, 'id'>,
+  'description'
+>;
+
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/components/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
@@ -217,4 +224,19 @@ export const ComponentsClient = (headers: Headers) => {
         headers
       ),
   };
+};
+
+export const ComponentCommandsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/commands/');
+  const baseClient = BaseRestClient<CommandParams, Command>(basePath, headers);
+  return baseClient;
+};
+
+export const ComponentObjectsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/objects/');
+  const baseClient = BaseRestClient<ComponentObjectParams, ComponentObject>(
+    basePath,
+    headers
+  );
+  return baseClient;
 };
