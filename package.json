@@ -1,6 +1,6 @@
 {
   "name": "@splightplatform/splight-lib-ts",
-  "version": "0.0.6-16",
+  "version": "0.0.6-17",
   "type": "module",
   "license": "MIT",
   "repository": "https://github.com/splightplatform/splight-lib-ts.git",
@@ -17,22 +17,6 @@
       "require": "./dist/*/index.cjs",
       "import": "./dist/*/index.js",
       "types": "./dist/*/index.d.ts"
-    }
-  },
-  "typesVersions": {
-    "*": {
-      "engine": [
-        "dist/engine/index.d.ts"
-      ],
-      "account": [
-        "dist/account/index.d.ts"
-      ],
-      "hub": [
-        "dist/hub/index.d.ts"
-      ],
-      "backoffice": [
-        "dist/backoffice/index.d.ts"
-      ]
     }
   },
   "files": [
