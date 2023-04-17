@@ -101,6 +101,11 @@ export interface Deployment {
   restart_policy?: string;
 }
 
+export interface ComponentConnections {
+  subscription_count: number;
+  occupied: boolean;
+}
+
 export interface Component {
   id: string;
   name: string;
@@ -126,6 +131,7 @@ export interface Component {
   deployment_status: string;
   deployment_restart_policy?: string;
   connections_active: boolean;
+  connections_updated_at: string;
   organization_id?: string;
   usage_count?: number;
   bindings?: Binding[];
@@ -221,6 +227,11 @@ export const ComponentsClient = (headers: Headers) => {
     commands: (pk: string) =>
       get<ComponentCommand[]>(
         basePath.slash(pk).slash('commands').url,
+        headers
+      ),
+    connections: (pk: string) =>
+      get<ComponentConnections[]>(
+        basePath.slash(pk).slash('connections').url,
         headers
       ),
   };
