@@ -1,6 +1,6 @@
 {
   "name": "@splightplatform/splight-lib-ts",
-  "version": "0.0.6-17",
+  "version": "0.0.6-18",
   "type": "module",
   "license": "MIT",
   "repository": "https://github.com/splightplatform/splight-lib-ts.git",
@@ -50,6 +50,7 @@
     "lint:eslint": "eslint src/ --ext .ts",
     "lint:prettier": "prettier --check src/ --ext .ts",
     "lint:spellcheck": "cspell --no-progress  ./src/**/*.ts",
+    "lint:format": "prettier --write .",
     "test": "jest"
   },
   "cspell": {
