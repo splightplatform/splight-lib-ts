@@ -5,6 +5,21 @@ import { Path } from '../../Urls.js';
 export interface AlertParams {
   name: string;
   description?: string;
+  type?: string;
+  variables?: Variable[];
+  left_operand?: string;
+  operator?: string;
+  right_operand?: string;
+}
+
+export type Alert = AlertParams & {
+  id: string;
+  message: string;
+  period: number;
+  notification_emails: string[];
+  status: string;
+  active: boolean;
+  conditions: Condition[];
 }
 
 export interface DataAddress {
@@ -32,16 +47,6 @@ export interface Condition {
   left_operand: string;
   operator: string;
   right_operand: string;
-}
-
-export interface Alert extends AlertParams {
-  id: string;
-  message: string;
-  period: number;
-  notification_emails: string[];
-  status: string;
-  active: boolean;
-  conditions: Condition[];
 }
 
 export const AlertsClient = (headers: Headers) => {
