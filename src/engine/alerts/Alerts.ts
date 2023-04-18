@@ -27,10 +27,11 @@ type Variable = DataAddress | MathItem;
 interface Condition {
   id: string;
   name: string;
+  type: string;
   variables: Variable[];
-  left_trace: string;
+  left_operand: string;
   operator: string;
-  right_trace: string;
+  right_operand: string;
 }
 
 export interface Alert extends AlertParams {
