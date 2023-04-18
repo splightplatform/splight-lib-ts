@@ -33,7 +33,7 @@ test('List alerts', async () => {
     status: 200,
   });
   await splight.engine.alerts.list();
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/`, {
     headers: { Authorization: TestKeys },
   });
 });
