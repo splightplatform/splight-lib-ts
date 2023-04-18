@@ -1,5 +1,6 @@
 import { Headers } from './types.js';
 import {
+  AlertsClient,
   AssetsClient,
   AttributesClient,
   CommunicationClient,
@@ -24,6 +25,7 @@ import {
 
 export const Engine = (headers: Headers) => {
   return {
+    alerts: AlertsClient(headers),
     assets: AssetsClient(headers),
     attributes: AttributesClient(headers),
     components: ComponentsClient(headers),
