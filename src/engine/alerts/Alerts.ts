@@ -20,7 +20,7 @@ export type Alert = AlertParams & {
   status: string;
   active: boolean;
   conditions: Condition[];
-}
+};
 
 export interface DataAddress {
   type: 'DataAddress';
