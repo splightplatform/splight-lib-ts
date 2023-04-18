@@ -7,13 +7,13 @@ export interface AlertParams {
   description?: string;
 }
 
-interface DataAddress { 
+interface DataAddress {
   type: 'DataAddress';
   name: string;
   value: {
     asset: string;
     attribute: string;
-  }
+  };
 }
 
 interface MathItem {
@@ -46,9 +46,6 @@ export interface Alert extends AlertParams {
 
 export const AlertsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alerts/');
-  const baseClient = BaseRestClient<AlertParams, Alert>(
-    basePath,
-    headers
-  );
+  const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
   return baseClient;
 };

@@ -33,9 +33,12 @@ test('List alerts', async () => {
     status: 200,
   });
   await splight.engine.alerts.list();
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/`, {
-    headers: { Authorization: TestKeys },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/alert/alerts/`,
+    {
+      headers: { Authorization: TestKeys },
+    }
+  );
 });
 
 test('List alerts with params', async () => {
@@ -44,10 +47,13 @@ test('List alerts with params', async () => {
     status: 200,
   });
   await splight.engine.alerts.list({ page_size: 10 });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/`, {
-    headers: { Authorization: TestKeys },
-    params: { page_size: 10 },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/alert/alerts/`,
+    {
+      headers: { Authorization: TestKeys },
+      params: { page_size: 10 },
+    }
+  );
 });
 
 test('Retrieve alert', async () => {
@@ -56,9 +62,12 @@ test('Retrieve alert', async () => {
     status: 200,
   });
   await splight.engine.alerts.retrieve('123');
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/123/`, {
-    headers: { Authorization: TestKeys },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/alert/alerts/123/`,
+    {
+      headers: { Authorization: TestKeys },
+    }
+  );
 });
 
 test('Create alert', async () => {
@@ -67,12 +76,15 @@ test('Create alert', async () => {
     status: 201,
   });
   await splight.engine.alerts.create(MockAlertParams);
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/`, {
-    headers: { Authorization: TestKeys },
-    method: 'post',
-    data: MockAlertParams,
-  });
-})
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/alert/alerts/`,
+    {
+      headers: { Authorization: TestKeys },
+      method: 'post',
+      data: MockAlertParams,
+    }
+  );
+});
 
 test('Update alert', async () => {
   mockedAxios.mockResolvedValueOnce({
@@ -80,11 +92,14 @@ test('Update alert', async () => {
     status: 200,
   });
   await splight.engine.alerts.update('123', { name: 'updated' });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/123/`, {
-    headers: { Authorization: TestKeys },
-    method: 'patch',
-    data: { name: 'updated' },
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/alert/alerts/123/`,
+    {
+      headers: { Authorization: TestKeys },
+      method: 'patch',
+      data: { name: 'updated' },
+    }
+  );
 });
 
 test('Delete alert', async () => {
@@ -93,12 +108,11 @@ test('Delete alert', async () => {
     status: 204,
   });
   await splight.engine.alerts.destroy('123');
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/alert/alerts/123/`, {
-    headers: { Authorization: TestKeys },
-    method: 'delete',
-  });
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/engine/alert/alerts/123/`,
+    {
+      headers: { Authorization: TestKeys },
+      method: 'delete',
+    }
+  );
 });
-
-
-
-

@@ -50,6 +50,7 @@
     "lint:eslint": "eslint src/ --ext .ts",
     "lint:prettier": "prettier --check src/ --ext .ts",
     "lint:spellcheck": "cspell --no-progress  ./src/**/*.ts",
+    "lint:format": "prettier --write .",
     "test": "jest"
   },
   "cspell": {
