@@ -22,9 +22,9 @@ interface MathItem {
   value: string;
 }
 
-type Variable = DataAddress | MathItem;
+export type Variable = DataAddress | MathItem;
 
-interface Condition {
+export interface Condition {
   id: string;
   name: string;
   type: string;
