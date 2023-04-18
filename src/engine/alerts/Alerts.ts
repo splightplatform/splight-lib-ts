@@ -7,7 +7,7 @@ export interface AlertParams {
   description?: string;
 }
 
-interface DataAddress {
+export interface DataAddress {
   type: 'DataAddress';
   name: string;
   value: {
@@ -16,7 +16,7 @@ interface DataAddress {
   };
 }
 
-interface MathItem {
+export interface MathItem {
   type: 'MathItem';
   name: string;
   value: string;
