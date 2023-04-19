@@ -126,6 +126,7 @@ export interface Component {
   build_status: string;
   output: ComponentParameter[];
   service_name: string;
+  deployment_type: DeploymentType;
   deployment_capacity?: string;
   deployment_log_level?: number;
   deployment_status: string;
@@ -157,6 +158,8 @@ export interface ComponentParams {
   deployment_restart_policy?: RestartPolicy;
   deployment_capacity: ComponentSize;
 }
+
+export type DeploymentType = 'SELF_HOSTED' | 'SPLIGHT_HOSTED';
 
 export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
