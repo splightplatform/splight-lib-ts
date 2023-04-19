@@ -2,26 +2,6 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface AlertParams {
-  name: string;
-  description?: string;
-  type?: string;
-  variables?: Variable[];
-  left_operand?: string;
-  operator?: string;
-  right_operand?: string;
-}
-
-export type Alert = AlertParams & {
-  id: string;
-  message: string;
-  period: number;
-  notification_emails: string[];
-  status: string;
-  active: boolean;
-  conditions: Condition[];
-};
-
 export interface DataAddress {
   type: 'DataAddress';
   name: string;
@@ -48,6 +28,26 @@ export interface Condition {
   operator: string;
   right_operand: string;
 }
+
+export interface AlertParams {
+  name: string;
+  description?: string;
+  type?: string;
+  variables?: Variable[];
+  left_operand?: string;
+  operator?: string;
+  right_operand?: string;
+}
+
+export type Alert = AlertParams & {
+  id: string;
+  message: string;
+  period: number;
+  notification_emails: string[];
+  status: string;
+  active: boolean;
+  conditions: Condition[];
+};
 
 export const AlertsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alerts/');
