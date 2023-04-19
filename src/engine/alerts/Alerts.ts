@@ -32,15 +32,17 @@ export interface Condition {
 export interface AlertParams {
   name: string;
   description?: string;
-  type?: string;
-  variables?: Variable[];
-  left_operand?: string;
-  operator?: string;
-  right_operand?: string;
+  message?: string;
+  period?: number;
+  notification_emails?: string[];
+  status?: string;
+  active?: boolean;
+  conditions?: Condition[];
 }
 
 export type Alert = AlertParams & {
   id: string;
+  description: string;
   message: string;
   period: number;
   notification_emails: string[];
