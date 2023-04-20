@@ -78,3 +78,12 @@ export {
   NodeParams,
   TabParams,
 } from './engine/dashboards/Dashboards.js';
+
+export {
+  Alert,
+  AlertParams,
+  Condition,
+  Variable,
+  MathItem,
+  DataAddress,
+} from './engine/alerts/Alerts.js';
