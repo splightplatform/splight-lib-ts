@@ -1,10 +1,4 @@
-export {
-  AlertsClient,
-  Variable,
-  Condition,
-  MathItem,
-  DataAddress,
-} from './alerts/Alerts.js';
+export { AlertsClient } from './alerts/Alerts.js';
 export { AssetsClient } from './assets/Assets.js';
 export { AttributesClient } from './attributes/Attributes.js';
 export {
