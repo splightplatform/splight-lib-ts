@@ -143,6 +143,7 @@ export interface Component {
 
 export interface ComponentParams {
   name: string;
+  deployment_type: DeploymentType;
   description?: string;
   picture_url?: string;
   type?: string;
@@ -190,6 +191,7 @@ export const ComponentsClient = (headers: Headers) => {
       deployment_capacity: component.min_component_capacity,
       custom_types: component.custom_types,
       picture_url: component.picture_url,
+      deployment_type: component.deployment_type,
       input: component.input,
       output: component.output,
       type: component.type,
