@@ -133,6 +133,7 @@ export interface Component {
   deployment_restart_policy?: string;
   connections_active: boolean;
   connections_updated_at: string;
+  splight_cli_version: string;
   organization_id?: string;
   usage_count?: number;
   bindings?: Binding[];
