@@ -97,6 +97,6 @@ export const BillingClient = (headers: Headers) => {
     payout: PayoutClient(basePath, headers),
     subscription: SubscriptionClient(basePath, headers),
     subscriptionPlan: SubscriptionPlan(basePath, headers),
-    webhook: WebhookClient(basePath, headers), 
+    webhook: WebhookClient(basePath, headers),
   };
 };
