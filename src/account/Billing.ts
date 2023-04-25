@@ -1,4 +1,3 @@
-import { HttpStatusCode } from 'axios';
 import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../types.js';
