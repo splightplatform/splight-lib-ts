@@ -63,6 +63,7 @@ export {
   ComponentSize,
   ComponentObjectParams,
   ObjectParameter,
+  DeploymentType,
 } from './engine/components/Components.js';
 export { File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';

@@ -133,6 +133,7 @@ export interface Component {
   deployment_restart_policy?: string;
   connections_active: boolean;
   connections_updated_at: string;
+  splight_cli_version: string;
   organization_id?: string;
   usage_count?: number;
   bindings?: Binding[];
@@ -143,6 +144,7 @@ export interface Component {
 
 export interface ComponentParams {
   name: string;
+  deployment_type: DeploymentType;
   description?: string;
   picture_url?: string;
   type?: string;
@@ -190,6 +192,7 @@ export const ComponentsClient = (headers: Headers) => {
       deployment_capacity: component.min_component_capacity,
       custom_types: component.custom_types,
       picture_url: component.picture_url,
+      deployment_type: component.deployment_type,
       input: component.input,
       output: component.output,
       type: component.type,
