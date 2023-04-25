@@ -92,8 +92,8 @@ export {
 export {
   PaymentAccount,
   PayoutAccount,
-  Coupon, 
-  Discount, 
+  Coupon,
+  Discount,
   Subscription,
-  ExternalPortalLink
+  ExternalPortalLink,
 } from './account/Billing.js';

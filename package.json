@@ -51,6 +51,7 @@
     "lint:prettier": "prettier --check src/ --ext .ts",
     "lint:spellcheck": "cspell --no-progress  ./src/**/*.ts",
     "lint:format": "prettier --write .",
+    "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:spellcheck && npm run lint:typecheck",
     "test": "jest"
   },
   "cspell": {
