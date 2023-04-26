@@ -107,7 +107,7 @@ test('Get asset attributes', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.assets.attributes('123');
+  await splight.engine.assets.attributes({ pk: '123' });
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/assets/123/attributes/`,
     {

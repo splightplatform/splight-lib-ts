@@ -74,10 +74,14 @@ export const AssetsClient = (headers: Headers) => {
         headers,
         params
       ),
-    attributes: (pk: string) =>
+    attributes: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
       get<PaginatedCollection<Attribute>>(
         basePath.slash(pk).slash('attributes').url,
-        headers
+        headers,
+        params
       ),
   };
 };

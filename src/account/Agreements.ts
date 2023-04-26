@@ -1,6 +1,6 @@
-import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
-import { Path } from '../../Urls.js';
+import { BaseRestClient } from '../rest/BaseRestClient.js';
+import { Headers } from '../types.js';
+import { Path } from '../Urls.js';
 
 export interface AgreementParams {
   name: string;
@@ -17,10 +17,12 @@ export interface Agreement extends AgreementParams {
 }
 
 export const AgreementsClient = (headers: Headers) => {
-  const basePath = Path('v2/backoffice/agreements/');
-  const baseClient = BaseRestClient<AgreementParams, Agreement>(
+  const basePath = Path('v2/account/agreements/');
+  const { list } = BaseRestClient<AgreementParams, Agreement>(
     basePath,
     headers
   );
-  return baseClient;
+  return {
+    list,
+  };
 };

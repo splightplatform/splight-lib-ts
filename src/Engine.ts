@@ -1,6 +1,7 @@
 import { Headers } from './types.js';
 import {
   AlertsClient,
+  AlertsConditionsClient,
   AssetsClient,
   AttributesClient,
   CommunicationClient,
@@ -21,11 +22,13 @@ import {
   FilesClient,
   QueriesClient,
   SecretsClient,
+  SetPointsClient,
 } from './engine/index.js';
 
 export const Engine = (headers: Headers) => {
   return {
     alerts: AlertsClient(headers),
+    alertsConditions: AlertsConditionsClient(headers),
     assets: AssetsClient(headers),
     attributes: AttributesClient(headers),
     components: ComponentsClient(headers),
@@ -46,5 +49,6 @@ export const Engine = (headers: Headers) => {
     graphEdgesClient: DashboardGraphEdgesClient(headers),
     graphEdgesBulkClient: DashboardGraphsEdgesBulkClient(headers),
     secrets: SecretsClient(headers),
+    setPoints: SetPointsClient(headers),
   };
 };

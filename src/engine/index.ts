@@ -1,4 +1,4 @@
-export { AlertsClient } from './alerts/Alerts.js';
+export { AlertsClient, AlertsConditionsClient } from './alerts/Alerts.js';
 export { AssetsClient } from './assets/Assets.js';
 export { AttributesClient } from './attributes/Attributes.js';
 export {
@@ -23,3 +23,4 @@ export {
   DashboardChartAdvancedFilters,
 } from './dashboards/Dashboards.js';
 export { SecretsClient } from './secrets/Secrets.js';
+export { SetPointsClient } from './SetPoints.js';

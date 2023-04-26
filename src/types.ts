@@ -50,7 +50,6 @@ export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
 export { Asset, AssetParams } from './engine/assets/Assets.js';
 export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
-
 export {
   Component,
   ComponentParams,
@@ -67,13 +66,6 @@ export {
 } from './engine/components/Components.js';
 export { File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
-
-export { OrganizationProfile } from './backoffice/Organizations.js';
-export {
-  Agreement,
-  AgreementParams,
-} from './backoffice/agreements/Agreements.js';
-
 export {
   EdgeParams,
   NodeParams,
@@ -88,3 +80,17 @@ export {
   MathItem,
   DataAddress,
 } from './engine/alerts/Alerts.js';
+export { Setpoint } from './engine/SetPoints.js';
+export { Component as HubComponent } from './hub/components/Components.js';
+export { OrganizationProfile } from './backoffice/Organizations.js';
+export {
+  Agreement,
+  AgreementParams,
+} from './backoffice/agreements/Agreements.js';
+export {
+  Agreement as AccountAgreement,
+  AgreementParams as AccountAgreementParams,
+} from './account/Agreements.js';
+export { UserActivity } from './account/Activity.js';
+export { UserInvitation } from './account/UserInvitations.js';
+export { Referral } from './account/Referral.js';
