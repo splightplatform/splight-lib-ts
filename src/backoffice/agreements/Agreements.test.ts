@@ -34,7 +34,7 @@ test('List agreements', async () => {
   });
   await splight.backoffice.agreements.list();
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}backoffice/agreements/`,
+    `${API_HOST}v2/backoffice/agreements/`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -48,7 +48,7 @@ test('List agreements with params', async () => {
   });
   await splight.backoffice.agreements.list({ page_size: 10 });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}backoffice/agreements/`,
+    `${API_HOST}v2/backoffice/agreements/`,
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
@@ -63,7 +63,7 @@ test('Retrieve agreement', async () => {
   });
   await splight.backoffice.agreements.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}backoffice/agreements/123/`,
+    `${API_HOST}v2/backoffice/agreements/123/`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -77,7 +77,7 @@ test('Create agreement', async () => {
   });
   await splight.backoffice.agreements.create(MockAgreementParams);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}backoffice/agreements/`,
+    `${API_HOST}v2/backoffice/agreements/`,
     {
       data: MockAgreementParams,
       method: 'post',
@@ -96,7 +96,7 @@ test('Update agreement', async () => {
     name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}backoffice/agreements/123/`,
+    `${API_HOST}v2/backoffice/agreements/123/`,
     {
       data: { ...MockAgreementParams, name: 'updated' },
       method: 'patch',
@@ -112,7 +112,7 @@ test('Delete agreement', async () => {
   });
   await splight.backoffice.agreements.destroy(mockAgreementId);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}backoffice/agreements/${mockAgreementId}/`,
+    `${API_HOST}v2/backoffice/agreements/${mockAgreementId}/`,
     {
       method: 'delete',
       headers: { Authorization: TestKeys },

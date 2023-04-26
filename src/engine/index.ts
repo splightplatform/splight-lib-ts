@@ -23,3 +23,4 @@ export {
   DashboardChartAdvancedFilters,
 } from './dashboards/Dashboards.js';
 export { SecretsClient } from './secrets/Secrets.js';
+export { SetPointsClient } from './SetPoints.js';

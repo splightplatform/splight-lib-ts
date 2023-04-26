@@ -34,7 +34,7 @@ test('List subscription plans', async () => {
   });
   await splight.backoffice.billing.subscriptionPlans.list();
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/subscription-plans/`,
+    `${API_HOST}v2/backoffice/billing/subscription-plans/`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -48,7 +48,7 @@ test('List subscription plans with params', async () => {
   });
   await splight.backoffice.billing.subscriptionPlans.list({ page_size: 10 });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/subscription-plans/`,
+    `${API_HOST}v2/backoffice/billing/subscription-plans/`,
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
@@ -63,7 +63,7 @@ test('Retrieve subscription plan', async () => {
   });
   await splight.backoffice.billing.subscriptionPlans.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/subscription-plans/123/`,
+    `${API_HOST}v2/backoffice/billing/subscription-plans/123/`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -79,7 +79,7 @@ test('Create subscription plan', async () => {
     MockSubscriptionPlanParams
   );
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/subscription-plans/`,
+    `${API_HOST}v2/backoffice/billing/subscription-plans/`,
     {
       data: MockSubscriptionPlanParams,
       method: 'post',
@@ -98,7 +98,7 @@ test('Update subscription plan', async () => {
     name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/subscription-plans/123/`,
+    `${API_HOST}v2/backoffice/billing/subscription-plans/123/`,
     {
       data: { ...MockSubscriptionPlanParams, name: 'updated' },
       method: 'patch',
@@ -118,7 +118,7 @@ test('Delete subscription plan', async () => {
   );
 
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/subscription-plans/${subscriptionPlanId}/`,
+    `${API_HOST}v2/backoffice/billing/subscription-plans/${subscriptionPlanId}/`,
     {
       method: 'delete',
       headers: { Authorization: TestKeys },

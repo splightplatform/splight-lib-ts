@@ -21,6 +21,7 @@ import {
   FilesClient,
   QueriesClient,
   SecretsClient,
+  SetPointsClient,
 } from './engine/index.js';
 
 export const Engine = (headers: Headers) => {
@@ -46,5 +47,6 @@ export const Engine = (headers: Headers) => {
     graphEdgesClient: DashboardGraphEdgesClient(headers),
     graphEdgesBulkClient: DashboardGraphsEdgesBulkClient(headers),
     secrets: SecretsClient(headers),
+    setPoints: SetPointsClient(headers),
   };
 };
