@@ -56,8 +56,3 @@ export const AlertsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
   return baseClient;
 };
-export const AlertsConditionsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/alert/conditions/');
-  const baseClient = BaseRestClient<Condition>(basePath, headers);
-  return baseClient;
-};
