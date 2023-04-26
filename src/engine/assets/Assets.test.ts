@@ -112,6 +112,7 @@ test('Get asset attributes', async () => {
     `${API_HOST}v2/engine/assets/123/attributes/`,
     {
       headers: { Authorization: TestKeys },
+      params: {},
     }
   );
 });
