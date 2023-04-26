@@ -100,7 +100,7 @@ export interface Component {
   component_capacity?: string;
   log_level?: number;
   restart_policy?: string;
-  organization_id?: string;
+  organization?: { id: string; name: string };
   usage_count?: number;
   bindings?: Binding[];
   commands?: ComponentCommand[];

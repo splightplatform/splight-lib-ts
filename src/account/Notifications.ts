@@ -1,3 +1,4 @@
+import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
@@ -24,5 +25,8 @@ export const NotificationsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<Notification>(basePath, headers);
   return {
     list: baseClient.list,
+    update: baseClient.update,
+    markAllAsSeen: () =>
+      get<Notification>(basePath.slash('mark_all_as_seen', true).url, headers),
   };
 };

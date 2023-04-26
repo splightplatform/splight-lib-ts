@@ -4,6 +4,10 @@ import { MeClient } from './account/Me.js';
 import { ApiKeysClient } from './account/ApiKeys.js';
 import { ActivityClient } from './account/Activity.js';
 import { BillingClient } from './account/Billing.js';
+import { AgreementsClient } from './account/Agreements.js';
+import { UsersClient } from './account/Users.js';
+import { UserInvitationsClient } from './account/UserInvitations.js';
+import { ReferralClient } from './account/Referral.js';
 
 export const Account = (headers: Headers) => {
   return {
@@ -12,5 +16,9 @@ export const Account = (headers: Headers) => {
     apiKeys: ApiKeysClient(headers),
     activity: ActivityClient(headers),
     billing: BillingClient(headers),
+    agreements: AgreementsClient(headers),
+    users: UsersClient(headers),
+    userInvitations: UserInvitationsClient(headers),
+    referral: ReferralClient(headers),
   };
 };

@@ -17,7 +17,7 @@ export interface SubscriptionPlan extends SubscriptionPlanParams {
 }
 
 export const SubscriptionPlansClient = (headers: Headers) => {
-  const basePath = Path('v2/backoffice/subscription-plans/');
+  const basePath = Path('v2/backoffice/billing/subscription-plans/');
   const baseClient = BaseRestClient<SubscriptionPlanParams, SubscriptionPlan>(
     basePath,
     headers
