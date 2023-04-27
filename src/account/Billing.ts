@@ -74,7 +74,7 @@ const PaymentClient = (basePath: Path, headers: Headers) => {
       get<PaymentAccount>(myPaymentAccountPath.url, headers),
     create: (data: PaymentAccountParams): Promise<PaymentAccount> =>
       baseClient.create(data),
-      externalPortal: () =>
+    externalPortal: () =>
       get<ExternalPortalLink>(externalPortalPath.url, headers),
   };
 };
