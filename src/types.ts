@@ -80,6 +80,15 @@ export {
   MathItem,
   DataAddress,
 } from './engine/alerts/Alerts.js';
+
+export {
+  PaymentAccount,
+  PayoutAccount,
+  Coupon,
+  Discount,
+  Subscription,
+  ExternalPortalLink,
+} from './account/Billing.js';
 export { SetPoint as Setpoint } from './engine/SetPoints.js';
 export { Component as HubComponent } from './hub/components/Components.js';
 export { OrganizationProfile } from './backoffice/Organizations.js';
