@@ -1,5 +1,5 @@
 import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
-import { get } from '../rest/BaseMethods.js';
+import { get, post } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../types.js';
 import { Path } from '../Urls.js';
@@ -24,10 +24,6 @@ export interface PaymentAccount {
   currency: string;
   balance: number;
   discount: Discount;
-}
-
-export interface SubscriptionParams {
-  organization: Organization;
 }
 
 export interface Subscription {
@@ -81,32 +77,13 @@ const PaymentClient = (basePath: Path, headers: Headers) => {
 
 const SubscriptionClient = (basePath: Path, headers: Headers) => {
   const subscriptionPath = basePath.slash('subscription');
-  const baseClient = BaseRestClient<SubscriptionParams, Subscription>(
-    subscriptionPath,
-    headers
-  );
   const cancelPath = subscriptionPath.slash('cancel');
   const subscribePath = subscriptionPath.slash('subscribe');
 
   return {
-    cancel: (data: SubscriptionParams): Promise<Response> => {
-      const cancelClient = BaseRestClient<SubscriptionParams, Response>(
-        cancelPath,
-        headers
-      );
-      return cancelClient.create(data);
-    },
-    subscribe: (data: SubscriptionParams): Promise<Response> => {
-      const subscribeClient = BaseRestClient<SubscriptionParams, Response>(
-        subscribePath,
-        headers
-      );
-      return subscribeClient.create(data);
-    },
-    list: (params: {
-      page?: number;
-      page_size?: number;
-    }): Promise<PaginatedCollection<Subscription>> => baseClient.list(params),
+    cancel: () => post(cancelPath.url, {} ,headers),
+    subscribe: ( data: { plan: SubscriptionPlan}): Promise<Response> => post(subscribePath.url, data ,headers),
+    my_subscription: () => get<PayoutAccount>(subscriptionPath.url, headers),
   };
 };
 
