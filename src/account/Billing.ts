@@ -116,8 +116,7 @@ const PayoutClient = (basePath: Path, headers: Headers) => {
   const myPayoutAccountPath = payoutPath.slash('my_payout_account');
 
   return {
-    myPayoutAccount: () =>
-      get<PayoutAccount>(myPayoutAccountPath.url, headers),
+    myPayoutAccount: () => get<PayoutAccount>(myPayoutAccountPath.url, headers),
     getExternalPortalLink: () =>
       get<ExternalPortalLink>(externalPortalPath.url, headers),
   };
