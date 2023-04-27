@@ -108,7 +108,7 @@ describe('Payment account', () => {
       data: MockExternalPortalLink,
       status: 200,
     });
-    await splight.account.billing.payment.getExternalPortalLink();
+    await splight.account.billing.payment.externalPortal();
     expect(mockedAxios).toHaveBeenCalledWith(
       `${API_HOST}v2/account/billing/payment/external_portal/`,
       {
@@ -140,7 +140,7 @@ describe('Payout account', () => {
       data: MockExternalPortalLink,
       status: 200,
     });
-    await splight.account.billing.payout.getExternalPortalLink();
+    await splight.account.billing.payout.externalPortal();
     expect(mockedAxios).toHaveBeenCalledWith(
       `${API_HOST}v2/account/billing/payout/external_portal/`,
       {
