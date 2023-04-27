@@ -88,17 +88,17 @@ describe('Payment account', () => {
     );
   });
 
-  test('List payment accounts', async () => {
+  test('Retrieve my payment account', async () => {
     mockedAxios.mockResolvedValueOnce({
       data: [MockPaymentAccount],
       status: 200,
     });
-    await splight.account.billing.payment.list({ page_size: 10 });
+    await splight.account.billing.payment.myPaymentAccount();
     expect(mockedAxios).toHaveBeenCalledWith(
-      `${API_HOST}v2/account/billing/payment/`,
+      `${API_HOST}v2/account/billing/payment/my_payment_account/`,
       {
         headers: { Authorization: TestKeys },
-        params: { page_size: 10 },
+        params: undefined,
       }
     );
   });
@@ -108,9 +108,9 @@ describe('Payment account', () => {
       data: MockExternalPortalLink,
       status: 200,
     });
-    await splight.account.billing.payment.getExternalPortalLink('123');
+    await splight.account.billing.payment.getExternalPortalLink();
     expect(mockedAxios).toHaveBeenCalledWith(
-      `${API_HOST}v2/account/billing/payment/external_portal/123/`,
+      `${API_HOST}v2/account/billing/payment/external_portal/`,
       {
         headers: { Authorization: TestKeys },
         params: undefined,
@@ -120,17 +120,17 @@ describe('Payment account', () => {
 });
 
 describe('Payout account', () => {
-  test('List payout account', async () => {
+  test('Retrieve my payout account', async () => {
     mockedAxios.mockResolvedValueOnce({
       data: [MockPayoutAccount],
       status: 200,
     });
-    await splight.account.billing.payout.list({ page_size: 10 });
+    await splight.account.billing.payout.myPayoutAccount();
     expect(mockedAxios).toHaveBeenCalledWith(
-      `${API_HOST}v2/account/billing/payout/`,
+      `${API_HOST}v2/account/billing/payout/my_payout_account/`,
       {
         headers: { Authorization: TestKeys },
-        params: { page_size: 10 },
+        params: undefined,
       }
     );
   });
@@ -140,9 +140,9 @@ describe('Payout account', () => {
       data: MockExternalPortalLink,
       status: 200,
     });
-    await splight.account.billing.payout.getExternalPortalLink('123');
+    await splight.account.billing.payout.getExternalPortalLink();
     expect(mockedAxios).toHaveBeenCalledWith(
-      `${API_HOST}v2/account/billing/payout/external_portal/123/`,
+      `${API_HOST}v2/account/billing/payout/external_portal/`,
       {
         headers: { Authorization: TestKeys },
         params: undefined,

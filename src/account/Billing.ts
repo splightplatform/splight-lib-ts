@@ -1,4 +1,5 @@
 import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
+import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../types.js';
 import { Path } from '../Urls.js';
@@ -66,21 +67,15 @@ const PaymentClient = (basePath: Path, headers: Headers) => {
     headers
   );
   const externalPortalPath = paymentPath.slash('external_portal');
+  const myPaymentAccountPath = paymentPath.slash('my_payment_account');
 
   return {
+    myPaymentAccount: () =>
+      get<PaymentAccount>(myPaymentAccountPath.url, headers),
     create: (data: PaymentAccountParams): Promise<PaymentAccount> =>
       baseClient.create(data),
-    list: (params: {
-      page?: number;
-      page_size?: number;
-    }): Promise<PaginatedCollection<PaymentAccount>> => baseClient.list(params),
-    getExternalPortalLink: (pk: string): Promise<ExternalPortalLink> => {
-      const externalPortalClient = BaseRestClient<string, ExternalPortalLink>(
-        externalPortalPath,
-        headers
-      );
-      return externalPortalClient.retrieve(pk);
-    },
+    getExternalPortalLink: () =>
+      get<ExternalPortalLink>(externalPortalPath.url, headers),
   };
 };
 
@@ -117,24 +112,14 @@ const SubscriptionClient = (basePath: Path, headers: Headers) => {
 
 const PayoutClient = (basePath: Path, headers: Headers) => {
   const payoutPath = basePath.slash('payout');
-  const baseClient = BaseRestClient<PayoutAccountParams, PayoutAccount>(
-    payoutPath,
-    headers
-  );
   const externalPortalPath = payoutPath.slash('external_portal');
+  const myPayoutAccountPath = payoutPath.slash('my_payout_account');
 
   return {
-    list: (params?: {
-      page?: number;
-      page_size?: number;
-    }): Promise<PaginatedCollection<PayoutAccount>> => baseClient.list(params),
-    getExternalPortalLink: (pk: string): Promise<ExternalPortalLink> => {
-      const externalPortalClient = BaseRestClient<string, ExternalPortalLink>(
-        externalPortalPath,
-        headers
-      );
-      return externalPortalClient.retrieve(pk);
-    },
+    myPayoutAccount: () =>
+      get<PayoutAccount>(myPayoutAccountPath.url, headers),
+    getExternalPortalLink: () =>
+      get<ExternalPortalLink>(externalPortalPath.url, headers),
   };
 };
 
