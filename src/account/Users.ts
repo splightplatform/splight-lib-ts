@@ -20,7 +20,6 @@ export interface User {
     is_manager: boolean;
   };
   picture: string;
-  // cspell:disable-next-line
   permissions: ('splightadmin' | 'admin' | 'editor')[];
   roles: string[];
 }

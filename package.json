@@ -57,7 +57,9 @@
   "cspell": {
     "ignoreWords": [
       "splight",
-      "backoffice"
+      "backoffice",
+      "splightplatform",
+      "splightadmin"
     ]
   },
   "prettier": {
