@@ -9,7 +9,6 @@ import {
   Discount,
   ExternalPortalLink,
 } from './Billing.js';
-import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
 import { ApiFormField } from '../types.js';
 
 const mockedAxios = MockedAxios();
