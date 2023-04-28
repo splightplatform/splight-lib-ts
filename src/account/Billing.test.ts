@@ -20,7 +20,7 @@ afterEach(() => {
 
 const MockCoupon: Coupon = {
   amount_off: 10,
-  percent_off: 10,
+  percentage_off: 10,
 };
 
 const MockDiscount: Discount = {
@@ -32,6 +32,7 @@ const MockPaymentAccount: PaymentAccount = {
   currency: 'test',
   balance: 10,
   discount: MockDiscount,
+  total_price: 10,
 };
 
 const MockPayoutAccount: PayoutAccount = {
