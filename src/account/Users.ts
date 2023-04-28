@@ -27,10 +27,14 @@ export interface User {
 
 export const UsersClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/users/');
-  const { list, update } = BaseRestClient<User, User>(basePath, headers);
+  const { list, update, retrieve } = BaseRestClient<User, User>(
+    basePath,
+    headers
+  );
   return {
     list,
     update,
+    retrieve,
     organizations: ({
       pk,
       ...params
