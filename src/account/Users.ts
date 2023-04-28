@@ -35,6 +35,11 @@ export const UsersClient = (headers: Headers) => {
     list,
     update,
     retrieve,
+    assignableRoles: (pk: string) =>
+      get<string[]>(
+        basePath.slash(pk).slash('assignable_roles', true).url,
+        headers
+      ),
     organizations: ({
       pk,
       ...params
