@@ -24,6 +24,7 @@ export interface PaymentAccount {
   currency: string;
   balance: number;
   discount: Discount;
+  total_price: number;
 }
 
 export interface Subscription {
