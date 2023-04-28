@@ -12,10 +12,7 @@ export interface Referral {
 
 export const ReferralClient = (headers: Headers) => {
   const basePath = Path('v2/account/referral/');
-  const { list } = BaseRestClient<Record<string, never>, Referral>(
-    basePath,
-    headers
-  );
+  const { list } = BaseRestClient<Referral>(basePath, headers);
 
   return { list };
 };

@@ -7,9 +7,9 @@ import {
   PayoutAccount,
   Coupon,
   Discount,
-  Subscription,
   ExternalPortalLink,
 } from './Billing.js';
+import { ApiFormField } from '../types.js';
 
 const mockedAxios = MockedAxios();
 
@@ -19,7 +19,7 @@ afterEach(() => {
 
 const MockCoupon: Coupon = {
   amount_off: 10,
-  percent_off: 10,
+  percentage_off: 10,
 };
 
 const MockDiscount: Discount = {
@@ -31,6 +31,7 @@ const MockPaymentAccount: PaymentAccount = {
   currency: 'test',
   balance: 10,
   discount: MockDiscount,
+  total_price: 10,
 };
 
 const MockPayoutAccount: PayoutAccount = {
@@ -46,29 +47,20 @@ const MockPayoutAccount: PayoutAccount = {
   business_type: 'test',
 };
 
-const MockSubscription: Subscription = {
-  organization: {
-    id: '123',
-    name: 'test',
-    display_name: 'test',
-  },
-  subscription_plan: {
-    id: '123',
-    name: 'test',
-    amount: 10,
-    currency: 'test',
-    components_limit: 10,
-    type: 'test',
-  },
-  start_date: 'test',
-  end_date: 'test',
-};
-
 const MockExternalPortalLink: ExternalPortalLink = {
   id: '123',
   created: 10,
   expires_at: 10,
   url: 'test',
+};
+
+const MockApiFormFields: { [key: string]: ApiFormField } = {
+  test: {
+    type: 'test',
+    label: 'test',
+    required: true,
+    read_only: true,
+  },
 };
 
 describe('Payment account', () => {
@@ -88,17 +80,36 @@ describe('Payment account', () => {
     );
   });
 
-  test('Retrieve my payment account', async () => {
+  test('Retrieve payment account', async () => {
     mockedAxios.mockResolvedValueOnce({
       data: [MockPaymentAccount],
       status: 200,
     });
-    await splight.account.billing.payment.myPaymentAccount();
+    await splight.account.billing.payment.retrieve();
     expect(mockedAxios).toHaveBeenCalledWith(
-      `${API_HOST}v2/account/billing/payment/my_payment_account/`,
+      `${API_HOST}v2/account/billing/payment/`,
       {
         headers: { Authorization: TestKeys },
         params: undefined,
+      }
+    );
+  });
+
+  test('Retrieve payment account options', async () => {
+    mockedAxios.mockResolvedValueOnce({
+      data: {
+        actions: {
+          POST: MockApiFormFields,
+        },
+      },
+      status: 200,
+    });
+    await splight.account.billing.payment.fields();
+    expect(mockedAxios).toHaveBeenCalledWith(
+      `${API_HOST}v2/account/billing/payment/`,
+      {
+        headers: { Authorization: TestKeys },
+        method: 'options',
       }
     );
   });
@@ -125,9 +136,9 @@ describe('Payout account', () => {
       data: [MockPayoutAccount],
       status: 200,
     });
-    await splight.account.billing.payout.myPayoutAccount();
+    await splight.account.billing.payout.retrieve();
     expect(mockedAxios).toHaveBeenCalledWith(
-      `${API_HOST}v2/account/billing/payout/my_payout_account/`,
+      `${API_HOST}v2/account/billing/payout/`,
       {
         headers: { Authorization: TestKeys },
         params: undefined,
@@ -156,13 +167,15 @@ describe('Subscription', () => {
     mockedAxios.mockResolvedValueOnce({
       status: 200,
     });
-    await splight.account.billing.subscription.subscribe(MockSubscription);
+    await splight.account.billing.subscription.subscribe({
+      plan: '123',
+    });
     expect(mockedAxios).toHaveBeenCalledWith(
       `${API_HOST}v2/account/billing/subscription/subscribe/`,
       {
         method: 'post',
         headers: { Authorization: TestKeys },
-        data: MockSubscription,
+        data: { plan: '123' },
       }
     );
   });
@@ -171,28 +184,27 @@ describe('Subscription', () => {
     mockedAxios.mockResolvedValueOnce({
       status: 200,
     });
-    await splight.account.billing.subscription.cancel(MockSubscription);
+    await splight.account.billing.subscription.cancel();
     expect(mockedAxios).toHaveBeenCalledWith(
       `${API_HOST}v2/account/billing/subscription/cancel/`,
       {
         method: 'post',
         headers: { Authorization: TestKeys },
-        data: MockSubscription,
+        data: {},
       }
     );
   });
 
-  test('List subscriptions', async () => {
+  test('Get my subscription', async () => {
     mockedAxios.mockResolvedValueOnce({
-      data: MockSubscription,
       status: 200,
     });
-    await splight.account.billing.subscription.list({ page_size: 10 });
+    await splight.account.billing.subscription.retrieve();
     expect(mockedAxios).toHaveBeenCalledWith(
       `${API_HOST}v2/account/billing/subscription/`,
       {
         headers: { Authorization: TestKeys },
-        params: { page_size: 10 },
+        params: undefined,
       }
     );
   });

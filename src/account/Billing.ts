@@ -1,13 +1,13 @@
 import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
-import { get } from '../rest/BaseMethods.js';
+import { get, options, post } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
-import { Headers, PaginatedCollection } from '../types.js';
+import { ApiFormField, Headers } from '../types.js';
 import { Path } from '../Urls.js';
 import { Organization } from './Me.js';
 
 export type Coupon = {
   amount_off: number;
-  percent_off: number;
+  percentage_off: number;
 };
 
 export type Discount = {
@@ -24,10 +24,7 @@ export interface PaymentAccount {
   currency: string;
   balance: number;
   discount: Discount;
-}
-
-export interface SubscriptionParams {
-  organization: Organization;
+  total_price: number;
 }
 
 export interface Subscription {
@@ -62,16 +59,21 @@ export interface ExternalPortalLink {
 
 const PaymentClient = (basePath: Path, headers: Headers) => {
   const paymentPath = basePath.slash('payment');
+  const externalPortalPath = paymentPath.slash('external_portal');
   const baseClient = BaseRestClient<PaymentAccountParams, PaymentAccount>(
     paymentPath,
     headers
   );
-  const externalPortalPath = paymentPath.slash('external_portal');
-  const myPaymentAccountPath = paymentPath.slash('my_payment_account');
 
   return {
-    myPaymentAccount: () =>
-      get<PaymentAccount>(myPaymentAccountPath.url, headers),
+    retrieve: () => get<PaymentAccount>(paymentPath.url, headers),
+    fields: async () =>
+      (
+        await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
+          paymentPath.url,
+          headers
+        )
+      ).actions.POST,
     create: (data: PaymentAccountParams): Promise<PaymentAccount> =>
       baseClient.create(data),
     externalPortal: () =>
@@ -81,42 +83,23 @@ const PaymentClient = (basePath: Path, headers: Headers) => {
 
 const SubscriptionClient = (basePath: Path, headers: Headers) => {
   const subscriptionPath = basePath.slash('subscription');
-  const baseClient = BaseRestClient<SubscriptionParams, Subscription>(
-    subscriptionPath,
-    headers
-  );
   const cancelPath = subscriptionPath.slash('cancel');
   const subscribePath = subscriptionPath.slash('subscribe');
 
   return {
-    cancel: (data: SubscriptionParams): Promise<Response> => {
-      const cancelClient = BaseRestClient<SubscriptionParams, Response>(
-        cancelPath,
-        headers
-      );
-      return cancelClient.create(data);
-    },
-    subscribe: (data: SubscriptionParams): Promise<Response> => {
-      const subscribeClient = BaseRestClient<SubscriptionParams, Response>(
-        subscribePath,
-        headers
-      );
-      return subscribeClient.create(data);
-    },
-    list: (params: {
-      page?: number;
-      page_size?: number;
-    }): Promise<PaginatedCollection<Subscription>> => baseClient.list(params),
+    cancel: () => post(cancelPath.url, {}, headers),
+    subscribe: (data: { plan: string }): Promise<Response> =>
+      post(subscribePath.url, data, headers),
+    retrieve: () => get<Subscription>(subscriptionPath.url, headers),
   };
 };
 
 const PayoutClient = (basePath: Path, headers: Headers) => {
   const payoutPath = basePath.slash('payout');
   const externalPortalPath = payoutPath.slash('external_portal');
-  const myPayoutAccountPath = payoutPath.slash('my_payout_account');
 
   return {
-    myPayoutAccount: () => get<PayoutAccount>(myPayoutAccountPath.url, headers),
+    retrieve: () => get<PaymentAccount>(payoutPath.url, headers),
     externalPortal: () =>
       get<ExternalPortalLink>(externalPortalPath.url, headers),
   };

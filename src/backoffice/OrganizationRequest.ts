@@ -1,6 +1,6 @@
 import { options, post } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
-import { Headers } from '../types.js';
+import { ApiFormField, Headers } from '../types.js';
 import { Path } from '../Urls.js';
 
 export interface OrganizationRequestParams {
@@ -24,16 +24,6 @@ export interface OrganizationRequest extends OrganizationRequestParams {
   referred_by: string;
 }
 
-export interface SignUpField {
-  type: string;
-  required: boolean;
-  read_only: boolean;
-  label: string;
-  min_length?: number;
-  max_length?: number;
-  choices?: [{ value: string; display_name: string }];
-}
-
 export const OrganizationRequestsClient = (headers: Headers) => {
   const basePath = Path('v2/backoffice/organization/requests/');
   const baseClient = BaseRestClient<OrganizationRequest>(basePath, headers);
@@ -41,7 +31,7 @@ export const OrganizationRequestsClient = (headers: Headers) => {
     ...baseClient,
     fields: async () =>
       (
-        await options<{ actions: { POST: { [key: string]: SignUpField } } }>(
+        await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
           basePath.url,
           headers
         )
