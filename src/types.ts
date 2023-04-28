@@ -103,3 +103,13 @@ export {
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
 export { Referral } from './account/Referral.js';
+
+export interface ApiFormField {
+  type: string;
+  required: boolean;
+  read_only: boolean;
+  label: string;
+  min_length?: number;
+  max_length?: number;
+  choices?: [{ value: string; display_name: string }];
+}
