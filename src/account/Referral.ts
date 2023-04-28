@@ -1,5 +1,5 @@
 import { Path } from '../Urls.js';
-import { Headers, PaginatedCollection } from '../types.js';
+import { Headers } from '../types.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 
 export interface Referral {
