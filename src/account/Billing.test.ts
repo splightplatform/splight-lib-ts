@@ -7,7 +7,6 @@ import {
   PayoutAccount,
   Coupon,
   Discount,
-  Subscription,
   ExternalPortalLink,
 } from './Billing.js';
 import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
