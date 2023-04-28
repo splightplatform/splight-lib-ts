@@ -1,5 +1,5 @@
 import { Path } from '../Urls.js';
-import { Headers } from '../types.js';
+import { Headers, PaginatedCollection } from '../types.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 
 export interface Referral {
@@ -12,10 +12,7 @@ export interface Referral {
 
 export const ReferralClient = (headers: Headers) => {
   const basePath = Path('v2/account/referral/');
-  const { list } = BaseRestClient<Record<string, never>, Referral>(
-    basePath,
-    headers
-  );
+  const { list } = BaseRestClient<Referral>(basePath, headers);
 
   return { list };
 };
