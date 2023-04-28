@@ -48,15 +48,6 @@ const MockPayoutAccount: PayoutAccount = {
   business_type: 'test',
 };
 
-const MockSubscriptionPlan: SubscriptionPlan = {
-  id: '123',
-  name: 'test',
-  amount: 10,
-  currency: 'test',
-  components_limit: 10,
-  type: 'test',
-};
-
 const MockExternalPortalLink: ExternalPortalLink = {
   id: '123',
   created: 10,
