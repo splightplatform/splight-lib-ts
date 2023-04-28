@@ -88,7 +88,7 @@ const SubscriptionClient = (basePath: Path, headers: Headers) => {
 
   return {
     cancel: () => post(cancelPath.url, {}, headers),
-    subscribe: (data: { plan: SubscriptionPlan }): Promise<Response> =>
+    subscribe: (data: { plan: string }): Promise<Response> =>
       post(subscribePath.url, data, headers),
     retrieve: () => get<Subscription>(subscriptionPath.url, headers),
   };

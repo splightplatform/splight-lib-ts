@@ -178,14 +178,14 @@ describe('Subscription', () => {
       status: 200,
     });
     await splight.account.billing.subscription.subscribe({
-      plan: MockSubscriptionPlan,
+      plan: '123',
     });
     expect(mockedAxios).toHaveBeenCalledWith(
       `${API_HOST}v2/account/billing/subscription/subscribe/`,
       {
         method: 'post',
         headers: { Authorization: TestKeys },
-        data: { plan: MockSubscriptionPlan },
+        data: { plan: '123' },
       }
     );
   });
