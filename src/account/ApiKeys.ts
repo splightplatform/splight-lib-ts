@@ -17,6 +17,6 @@ export const ApiKeysClient = (headers: Headers) => {
   );
   return {
     list,
-    create,
+    create: () => create({}),
   };
 };
