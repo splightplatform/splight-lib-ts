@@ -7,7 +7,7 @@ import { Organization } from './Me.js';
 
 export type Coupon = {
   amount_off: number;
-  percent_off: number;
+  percentage_off: number;
 };
 
 export type Discount = {
