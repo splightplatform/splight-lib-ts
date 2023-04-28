@@ -1,7 +1,7 @@
 import { SubscriptionPlan } from '../backoffice/billing/Billing.js';
-import { get, post } from '../rest/BaseMethods.js';
+import { get, options, post } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
-import { Headers, PaginatedCollection } from '../types.js';
+import { ApiFormField, Headers } from '../types.js';
 import { Path } from '../Urls.js';
 import { Organization } from './Me.js';
 
@@ -58,16 +58,21 @@ export interface ExternalPortalLink {
 
 const PaymentClient = (basePath: Path, headers: Headers) => {
   const paymentPath = basePath.slash('payment');
+  const externalPortalPath = paymentPath.slash('external_portal');
   const baseClient = BaseRestClient<PaymentAccountParams, PaymentAccount>(
     paymentPath,
     headers
   );
-  const externalPortalPath = paymentPath.slash('external_portal');
-  const myPaymentAccountPath = paymentPath.slash('my_payment_account');
 
   return {
-    myPaymentAccount: () =>
-      get<PaymentAccount>(myPaymentAccountPath.url, headers),
+    retrieve: () => get<PaymentAccount>(paymentPath.url, headers),
+    fields: async () =>
+      (
+        await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
+          paymentPath.url,
+          headers
+        )
+      ).actions.POST,
     create: (data: PaymentAccountParams): Promise<PaymentAccount> =>
       baseClient.create(data),
     externalPortal: () =>
@@ -81,19 +86,19 @@ const SubscriptionClient = (basePath: Path, headers: Headers) => {
   const subscribePath = subscriptionPath.slash('subscribe');
 
   return {
-    cancel: () => post(cancelPath.url, {} ,headers),
-    subscribe: ( data: { plan: SubscriptionPlan}): Promise<Response> => post(subscribePath.url, data ,headers),
-    my_subscription: () => get<PayoutAccount>(subscriptionPath.url, headers),
+    cancel: () => post(cancelPath.url, {}, headers),
+    subscribe: (data: { plan: SubscriptionPlan }): Promise<Response> =>
+      post(subscribePath.url, data, headers),
+    retrieve: () => get<Subscription>(subscriptionPath.url, headers),
   };
 };
 
 const PayoutClient = (basePath: Path, headers: Headers) => {
   const payoutPath = basePath.slash('payout');
   const externalPortalPath = payoutPath.slash('external_portal');
-  const myPayoutAccountPath = payoutPath.slash('my_payout_account');
 
   return {
-    myPayoutAccount: () => get<PayoutAccount>(myPayoutAccountPath.url, headers),
+    retrieve: () => get<PaymentAccount>(payoutPath.url, headers),
     externalPortal: () =>
       get<ExternalPortalLink>(externalPortalPath.url, headers),
   };
