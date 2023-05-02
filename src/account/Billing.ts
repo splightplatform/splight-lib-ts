@@ -3,7 +3,6 @@ import { get, options, post } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { ApiFormField, Headers } from '../types.js';
 import { Path } from '../Urls.js';
-import { Organization } from './Me.js';
 
 export type Coupon = {
   amount_off: number;
@@ -28,10 +27,13 @@ export interface PaymentAccount {
 }
 
 export interface Subscription {
-  organization: Organization;
+  id: string;
+  organization_id: string;
   subscription_plan: SubscriptionPlan;
+  status: string;
   start_date: string;
   end_date: string;
+  invoice_id: string;
 }
 
 export interface PayoutAccountParams {
