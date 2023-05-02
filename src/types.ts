@@ -89,6 +89,8 @@ export {
   Subscription,
   ExternalPortalLink,
 } from './account/Billing.js';
+export { SubscriptionPlan } from './backoffice/billing/Billing.js';
+
 export { SetPoint as Setpoint } from './engine/SetPoints.js';
 export { Component as HubComponent } from './hub/components/Components.js';
 export { OrganizationProfile } from './backoffice/Organizations.js';
