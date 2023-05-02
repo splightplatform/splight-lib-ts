@@ -4,7 +4,7 @@ import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface SubscriptionPlanParams {
-  id: string;
+  id?: string;
   name: string;
   amount: number;
   currency: string;

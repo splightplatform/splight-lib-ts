@@ -20,16 +20,25 @@ export interface User {
     is_manager: boolean;
   };
   picture: string;
-  // cspell:disable-next-line
   permissions: ('splightadmin' | 'admin' | 'editor')[];
   roles: string[];
 }
 
 export const UsersClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/users/');
-  const { list } = BaseRestClient<User, User>(basePath, headers);
+  const { list, update, retrieve } = BaseRestClient<User, User>(
+    basePath,
+    headers
+  );
   return {
     list,
+    update,
+    retrieve,
+    assignableRoles: (pk: string) =>
+      get<string[]>(
+        basePath.slash(pk).slash('assignable_roles', true).url,
+        headers
+      ),
     organizations: ({
       pk,
       ...params

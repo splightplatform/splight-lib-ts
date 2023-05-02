@@ -1,6 +1,13 @@
+import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
+
+export type UserInvitationParams = Pick<
+  UserInvitation,
+  'inviter' | 'invitee' | 'roles'
+> &
+  Partial<UserInvitation>;
 
 export interface UserInvitation {
   id: string;
@@ -25,11 +32,14 @@ export interface UserInvitation {
 
 export const UserInvitationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/invitations/');
-  const { list } = BaseRestClient<UserInvitation, UserInvitation>(
+  const { list, create } = BaseRestClient<UserInvitationParams, UserInvitation>(
     basePath,
     headers
   );
   return {
     list,
+    create,
+    assignableRoles: () =>
+      get<string[]>(basePath.slash('assignable_roles', true).url, headers),
   };
 };

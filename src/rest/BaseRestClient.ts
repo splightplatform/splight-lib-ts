@@ -27,9 +27,9 @@ export type BaseRestClient<T> = ReturnType<typeof BaseRestClient<T>>;
 export const BaseRestClient = <
   I,
   O = I,
-  Q extends Record<string, string | number | boolean> = Record<
+  Q extends Record<string, string | number | boolean | undefined> = Record<
     string,
-    string | number | boolean
+    string | number | boolean | undefined
   >
 >(
   base_path: Path,
