@@ -1,8 +1,7 @@
 // Components
 
-import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, PaginatedCollection } from '../../types.js';
+import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface ComponentObject {
@@ -127,20 +126,23 @@ export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
 export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
+export const ComponentVersionsClient = (headers: Headers) => {
+  const basePath = Path('v2/hub/component/versions/');
+  const baseClient = BaseRestClient<ComponentParams, Component>(
+    basePath,
+    headers
+  );
+  return baseClient;
+};
+
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/hub/component/components/');
-  const componentVersionsPath = Path('v2/hub/all/component-versions/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
     basePath,
     headers
   );
   return {
     ...baseClient,
-    versions: (params?: { name: string }) =>
-      get<PaginatedCollection<Component>>(
-        componentVersionsPath.url,
-        headers,
-        params
-      ),
+    versions: ComponentVersionsClient(headers),
   };
 };
