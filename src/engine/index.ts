@@ -5,6 +5,7 @@ export {
   ComponentsClient,
   ComponentObjectsClient,
   ComponentCommandsClient,
+  ComponentSize,
 } from './components/Components.js';
 export { FilesClient } from './files/Files.js';
 export { QueriesClient } from './queries/Queries.js';

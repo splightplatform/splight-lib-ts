@@ -11,9 +11,19 @@ export interface SetPoint {
   created_at: string;
 }
 
+export interface SetPointParams {
+  type: string;
+  value: string;
+  attribute: string;
+  asset: string;
+}
+
 export const SetPointsClient = (headers: Headers) => {
   // cspell:disable-next-line
   const basePath = Path('v2/engine/setpoints/');
-  const baseClient = BaseRestClient<SetPoint, SetPoint>(basePath, headers);
+  const baseClient = BaseRestClient<SetPointParams, SetPoint>(
+    basePath,
+    headers
+  );
   return baseClient;
 };
