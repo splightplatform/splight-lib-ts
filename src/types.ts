@@ -66,7 +66,7 @@ export {
   ObjectParameter,
   DeploymentType,
 } from './engine/components/Components.js';
-export { File2 as File, FileParams } from './engine/files/Files.js';
+export { _File as File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
   EdgeParams,
@@ -82,6 +82,16 @@ export {
   MathItem,
   DataAddress,
 } from './engine/alerts/Alerts.js';
+export { SetPoint as Setpoint } from './engine/SetPoints.js';
+
+export { Component as HubComponent } from './hub/components/Components.js';
+
+export { SubscriptionPlan } from './backoffice/billing/Billing.js';
+export { OrganizationProfile } from './backoffice/Organizations.js';
+export {
+  Agreement,
+  AgreementParams,
+} from './backoffice/agreements/Agreements.js';
 
 export {
   PaymentAccount,
@@ -91,15 +101,6 @@ export {
   Subscription,
   ExternalPortalLink,
 } from './account/Billing.js';
-export { SubscriptionPlan } from './backoffice/billing/Billing.js';
-
-export { SetPoint as Setpoint } from './engine/SetPoints.js';
-export { Component as HubComponent } from './hub/components/Components.js';
-export { OrganizationProfile } from './backoffice/Organizations.js';
-export {
-  Agreement,
-  AgreementParams,
-} from './backoffice/agreements/Agreements.js';
 export {
   Agreement as AccountAgreement,
   AgreementParams as AccountAgreementParams,
@@ -107,6 +108,9 @@ export {
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
 export { Referral } from './account/Referral.js';
+
+export { Contact } from './landing/Contact.js';
+export { Newsletter } from './landing/Newsletter.js';
 
 export interface ApiFormField {
   type: string;
