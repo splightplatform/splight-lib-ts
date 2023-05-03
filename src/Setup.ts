@@ -4,6 +4,7 @@ import { Engine } from './Engine.js';
 import { Account } from './Account.js';
 import { Hub } from './Hub.js';
 import { Backoffice } from './Backoffice.js';
+import { Landing } from './Landing.js';
 
 export const Splight = (requestHeaders?: Headers) => {
   const headers = requestHeaders ?? getHeaders();
@@ -13,6 +14,7 @@ export const Splight = (requestHeaders?: Headers) => {
     account: Account(headers),
     hub: Hub(headers),
     backoffice: Backoffice(headers),
+    landing: Landing(headers),
   };
 };
 

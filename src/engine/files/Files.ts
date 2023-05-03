@@ -8,7 +8,7 @@ export interface FileParams {
   encrypted: boolean;
 }
 
-export interface File2 extends Omit<FileParams, 'file'> {
+export interface _File extends Omit<FileParams, 'file'> {
   id: string;
   url: string;
   extension: string;
@@ -17,6 +17,6 @@ export interface File2 extends Omit<FileParams, 'file'> {
 
 export const FilesClient = (headers: Headers) => {
   const basePath = Path('v2/engine/files/');
-  const baseClient = BaseRestClient<FileParams, File2>(basePath, headers);
+  const baseClient = BaseRestClient<FileParams, _File>(basePath, headers);
   return baseClient;
 };
