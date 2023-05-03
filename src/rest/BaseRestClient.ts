@@ -39,7 +39,8 @@ export const BaseRestClient = <
     list: (params?: Q) =>
       get<PaginatedCollection<O>>(base_path.url, headers, ...[params]),
     retrieve: (pk: string): Promise<O> => get(base_path.slash(pk).url, headers),
-    create: (data: I): Promise<O> => post(base_path.url, data, headers),
+    create: (data: I, params?: Q): Promise<O> =>
+      post(base_path.url, data, headers, ...[params]),
     update: (pk: string, data: Partial<I>): Promise<O> =>
       patch(base_path.slash(pk).url, data, headers),
     destroy: (pk: string): Promise<void> =>

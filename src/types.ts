@@ -86,13 +86,6 @@ export { SetPoint as Setpoint } from './engine/SetPoints.js';
 
 export { Component as HubComponent } from './hub/components/Components.js';
 
-export { SubscriptionPlan } from './backoffice/billing/Billing.js';
-export { OrganizationProfile } from './backoffice/Organizations.js';
-export {
-  Agreement,
-  AgreementParams,
-} from './backoffice/agreements/Agreements.js';
-
 export {
   PaymentAccount,
   PayoutAccount,
@@ -101,10 +94,26 @@ export {
   Subscription,
   ExternalPortalLink,
 } from './account/Billing.js';
+
+export {
+  SubscriptionPlan,
+  ReferralRate,
+} from './backoffice/billing/Billing.js';
+
+export {
+  OrganizationProfile,
+  OrganizationRequest,
+} from './backoffice/organization/Organization.js';
+export {
+  Agreement,
+  AgreementParams,
+} from './backoffice/agreements/Agreements.js';
+
 export {
   Agreement as AccountAgreement,
   AgreementParams as AccountAgreementParams,
 } from './account/Agreements.js';
+
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
 export { Referral } from './account/Referral.js';

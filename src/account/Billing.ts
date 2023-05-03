@@ -70,12 +70,10 @@ const PaymentClient = (basePath: Path, headers: Headers) => {
   return {
     retrieve: () => get<PaymentAccount>(paymentPath.url, headers),
     fields: async () =>
-      (
-        await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
-          paymentPath.url,
-          headers
-        )
-      ).actions.POST,
+      await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
+        paymentPath.url,
+        headers
+      ),
     create: (data: PaymentAccountParams): Promise<PaymentAccount> =>
       baseClient.create(data),
     externalPortal: () =>
