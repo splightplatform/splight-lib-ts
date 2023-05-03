@@ -2,7 +2,7 @@ import { MockedAxios } from '../../test/MockedAxios.js';
 import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import { OrganizationProfile, OrganizationRequest } from './Organization.js';
+import { OrganizationRequest } from './Organization.js';
 import { ApiFormField } from '../../types.js';
 
 const mockedAxios = MockedAxios();
@@ -81,7 +81,7 @@ test('Activate organization request', async () => {
       data: {},
       headers: { Authorization: TestKeys },
       method: 'post',
-      params: undefined
+      params: undefined,
     }
   );
 });

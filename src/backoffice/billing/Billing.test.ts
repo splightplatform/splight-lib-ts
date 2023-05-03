@@ -2,22 +2,13 @@ import { MockedAxios } from '../../test/MockedAxios.js';
 import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import {
-  ReferralRate,
-  SubscriptionPlan,
-  SubscriptionPlanParams,
-} from './Billing.js';
+import { SubscriptionPlan, SubscriptionPlanParams } from './Billing.js';
 
 const mockedAxios = MockedAxios();
 
 afterEach(() => {
   mockedAxios.mockReset();
 });
-
-const MockReferralRate: ReferralRate = {
-  timestamp: '2021-01-01',
-  rate: 0.1,
-};
 
 const MockSubscriptionPlan: SubscriptionPlan = {
   id: '123',
