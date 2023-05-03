@@ -15,13 +15,15 @@ export const get = async <T>(
 export const post = async <I, O>(
   url: string,
   data: I,
-  headers: Headers
+  headers: Headers,
+  params?: Record<string, string | number | boolean | undefined>
 ): Promise<O> => {
   console.log('⚡️Splight -  POST', url);
   const { data: response } = await withRetries(axios<O>)(url, {
     method: 'post',
     data,
     headers,
+    params,
   });
   return response;
 };

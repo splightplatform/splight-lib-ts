@@ -2,13 +2,22 @@ import { MockedAxios } from '../../test/MockedAxios.js';
 import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import { SubscriptionPlan, SubscriptionPlanParams } from './Billing.js';
+import {
+  ReferralRate,
+  SubscriptionPlan,
+  SubscriptionPlanParams,
+} from './Billing.js';
 
 const mockedAxios = MockedAxios();
 
 afterEach(() => {
   mockedAxios.mockReset();
 });
+
+const MockReferralRate: ReferralRate = {
+  timestamp: '2021-01-01',
+  rate: 0.1,
+};
 
 const MockSubscriptionPlan: SubscriptionPlan = {
   id: '123',
@@ -27,6 +36,20 @@ const MockSubscriptionPlanParams: SubscriptionPlanParams = {
   components_limit: 100,
   type: 'type',
 };
+
+test('List referral rates', async () => {
+  mockedAxios.mockResolvedValueOnce({
+    data: { results: [], next: 'something' },
+    status: 200,
+  });
+  await splight.backoffice.billing.referralRate.list();
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/backoffice/billing/referral-compensation-rate/`,
+    {
+      headers: { Authorization: TestKeys },
+    }
+  );
+});
 
 test('List subscription plans', async () => {
   mockedAxios.mockResolvedValueOnce({
