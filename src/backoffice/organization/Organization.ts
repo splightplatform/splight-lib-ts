@@ -43,12 +43,10 @@ export const OrganizationRequestsClient = (
   return {
     ...baseClient,
     fields: async () =>
-      (
-        await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
-          requestPaths.url,
-          headers
-        )
-      ).actions.POST,
+      await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
+        requestPaths.url,
+        headers
+      ),
     activate: (pk: string): Promise<void> =>
       post(requestPaths.slash(pk).slash('activate').url, {}, headers),
   };
