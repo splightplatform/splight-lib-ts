@@ -66,7 +66,7 @@ export {
   ObjectParameter,
   DeploymentType,
 } from './engine/components/Components.js';
-export { File, FileParams } from './engine/files/Files.js';
+export { File2 as File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
   EdgeParams,
