@@ -20,6 +20,7 @@ const MockAlert: Alert = {
   status: 'test',
   active: true,
   conditions: [],
+  severity: 'test'
 };
 
 const MockAlertParams: AlertParams = {
