@@ -59,9 +59,10 @@ export const AlertsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
   return {
     ...baseClient,
-    options: async () => await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
-      basePath.url,
-      headers
-    ),
+    options: async () =>
+      await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
+        basePath.url,
+        headers
+      ),
   };
 };
