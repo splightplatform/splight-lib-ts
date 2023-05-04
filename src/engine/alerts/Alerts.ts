@@ -1,5 +1,6 @@
+import { options } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { ApiFormField, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface DataAddress {
@@ -38,6 +39,7 @@ export interface AlertParams {
   status?: string;
   active?: boolean;
   conditions?: Condition[];
+  severity?: string;
 }
 
 export type Alert = AlertParams & {
@@ -49,10 +51,17 @@ export type Alert = AlertParams & {
   status: string;
   active: boolean;
   conditions: Condition[];
+  severity: string;
 };
 
 export const AlertsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alerts/');
   const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
-  return baseClient;
+  return {
+    ...baseClient,
+    options: async () => await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
+      basePath.url,
+      headers
+    ),
+  };
 };
