@@ -160,7 +160,7 @@ export const DashboardChartsClient = (headers: Headers) => {
         updateChartItemsPath.url,
         { chartId, chartItems },
         headers
-      )
+      ),
   };
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
