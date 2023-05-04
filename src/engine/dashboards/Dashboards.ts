@@ -156,7 +156,11 @@ export const DashboardChartsClient = (headers: Headers) => {
   return {
     ...baseClient,
     updateChartItems: (chartId: string, chartItems: ChartItem[]) =>
-      post(updateChartItemsPath.url, { chartId, chartItems }, headers)
+      post<{ chartId: string; chartItems: ChartItem[] }, ChartItem[]>(
+        updateChartItemsPath.url,
+        { chartId, chartItems },
+        headers
+      )
   };
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
