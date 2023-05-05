@@ -2,7 +2,7 @@ import { MockedAxios } from '../../test/MockedAxios.js';
 import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import { OrganizationRequest } from './Organization.js';
+import { OrganizationRequest } from './Organizations.js';
 import { ApiFormField } from '../../types.js';
 
 const mockedAxios = MockedAxios();
@@ -42,7 +42,7 @@ test('List organization requests', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.organization.requests.list();
+  await splight.backoffice.organizations.requests.list();
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/requests/`,
     {
@@ -60,7 +60,7 @@ test('Retrieve organization requests options', async () => {
     },
     status: 200,
   });
-  await splight.backoffice.organization.requests.fields();
+  await splight.backoffice.organizations.requests.fields();
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/requests/`,
     {
@@ -74,7 +74,7 @@ test('Activate organization request', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 200,
   });
-  await splight.backoffice.organization.requests.activate('123');
+  await splight.backoffice.organizations.requests.activate('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/requests/123/activate/`,
     {
@@ -91,7 +91,7 @@ test('Create organization request', async () => {
     data: MockOrganizationRequest,
     status: 200,
   });
-  await splight.backoffice.organization.requests.create(
+  await splight.backoffice.organizations.requests.create(
     MockOrganizationRequest,
     { captcha: 'test' }
   );
@@ -113,7 +113,7 @@ test('List organization profiles', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.organization.profiles.list();
+  await splight.backoffice.organizations.profiles.list();
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/profiles/`,
     {
@@ -126,7 +126,7 @@ test('Subscribe to organization profile', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 200,
   });
-  await splight.backoffice.organization.profiles.subscribe('123');
+  await splight.backoffice.organizations.profiles.subscribe('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/profiles/123/subscribe/`,
     {
@@ -142,7 +142,7 @@ test('Unsubscribe from organization profile', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 200,
   });
-  await splight.backoffice.organization.profiles.unsubscribe('123');
+  await splight.backoffice.organizations.profiles.unsubscribe('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/profiles/123/unsubscribe/`,
     {
@@ -158,7 +158,7 @@ test('Set organization manager', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 200,
   });
-  await splight.backoffice.organization.profiles.setOrganizationManager('123');
+  await splight.backoffice.organizations.profiles.setOrganizationManager('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/profiles/123/set_organization_manager/`,
     {
