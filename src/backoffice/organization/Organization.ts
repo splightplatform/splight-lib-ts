@@ -86,7 +86,7 @@ export const OrganizationProfilesClient = (
   };
 };
 
-export const OrganizationClient = (headers: Headers) => {
+export const OrganizationsClient = (headers: Headers) => {
   const basePath = Path('v2/backoffice/organization/');
   return {
     profiles: OrganizationProfilesClient(basePath, headers),
