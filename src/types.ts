@@ -103,7 +103,7 @@ export {
 export {
   OrganizationProfile,
   OrganizationRequest,
-} from './backoffice/organization/Organization.js';
+} from './backoffice/organizations/Organizations.js';
 export {
   Agreement,
   AgreementParams,
