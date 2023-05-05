@@ -1,4 +1,4 @@
-import { options } from '../../rest/BaseMethods.js';
+import { options, get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { ApiFormField, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -54,6 +54,12 @@ export type Alert = AlertParams & {
   severity: string;
 };
 
+export type AlertHistory = {
+  id: string;
+  timestamp: string;
+  status: string;
+};
+
 export const AlertsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alerts/');
   const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
@@ -62,6 +68,11 @@ export const AlertsClient = (headers: Headers) => {
     options: async () =>
       await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
         basePath.url,
+        headers
+      ),
+    history: async (pk: string) =>
+      await get<AlertHistory[]>(
+        basePath.slash(pk).slash('history').url,
         headers
       ),
   };
