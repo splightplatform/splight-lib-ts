@@ -160,12 +160,12 @@ export const DashboardChartItemsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<ChartItem, ChartItem>(basePath, headers);
   return {
     ...baseClient,
-    updateChartItems: (chartItems: ChartItem[]) =>
+    bulkUpdate: (chartItems: ChartItem[]) =>
       post<{ chart_items: ChartItem[] }, ChartItem[]>(
         updateChartItemsPath.url,
         { chart_items: chartItems },
         headers
-      )
+      ),
   };
 };
 export const DashboardChartFilters = (headers: Headers) => {
