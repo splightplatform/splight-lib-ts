@@ -151,22 +151,22 @@ export const DashboardTabsClient = (headers: Headers) => {
 };
 export const DashboardChartsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/charts/');
-  const updateChartItemsPath = basePath.slash('/update_chart_items/');
   const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
-  return {
-    ...baseClient,
-    updateChartItems: (chartId: string, chartItems: ChartItem[]) =>
-      post<{ chartId: string; chartItems: ChartItem[] }, ChartItem[]>(
-        updateChartItemsPath.url,
-        { chartId, chartItems },
-        headers
-      ),
-  };
+  return baseClient;
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/chartitems/');
+  const updateChartItemsPath = basePath.slash('update_chart_items');
   const baseClient = BaseRestClient<ChartItem, ChartItem>(basePath, headers);
-  return baseClient;
+  return {
+    ...baseClient,
+    updateChartItems: (chartItems: ChartItem[]) =>
+      post<{ chart_items: ChartItem[] }, ChartItem[]>(
+        updateChartItemsPath.url,
+        { chart_items: chartItems },
+        headers
+      )
+  };
 };
 export const DashboardChartFilters = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/filters/');
