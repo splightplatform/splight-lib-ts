@@ -8,6 +8,7 @@ import { Attribute } from '../attributes/Attributes.js';
 export interface AssetParams {
   name: string;
   description?: string;
+  is_public: boolean;
   attributes?: Attribute[];
   organization?: string;
   verified?: boolean;
