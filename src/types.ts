@@ -81,6 +81,7 @@ export {
   Variable,
   MathItem,
   DataAddress,
+  AlertHistory,
 } from './engine/alerts/Alerts.js';
 export { SetPoint as Setpoint } from './engine/SetPoints.js';
 
@@ -103,7 +104,7 @@ export {
 export {
   OrganizationProfile,
   OrganizationRequest,
-} from './backoffice/organization/Organization.js';
+} from './backoffice/organizations/Organizations.js';
 export {
   Agreement,
   AgreementParams,
