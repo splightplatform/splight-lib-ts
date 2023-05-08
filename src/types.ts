@@ -81,6 +81,7 @@ export {
   Variable,
   MathItem,
   DataAddress,
+  AlertHistory,
 } from './engine/alerts/Alerts.js';
 export { SetPoint as Setpoint } from './engine/SetPoints.js';
 
