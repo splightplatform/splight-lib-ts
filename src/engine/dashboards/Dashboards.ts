@@ -1,3 +1,4 @@
+import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -155,8 +156,17 @@ export const DashboardChartsClient = (headers: Headers) => {
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/chartitems/');
+  const updateChartItemsPath = basePath.slash('update_chart_items');
   const baseClient = BaseRestClient<ChartItem, ChartItem>(basePath, headers);
-  return baseClient;
+  return {
+    ...baseClient,
+    bulkUpdate: (chartItems: ChartItem[]) =>
+      post<{ chart_items: ChartItem[] }, ChartItem[]>(
+        updateChartItemsPath.url,
+        { chart_items: chartItems },
+        headers
+      ),
+  };
 };
 export const DashboardChartFilters = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/filters/');
