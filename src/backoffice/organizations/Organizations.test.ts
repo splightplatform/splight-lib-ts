@@ -92,8 +92,7 @@ test('Create organization request', async () => {
     status: 200,
   });
   await splight.backoffice.organizations.requests.create(
-    MockOrganizationRequest,
-    { captcha: 'test' }
+    MockOrganizationRequest
   );
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/organization/requests/`,
@@ -101,9 +100,6 @@ test('Create organization request', async () => {
       headers: { Authorization: TestKeys },
       method: 'post',
       data: MockOrganizationRequest,
-      params: {
-        captcha: 'test',
-      },
     }
   );
 });
