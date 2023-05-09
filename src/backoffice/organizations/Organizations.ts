@@ -1,4 +1,4 @@
-import { options, post } from '../../rest/BaseMethods.js';
+import { get, options, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { ApiFormField, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -34,6 +34,18 @@ export interface OrganizationRequest extends OrganizationRequestParams {
   referred_by: string;
 }
 
+export interface OptionsParams {
+  actions: { POST: { [key: string]: ApiFormField } };
+}
+
+export interface OrganizationSubscriptionParams {
+  subscription_plan: string;
+}
+
+export interface OrganizationComputeParams {
+  xlarge_nodes: number;
+}
+
 export const OrganizationRequestsClient = (
   basePath: Path,
   headers: Headers
@@ -42,11 +54,7 @@ export const OrganizationRequestsClient = (
   const baseClient = BaseRestClient<OrganizationRequest>(requestPaths, headers);
   return {
     ...baseClient,
-    fields: async () =>
-      await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
-        requestPaths.url,
-        headers
-      ),
+    fields: async () => await options<OptionsParams>(requestPaths.url, headers),
     activate: (pk: string): Promise<void> =>
       post(requestPaths.slash(pk).slash('activate').url, {}, headers),
   };
@@ -61,28 +69,27 @@ export const OrganizationProfilesClient = (
     organizationProfilesPath,
     headers
   );
-
   return {
     ...baseClient,
-    subscribe: (orgId: string) =>
+    set_subscription: (orgId: string, data: OrganizationSubscriptionParams) =>
       post(
-        organizationProfilesPath.slash(orgId).slash('subscribe').url,
-        {},
+        organizationProfilesPath.slash(orgId).slash('subscription').url,
+        data,
         headers
       ),
-    unsubscribe: (orgId: string) =>
-      post(
-        organizationProfilesPath.slash(orgId).slash('unsubscribe').url,
-        {},
+    subscription: (orgId: string) =>
+      get(
+        organizationProfilesPath.slash(orgId).slash('subscription').url,
         headers
       ),
-    setOrganizationManager: (orgId: string) =>
+    set_compute: (orgId: string, data: OrganizationComputeParams) =>
       post(
-        organizationProfilesPath.slash(orgId).slash('set_organization_manager')
-          .url,
-        {},
+        organizationProfilesPath.slash(orgId).slash('compute').url,
+        data,
         headers
       ),
+    compute: (orgId: string) =>
+      get(organizationProfilesPath.slash(orgId).slash('compute').url, headers),
   };
 };
 
