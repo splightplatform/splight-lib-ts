@@ -1,6 +1,7 @@
-import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
-import { post } from '../rest/BaseMethods.js';
+import { options } from '../rest/BaseMethods.js';
+import { BaseRestClient } from '../rest/BaseRestClient.js';
+import { ApiFormField, Headers } from '../types.js';
 
 export interface OrganizationRequest {
   name: string;
@@ -10,21 +11,19 @@ export interface OrganizationRequest {
   referred_by?: string;
 }
 
-export const OrganizationRequestsClient = <
-  I,
-  O = I,
-  Q extends Record<string, string | number | boolean | undefined> = Record<
-    string,
-    string | number | boolean | undefined
-  >
->(
+export interface OptionsParams {
+  actions: { POST: { [key: string]: ApiFormField } };
+}
+
+export const OrganizationRequestsClient = (
   basePath: Path,
   headers: Headers
 ) => {
   const requestPaths = basePath.slash('requests');
+  const { create } = BaseRestClient<OrganizationRequest>(requestPaths, headers);
   return {
-    create: (data: I, params?: Q): Promise<O> =>
-      post(requestPaths.url, data, headers, ...[params]),
+    create,
+    fields: async () => await options<OptionsParams>(requestPaths.url, headers),
   };
 };
 
