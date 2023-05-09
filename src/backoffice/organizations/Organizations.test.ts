@@ -178,11 +178,11 @@ test('Set compute', async () => {
     MockOrganizationCompute
   );
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/organization/profiles/123/`,
+    `${API_HOST}v2/backoffice/organization/profiles/123/compute/`,
     {
       data: MockOrganizationCompute,
       headers: { Authorization: TestKeys },
-      method: 'patch',
+      method: 'post',
       params: undefined,
     }
   );
