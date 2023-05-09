@@ -43,7 +43,7 @@ export interface OrganizationSubscriptionParams {
 }
 
 export interface OrganizationComputeParams {
-  subscription_plan: string;
+  xlarge_nodes: number;
 }
 
 export const OrganizationRequestsClient = (
