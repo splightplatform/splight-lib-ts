@@ -1,6 +1,6 @@
 import { options, get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Headers } from '../../types.js';
+import { ApiFormField, Asset, Attribute, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface DataAddress {
@@ -12,6 +12,13 @@ export interface DataAddress {
   };
 }
 
+export type PopulatedDataAddress = DataAddress & {
+  value: {
+    asset: Asset;
+    attribute: Attribute;
+  };
+};
+
 export interface MathItem {
   type: 'MathItem';
   name: string;
@@ -19,12 +26,14 @@ export interface MathItem {
 }
 
 export type Variable = DataAddress | MathItem;
+export type PopulatedVariable = PopulatedDataAddress | MathItem;
 
 export interface Condition {
   id: string;
   name: string;
   type: string;
   variables: Variable[];
+  populated_variables: PopulatedVariable[];
   left_operand: string;
   operator: string;
   right_operand: string;
