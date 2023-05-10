@@ -33,10 +33,10 @@ export interface Condition {
   name: string;
   type: string;
   variables: Variable[];
-  populated_variables: PopulatedVariable[];
   left_operand: string;
   operator: string;
   right_operand: string;
+  populated_variables?: PopulatedVariable[];
 }
 
 export interface AlertParams {
@@ -83,6 +83,6 @@ export const AlertsClient = (headers: Headers) => {
       await get<{ results: AlertHistory[]; next: string | null }>(
         basePath.slash(pk).slash('history').url,
         headers
-      ),
+      )
   };
 };
