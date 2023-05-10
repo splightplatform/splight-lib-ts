@@ -83,6 +83,6 @@ export const AlertsClient = (headers: Headers) => {
       await get<{ results: AlertHistory[]; next: string | null }>(
         basePath.slash(pk).slash('history').url,
         headers
-      )
+      ),
   };
 };
