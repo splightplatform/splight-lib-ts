@@ -34,6 +34,11 @@ export const MeClient = (headers: Headers) => {
     profile: () => get<UserProfile>(basePath.url, headers),
     permissions: () =>
       get<UserPermissions>(basePath.slash('permissions').url, headers),
+    organizationProfile: () =>
+      get<Organization[]>(
+        Path('v2/account/user/organization-profile/').url,
+        headers
+      ),
     organizations: () =>
       get<Organization[]>(Path('v2/account/user/organizations/').url, headers),
   };
