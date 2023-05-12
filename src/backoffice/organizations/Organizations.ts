@@ -1,6 +1,6 @@
 import { get, options, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Headers } from '../../types.js';
+import { ApiFormField, Headers, Subscription } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface OrganizationProfile {
@@ -78,7 +78,7 @@ export const OrganizationProfilesClient = (
         headers
       ),
     subscription: (orgId: string) =>
-      get(
+      get<Subscription>(
         organizationProfilesPath.slash(orgId).slash('subscription').url,
         headers
       ),
@@ -90,6 +90,11 @@ export const OrganizationProfilesClient = (
       ),
     compute: (orgId: string) =>
       get(organizationProfilesPath.slash(orgId).slash('compute').url, headers),
+    paymentsPortal: (orgId: string) =>
+      get(
+        organizationProfilesPath.slash(orgId).slash('payments_portal').url,
+        headers
+      ),
   };
 };
 
