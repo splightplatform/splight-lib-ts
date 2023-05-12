@@ -53,6 +53,8 @@ export { Asset, AssetParams } from './engine/assets/Assets.js';
 export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
 export {
+  LogLevel,
+  RestartPolicy,
   Component,
   ComponentParams,
   ComponentParameter,
