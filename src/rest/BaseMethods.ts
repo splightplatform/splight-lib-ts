@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { ResponseType } from 'axios';
 import { withLogging } from '../decorators/WithLogging.js';
 import { withRetries } from '../decorators/WithRetries.js';
 import { Headers } from '../types.js';
@@ -6,10 +6,15 @@ import { Headers } from '../types.js';
 export const get = async <T>(
   url: string,
   headers: Headers,
-  params?: Record<string, string | number | boolean | undefined>
+  params?: Record<string, string | number | boolean | undefined>,
+  responseType?: ResponseType
 ): Promise<T> => {
   const { data } = await withRetries(() => {
-    return withLogging('GET', url, axios<T>)(url, { headers, params });
+    return withLogging(
+      'GET',
+      url,
+      axios<T>
+    )(url, { headers, params, responseType });
   })();
 
   return data;

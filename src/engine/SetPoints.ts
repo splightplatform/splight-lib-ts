@@ -19,7 +19,6 @@ export interface SetPointParams {
 }
 
 export const SetPointsClient = (headers: Headers) => {
-  // cspell:disable-next-line
   const basePath = Path('v2/engine/setpoints/');
   const baseClient = BaseRestClient<SetPointParams, SetPoint>(
     basePath,
