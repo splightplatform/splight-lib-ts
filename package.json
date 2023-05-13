@@ -49,7 +49,7 @@
     "lint:typecheck": "tsc --noEmit",
     "lint:eslint": "eslint src/ --ext .ts",
     "lint:prettier": "prettier --check src/",
-    "lint:spellcheck": "cspell --no-progress  ./src/**/*.ts",
+    "lint:spellcheck": "cspell --no-progress --config cspell.json ./src/**/*.ts",
     "lint:format": "prettier --write .",
     "lint": "npm run lint:eslint && npm run lint:prettier && npm run lint:spellcheck && npm run lint:typecheck",
     "test": "jest"
