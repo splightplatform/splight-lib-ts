@@ -71,7 +71,7 @@ export const OrganizationProfilesClient = (
   );
   return {
     ...baseClient,
-    set_subscription: (orgId: string, data: OrganizationSubscriptionParams) =>
+    setSubscription: (orgId: string, data: OrganizationSubscriptionParams) =>
       post(
         organizationProfilesPath.slash(orgId).slash('subscription').url,
         data,
@@ -82,7 +82,7 @@ export const OrganizationProfilesClient = (
         organizationProfilesPath.slash(orgId).slash('subscription').url,
         headers
       ),
-    set_compute: (orgId: string, data: OrganizationComputeParams) =>
+    setCompute: (orgId: string, data: OrganizationComputeParams) =>
       post(
         organizationProfilesPath.slash(orgId).slash('compute').url,
         data,
@@ -93,6 +93,18 @@ export const OrganizationProfilesClient = (
     paymentsPortal: (orgId: string) =>
       get(
         organizationProfilesPath.slash(orgId).slash('payments_portal').url,
+        headers
+      ),
+    activate: (orgId: string) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('activate').url,
+        {},
+        headers
+      ),
+    deactivate: (orgId: string) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('deactivate').url,
+        {},
         headers
       ),
   };
