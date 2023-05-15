@@ -128,10 +128,7 @@ export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
 export const ComponentVersionsClient = (headers: Headers) => {
   const basePath = Path('v2/hub/component/versions/');
-  const baseClient = BaseRestClient<ComponentParams, Component>(
-    basePath,
-    headers
-  );
+  const baseClient = BaseRestClient<Component>(basePath, headers);
   return baseClient;
 };
 

@@ -21,11 +21,13 @@ const MockAsset: Asset = {
   organization: 'Splight',
   verified: false,
   description: 'test',
+  is_public: false,
 };
 
 const MockAssetParams: AssetParams = {
   name: 'test',
   description: 'test',
+  is_public: false,
 };
 
 test('List assets', async () => {

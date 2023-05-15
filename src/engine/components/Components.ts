@@ -1,6 +1,6 @@
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, Optional, PaginatedCollection } from '../../types.js';
+import { Headers, Optional } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 // Components
@@ -221,15 +221,6 @@ export const ComponentsClient = (headers: Headers) => {
       ),
     stop: (pk: string) =>
       post(basePath.slash(pk).slash('stop').url, {}, headers),
-    objects: (
-      pk: string,
-      params: { page?: number; page_size?: number; component_id?: string }
-    ) =>
-      get<PaginatedCollection<ComponentObject>>(
-        Path('v2/engine/component/objects/').url,
-        headers,
-        params
-      ),
     commands: (pk: string) =>
       get<ComponentCommand[]>(
         basePath.slash(pk).slash('commands').url,
@@ -240,6 +231,8 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('connections').url,
         headers
       ),
+    logs: (pk: string, params: { type: string; tags: string; limit: number }) =>
+      get<string[]>(basePath.slash(pk).slash('logs').url, headers, params),
   };
 };
 

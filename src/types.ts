@@ -53,6 +53,8 @@ export { Asset, AssetParams } from './engine/assets/Assets.js';
 export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
 export {
+  LogLevel,
+  RestartPolicy,
   Component,
   ComponentParams,
   ComponentParameter,
@@ -124,6 +126,8 @@ export { Referral } from './account/Referral.js';
 export { Contact } from './landing/Contact.js';
 export { Newsletter } from './landing/Newsletter.js';
 
+export { CapacityOptions } from './engine/Deployments.js';
+
 export interface ApiFormField {
   type: string;
   required: boolean;
@@ -133,3 +137,5 @@ export interface ApiFormField {
   max_length?: number;
   choices?: [{ value: string; display_name: string }];
 }
+
+export { SearchDataResponse } from './engine/datalake/Data.js';

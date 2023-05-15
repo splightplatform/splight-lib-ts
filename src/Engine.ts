@@ -18,6 +18,8 @@ import {
   DashboardGraphsNodesBulkClient,
   DashboardsClient,
   DashboardTabsClient,
+  DatalakeDataClient,
+  DeploymentsClient,
   FilesClient,
   QueriesClient,
   SecretsClient,
@@ -48,5 +50,7 @@ export const Engine = (headers: Headers) => {
     graphEdgesBulkClient: DashboardGraphsEdgesBulkClient(headers),
     secrets: SecretsClient(headers),
     setPoints: SetPointsClient(headers),
+    deployments: DeploymentsClient(headers),
+    datalakeData: DatalakeDataClient(headers),
   };
 };
