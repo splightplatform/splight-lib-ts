@@ -46,6 +46,14 @@ export interface OrganizationComputeParams {
   xlarge_nodes: number;
 }
 
+export interface OrganizationCompute extends OrganizationComputeParams {
+  id: string;
+  region: string;
+  status: string;
+  kubeconfig: string;
+}
+
+
 export const OrganizationRequestsClient = (
   basePath: Path,
   headers: Headers
@@ -89,7 +97,7 @@ export const OrganizationProfilesClient = (
         headers
       ),
     compute: (orgId: string) =>
-      get(organizationProfilesPath.slash(orgId).slash('compute').url, headers),
+      get<OrganizationCompute>(organizationProfilesPath.slash(orgId).slash('compute').url, headers),
     paymentsPortal: (orgId: string) =>
       get(
         organizationProfilesPath.slash(orgId).slash('payments_portal').url,

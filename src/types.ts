@@ -108,6 +108,7 @@ export {
 export {
   OrganizationProfile,
   OrganizationRequest,
+  OrganizationCompute,
 } from './backoffice/organizations/Organizations.js';
 export {
   Agreement,
