@@ -134,7 +134,7 @@ test('Subscribe to organization profile', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 200,
   });
-  await splight.backoffice.organizations.profiles.set_subscription(
+  await splight.backoffice.organizations.profiles.setSubscription(
     '123',
     MockOrganizationSubscription
   );
@@ -173,7 +173,7 @@ test('Set compute', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 200,
   });
-  await splight.backoffice.organizations.profiles.set_compute(
+  await splight.backoffice.organizations.profiles.setCompute(
     '123',
     MockOrganizationCompute
   );

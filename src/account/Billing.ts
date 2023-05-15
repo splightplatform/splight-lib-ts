@@ -84,12 +84,11 @@ const PaymentClient = (basePath: Path, headers: Headers) => {
 const SubscriptionClient = (basePath: Path, headers: Headers) => {
   const subscriptionPath = basePath.slash('subscription');
   const cancelPath = subscriptionPath.slash('cancel');
-  const subscribePath = subscriptionPath.slash('subscribe');
 
   return {
     cancel: () => post(cancelPath.url, {}, headers),
-    subscribe: (data: { plan: string }): Promise<Response> =>
-      post(subscribePath.url, data, headers),
+    subscribe: (data: { subscription_plan: string }): Promise<Response> =>
+      post(subscriptionPath.url, data, headers),
     retrieve: () => get<Subscription>(subscriptionPath.url, headers),
   };
 };
