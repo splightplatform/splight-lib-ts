@@ -1,4 +1,5 @@
-import { post } from '../../rest/BaseMethods.js';
+import { Blob } from 'buffer';
+import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -152,7 +153,17 @@ export const DashboardTabsClient = (headers: Headers) => {
 export const DashboardChartsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/charts/');
   const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
-  return baseClient;
+  const responseType = 'blob';
+  return {
+    ...baseClient,
+    toCsv: (chartId: string) =>
+      get<Blob>(
+        basePath.slash(chartId).slash('to_csv').url,
+        headers,
+        {},
+        responseType
+      ),
+  };
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/chartitems/');

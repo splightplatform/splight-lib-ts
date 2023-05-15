@@ -1,4 +1,3 @@
-// import { performance } from 'perf_hooks';
 import { AsyncFunction } from '../types.js';
 
 export function withLogging<T extends unknown[], R>(

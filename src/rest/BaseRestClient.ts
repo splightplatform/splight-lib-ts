@@ -43,6 +43,8 @@ export const BaseRestClient = <
       post(base_path.url, data, headers, ...[params]),
     update: (pk: string, data: Partial<I>): Promise<O> =>
       patch(base_path.slash(pk).url, data, headers),
+    bulkUpdate: (data: Partial<I>[]): Promise<O[]> =>
+      patch(base_path.url, data, headers),
     destroy: (pk: string): Promise<void> =>
       del(base_path.slash(pk).url, headers),
   };
