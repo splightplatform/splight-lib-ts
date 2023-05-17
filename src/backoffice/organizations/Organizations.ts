@@ -10,7 +10,7 @@ export interface OrganizationProfileParams {
   payout_account_id?: string;
 }
 
-export interface OrganizationProfile extends OrganizationProfileParams{
+export interface OrganizationProfile extends OrganizationProfileParams {
   id: string;
   blockchain_id?: string;
   subscription_plan?: string;
@@ -57,7 +57,6 @@ export interface OrganizationCompute extends OrganizationComputeParams {
   kubeconfig_command: string;
 }
 
-
 export const OrganizationRequestsClient = (
   basePath: Path,
   headers: Headers
@@ -101,7 +100,10 @@ export const OrganizationProfilesClient = (
         headers
       ),
     compute: (orgId: string) =>
-      get<OrganizationCompute>(organizationProfilesPath.slash(orgId).slash('compute').url, headers),
+      get<OrganizationCompute>(
+        organizationProfilesPath.slash(orgId).slash('compute').url,
+        headers
+      ),
     paymentsPortal: (orgId: string) =>
       get(
         organizationProfilesPath.slash(orgId).slash('payments_portal').url,
