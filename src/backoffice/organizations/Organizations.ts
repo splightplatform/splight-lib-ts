@@ -3,14 +3,18 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { ApiFormField, Headers, Subscription } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface OrganizationProfile {
-  id: string;
+export interface OrganizationProfileParams {
   name: string;
-  manager_email: string;
-  payment_account_id: string;
-  payout_account_id: string;
-  blockchain_id: string;
-  subscription_plan: string;
+  manager_email?: string;
+  payment_account_id?: string;
+  payout_account_id?: string;
+}
+
+export interface OrganizationProfile extends OrganizationProfileParams {
+  id: string;
+  blockchain_id?: string;
+  subscription_plan?: string;
+  status?: string;
 }
 
 export interface OrganizationRequestParams {
@@ -44,6 +48,13 @@ export interface OrganizationSubscriptionParams {
 
 export interface OrganizationComputeParams {
   xlarge_nodes: number;
+}
+
+export interface OrganizationCompute extends OrganizationComputeParams {
+  id: string;
+  region: string;
+  status: string;
+  kubeconfig_command: string;
 }
 
 export const OrganizationRequestsClient = (
@@ -89,7 +100,10 @@ export const OrganizationProfilesClient = (
         headers
       ),
     compute: (orgId: string) =>
-      get(organizationProfilesPath.slash(orgId).slash('compute').url, headers),
+      get<OrganizationCompute>(
+        organizationProfilesPath.slash(orgId).slash('compute').url,
+        headers
+      ),
     paymentsPortal: (orgId: string) =>
       get(
         organizationProfilesPath.slash(orgId).slash('payments_portal').url,
