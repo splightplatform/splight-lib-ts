@@ -3,14 +3,18 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { ApiFormField, Headers, Subscription } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface OrganizationProfile {
-  id: string;
+export interface OrganizationProfileParams {
   name: string;
-  manager_email: string;
-  payment_account_id: string;
-  payout_account_id: string;
-  blockchain_id: string;
-  subscription_plan: string;
+  manager_email?: string;
+  payment_account_id?: string;
+  payout_account_id?: string;
+}
+
+export interface OrganizationProfile extends OrganizationProfileParams{
+  id: string;
+  blockchain_id?: string;
+  subscription_plan?: string;
+  status?: string;
 }
 
 export interface OrganizationRequestParams {
@@ -50,7 +54,7 @@ export interface OrganizationCompute extends OrganizationComputeParams {
   id: string;
   region: string;
   status: string;
-  kubeconfig: string;
+  kubeconfig_command: string;
 }
 
 
