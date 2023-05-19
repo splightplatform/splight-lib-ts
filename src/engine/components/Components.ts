@@ -140,6 +140,7 @@ export interface Component {
   commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
+  hub_component: Component;
 }
 
 export interface ComponentParams {
