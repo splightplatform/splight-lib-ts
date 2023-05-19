@@ -1,7 +1,7 @@
-import { MockedAxios } from '../../test/MockedAxios.js';
-import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
-import { splight, TestKeys } from '../../test/setup.js';
+import { API_HOST } from '../../Urls.js';
+import { MockedAxios } from '../../test/MockedAxios.js';
+import { TestKeys, splight } from '../../test/setup.js';
 import { AnonymousQuery, Query, QueryParams } from './Queries.js';
 
 const mockedAxios = MockedAxios();
@@ -21,6 +21,7 @@ const MockQuery: Query = {
   target: 'test',
   source_type: 'Native',
   limit: 10,
+  query_params: 'StringifiedParams',
 };
 
 const MockQueryParams: QueryParams = {
