@@ -24,6 +24,19 @@ export interface User {
   roles: string[];
 }
 
+
+
+export interface UserLogs {
+  name: string;
+  type: string;
+  created_at: string;
+  details: {
+    ip: string;
+    user_agent: string;
+    location_info: Record<string, string>;
+  };
+}
+
 export const UsersClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/users/');
   const { list, update, retrieve } = BaseRestClient<User, User>(
@@ -47,6 +60,17 @@ export const UsersClient = (headers: Headers) => {
     }) =>
       get<OrganizationProfile>(
         basePath.slash(pk).slash('organizations', true).url,
+        headers,
+        params
+      ),
+    logs: ({
+      pk,
+      ...params
+    }: {
+      pk: string & Record<string, string | number | boolean>;
+    }) =>
+      get<UserLogs>(
+        basePath.slash(pk).slash('logs', true).url,
         headers,
         params
       ),

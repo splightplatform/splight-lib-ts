@@ -140,3 +140,5 @@ export interface ApiFormField {
 }
 
 export { SearchDataResponse } from './engine/datalake/Data.js';
+
+export { UserLogs } from './account/Users.js';
