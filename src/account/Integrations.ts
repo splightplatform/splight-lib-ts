@@ -3,20 +3,18 @@ import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers, OrganizationProfile } from '../types.js';
 import { Path } from '../Urls.js';
 
-export interface TelegramIntegration {
-  event_type: string;
-  chat_id: string;
+export interface Integration {
+  type: string;
+  id: string;
 }
 
-export const TelegramIntegrationsClient = (headers: Headers) => {
-  const basePath = Path('v2/account/integrations/telegram/');
-  const { list, update, retrieve } = BaseRestClient<User, User>(
+export const IntegrationsClient = (headers: Headers) => {
+  const basePath = Path('v2/account/integrations/all/');
+  const { list } = BaseRestClient<Integration, Integration>(
     basePath,
     headers
   );
   return {
     list,
-    update,
-    retrieve,
   };
 };

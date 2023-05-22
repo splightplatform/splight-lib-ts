@@ -140,3 +140,5 @@ export interface ApiFormField {
 }
 
 export { SearchDataResponse } from './engine/datalake/Data.js';
+
+export { Integration } from './account/Integrations.js'

@@ -8,7 +8,7 @@ import { AgreementsClient } from './account/Agreements.js';
 import { UsersClient } from './account/Users.js';
 import { UserInvitationsClient } from './account/UserInvitations.js';
 import { ReferralClient } from './account/Referral.js';
-import { TelegramIntegrationsClient } from './account/Integrations.js';
+import { IntegrationsClient } from './account/Integrations.js';
 
 export const Account = (headers: Headers) => {
   return {
@@ -21,6 +21,6 @@ export const Account = (headers: Headers) => {
     users: UsersClient(headers),
     userInvitations: UserInvitationsClient(headers),
     referral: ReferralClient(headers),
-    telegramIntegrations: TelegramIntegrationsClient(headers),
+    integrations: IntegrationsClient(headers),
   };
 };
