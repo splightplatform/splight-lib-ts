@@ -11,6 +11,8 @@ export interface User {
   name: string;
   email: string;
   last_login: string;
+  last_ip: string;
+  logins_count: number;
   user_metadata: {
     picture_color: string;
     theme: string;
@@ -24,17 +26,18 @@ export interface User {
   roles: string[];
 }
 
-
+export interface UserLogsDetails {
+  ip: string;
+  user_agent: string;
+  location_info: Record<string, string>;
+}
 
 export interface UserLogs {
-  name: string;
+  id: string;
+  action: string;
   type: string;
-  created_at: string;
-  details: {
-    ip: string;
-    user_agent: string;
-    location_info: Record<string, string>;
-  };
+  date: string;
+  details: UserLogsDetails;
 }
 
 export const UsersClient = (headers: Headers) => {
@@ -63,13 +66,8 @@ export const UsersClient = (headers: Headers) => {
         headers,
         params
       ),
-    logs: ({
-      pk,
-      ...params
-    }: {
-      pk: string & Record<string, string | number | boolean>;
-    }) =>
-      get<UserLogs>(
+    logs: (pk: string, params: Record<string, number | string | boolean>) =>
+      get<{ results: UserLogs[]; next: string }>(
         basePath.slash(pk).slash('logs', true).url,
         headers,
         params
