@@ -58,17 +58,18 @@ export const UsersClient = (headers: Headers) => {
     organizations: ({
       pk,
       ...params
-    }: {
-      pk: string & Record<string, string | number | boolean>;
-    }) =>
+    }: Record<string, string | number | boolean>) =>
       get<OrganizationProfile>(
-        basePath.slash(pk).slash('organizations', true).url,
+        basePath.slash(pk as string).slash('organizations', true).url,
         headers,
         params
       ),
-    logs: (pk: string, params: Record<string, number | string | boolean>) =>
+    logs: ({
+      pk,
+      ...params
+    }: Record<string, string | number | boolean>) =>
       get<{ results: UserLogs[]; next: string }>(
-        basePath.slash(pk).slash('logs', true).url,
+        basePath.slash(pk as string).slash('logs', true).url,
         headers,
         params
       ),
