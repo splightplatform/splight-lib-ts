@@ -64,10 +64,7 @@ export const UsersClient = (headers: Headers) => {
         headers,
         params
       ),
-    logs: ({
-      pk,
-      ...params
-    }: Record<string, string | number | boolean>) =>
+    logs: ({ pk, ...params }: Record<string, string | number | boolean>) =>
       get<{ results: UserLogs[]; next: string }>(
         basePath.slash(pk as string).slash('logs', true).url,
         headers,
