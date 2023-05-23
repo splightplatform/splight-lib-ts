@@ -11,6 +11,8 @@ export interface User {
   name: string;
   email: string;
   last_login: string;
+  last_ip: string;
+  logins_count: number;
   user_metadata: {
     picture_color: string;
     theme: string;
@@ -22,6 +24,20 @@ export interface User {
   picture: string;
   permissions: ('splightadmin' | 'admin' | 'editor')[];
   roles: string[];
+}
+
+export interface UserLogsDetails {
+  ip: string;
+  user_agent: string;
+  location_info: Record<string, string>;
+}
+
+export interface UserLogs {
+  id: string;
+  action: string;
+  type: string;
+  date: string;
+  details: UserLogsDetails;
 }
 
 export const UsersClient = (headers: Headers) => {
@@ -42,11 +58,15 @@ export const UsersClient = (headers: Headers) => {
     organizations: ({
       pk,
       ...params
-    }: {
-      pk: string & Record<string, string | number | boolean>;
-    }) =>
+    }: Record<string, string | number | boolean>) =>
       get<OrganizationProfile>(
-        basePath.slash(pk).slash('organizations', true).url,
+        basePath.slash(pk as string).slash('organizations', true).url,
+        headers,
+        params
+      ),
+    logs: ({ pk, ...params }: Record<string, string | number | boolean>) =>
+      get<{ results: UserLogs[]; next: string }>(
+        basePath.slash(pk as string).slash('logs', true).url,
         headers,
         params
       ),
