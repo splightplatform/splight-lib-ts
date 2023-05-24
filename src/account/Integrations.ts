@@ -30,10 +30,7 @@ export interface TelegramIntegration {
 
 export const IntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/all/');
-  const { list } = BaseRestClient<Integration, Integration>(
-    basePath,
-    headers
-  );
+  const { list } = BaseRestClient<Integration, Integration>(basePath, headers);
   return {
     list,
   };
@@ -41,10 +38,10 @@ export const IntegrationsClient = (headers: Headers) => {
 
 export const EmailIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/email/');
-  const { create, retrieve, update } = BaseRestClient<EmailIntegration, EmailIntegration>(
-    basePath,
-    headers
-  );
+  const { create, retrieve, update } = BaseRestClient<
+    EmailIntegration,
+    EmailIntegration
+  >(basePath, headers);
   return {
     create,
     retrieve,
@@ -54,10 +51,10 @@ export const EmailIntegrationsClient = (headers: Headers) => {
 
 export const SlackIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/slack/');
-  const { create, retrieve, update } = BaseRestClient<SlackIntegration, SlackIntegration>(
-    basePath,
-    headers
-  );
+  const { create, retrieve, update } = BaseRestClient<
+    SlackIntegration,
+    SlackIntegration
+  >(basePath, headers);
   return {
     create,
     retrieve,
@@ -67,10 +64,10 @@ export const SlackIntegrationsClient = (headers: Headers) => {
 
 export const TelegramIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/telegram/');
-  const { create, retrieve, update } = BaseRestClient<TelegramIntegration, TelegramIntegration>(
-    basePath,
-    headers
-  );
+  const { create, retrieve, update } = BaseRestClient<
+    TelegramIntegration,
+    TelegramIntegration
+  >(basePath, headers);
   return {
     create,
     retrieve,

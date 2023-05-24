@@ -8,7 +8,12 @@ import { AgreementsClient } from './account/Agreements.js';
 import { UsersClient } from './account/Users.js';
 import { UserInvitationsClient } from './account/UserInvitations.js';
 import { ReferralClient } from './account/Referral.js';
-import { IntegrationsClient, EmailIntegrationsClient, SlackIntegrationsClient, TelegramIntegrationsClient } from './account/Integrations.js';
+import {
+  IntegrationsClient,
+  EmailIntegrationsClient,
+  SlackIntegrationsClient,
+  TelegramIntegrationsClient,
+} from './account/Integrations.js';
 
 export const Account = (headers: Headers) => {
   return {

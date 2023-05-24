@@ -141,4 +141,9 @@ export interface ApiFormField {
 
 export { SearchDataResponse } from './engine/datalake/Data.js';
 
-export { Integration, EmailIntegration, SlackIntegration, TelegramIntegration } from './account/Integrations.js'
+export {
+  Integration,
+  EmailIntegration,
+  SlackIntegration,
+  TelegramIntegration,
+} from './account/Integrations.js';
