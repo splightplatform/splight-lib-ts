@@ -199,7 +199,17 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  return baseClient;
+  const responseType = 'blob';
+  return {
+    ...baseClient,
+    toJSON: (dashboardId: string) =>
+      get<Blob>(
+        basePath.slash(dashboardId).slash('to_json').url,
+        headers,
+        {},
+        responseType
+      ),
+  };
 };
 
 export const DashboardGraphsClient = (headers: Headers) => {
