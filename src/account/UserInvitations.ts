@@ -32,10 +32,10 @@ export interface UserInvitation {
 
 export const UserInvitationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/invitations/');
-  const { list, create, destroy } = BaseRestClient<UserInvitationParams, UserInvitation>(
-    basePath,
-    headers
-  );
+  const { list, create, destroy } = BaseRestClient<
+    UserInvitationParams,
+    UserInvitation
+  >(basePath, headers);
   return {
     list,
     create,
