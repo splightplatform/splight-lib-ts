@@ -11,12 +11,13 @@ export interface Credential {
 
 export const ApiKeysClient = (headers: Headers) => {
   const basePath = Path('v2/account/credentials/');
-  const { list, create } = BaseRestClient<Record<string, never>, Credential>(
-    basePath,
-    headers
-  );
+  const { list, create, destroy } = BaseRestClient<
+    Record<string, never>,
+    Credential
+  >(basePath, headers);
   return {
     list,
     create: () => create({}),
+    destroy,
   };
 };
