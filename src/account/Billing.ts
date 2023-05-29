@@ -93,6 +93,17 @@ const SubscriptionClient = (basePath: Path, headers: Headers) => {
   };
 };
 
+const SubscriptionPlanClient = (basePath: Path, headers: Headers) => {
+  const subscriptionPath = basePath.slash('subscription-plan');
+  const baseClient = BaseRestClient<SubscriptionPlan, SubscriptionPlan>(
+    subscriptionPath,
+    headers
+  );
+  return {
+    list: () => baseClient.list(),
+  };
+};
+
 const PayoutClient = (basePath: Path, headers: Headers) => {
   const payoutPath = basePath.slash('payout');
   const externalPortalPath = payoutPath.slash('external_portal');
@@ -111,5 +122,6 @@ export const BillingClient = (headers: Headers) => {
     payment: PaymentClient(basePath, headers),
     payout: PayoutClient(basePath, headers),
     subscription: SubscriptionClient(basePath, headers),
+    subscriptionPlan: SubscriptionPlanClient(basePath, headers),
   };
 };
