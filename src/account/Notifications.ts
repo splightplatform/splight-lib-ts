@@ -22,10 +22,11 @@ export interface Notification {
 
 export const NotificationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/notifications/');
-  const baseClient = BaseRestClient<Notification>(basePath, headers);
+  const { list, update, destroy } = BaseRestClient<Notification>(basePath, headers);
   return {
-    list: baseClient.list,
-    update: baseClient.update,
+    list,
+    update,
+    destroy,
     markAllAsSeen: () =>
       get<Notification>(basePath.slash('mark_all_as_seen', true).url, headers),
   };
