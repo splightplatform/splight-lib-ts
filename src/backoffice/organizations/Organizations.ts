@@ -57,6 +57,24 @@ export interface OrganizationCompute extends OrganizationComputeParams {
   kubeconfig_command: string;
 }
 
+export interface OrganizationDatalakeParams {
+  size_in_gb: number;
+}
+
+export interface OrganizationDatalake extends OrganizationDatalakeParams {
+  id: string;
+  status: string;
+}
+
+export interface OrganizationAlertsParams {
+  replicas: number;
+}
+
+export interface OrganizationAlerts extends OrganizationAlertsParams {
+  id: string;
+  status: string;
+}
+
 export const OrganizationRequestsClient = (
   basePath: Path,
   headers: Headers
@@ -102,6 +120,28 @@ export const OrganizationProfilesClient = (
     compute: (orgId: string) =>
       get<OrganizationCompute>(
         organizationProfilesPath.slash(orgId).slash('compute').url,
+        headers
+      ),
+    setDatalake: (orgId: string, data: OrganizationDatalakeParams) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('datalake').url,
+        data,
+        headers
+      ),
+    datalake: (orgId: string) =>
+      get<OrganizationDatalake>(
+        organizationProfilesPath.slash(orgId).slash('datalake').url,
+        headers
+      ),
+    setAlerts: (orgId: string, data: OrganizationAlertsParams) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('alerts').url,
+        data,
+        headers
+      ),
+    alerts: (orgId: string) =>
+      get<OrganizationAlerts>(
+        organizationProfilesPath.slash(orgId).slash('alerts').url,
         headers
       ),
     paymentsPortal: (orgId: string) =>
