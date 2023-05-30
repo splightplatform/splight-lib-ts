@@ -202,13 +202,20 @@ export const DashboardsClient = (headers: Headers) => {
   const responseType = 'blob';
   return {
     ...baseClient,
-    toJSON: (dashboardId: string) =>
+    toJson: (dashboardId: string) =>
       get<Blob>(
         basePath.slash(dashboardId).slash('to_json').url,
         headers,
         {},
         responseType
       ),
+    fromJson: (dashboardId: string, file: File) =>
+      post<File, File>(
+        basePath.slash(dashboardId).slash('from_json').url,
+        file,
+        headers,
+        {},
+      )
   };
 };
 
