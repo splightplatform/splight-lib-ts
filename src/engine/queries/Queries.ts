@@ -47,7 +47,7 @@ export interface Query extends QueryParams {
   rename_fields?: string;
   project_fields?: string;
   timezone_offset?: number;
-  query_params?: string;
+  query_params: string;
 }
 
 export interface AnonymousQuery {
@@ -65,6 +65,12 @@ export const QueriesClient = (headers: Headers) => {
   return {
     ...baseClient,
     //Is returning the datalake data as JSON good enough?
+    queryParams: async (query: QueryParams) =>
+      post<QueryParams, Query>(
+        basePath.slash('get_query_params').url,
+        query,
+        headers
+      ),
     execute: async (query: AnonymousQuery) => {
       const datalake_path = Path('v2/engine/datalake/data/execute_query/');
       return await post<AnonymousQuery, PaginatedCollection<JSON>>(
