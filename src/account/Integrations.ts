@@ -3,9 +3,8 @@ import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
 
 export interface Integration {
-  type: string;
-  id?: string;
-  instance_id: string;
+  id: string;
+  subclass: string;
 }
 
 export interface EmailIntegration {
