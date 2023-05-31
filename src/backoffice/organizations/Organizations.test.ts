@@ -3,7 +3,9 @@ import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
 import {
+  OrganizationAlertsParams,
   OrganizationComputeParams,
+  OrganizationDatalakeParams,
   OrganizationRequest,
 } from './Organizations.js';
 import { ApiFormField } from '../../types.js';
@@ -47,6 +49,14 @@ const MockOrganizationSubscription: OrganizationSubscriptionParams = {
 
 const MockOrganizationCompute: OrganizationComputeParams = {
   xlarge_nodes: 1,
+};
+
+const MockOrganizationAlerts: OrganizationAlertsParams = {
+  replicas: 1,
+};
+
+const MockOrganizationDatalake: OrganizationDatalakeParams = {
+  size_in_gb: 10,
 };
 
 test('List organization requests', async () => {
@@ -181,6 +191,44 @@ test('Set compute', async () => {
     `${API_HOST}v2/backoffice/organization/profiles/123/compute/`,
     {
       data: MockOrganizationCompute,
+      headers: { Authorization: TestKeys },
+      method: 'post',
+      params: undefined,
+    }
+  );
+});
+
+test('Set datalake', async () => {
+  mockedAxios.mockResolvedValueOnce({
+    status: 200,
+  });
+  await splight.backoffice.organizations.profiles.setDatalake(
+    '123',
+    MockOrganizationDatalake
+  );
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/backoffice/organization/profiles/123/datalake/`,
+    {
+      data: MockOrganizationDatalake,
+      headers: { Authorization: TestKeys },
+      method: 'post',
+      params: undefined,
+    }
+  );
+});
+
+test('Set alerts', async () => {
+  mockedAxios.mockResolvedValueOnce({
+    status: 200,
+  });
+  await splight.backoffice.organizations.profiles.setAlerts(
+    '123',
+    MockOrganizationAlerts
+  );
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/backoffice/organization/profiles/123/alerts/`,
+    {
+      data: MockOrganizationAlerts,
       headers: { Authorization: TestKeys },
       method: 'post',
       params: undefined,
