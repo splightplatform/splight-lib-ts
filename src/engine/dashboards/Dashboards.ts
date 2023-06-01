@@ -210,11 +210,11 @@ export const DashboardsClient = (headers: Headers) => {
         {},
         responseType
       ),
-    fromJson: ({ dashboardId, file }: { dashboardId: string, file: File }) =>
-      post<{file: File}, Empty>(
+    fromJson: ({ dashboardId, file }: { dashboardId: string; file: File }) =>
+      post<{ file: File }, Empty>(
         basePath.slash(dashboardId).slash('from_json').url,
         { file },
-        headers,
+        headers
       ),
   };
 };
