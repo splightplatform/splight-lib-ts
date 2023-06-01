@@ -109,6 +109,8 @@ export {
   OrganizationProfile,
   OrganizationRequest,
   OrganizationCompute,
+  OrganizationDatalake,
+  OrganizationAlerts,
 } from './backoffice/organizations/Organizations.js';
 export {
   Agreement,
