@@ -144,3 +144,10 @@ export interface ApiFormField {
 export { SearchDataResponse } from './engine/datalake/Data.js';
 
 export { UserLogs, UserLogsDetails } from './account/Users.js';
+
+export {
+  EmailIntegration,
+  Integration,
+  SlackIntegration,
+  TelegramIntegration,
+} from './account/Integrations.js';
