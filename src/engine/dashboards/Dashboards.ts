@@ -3,6 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
+import { Empty } from '../../types.js';
 
 export interface DashboardParams {
   name: string;
@@ -199,7 +200,23 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  return baseClient;
+  const responseType = 'blob';
+  return {
+    ...baseClient,
+    toJson: (dashboardId: string) =>
+      get<Blob>(
+        basePath.slash(dashboardId).slash('to_json').url,
+        headers,
+        {},
+        responseType
+      ),
+    fromJson: ({ dashboardId, file }: { dashboardId: string; file: File }) =>
+      post<{ file: File }, Empty>(
+        basePath.slash(dashboardId).slash('from_json').url,
+        { file },
+        headers
+      ),
+  };
 };
 
 export const DashboardGraphsClient = (headers: Headers) => {
