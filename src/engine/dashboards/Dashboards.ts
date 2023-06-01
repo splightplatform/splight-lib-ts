@@ -3,6 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
+import { Empty } from '../../types.js';
 
 export interface DashboardParams {
   name: string;
@@ -209,13 +210,12 @@ export const DashboardsClient = (headers: Headers) => {
         {},
         responseType
       ),
-    fromJson: (dashboardId: string, file: File) =>
-      post<File, File>(
+    fromJson: ({ dashboardId, file }: { dashboardId: string, file: File }) =>
+      post<{file: File}, Empty>(
         basePath.slash(dashboardId).slash('from_json').url,
-        file,
+        { file },
         headers,
-        {},
-      )
+      ),
   };
 };
 
