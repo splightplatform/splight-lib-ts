@@ -8,6 +8,8 @@ import { AgreementsClient } from './account/Agreements.js';
 import { UsersClient } from './account/Users.js';
 import { UserInvitationsClient } from './account/UserInvitations.js';
 import { ReferralClient } from './account/Referral.js';
+import { ProvisionClient } from './account/Provision.js';
+
 import {
   IntegrationsClient,
   EmailIntegrationsClient,
@@ -30,5 +32,6 @@ export const Account = (headers: Headers) => {
     emailIntegrations: EmailIntegrationsClient(headers),
     slackIntegrations: SlackIntegrationsClient(headers),
     telegramIntegrations: TelegramIntegrationsClient(headers),
+    provision: ProvisionClient(headers),
   };
 };

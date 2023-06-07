@@ -151,3 +151,9 @@ export {
   SlackIntegration,
   TelegramIntegration,
 } from './account/Integrations.js';
+
+export {
+  ProvisionData,
+  ItemProvisionData,
+  ItemProvisionDataName,
+} from './account/Provision.js';
