@@ -130,6 +130,7 @@ export interface Component {
   deployment_capacity?: string;
   deployment_log_level?: number;
   deployment_status: string;
+  deployment_active: string;
   deployment_restart_policy?: string;
   connections_active: boolean;
   connections_updated_at: string;
