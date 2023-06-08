@@ -30,10 +30,10 @@ export const ProvisionClient = (headers: Headers) => {
   const fileStorageUsage = basePath.slash('file-storage/usage');
 
   return {
-    alertsUsage: get<ProvisionData>(alertsUsagePath.url, headers),
-    computeUsage: get<ProvisionData>(computeUsage.url, headers),
-    datalakeUsage: get<ProvisionData>(datalakeUsage.url, headers),
-    databaseUsage: get<ProvisionData>(databaseUsage.url, headers),
-    fileStorageUsage: get<ProvisionData>(fileStorageUsage.url, headers),
+    alertsUsage: () => get<ProvisionData>(alertsUsagePath.url, headers),
+    computeUsage: () => get<ProvisionData>(computeUsage.url, headers),
+    datalakeUsage: () => get<ProvisionData>(datalakeUsage.url, headers),
+    databaseUsage: () => get<ProvisionData>(databaseUsage.url, headers),
+    fileStorageUsage: () => get<ProvisionData>(fileStorageUsage.url, headers),
   };
 };
