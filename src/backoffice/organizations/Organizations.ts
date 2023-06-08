@@ -1,6 +1,11 @@
 import { get, options, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Headers, Subscription } from '../../types.js';
+import {
+  ApiFormField,
+  ExternalPortalLink,
+  Headers,
+  Subscription,
+} from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface OrganizationProfileParams {
@@ -145,7 +150,7 @@ export const OrganizationProfilesClient = (
         headers
       ),
     paymentsPortal: (orgId: string) =>
-      get(
+      get<ExternalPortalLink>(
         organizationProfilesPath.slash(orgId).slash('payments_portal').url,
         headers
       ),

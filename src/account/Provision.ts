@@ -8,7 +8,8 @@ export type ItemProvisionDataName =
   | 'Alerts'
   | 'Components'
   | 'Logs'
-  | 'Files';
+  | 'Storage'
+  | 'Integrations';
 
 export type ItemProvisionData = {
   name: ItemProvisionDataName;
