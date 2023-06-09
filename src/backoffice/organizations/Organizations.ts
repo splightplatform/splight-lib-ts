@@ -49,6 +49,8 @@ export interface OptionsParams {
 
 export interface OrganizationSubscriptionParams {
   subscription_plan: string;
+  end_date?: string | null;
+  payment_managed_externally?: boolean;
 }
 
 export interface OrganizationComputeParams {

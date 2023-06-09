@@ -33,6 +33,7 @@ export interface Subscription {
   status: string;
   start_date: string;
   end_date: string;
+  payment_managed_externally: boolean;
   invoice_id: string;
 }
 
