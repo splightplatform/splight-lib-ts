@@ -45,6 +45,7 @@ const MockPayoutAccount: PayoutAccount = {
     test: 'test',
   },
   business_type: 'test',
+  referral_code: 'test',
 };
 
 const MockExternalPortalLink: ExternalPortalLink = {
