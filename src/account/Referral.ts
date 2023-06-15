@@ -1,12 +1,12 @@
 import { Path } from '../Urls.js';
 import { Headers } from '../types.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
+import { OrganizationProfile } from '../types.js';
 
 export interface Referral {
   id: string;
-  referred_by: string;
-  referred: string;
-  referred_name: string;
+  referred_by: OrganizationProfile;
+  referred: OrganizationProfile;
   date_created: string;
 }
 

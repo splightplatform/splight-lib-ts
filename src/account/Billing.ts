@@ -33,23 +33,18 @@ export interface Subscription {
   status: string;
   start_date: string;
   end_date: string;
+  payment_managed_externally: boolean;
   invoice_id: string;
-}
-
-export interface PayoutAccountParams {
-  currency: string;
-  capabilities: Record<string, string>;
-  metadata: Record<string, string>;
-  business_type: string;
 }
 
 export interface PayoutAccount {
   id?: string;
-  organization_id?: string;
-  currency: string;
-  capabilities: Record<string, string>;
-  metadata: Record<string, string>;
-  business_type: string;
+  currency?: string;
+  capabilities?: Record<string, string>;
+  metadata?: Record<string, string>;
+  business_type?: string;
+  payouts_enabled?: boolean;
+  referral_code: string;
 }
 
 export interface ExternalPortalLink {
@@ -109,7 +104,7 @@ const PayoutClient = (basePath: Path, headers: Headers) => {
   const externalPortalPath = payoutPath.slash('external_portal');
 
   return {
-    retrieve: () => get<PaymentAccount>(payoutPath.url, headers),
+    retrieve: () => get<PayoutAccount>(payoutPath.url, headers),
     externalPortal: () =>
       get<ExternalPortalLink>(externalPortalPath.url, headers),
   };
