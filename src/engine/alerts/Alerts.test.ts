@@ -16,7 +16,6 @@ const MockAlert: Alert = {
   description: 'test',
   message: 'test',
   period: 10,
-  notification_emails: [],
   status: 'test',
   active: true,
   conditions: [],
