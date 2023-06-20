@@ -44,7 +44,6 @@ export interface AlertParams {
   description?: string;
   message?: string;
   period?: number;
-  notification_emails?: string[];
   status?: string;
   active?: boolean;
   conditions?: Condition[];
@@ -56,7 +55,6 @@ export type Alert = AlertParams & {
   description: string;
   message: string;
   period: number;
-  notification_emails: string[];
   status: string;
   active: boolean;
   conditions: Condition[];
