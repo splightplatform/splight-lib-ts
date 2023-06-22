@@ -100,10 +100,7 @@ export {
   ExternalPortalLink,
 } from './account/Billing.js';
 
-export {
-  SubscriptionPlan,
-  ReferralRate,
-} from './backoffice/billing/Billing.js';
+export { SubscriptionPlan } from './backoffice/billing/Billing.js';
 
 export {
   OrganizationProfile,
@@ -123,7 +120,6 @@ export {
 
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
-export { Referral } from './account/Referral.js';
 
 export { Contact } from './landing/Contact.js';
 export { Newsletter } from './landing/Newsletter.js';
