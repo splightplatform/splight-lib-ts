@@ -17,7 +17,6 @@ export interface OrganizationProfileParams {
 
 export interface OrganizationProfile extends OrganizationProfileParams {
   id: string;
-  blockchain_id?: string;
   subscription_plan?: string;
   status?: string;
 }
