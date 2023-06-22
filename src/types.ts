@@ -107,7 +107,6 @@ export {
 
 export {
   OrganizationProfile,
-  OrganizationRequest,
   OrganizationCompute,
   OrganizationDatalake,
   OrganizationAlerts,
