@@ -42,7 +42,7 @@ export interface UserLogs {
 
 export const UsersClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/users/');
-  const { list, update, retrieve } = BaseRestClient<User, User>(
+  const { list, update, retrieve, destroy } = BaseRestClient<User, User>(
     basePath,
     headers
   );
@@ -50,6 +50,7 @@ export const UsersClient = (headers: Headers) => {
     list,
     update,
     retrieve,
+    destroy,
     assignableRoles: (pk: string) =>
       get<string[]>(
         basePath.slash(pk).slash('assignable_roles', true).url,
