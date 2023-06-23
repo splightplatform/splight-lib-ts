@@ -252,11 +252,15 @@ export const ComponentObjectsClient = (headers: Headers) => {
     headers
   );
 
-  const bulkUpdate = (id: string, data: Partial<ComponentObject>[]): Promise<ComponentObject[]> =>
-    patch(basePath.slash(id).url, data, headers);
+  const bulkUpdate = (
+    id: string,
+    data: Partial<ComponentObject>[]
+  ): Promise<ComponentObject[]> => patch(basePath.slash(id).url, data, headers);
 
-  const update = (id: string, data: Partial<ComponentObject>): Promise<ComponentObject> =>
-    patch(basePath.slash(id).url, data, headers);
+  const update = (
+    id: string,
+    data: Partial<ComponentObject>
+  ): Promise<ComponentObject> => patch(basePath.slash(id).url, data, headers);
 
   return {
     ...baseClient,
