@@ -14,7 +14,6 @@ const MockSubscriptionPlan: SubscriptionPlan = {
   id: '123',
   name: 'test',
   amount: 10,
-  currency: 'USD',
   components_limit: 100,
   type: 'type',
 };
@@ -22,8 +21,6 @@ const MockSubscriptionPlan: SubscriptionPlan = {
 const MockSubscriptionPlanParams: SubscriptionPlanParams = {
   id: '123',
   name: 'test',
-  amount: 10,
-  currency: 'USD',
   components_limit: 100,
   type: 'type',
 };

@@ -6,14 +6,18 @@ import { Path } from '../../Urls.js';
 export interface SubscriptionPlanParams {
   id?: string;
   name: string;
-  amount: number;
-  currency: string;
-  components_limit: number;
   type: string;
+  components_limit: number;
+  integrations_limit?: number;
+  active_alerts?: number;
+  compute_slots?: number;
+  datalake_gb?: number;
+  file_storage_gb?: number;
 }
 
 export interface SubscriptionPlan extends SubscriptionPlanParams {
   id: string;
+  amount: number;
 }
 
 export const SubscriptionPlansClient = (headers: Headers) => {
