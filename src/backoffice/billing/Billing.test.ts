@@ -2,10 +2,7 @@ import { MockedAxios } from '../../test/MockedAxios.js';
 import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import {
-  SubscriptionPlan,
-  SubscriptionPlanParams,
-} from './Billing.js';
+import { SubscriptionPlan, SubscriptionPlanParams } from './Billing.js';
 
 const mockedAxios = MockedAxios();
 

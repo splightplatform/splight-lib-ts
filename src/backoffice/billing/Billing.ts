@@ -7,7 +7,7 @@ export interface SubscriptionPlanParams {
   id?: string;
   name: string;
   type: string;
-  components_limit: number
+  components_limit: number;
   integrations_limit?: number;
   active_alerts?: number;
   compute_slots?: number;
