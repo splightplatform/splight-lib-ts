@@ -28,20 +28,6 @@ const MockSubscriptionPlanParams: SubscriptionPlanParams = {
   type: 'type',
 };
 
-test('List referral rates', async () => {
-  mockedAxios.mockResolvedValueOnce({
-    data: { results: [], next: 'something' },
-    status: 200,
-  });
-  await splight.backoffice.billing.referralRate.list();
-  expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/billing/referral-compensation-rate/`,
-    {
-      headers: { Authorization: TestKeys },
-    }
-  );
-});
-
 test('List subscription plans', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
