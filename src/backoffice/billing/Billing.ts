@@ -11,8 +11,6 @@ export interface ReferralRate {
 export interface SubscriptionPlanParams {
   id?: string;
   name: string;
-  amount: number;
-  currency: string;
   type: string;
   components_limit: number
   integrations_limit?: number;
@@ -24,6 +22,7 @@ export interface SubscriptionPlanParams {
 
 export interface SubscriptionPlan extends SubscriptionPlanParams {
   id: string;
+  amount: number;
 }
 
 export const ReferralRateClient = (headers: Headers) => {
