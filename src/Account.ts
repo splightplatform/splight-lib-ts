@@ -7,7 +7,7 @@ import { BillingClient } from './account/Billing.js';
 import { AgreementsClient } from './account/Agreements.js';
 import { UsersClient } from './account/Users.js';
 import { UserInvitationsClient } from './account/UserInvitations.js';
-import { ReferralClient } from './account/Referral.js';
+
 import { ProvisionClient } from './account/Provision.js';
 
 import {
@@ -27,7 +27,6 @@ export const Account = (headers: Headers) => {
     agreements: AgreementsClient(headers),
     users: UsersClient(headers),
     userInvitations: UserInvitationsClient(headers),
-    referral: ReferralClient(headers),
     integrations: IntegrationsClient(headers),
     emailIntegrations: EmailIntegrationsClient(headers),
     slackIntegrations: SlackIntegrationsClient(headers),

@@ -1,4 +1,4 @@
-import { get } from '../rest/BaseMethods.js';
+import { post } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
@@ -31,6 +31,6 @@ export const NotificationsClient = (headers: Headers) => {
     update,
     destroy,
     markAllAsSeen: () =>
-      get<Notification>(basePath.slash('mark_all_as_seen', true).url, headers),
+      post(basePath.slash('mark_all_as_seen', true).url, {}, headers),
   };
 };

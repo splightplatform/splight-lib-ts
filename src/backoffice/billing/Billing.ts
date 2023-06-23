@@ -3,11 +3,6 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface ReferralRate {
-  timestamp: string;
-  rate: number;
-}
-
 export interface SubscriptionPlanParams {
   id?: string;
   name: string;
@@ -25,12 +20,6 @@ export interface SubscriptionPlan extends SubscriptionPlanParams {
   amount: number;
 }
 
-export const ReferralRateClient = (headers: Headers) => {
-  const basePath = Path('v2/backoffice/billing/referral-compensation-rate/');
-  const baseClient = BaseRestClient<ReferralRate>(basePath, headers);
-  return baseClient;
-};
-
 export const SubscriptionPlansClient = (headers: Headers) => {
   const basePath = Path('v2/backoffice/billing/subscription-plans/');
   const baseClient = BaseRestClient<SubscriptionPlanParams, SubscriptionPlan>(
@@ -43,7 +32,6 @@ export const SubscriptionPlansClient = (headers: Headers) => {
 export const BillingClient = (headers: Headers) => {
   const basePath = Path('v2/backoffice/billing/');
   return {
-    referralRate: ReferralRateClient(headers),
     options: () => get(basePath.slash('options/').url, headers),
     subscriptionPlans: SubscriptionPlansClient(headers),
     fixedInvoicePricing: BaseRestClient(
