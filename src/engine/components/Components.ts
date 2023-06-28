@@ -233,7 +233,7 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('connections').url,
         headers
       ),
-    logs: (pk: string, params: { type: string; tags: string; limit: number }) =>
+    logs: (pk: string, params: { limit: number; since: string }) =>
       get<string[]>(basePath.slash(pk).slash('logs').url, headers, params),
   };
 };
