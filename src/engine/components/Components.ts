@@ -233,7 +233,11 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('connections').url,
         headers
       ),
-    logs: (pk: string, params: { limit?: number; since?: string }) =>
+    logs: (pk: string, params: { since?: string; until?: string }) =>
+      /**
+       * @remarks
+       * The `since` and `until` parameters should be in ISO format
+       */
       get<string[]>(basePath.slash(pk).slash('logs').url, headers, params),
   };
 };
