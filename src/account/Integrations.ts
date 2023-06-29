@@ -7,23 +7,35 @@ export interface Integration {
   subclass: string;
 }
 
-export interface EmailIntegration {
+export interface EmailIntegrationParams {
   id?: string;
   email_list: string[];
   event_type: string[];
 }
 
-export interface SlackIntegration {
+export interface EmailIntegration extends EmailIntegrationParams {
+  subclass: string;
+}
+
+export interface SlackIntegrationParams {
   id?: string;
   bot_token: string;
   channel_name: string;
   event_type: string[];
 }
 
-export interface TelegramIntegration {
+export interface SlackIntegration extends SlackIntegrationParams {
+  subclass: string;
+}
+
+export interface TelegramIntegrationParams {
   id?: string;
   chat_id: string;
   event_type: string[];
+}
+
+export interface TelegramIntegration extends TelegramIntegrationParams {
+  subclass: string;
 }
 
 export const IntegrationsClient = (headers: Headers) => {
@@ -36,8 +48,10 @@ export const IntegrationsClient = (headers: Headers) => {
 
 export const EmailIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/email/');
-  const { create, retrieve, update, destroy } =
-    BaseRestClient<EmailIntegration>(basePath, headers);
+  const { create, retrieve, update, destroy } = BaseRestClient<
+    EmailIntegrationParams,
+    EmailIntegration
+  >(basePath, headers);
   return {
     create,
     retrieve,
@@ -48,8 +62,10 @@ export const EmailIntegrationsClient = (headers: Headers) => {
 
 export const SlackIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/slack/');
-  const { create, retrieve, update, destroy } =
-    BaseRestClient<SlackIntegration>(basePath, headers);
+  const { create, retrieve, update, destroy } = BaseRestClient<
+    SlackIntegrationParams,
+    SlackIntegration
+  >(basePath, headers);
   return {
     create,
     retrieve,
@@ -60,8 +76,10 @@ export const SlackIntegrationsClient = (headers: Headers) => {
 
 export const TelegramIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/telegram/');
-  const { create, retrieve, update, destroy } =
-    BaseRestClient<TelegramIntegration>(basePath, headers);
+  const { create, retrieve, update, destroy } = BaseRestClient<
+    TelegramIntegrationParams,
+    TelegramIntegration
+  >(basePath, headers);
   return {
     create,
     retrieve,

@@ -142,9 +142,12 @@ export { UserLogs, UserLogsDetails } from './account/Users.js';
 
 export {
   EmailIntegration,
+  EmailIntegrationParams,
   Integration,
   SlackIntegration,
+  SlackIntegrationParams,
   TelegramIntegration,
+  TelegramIntegrationParams,
 } from './account/Integrations.js';
 
 export {
