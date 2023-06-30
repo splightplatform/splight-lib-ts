@@ -13,6 +13,18 @@ export interface ComponentObject {
   data: ComponentParameter[];
 }
 
+export interface RoutineObject {
+  id: string;
+  name: string;
+  description: string;
+  component_id: string;
+  type: string;
+  status?: string;
+  config: ComponentParameter[];
+  input: ComponentParameter[];
+  output: ComponentParameter[];
+}
+
 export interface Binding {
   name: string;
   object_type: string;
@@ -57,10 +69,16 @@ export interface ObjectParameter {
   id: string;
 }
 
+export interface DataAddressValue {
+  asset: string;
+  attribute: string;
+}
+
 export type ComponentParameterType =
   | string
   | number
   | boolean
+  | DataAddressValue
   | ObjectParameter;
 
 export interface ComponentParameter {
@@ -69,17 +87,30 @@ export interface ComponentParameter {
   description: string;
   required: boolean;
   value:
-    | ComponentParameterType
-    | ComponentParameterType[]
-    | ComponentParameter[]
-    | ComponentParameter[][]
-    | ObjectParameter
-    | ObjectParameter[]
-    | ObjectParameter[][];
+  | ComponentParameterType
+  | ComponentParameterType[]
+  | ComponentParameter[]
+  | ComponentParameter[][]
+  | ObjectParameter
+  | ObjectParameter[]
+  | ObjectParameter[][];
   fields?: OutputField[];
   multiple: boolean;
   choices?: Array<string | number>;
   depends_on?: string;
+}
+
+export interface Value {
+  asset: string;
+  attribute: string;
+}
+
+export interface Parameter {
+  type: string;
+  name: string;
+  description: string;
+  required: boolean;
+  value: Value;
 }
 
 export interface OutputField {
@@ -91,6 +122,13 @@ export interface OutputField {
 export interface CustomType {
   name: string;
   fields: ComponentParameter[];
+}
+
+export interface Routine {
+  name: string;
+  config: ComponentParameter[];
+  input: ComponentParameter[];
+  output: ComponentParameter[];
 }
 
 export interface Deployment {
@@ -114,6 +152,7 @@ export interface Component {
   readme: string;
   readme_text?: string;
   custom_types: CustomType[];
+  routines: Routine[];
   input: ComponentParameter[];
   filters?: ComponentParameter[];
   type?: string;
@@ -151,6 +190,7 @@ export interface ComponentParams {
   picture_url?: string;
   type?: string;
   version: string;
+  routines?: Routine[];
   custom_types?: CustomType[];
   input?: ComponentParameter[];
   output: ComponentParameter[];
@@ -176,6 +216,12 @@ export type ComponentObjectParams = Optional<
   'description'
 >;
 
+export type RoutineObjectParams = Optional<
+  Omit<RoutineObject, 'id'>,
+  'description'
+>;
+
+
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/components/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
@@ -192,6 +238,7 @@ export const ComponentsClient = (headers: Headers) => {
       name,
       description,
       deployment_capacity: component.min_component_capacity,
+      routines: component.routines,
       custom_types: component.custom_types,
       picture_url: component.picture_url,
       deployment_type: component.deployment_type,
@@ -247,6 +294,15 @@ export const ComponentCommandsClient = (headers: Headers) => {
 export const ComponentObjectsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/objects/');
   const baseClient = BaseRestClient<ComponentObjectParams, ComponentObject>(
+    basePath,
+    headers
+  );
+  return baseClient;
+};
+
+export const RoutineObjectsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/routines/');
+  const baseClient = BaseRestClient<RoutineObjectParams, RoutineObject>(
     basePath,
     headers
   );
