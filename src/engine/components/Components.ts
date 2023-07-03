@@ -1,4 +1,4 @@
-import { get, post } from '../../rest/BaseMethods.js';
+import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, Optional } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -246,9 +246,25 @@ export const ComponentCommandsClient = (headers: Headers) => {
 
 export const ComponentObjectsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/objects/');
+
   const baseClient = BaseRestClient<ComponentObjectParams, ComponentObject>(
     basePath,
     headers
   );
-  return baseClient;
+
+  const bulkUpdate = (
+    id: string,
+    data: Partial<ComponentObject>[]
+  ): Promise<ComponentObject[]> => patch(basePath.slash(id).url, data, headers);
+
+  const update = (
+    id: string,
+    data: Partial<ComponentObject>
+  ): Promise<ComponentObject> => patch(basePath.slash(id).url, data, headers);
+
+  return {
+    ...baseClient,
+    bulkUpdate,
+    update,
+  };
 };
