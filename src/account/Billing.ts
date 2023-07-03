@@ -32,6 +32,7 @@ export interface Subscription {
   compute_slots: number;
   datalake_gb: number;
   file_storage_gb: number;
+  cost_per_month: number;
 }
 
 export interface PayoutAccount {
