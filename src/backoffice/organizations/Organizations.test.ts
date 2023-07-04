@@ -16,7 +16,12 @@ afterEach(() => {
 });
 
 const MockOrganizationSubscription: OrganizationSubscriptionParams = {
-  subscription_plan: '1234',
+  components_limit: 5,
+  integrations_limit: 5,
+  active_alerts: 10,
+  compute_slots: 8,
+  datalake_gb: 100,
+  file_storage_gb: 100,
 };
 
 const MockOrganizationCompute: OrganizationComputeParams = {
