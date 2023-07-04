@@ -136,6 +136,12 @@ export const OrganizationProfilesClient = (
         {},
         headers
       ),
+    reprovision: (orgId: string) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('reprovision').url,
+        {},
+        headers
+      ),
   };
 };
 
