@@ -26,9 +26,13 @@ export interface OptionsParams {
 }
 
 export interface OrganizationSubscriptionParams {
-  subscription_plan: string;
+  components_limit?: number;
+  integrations_limit?: number;
+  active_alerts?: number;
+  compute_slots?: number;
+  datalake_gb?: number;
+  file_storage_gb?: number;
   end_date?: string | null;
-  payment_managed_externally?: boolean;
 }
 
 export interface OrganizationComputeParams {
@@ -129,6 +133,12 @@ export const OrganizationProfilesClient = (
     deactivate: (orgId: string) =>
       post(
         organizationProfilesPath.slash(orgId).slash('deactivate').url,
+        {},
+        headers
+      ),
+    reprovision: (orgId: string) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('reprovision').url,
         {},
         headers
       ),

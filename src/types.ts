@@ -100,8 +100,6 @@ export {
   ExternalPortalLink,
 } from './account/Billing.js';
 
-export { SubscriptionPlan } from './backoffice/billing/Billing.js';
-
 export {
   OrganizationProfile,
   OrganizationCompute,
@@ -142,9 +140,12 @@ export { UserLogs, UserLogsDetails } from './account/Users.js';
 
 export {
   EmailIntegration,
+  EmailIntegrationParams,
   Integration,
   SlackIntegration,
+  SlackIntegrationParams,
   TelegramIntegration,
+  TelegramIntegrationParams,
 } from './account/Integrations.js';
 
 export {
