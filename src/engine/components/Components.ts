@@ -1,4 +1,4 @@
-import { get, post } from '../../rest/BaseMethods.js';
+import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, Optional } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -281,7 +281,11 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('connections').url,
         headers
       ),
-    logs: (pk: string, params: { type: string; tags: string; limit: number }) =>
+    logs: (pk: string, params: { since?: string; until?: string }) =>
+      /**
+       * @remarks
+       * The `since` and `until` parameters should be in ISO format
+       */
       get<string[]>(basePath.slash(pk).slash('logs').url, headers, params),
   };
 };
@@ -294,11 +298,27 @@ export const ComponentCommandsClient = (headers: Headers) => {
 
 export const ComponentObjectsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/objects/');
+
   const baseClient = BaseRestClient<ComponentObjectParams, ComponentObject>(
     basePath,
     headers
   );
-  return baseClient;
+
+  const bulkUpdate = (
+    id: string,
+    data: Partial<ComponentObject>[]
+  ): Promise<ComponentObject[]> => patch(basePath.slash(id).url, data, headers);
+
+  const update = (
+    id: string,
+    data: Partial<ComponentObject>
+  ): Promise<ComponentObject> => patch(basePath.slash(id).url, data, headers);
+
+  return {
+    ...baseClient,
+    bulkUpdate,
+    update,
+  };
 };
 
 export const RoutineObjectsClient = (headers: Headers) => {

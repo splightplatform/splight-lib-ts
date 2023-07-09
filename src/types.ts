@@ -105,13 +105,7 @@ export {
 } from './account/Billing.js';
 
 export {
-  SubscriptionPlan,
-  ReferralRate,
-} from './backoffice/billing/Billing.js';
-
-export {
   OrganizationProfile,
-  OrganizationRequest,
   OrganizationCompute,
   OrganizationDatalake,
   OrganizationAlerts,
@@ -128,7 +122,6 @@ export {
 
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
-export { Referral } from './account/Referral.js';
 
 export { Contact } from './landing/Contact.js';
 export { Newsletter } from './landing/Newsletter.js';
@@ -151,9 +144,12 @@ export { UserLogs, UserLogsDetails } from './account/Users.js';
 
 export {
   EmailIntegration,
+  EmailIntegrationParams,
   Integration,
   SlackIntegration,
+  SlackIntegrationParams,
   TelegramIntegration,
+  TelegramIntegrationParams,
 } from './account/Integrations.js';
 
 export {

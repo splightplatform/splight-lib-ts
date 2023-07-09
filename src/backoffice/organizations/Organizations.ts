@@ -1,4 +1,4 @@
-import { get, options, post } from '../../rest/BaseMethods.js';
+import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import {
   ApiFormField,
@@ -17,30 +17,8 @@ export interface OrganizationProfileParams {
 
 export interface OrganizationProfile extends OrganizationProfileParams {
   id: string;
-  blockchain_id?: string;
   subscription_plan?: string;
   status?: string;
-}
-
-export interface OrganizationRequestParams {
-  name: string;
-  email: string;
-  company_name: string;
-  country: string;
-  address_line_1: string;
-  address_line_2?: string;
-  city: string;
-  state: string;
-  postal_code: string;
-  message?: string;
-  referred_by?: string;
-}
-
-export interface OrganizationRequest extends OrganizationRequestParams {
-  id: string;
-  created_at: string;
-  updated_at: string;
-  referred_by: string;
 }
 
 export interface OptionsParams {
@@ -48,9 +26,13 @@ export interface OptionsParams {
 }
 
 export interface OrganizationSubscriptionParams {
-  subscription_plan: string;
+  components_limit?: number;
+  integrations_limit?: number;
+  active_alerts?: number;
+  compute_slots?: number;
+  datalake_gb?: number;
+  file_storage_gb?: number;
   end_date?: string | null;
-  payment_managed_externally?: boolean;
 }
 
 export interface OrganizationComputeParams {
@@ -81,20 +63,6 @@ export interface OrganizationAlerts extends OrganizationAlertsParams {
   id: string;
   status: string;
 }
-
-export const OrganizationRequestsClient = (
-  basePath: Path,
-  headers: Headers
-) => {
-  const requestPaths = basePath.slash('requests');
-  const baseClient = BaseRestClient<OrganizationRequest>(requestPaths, headers);
-  return {
-    ...baseClient,
-    fields: async () => await options<OptionsParams>(requestPaths.url, headers),
-    activate: (pk: string): Promise<void> =>
-      post(requestPaths.slash(pk).slash('activate').url, {}, headers),
-  };
-};
 
 export const OrganizationProfilesClient = (
   basePath: Path,
@@ -168,6 +136,12 @@ export const OrganizationProfilesClient = (
         {},
         headers
       ),
+    reprovision: (orgId: string) =>
+      post(
+        organizationProfilesPath.slash(orgId).slash('reprovision').url,
+        {},
+        headers
+      ),
   };
 };
 
@@ -175,6 +149,5 @@ export const OrganizationsClient = (headers: Headers) => {
   const basePath = Path('v2/backoffice/organization/');
   return {
     profiles: OrganizationProfilesClient(basePath, headers),
-    requests: OrganizationRequestsClient(basePath, headers),
   };
 };
