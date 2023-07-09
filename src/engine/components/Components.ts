@@ -63,16 +63,17 @@ export enum ComponentSize {
   LARGE = 'large',
   VERY_LARGE = 'very_large',
 }
-
-export interface ObjectParameter {
-  name: string;
-  id: string;
-}
-
 export interface DataAddressValue {
   asset: string;
   attribute: string;
 }
+
+export interface ObjectParameter {
+  name: string;
+  id: string;
+  original_value: string | DataAddressValue;
+}
+
 
 export type ComponentParameterType =
   | string
