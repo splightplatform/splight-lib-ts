@@ -74,7 +74,6 @@ export interface ObjectParameter {
   original_value: string | DataAddressValue;
 }
 
-
 export type ComponentParameterType =
   | string
   | number
@@ -88,13 +87,13 @@ export interface ComponentParameter {
   description: string;
   required: boolean;
   value:
-  | ComponentParameterType
-  | ComponentParameterType[]
-  | ComponentParameter[]
-  | ComponentParameter[][]
-  | ObjectParameter
-  | ObjectParameter[]
-  | ObjectParameter[][];
+    | ComponentParameterType
+    | ComponentParameterType[]
+    | ComponentParameter[]
+    | ComponentParameter[][]
+    | ObjectParameter
+    | ObjectParameter[]
+    | ObjectParameter[][];
   fields?: OutputField[];
   multiple: boolean;
   choices?: Array<string | number>;
@@ -221,7 +220,6 @@ export type RoutineObjectParams = Optional<
   Omit<RoutineObject, 'id'>,
   'description'
 >;
-
 
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/components/');
