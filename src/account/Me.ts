@@ -1,4 +1,4 @@
-import { get } from '../rest/BaseMethods.js';
+import { get, patch } from '../rest/BaseMethods.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
 
@@ -16,6 +16,7 @@ export interface UserProfile {
   language: string;
   theme: string;
   picture_color: string;
+  timezone: string;
   enable_email_notifications: boolean;
   enable_push_notifications: boolean;
   enable_sms_notifications: boolean;
@@ -32,6 +33,12 @@ export const MeClient = (headers: Headers) => {
   const basePath = Path('v2/account/user/me/');
   return {
     profile: () => get<UserProfile>(basePath.url, headers),
+    editProfile: (data: UserProfile) =>
+      patch<Partial<UserProfile>, UserProfile>(
+        basePath.slash('edit').url,
+        data,
+        headers
+      ),
     permissions: () =>
       get<UserPermissions>(basePath.slash('permissions').url, headers),
     organizationProfile: () =>
