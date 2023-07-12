@@ -100,8 +100,6 @@ export {
   ExternalPortalLink,
 } from './account/Billing.js';
 
-export { SubscriptionPlan } from './backoffice/billing/Billing.js';
-
 export {
   OrganizationProfile,
   OrganizationCompute,
