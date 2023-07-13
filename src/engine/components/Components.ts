@@ -178,8 +178,10 @@ export type ComponentObjectParams = Optional<
 
 export interface ComponentLogEntry {
   loglevel: string;
+  filename: string;
   timestamp: string;
   message: string;
+  traceback?: string;
   tags: string;
 }
 
@@ -240,12 +242,24 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('connections').url,
         headers
       ),
-    logs: (pk: string, params: { since?: string; until?: string, limit?: number , offset?: number}) =>
+    logs: (
+      pk: string,
+      params: {
+        since?: string;
+        until?: string;
+        limit?: number;
+        offset?: number;
+      }
+    ) =>
       /**
        * @remarks
        * The `since` and `until` parameters should be in ISO format
        */
-      get<ComponentLogEntry[]>(basePath.slash(pk).slash('elastic_logs').url, headers, params),
+      get<ComponentLogEntry[]>(
+        basePath.slash(pk).slash('elastic_logs').url,
+        headers,
+        params
+      ),
   };
 };
 
