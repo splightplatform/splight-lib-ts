@@ -17,6 +17,7 @@ export interface User {
     picture_color: string;
     theme: string;
     language: string;
+    timezone: string;
   };
   app_metadata: {
     is_manager: boolean;
