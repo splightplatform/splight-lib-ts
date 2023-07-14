@@ -44,6 +44,7 @@ export interface AlertParams {
   description?: string;
   message?: string;
   period?: number;
+  max_backward_seconds?: number;
   status?: string;
   active?: boolean;
   conditions?: Condition[];
@@ -55,6 +56,7 @@ export type Alert = AlertParams & {
   description: string;
   message: string;
   period: number;
+  max_backward_seconds: number;
   status: string;
   active: boolean;
   conditions: Condition[];

@@ -16,6 +16,7 @@ const MockAlert: Alert = {
   description: 'test',
   message: 'test',
   period: 10,
+  max_backward_seconds: 300,
   status: 'test',
   active: true,
   conditions: [],
