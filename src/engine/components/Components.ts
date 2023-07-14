@@ -13,6 +13,18 @@ export interface ComponentObject {
   data: ComponentParameter[];
 }
 
+export interface RoutineObject {
+  id: string;
+  name: string;
+  description: string;
+  component_id: string;
+  type: string;
+  status?: string;
+  config: ComponentParameter[];
+  input: ComponentParameter[];
+  output: ComponentParameter[];
+}
+
 export interface Binding {
   name: string;
   object_type: string;
@@ -51,16 +63,22 @@ export enum ComponentSize {
   LARGE = 'large',
   VERY_LARGE = 'very_large',
 }
+export interface DataAddressValue {
+  asset: string;
+  attribute: string;
+}
 
 export interface ObjectParameter {
   name: string;
   id: string;
+  original_value: string | DataAddressValue;
 }
 
 export type ComponentParameterType =
   | string
   | number
   | boolean
+  | DataAddressValue
   | ObjectParameter;
 
 export interface ComponentParameter {
@@ -82,6 +100,19 @@ export interface ComponentParameter {
   depends_on?: string;
 }
 
+export interface Value {
+  asset: string;
+  attribute: string;
+}
+
+export interface Parameter {
+  type: string;
+  name: string;
+  description: string;
+  required: boolean;
+  value: Value;
+}
+
 export interface OutputField {
   name: string;
   type: string;
@@ -91,6 +122,13 @@ export interface OutputField {
 export interface CustomType {
   name: string;
   fields: ComponentParameter[];
+}
+
+export interface Routine {
+  name: string;
+  config: ComponentParameter[];
+  input: ComponentParameter[];
+  output: ComponentParameter[];
 }
 
 export interface Deployment {
@@ -114,6 +152,7 @@ export interface Component {
   readme: string;
   readme_text?: string;
   custom_types: CustomType[];
+  routines: Routine[];
   input: ComponentParameter[];
   filters?: ComponentParameter[];
   type?: string;
@@ -151,6 +190,7 @@ export interface ComponentParams {
   picture_url?: string;
   type?: string;
   version: string;
+  routines?: Routine[];
   custom_types?: CustomType[];
   input?: ComponentParameter[];
   output: ComponentParameter[];
@@ -176,6 +216,19 @@ export type ComponentObjectParams = Optional<
   'description'
 >;
 
+export interface ComponentLogEntry {
+  loglevel: string;
+  filename: string;
+  timestamp: string;
+  message: string;
+  traceback?: string;
+  tags: string;
+}
+export type RoutineObjectParams = Optional<
+  Omit<RoutineObject, 'id'>,
+  'description'
+>;
+
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/components/');
   const baseClient = BaseRestClient<ComponentParams, Component>(
@@ -192,6 +245,7 @@ export const ComponentsClient = (headers: Headers) => {
       name,
       description,
       deployment_capacity: component.min_component_capacity,
+      routines: component.routines,
       custom_types: component.custom_types,
       picture_url: component.picture_url,
       deployment_type: component.deployment_type,
@@ -233,12 +287,24 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('connections').url,
         headers
       ),
-    logs: (pk: string, params: { since?: string; until?: string }) =>
+    logs: (
+      pk: string,
+      params: {
+        since?: string;
+        until?: string;
+        limit?: number;
+        offset?: number;
+      }
+    ) =>
       /**
        * @remarks
        * The `since` and `until` parameters should be in ISO format
        */
-      get<string[]>(basePath.slash(pk).slash('logs').url, headers, params),
+      get<ComponentLogEntry[]>(
+        basePath.slash(pk).slash('elastic_logs').url,
+        headers,
+        params
+      ),
   };
 };
 
@@ -271,4 +337,13 @@ export const ComponentObjectsClient = (headers: Headers) => {
     bulkUpdate,
     update,
   };
+};
+
+export const RoutineObjectsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/routines/');
+  const baseClient = BaseRestClient<RoutineObjectParams, RoutineObject>(
+    basePath,
+    headers
+  );
+  return baseClient;
 };

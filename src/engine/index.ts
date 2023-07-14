@@ -4,6 +4,7 @@ export { AttributesClient } from './attributes/Attributes.js';
 export {
   ComponentsClient,
   ComponentObjectsClient,
+  RoutineObjectsClient,
   ComponentCommandsClient,
   ComponentSize,
 } from './components/Components.js';
