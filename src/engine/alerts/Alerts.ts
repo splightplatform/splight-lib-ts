@@ -61,6 +61,7 @@ export type Alert = AlertParams & {
   active: boolean;
   conditions: Condition[];
   severity: string;
+  last_time_checked: string;
 };
 
 export type AlertHistory = {
