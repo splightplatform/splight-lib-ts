@@ -86,7 +86,7 @@ export const AlertsClient = (headers: Headers) => {
         headers
       ),
     test: async (pk: string) =>
-      post<Record<string, never>, Empty>(
+      post<Empty, Empty>(
         basePath.slash(pk).slash('test').url,
         {},
         headers
