@@ -147,8 +147,6 @@ export {
   EmailIntegration,
   EmailIntegrationParams,
   Integration,
-  SlackIntegration,
-  SlackIntegrationParams,
   TelegramIntegration,
   TelegramIntegrationParams,
 } from './account/Integrations.js';

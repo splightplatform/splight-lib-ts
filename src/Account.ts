@@ -12,7 +12,6 @@ import { ProvisionClient } from './account/Provision.js';
 import {
   IntegrationsClient,
   EmailIntegrationsClient,
-  SlackIntegrationsClient,
   TelegramIntegrationsClient,
 } from './account/Integrations.js';
 
@@ -27,7 +26,6 @@ export const Account = (headers: Headers) => {
     userInvitations: UserInvitationsClient(headers),
     integrations: IntegrationsClient(headers),
     emailIntegrations: EmailIntegrationsClient(headers),
-    slackIntegrations: SlackIntegrationsClient(headers),
     telegramIntegrations: TelegramIntegrationsClient(headers),
     provision: ProvisionClient(headers),
   };
