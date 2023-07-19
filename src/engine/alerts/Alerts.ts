@@ -86,10 +86,6 @@ export const AlertsClient = (headers: Headers) => {
         headers
       ),
     test: async (pk: string) =>
-      post<Empty, Empty>(
-        basePath.slash(pk).slash('test').url,
-        {},
-        headers
-      ),
+      post<Empty, Empty>(basePath.slash(pk).slash('test').url, {}, headers),
   };
 };
