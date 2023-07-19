@@ -21,6 +21,7 @@ const MockAlert: Alert = {
   active: true,
   conditions: [],
   severity: 'test',
+  last_time_checked: '2022-01-01T00:00:00Z',
 };
 
 const MockAlertParams: AlertParams = {
