@@ -1,6 +1,6 @@
-import { options, get } from '../../rest/BaseMethods.js';
+import { options, get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Asset, Attribute, Headers } from '../../types.js';
+import { ApiFormField, Asset, Attribute, Empty, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface DataAddress {
@@ -44,6 +44,7 @@ export interface AlertParams {
   description?: string;
   message?: string;
   period?: number;
+  max_backward_seconds?: number;
   status?: string;
   active?: boolean;
   conditions?: Condition[];
@@ -55,10 +56,12 @@ export type Alert = AlertParams & {
   description: string;
   message: string;
   period: number;
+  max_backward_seconds: number;
   status: string;
   active: boolean;
   conditions: Condition[];
   severity: string;
+  last_time_checked: string;
 };
 
 export type AlertHistory = {
@@ -82,5 +85,7 @@ export const AlertsClient = (headers: Headers) => {
         basePath.slash(pk).slash('history').url,
         headers
       ),
+    test: async (pk: string) =>
+      post<Empty, Empty>(basePath.slash(pk).slash('test').url, {}, headers),
   };
 };

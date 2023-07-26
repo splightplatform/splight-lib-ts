@@ -16,10 +16,12 @@ const MockAlert: Alert = {
   description: 'test',
   message: 'test',
   period: 10,
+  max_backward_seconds: 300,
   status: 'test',
   active: true,
   conditions: [],
   severity: 'test',
+  last_time_checked: '2022-01-01T00:00:00Z',
 };
 
 const MockAlertParams: AlertParams = {
