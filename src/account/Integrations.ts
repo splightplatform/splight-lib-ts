@@ -17,17 +17,6 @@ export interface EmailIntegration extends EmailIntegrationParams {
   subclass: string;
 }
 
-export interface SlackIntegrationParams {
-  id?: string;
-  bot_token: string;
-  channel_name: string;
-  event_type: string[];
-}
-
-export interface SlackIntegration extends SlackIntegrationParams {
-  subclass: string;
-}
-
 export interface TelegramIntegrationParams {
   id?: string;
   chat_id: string;
@@ -51,20 +40,6 @@ export const EmailIntegrationsClient = (headers: Headers) => {
   const { create, retrieve, update, destroy } = BaseRestClient<
     EmailIntegrationParams,
     EmailIntegration
-  >(basePath, headers);
-  return {
-    create,
-    retrieve,
-    update,
-    destroy,
-  };
-};
-
-export const SlackIntegrationsClient = (headers: Headers) => {
-  const basePath = Path('v2/account/integrations/slack/');
-  const { create, retrieve, update, destroy } = BaseRestClient<
-    SlackIntegrationParams,
-    SlackIntegration
   >(basePath, headers);
   return {
     create,
