@@ -22,7 +22,7 @@ export type SearchDataResponse = {
 };
 
 export const DatalakeDataClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/datalake/data');
+  const basePath = Path('v2/engine/datalake/data/');
   const baseClient = BaseRestClient<SearchDataParams, SearchDataResponse>(
     basePath,
     headers
