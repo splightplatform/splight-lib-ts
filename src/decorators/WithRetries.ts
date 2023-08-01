@@ -4,7 +4,7 @@ const sleep = (s: number) => new Promise((r) => setTimeout(r, s));
 
 export function withRetries<T extends unknown[], R>(
   fn: AsyncFunction<T, R>,
-  times = 3,
+  times = 1,
   delay = 500,
   delay_factor = 2
 ): AsyncFunction<T, R> {
