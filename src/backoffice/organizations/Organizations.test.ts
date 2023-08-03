@@ -16,6 +16,10 @@ afterEach(() => {
 });
 
 const MockOrganizationSubscription: OrganizationSubscriptionParams = {
+  assets_limit: 20,
+  dashboards_limit: 20,
+  files_limit: 20,
+  secrets_limit: 20,
   components_limit: 5,
   integrations_limit: 5,
   active_alerts: 10,
