@@ -159,4 +159,4 @@ export {
   ItemProvisionDataName,
 } from './account/Provision.js';
 
-export { Launcher, LauncherParams } from './engine/launcher/Launcher.js';
+export { ComputeNode, ComputeNodeParams } from './engine/computeNode/ComputeNode.js';

@@ -1,6 +1,6 @@
 import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, Launcher, Optional } from '../../types.js';
+import { Headers, ComputeNode, Optional } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 // Components
@@ -181,7 +181,7 @@ export interface Component {
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
   hub_component: Component;
-  launcher?: Launcher;
+  compute_node?: ComputeNode;
 }
 
 export interface ComponentParams {
@@ -202,7 +202,7 @@ export interface ComponentParams {
   deployment_log_level?: LogLevel;
   deployment_restart_policy?: RestartPolicy;
   deployment_capacity: ComponentSize;
-  launcher_id?: string;
+  compute_node_id?: string;
 }
 
 export type DeploymentType = 'SELF_HOSTED' | 'SPLIGHT_HOSTED';
