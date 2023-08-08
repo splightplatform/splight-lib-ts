@@ -1,5 +1,6 @@
 // Components
 
+import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -140,6 +141,8 @@ export const ComponentsClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
+    buildLogs: (pk: string) =>
+      get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
     versions: ComponentVersionsClient(headers),
   };
 };
