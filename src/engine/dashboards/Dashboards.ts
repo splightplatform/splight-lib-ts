@@ -86,11 +86,10 @@ export interface Chart extends ChartParams {
   asset_id: string;
   attribute_id: string;
   timeConfiguration: Configuration;
-  chartItems: ChartItem[];
   externalResource: string;
   external_resource?: string;
   external_resource_type?: string;
-  items: ChartItem[];
+  chart_items: ChartItem[];
   config: Record<string, string>;
   last_updated_by?: string;
   timestamp_gte: string;
