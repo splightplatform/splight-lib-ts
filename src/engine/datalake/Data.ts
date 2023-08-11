@@ -1,31 +1,35 @@
+import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface SearchDataParams {
-  asset: string;
-  attribute: string;
-  output_format: number;
-  group_id: string;
-  group_fields: string;
-  timestamp__gte: string;
-  project_fields: string;
-  source: string;
+  from_timestamp: string;
+  to_timestamp: string | null;
+  traces: Array<{
+    ref_id: string;
+    type: string;
+    expression?: string;
+    pipeline?: string;
+  }>;
 }
 
 export type SearchDataResponse = {
-  asset_id: string;
-  attribute_id: string;
-  path: string;
   timestamp: string;
   [key: string]: string | number;
-};
+  file: string;
+}[];
 
 export const DatalakeDataClient = (headers: Headers) => {
   const basePath = Path('v2/engine/datalake/data/');
-  const baseClient = BaseRestClient<SearchDataParams, SearchDataResponse>(
-    basePath,
-    headers
-  );
+  const baseClient = {
+    ...BaseRestClient<SearchDataParams, SearchDataResponse>(basePath, headers),
+    request: (data: SearchDataParams) =>
+      post<SearchDataParams, SearchDataResponse>(
+        basePath.slash('request').slash('json').url,
+        data,
+        headers
+      ),
+  };
   return baseClient;
 };

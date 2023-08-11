@@ -44,6 +44,8 @@ export interface AdvancedFilter {
 
 export interface ChartItem {
   id: string;
+  ref_id: string;
+  type: string;
   color: string;
   order: number;
   label: string;
