@@ -156,18 +156,3 @@ export {
   ItemProvisionData,
   ItemProvisionDataName,
 } from './account/Provision.js';
-
-export interface MockMode {
-  key: string;
-  label: string;
-}
-
-export { MOCK_MODES } from './constants/MockModes.js';
-
-export interface TourMode {
-  key: string;
-  label: string;
-  mockServerKey?: string;
-}
-
-export { TOUR_MODES } from './constants/TourModes.js';
