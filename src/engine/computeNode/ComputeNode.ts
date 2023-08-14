@@ -1,3 +1,4 @@
+import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -18,5 +19,13 @@ export const ComputeNodeClient = (headers: Headers) => {
     basePath,
     headers
   );
-  return baseClient;
+  return {
+    ...baseClient,
+    generateCommand: async (computeNodeId: string) =>
+      post<null, string>(
+        basePath.slash(computeNodeId).slash('generate_command').url,
+        null,
+        headers
+      )
+  };
 };
