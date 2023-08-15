@@ -59,10 +59,10 @@ export interface ChartItem {
     id: string;
     name?: string;
   } | null;
-  pipeline_group_unit: string;
+  query_group_unit: string;
   query_group_function: string;
   query_sort_field: string;
-  pipeline_sort_direction: number;
+  query_sort_direction: number;
   query_limit: number;
   query_plain: string | null;
   query_params?: string;
