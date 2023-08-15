@@ -4,8 +4,8 @@ import { Path } from '../../Urls.js';
 
 export interface AttributeParams {
   name: string;
-  asset: string;
 }
+
 export interface Attribute extends AttributeParams {
   id?: string;
 }
