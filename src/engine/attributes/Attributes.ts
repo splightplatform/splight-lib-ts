@@ -5,8 +5,9 @@ import { Path } from '../../Urls.js';
 export interface AttributeParams {
   name: string;
 }
+
 export interface Attribute extends AttributeParams {
-  id: string;
+  id?: string;
 }
 
 export const AttributesClient = (headers: Headers) => {
