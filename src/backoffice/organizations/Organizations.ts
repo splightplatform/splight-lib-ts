@@ -26,6 +26,10 @@ export interface OptionsParams {
 }
 
 export interface OrganizationSubscriptionParams {
+  assets_limit?: number;
+  dashboards_limit?: number;
+  files_limit?: number;
+  secrets_limit?: number;
   components_limit?: number;
   integrations_limit?: number;
   active_alerts?: number;

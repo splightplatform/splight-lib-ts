@@ -92,7 +92,6 @@ export {
   PopulatedDataAddress,
   AlertHistory,
 } from './engine/alerts/Alerts.js';
-export { SetPoint as Setpoint } from './engine/SetPoints.js';
 
 export { Component as HubComponent } from './hub/components/Components.js';
 

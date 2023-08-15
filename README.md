@@ -27,6 +27,16 @@ cd ./path/to/splight-lib-ts
 npm run autobundle
 ```
 
+## Release
+
+IMPORTANT MESSAGE: Try to avoid changing directly the package.json version to release. Use the `npm version` command. Example:
+
+```sh
+npm version prerelease
+```
+
+will generate a prerelease version (X.X.X-1)
+
 ## Usage
 
 First, import setup from @splightplatform/splight-lib-ts. Then, you can create a splight object by calling setup.configure(). Optionally, you may pass the authentication headers to be used for making requests to the API. If running in Node, configure will try to read your authentication keys from the SPLIGHT_ACCESS_ID and SPLIGHT_ACCESS_KEY environment variables.
