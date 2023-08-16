@@ -1,9 +1,7 @@
-import { Blob } from 'buffer';
-import { get, post } from '../../rest/BaseMethods.js';
+import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Empty } from '../../types.js';
 
 export interface DashboardParams {
   name: string;
@@ -161,17 +159,8 @@ export const DashboardTabsClient = (headers: Headers) => {
 export const DashboardChartsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/charts/');
   const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
-  const responseType = 'blob';
-  return {
-    ...baseClient,
-    toCsv: (chartId: string) =>
-      get<Blob>(
-        basePath.slash(chartId).slash('to_csv').url,
-        headers,
-        {},
-        responseType
-      ),
-  };
+
+  return baseClient;
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/chartitems/');
@@ -194,23 +183,8 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  const responseType = 'blob';
-  return {
-    ...baseClient,
-    toJson: (dashboardId: string) =>
-      get<Blob>(
-        basePath.slash(dashboardId).slash('to_json').url,
-        headers,
-        {},
-        responseType
-      ),
-    fromJson: ({ dashboardId, file }: { dashboardId: string; file: File }) =>
-      post<{ file: File }, Empty>(
-        basePath.slash(dashboardId).slash('from_json').url,
-        { file },
-        headers
-      ),
-  };
+
+  return baseClient;
 };
 
 export const DashboardGraphsClient = (headers: Headers) => {
