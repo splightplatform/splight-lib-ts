@@ -24,7 +24,8 @@ export const post = async <I, O>(
   url: string,
   data: I,
   headers: Headers,
-  params?: Record<string, string | number | boolean | undefined>
+  params?: Record<string, string | number | boolean | undefined>,
+  responseType?: ResponseType
 ): Promise<O> => {
   const { data: response } = await withRetries(() => {
     return withLogging(
@@ -36,6 +37,7 @@ export const post = async <I, O>(
       data,
       headers,
       params,
+      responseType,
     });
   })();
 
