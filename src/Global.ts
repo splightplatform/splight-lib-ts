@@ -1,4 +1,4 @@
-let API_HOST = 'https://api.splight-ai.com/';
+let API_HOST = '';
 
 export const Global = {
   getAPIHost: () => API_HOST,
