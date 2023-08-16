@@ -1,9 +1,7 @@
-import { Blob } from 'buffer';
-import { get, post } from '../../rest/BaseMethods.js';
+import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Empty } from '../../types.js';
 
 export interface DashboardParams {
   name: string;
