@@ -6,10 +6,14 @@ export type ItemProvisionDataName =
   | 'Datalake'
   | 'Compute'
   | 'Alerts'
-  | 'Components'
+  | 'Component'
   | 'Logs'
   | 'Storage'
-  | 'Integrations';
+  | 'Integrations'
+  | 'Asset'
+  | 'File'
+  | 'Secret'
+  | 'Dashboard';
 
 export type ItemProvisionData = {
   name: ItemProvisionDataName;

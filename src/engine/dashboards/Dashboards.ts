@@ -1,9 +1,7 @@
-import { Blob } from 'buffer';
-import { get, post } from '../../rest/BaseMethods.js';
+import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Empty } from '../../types.js';
 
 export interface DashboardParams {
   name: string;
@@ -43,20 +41,28 @@ export interface AdvancedFilter {
 }
 
 export interface ChartItem {
-  id: string;
+  id?: string;
+  ref_id: string;
+  type: string;
   color: string;
   order: number;
   label: string;
-  source?: string;
-  source_type: string;
-  source_component_id?: string | null;
-  source_component_label: string;
-  output_format: string;
-  target: string;
-  aggregate_criteria: string;
-  aggregate_period: string;
-  filters: Filter[];
-  advanced_filters: AdvancedFilter[];
+  expression: string;
+  expression_plain: string | null;
+  query_filter_asset: {
+    id: string;
+    name?: string;
+  } | null;
+  query_filter_attribute: {
+    id: string;
+    name?: string;
+  } | null;
+  query_group_unit: string;
+  query_group_function: string;
+  query_sort_field: string;
+  query_sort_direction: number;
+  query_limit: number;
+  query_plain: string | null;
   query_params?: string;
   position_x?: number;
   position_y?: number;
@@ -69,6 +75,7 @@ export interface ChartParams {
   tab: string;
   type: string;
   name: string;
+  chart_items: ChartItem[];
   refresh_interval: string | null;
   relative_window_time: string | null;
   position_x: number;
@@ -87,7 +94,6 @@ export interface Chart extends ChartParams {
   externalResource: string;
   external_resource?: string;
   external_resource_type?: string;
-  chart_items: ChartItem[];
   config: Record<string, string>;
   last_updated_by?: string;
   timestamp_gte: string;
@@ -153,17 +159,8 @@ export const DashboardTabsClient = (headers: Headers) => {
 export const DashboardChartsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/charts/');
   const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
-  const responseType = 'blob';
-  return {
-    ...baseClient,
-    toCsv: (chartId: string) =>
-      get<Blob>(
-        basePath.slash(chartId).slash('to_csv').url,
-        headers,
-        {},
-        responseType
-      ),
-  };
+
+  return baseClient;
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/chartitems/');
@@ -179,19 +176,6 @@ export const DashboardChartItemsClient = (headers: Headers) => {
       ),
   };
 };
-export const DashboardChartFilters = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/filters/');
-  const baseClient = BaseRestClient<Filter, Filter>(basePath, headers);
-  return baseClient;
-};
-export const DashboardChartAdvancedFilters = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/advancedfilters/');
-  const baseClient = BaseRestClient<AdvancedFilter, AdvancedFilter>(
-    basePath,
-    headers
-  );
-  return baseClient;
-};
 
 export const DashboardsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/dashboards/');
@@ -199,23 +183,8 @@ export const DashboardsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  const responseType = 'blob';
-  return {
-    ...baseClient,
-    toJson: (dashboardId: string) =>
-      get<Blob>(
-        basePath.slash(dashboardId).slash('to_json').url,
-        headers,
-        {},
-        responseType
-      ),
-    fromJson: ({ dashboardId, file }: { dashboardId: string; file: File }) =>
-      post<{ file: File }, Empty>(
-        basePath.slash(dashboardId).slash('from_json').url,
-        { file },
-        headers
-      ),
-  };
+
+  return baseClient;
 };
 
 export const DashboardGraphsClient = (headers: Headers) => {

@@ -138,7 +138,10 @@ export interface ApiFormField {
   choices?: [{ value: string; display_name: string }];
 }
 
-export { SearchDataResponse } from './engine/datalake/Data.js';
+export {
+  SearchDataResponse,
+  SearchDataParams,
+} from './engine/datalake/Data.js';
 
 export { UserLogs, UserLogsDetails } from './account/Users.js';
 

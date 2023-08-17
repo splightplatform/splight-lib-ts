@@ -19,10 +19,8 @@ export {
   DashboardChartItemsClient,
   DashboardGraphEdgesClient,
   DashboardGraphNodesClient,
-  DashboardChartFilters,
   DashboardGraphsEdgesBulkClient,
   DashboardGraphsNodesBulkClient,
-  DashboardChartAdvancedFilters,
 } from './dashboards/Dashboards.js';
 export { SecretsClient } from './secrets/Secrets.js';
 export { DatalakeDataClient } from './datalake/Data.js';
