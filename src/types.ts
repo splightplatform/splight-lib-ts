@@ -110,10 +110,7 @@ export {
   OrganizationDatalake,
   OrganizationAlerts,
 } from './backoffice/organizations/Organizations.js';
-export {
-  Contract,
-  ContractParams,
-} from './backoffice/contracts/Contracts.js';
+export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
 
 export {
   Contract as AccountContract,
