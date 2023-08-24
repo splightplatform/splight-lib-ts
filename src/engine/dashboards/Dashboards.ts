@@ -46,6 +46,7 @@ export interface ChartItem {
   type: string;
   color: string;
   order: number;
+  hidden: boolean;
   label: string;
   expression: string;
   expression_plain: string | null;
