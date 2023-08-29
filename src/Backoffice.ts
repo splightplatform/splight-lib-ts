@@ -1,12 +1,12 @@
 import {
   OrganizationsClient,
-  AgreementsClient,
+  ContractsClient,
   AssetsClient,
 } from './backoffice/index.js';
 import { Headers } from './types.js';
 
 export const Backoffice = (headers: Headers) => ({
   organizations: OrganizationsClient(headers),
-  agreements: AgreementsClient(headers),
+  contracts: ContractsClient(headers),
   assets: AssetsClient(headers),
 });

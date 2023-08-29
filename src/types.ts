@@ -110,15 +110,12 @@ export {
   OrganizationDatalake,
   OrganizationAlerts,
 } from './backoffice/organizations/Organizations.js';
-export {
-  Agreement,
-  AgreementParams,
-} from './backoffice/agreements/Agreements.js';
+export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
 
 export {
-  Agreement as AccountAgreement,
-  AgreementParams as AccountAgreementParams,
-} from './account/Agreements.js';
+  Contract as AccountContract,
+  ContractParams as AccountContractParams,
+} from './account/Contracts.js';
 
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
