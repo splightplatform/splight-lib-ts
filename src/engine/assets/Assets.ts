@@ -3,7 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute } from '../attributes/Attributes.js';
+import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
 
 export interface AssetParams {
   name: string;
@@ -87,6 +87,15 @@ export const AssetsClient = (headers: Headers) => {
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<PaginatedCollection<Attribute>>(
         basePath.slash(pk).slash('attributes').url,
+        headers,
+        params
+      ),
+    relationships: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<Array<AttributeRelationships>>(
+        basePath.slash(pk).slash('relationship').url,
         headers,
         params
       ),
