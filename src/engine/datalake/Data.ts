@@ -10,8 +10,8 @@ export interface SearchDataParams {
   traces: Array<{
     ref_id: string;
     type: string;
-    expression?: string;
-    pipeline?: string;
+    expression: string | null;
+    pipeline: string | null;
   }>;
 }
 

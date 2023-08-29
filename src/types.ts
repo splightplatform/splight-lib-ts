@@ -49,7 +49,12 @@ export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
 
 export { Organization } from './account/Me.js';
 
-export { Asset, AssetParams } from './engine/assets/Assets.js';
+export {
+  Asset,
+  AssetParams,
+  GetAttributeParams,
+  GetAttribute,
+} from './engine/assets/Assets.js';
 export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
 export {
