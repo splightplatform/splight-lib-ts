@@ -25,14 +25,12 @@ export type Asset = AssetParams & {
 };
 
 export interface SetpointParams {
-  type: string;
   value: string;
   attribute: string;
 }
 
 export interface Setpoint {
   id: string;
-  type: string;
   value: string;
   asset: Asset;
   attribute: Attribute;
