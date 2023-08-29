@@ -47,6 +47,15 @@ export interface SetpointResponse {
   created_at: string;
 }
 
+export interface GetAttributeParams {
+  attribute: string;
+}
+export interface GetAttribute extends GetAttributeParams {
+  value: string;
+  timestamp: string;
+  created_at: string;
+}
+
 export const AssetsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/assets/');
   const baseClient = BaseRestClient<
@@ -63,7 +72,7 @@ export const AssetsClient = (headers: Headers) => {
         headers
       ),
     getAttribute: async (assetId: string, attributeId: string) =>
-      post<{ attribute: string }, { attribute: string; value: string }>(
+      post<GetAttributeParams, GetAttribute>(
         basePath.slash(assetId).slash('get-attribute').url,
         { attribute: attributeId },
         headers
