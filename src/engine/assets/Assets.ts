@@ -48,7 +48,8 @@ export interface SetpointResponse {
 export interface GetAttributeParams {
   attribute: string;
 }
-export interface GetAttribute extends GetAttributeParams {
+export interface GetAttribute {
+  attribute: Attribute;
   value: string;
   timestamp: string;
   created_at: string;
