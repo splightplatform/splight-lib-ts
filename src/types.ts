@@ -49,8 +49,17 @@ export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
 
 export { Organization } from './account/Me.js';
 
-export { Asset, AssetParams } from './engine/assets/Assets.js';
-export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
+export {
+  Asset,
+  AssetParams,
+  GetAttributeParams,
+  GetAttribute,
+} from './engine/assets/Assets.js';
+export {
+  Attribute,
+  AttributeParams,
+  AttributeRelationships,
+} from './engine/attributes/Attributes.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
 export {
   LogLevel,
@@ -84,13 +93,8 @@ export {
 export {
   Alert,
   AlertParams,
-  Condition,
-  Variable,
-  PopulatedVariable,
-  MathItem,
-  DataAddress,
-  PopulatedDataAddress,
   AlertHistory,
+  AlertItem,
 } from './engine/alerts/Alerts.js';
 
 export { Component as HubComponent } from './hub/components/Components.js';

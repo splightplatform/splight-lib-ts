@@ -1,4 +1,3 @@
-import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -20,24 +19,6 @@ export interface Configuration {
   end?: string;
   refreshInterval?: string;
   relativeStartTime?: string;
-}
-
-export interface Filter {
-  id?: string;
-  chart_item?: string;
-  operator: string;
-  key: string;
-  value: string | number | boolean;
-  label: string;
-}
-
-export interface AdvancedFilter {
-  id?: string;
-  chart_item?: string;
-  field: string;
-  key: string;
-  value: string;
-  operator: string;
 }
 
 export interface ChartItem {
@@ -165,16 +146,9 @@ export const DashboardChartsClient = (headers: Headers) => {
 };
 export const DashboardChartItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/chartitems/');
-  const updateChartItemsPath = basePath.slash('update_chart_items');
   const baseClient = BaseRestClient<ChartItem, ChartItem>(basePath, headers);
   return {
     ...baseClient,
-    bulkUpdate: (chartItems: ChartItem[]) =>
-      post<{ chart_items: ChartItem[] }, ChartItem[]>(
-        updateChartItemsPath.url,
-        { chart_items: chartItems },
-        headers
-      ),
   };
 };
 

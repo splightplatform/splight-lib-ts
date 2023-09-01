@@ -5,13 +5,13 @@ import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface SearchDataParams {
-  from_timestamp: string;
+  from_timestamp: string | null;
   to_timestamp: string | null;
   traces: Array<{
     ref_id: string;
     type: string;
-    expression?: string;
-    pipeline?: string;
+    expression: string | null;
+    pipeline: string | null;
   }>;
 }
 

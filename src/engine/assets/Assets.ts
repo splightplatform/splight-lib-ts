@@ -3,7 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute } from '../attributes/Attributes.js';
+import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
 
 export interface AssetParams {
   name: string;
@@ -25,14 +25,12 @@ export type Asset = AssetParams & {
 };
 
 export interface SetpointParams {
-  type: string;
   value: string;
   attribute: string;
 }
 
 export interface Setpoint {
   id: string;
-  type: string;
   value: string;
   asset: Asset;
   attribute: Attribute;
@@ -44,6 +42,15 @@ export interface SetpointResponse {
   setpoint: string;
   component: string;
   status: string;
+  created_at: string;
+}
+
+export interface GetAttributeParams {
+  attribute: string;
+}
+export interface GetAttribute extends GetAttributeParams {
+  value: string;
+  timestamp: string;
   created_at: string;
 }
 
@@ -63,7 +70,7 @@ export const AssetsClient = (headers: Headers) => {
         headers
       ),
     getAttribute: async (assetId: string, attributeId: string) =>
-      post<{ attribute: string }, { attribute: string; value: string }>(
+      post<GetAttributeParams, GetAttribute>(
         basePath.slash(assetId).slash('get-attribute').url,
         { attribute: attributeId },
         headers
@@ -80,6 +87,15 @@ export const AssetsClient = (headers: Headers) => {
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<PaginatedCollection<Attribute>>(
         basePath.slash(pk).slash('attributes').url,
+        headers,
+        params
+      ),
+    relationships: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<Array<AttributeRelationships>>(
+        basePath.slash(pk).slash('relationship').url,
         headers,
         params
       ),
