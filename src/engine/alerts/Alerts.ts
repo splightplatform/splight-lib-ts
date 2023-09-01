@@ -1,67 +1,46 @@
 import { options, get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Asset, Attribute, Empty, Headers } from '../../types.js';
+import { ApiFormField, Empty, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface DataAddress {
-  type: 'DataAddress';
-  name: string;
-  value: {
-    asset: string;
-    attribute: string;
-  };
-}
-
-export type PopulatedDataAddress = DataAddress & {
-  value: {
-    asset: Asset;
-    attribute: Attribute;
-  };
-};
-
-export interface MathItem {
-  type: 'MathItem';
-  name: string;
-  value: string;
-}
-
-export type Variable = DataAddress | MathItem;
-export type PopulatedVariable = PopulatedDataAddress | MathItem;
-
-export interface Condition {
-  id: string;
-  name: string;
+export type AlertItem = {
+  id?: string;
+  ref_id: string;
   type: string;
-  variables: Variable[];
-  left_operand: string;
-  operator: string;
-  right_operand: string;
-  populated_variables?: PopulatedVariable[];
-}
+  expression: string;
+  expression_plain: string | null;
+  query_filter_asset: {
+    id: string;
+    name?: string;
+  } | null;
+  query_filter_attribute: {
+    id: string;
+    name?: string;
+  } | null;
+  query_group_unit: string;
+  query_group_function: string;
+  query_sort_field: string;
+  query_sort_direction: number;
+  query_limit: number;
+  query_plain: string | null;
+};
 
 export interface AlertParams {
   name: string;
   description?: string;
-  message?: string;
-  period?: number;
-  max_backward_seconds?: number;
-  status?: string;
-  active?: boolean;
-  conditions?: Condition[];
-  severity?: string;
+  severity: string; // TODO choices
+  stmt_frequency: number; // TODO choices
+  stmt_time_window: number;
+  stmt_target_variable: string;
+  stmt_operator: string; // TODO choices
+  stmt_threshold: number;
+  alert_items: AlertItem[];
 }
 
 export type Alert = AlertParams & {
   id: string;
   description: string;
-  message: string;
-  period: number;
-  max_backward_seconds: number;
   status: string;
-  active: boolean;
-  conditions: Condition[];
-  severity: string;
-  last_time_checked: string;
 };
 
 export type AlertHistory = {
@@ -87,5 +66,13 @@ export const AlertsClient = (headers: Headers) => {
       ),
     test: async (pk: string) =>
       post<Empty, Empty>(basePath.slash(pk).slash('test').url, {}, headers),
+  };
+};
+
+export const AlertItemsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/alert/alertitems/');
+  const baseClient = BaseRestClient<AlertItem, AlertItem>(basePath, headers);
+  return {
+    ...baseClient,
   };
 };
