@@ -3,7 +3,7 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { ApiFormField, Empty, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface AlertItem {
+export type AlertItem = {
   id?: string;
   ref_id: string;
   type: string;
@@ -23,12 +23,12 @@ export interface AlertItem {
   query_sort_direction: number;
   query_limit: number;
   query_plain: string | null;
-}
+};
 
 export interface AlertParams {
   name: string;
   description?: string;
-  severity?: string; // TODO choices
+  severity: string; // TODO choices
   stmt_frequency: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
@@ -39,6 +39,7 @@ export interface AlertParams {
 
 export type Alert = AlertParams & {
   id: string;
+  description: string;
   status: string;
 };
 

@@ -90,7 +90,12 @@ export {
   TabParams,
 } from './engine/dashboards/Dashboards.js';
 
-export { Alert, AlertParams, AlertHistory } from './engine/alerts/Alerts.js';
+export {
+  Alert,
+  AlertParams,
+  AlertHistory,
+  AlertItem,
+} from './engine/alerts/Alerts.js';
 
 export { Component as HubComponent } from './hub/components/Components.js';
 
