@@ -5,11 +5,9 @@ import { Account } from './Account.js';
 import { Hub } from './Hub.js';
 import { Backoffice } from './Backoffice.js';
 import { Landing } from './Landing.js';
-import { Global } from './Global.js';
 
-export const Splight = (requestHeaders?: Headers, apiHost?: string) => {
+export const Splight = (requestHeaders?: Headers) => {
   const headers = requestHeaders ?? getHeaders();
-  Global.setAPIHost(apiHost);
 
   return {
     engine: Engine(headers),

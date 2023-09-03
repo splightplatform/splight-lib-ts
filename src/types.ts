@@ -159,3 +159,5 @@ export {
   ItemProvisionData,
   ItemProvisionDataName,
 } from './account/Provision.js';
+
+export { ACTIVE_MODE_KEY } from './constants/activeMode.js';
