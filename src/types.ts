@@ -93,7 +93,7 @@ export {
 export {
   Alert,
   AlertParams,
-  AlertHistory,
+  AlertEvent,
   AlertItem,
 } from './engine/alerts/Alerts.js';
 

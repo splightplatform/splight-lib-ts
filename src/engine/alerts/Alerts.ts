@@ -43,10 +43,11 @@ export type Alert = AlertParams & {
   status: string;
 };
 
-export type AlertHistory = {
+export type AlertEvent = {
   id: string;
   timestamp: string;
-  status: string;
+  old_status: string;
+  new_status: string;
 };
 
 export const AlertsClient = (headers: Headers) => {
@@ -59,10 +60,14 @@ export const AlertsClient = (headers: Headers) => {
         basePath.url,
         headers
       ),
-    history: async (pk: string) =>
-      await get<{ results: AlertHistory[]; next: string | null }>(
-        basePath.slash(pk).slash('history').url,
-        headers
+    events: async (
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
+    ) =>
+      await get<{ results: AlertEvent[]; next: string | null }>(
+        basePath.slash(pk).slash('events').url,
+        headers,
+        ...[params]
       ),
     test: async (pk: string) =>
       post<Empty, Empty>(basePath.slash(pk).slash('test').url, {}, headers),
@@ -71,8 +76,16 @@ export const AlertsClient = (headers: Headers) => {
 
 export const AlertItemsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alertitems/');
-  const baseClient = BaseRestClient<AlertItem, AlertItem>(basePath, headers);
+  const { list } = BaseRestClient<AlertItem, AlertItem>(basePath, headers);
   return {
-    ...baseClient,
+    list,
+  };
+};
+
+export const AlertEventsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/alert/events/');
+  const { list } = BaseRestClient<AlertItem, AlertItem>(basePath, headers);
+  return {
+    list,
   };
 };
