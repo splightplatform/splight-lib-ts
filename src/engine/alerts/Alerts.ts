@@ -50,6 +50,11 @@ export type AlertEvent = {
   new_status: string;
 };
 
+export type AlertEvaluation = {
+  timestamp: string;
+  status: string;
+};
+
 export const AlertsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alerts/');
   const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
@@ -69,23 +74,12 @@ export const AlertsClient = (headers: Headers) => {
         headers,
         ...[params]
       ),
+    evaluations: async (pk: string) =>
+      await get<AlertEvaluation[]>(
+        basePath.slash(pk).slash('evaluations').url,
+        headers
+      ),
     evaluate: async (pk: string) =>
       post<Empty, Empty>(basePath.slash(pk).slash('evaluate').url, {}, headers),
-  };
-};
-
-export const AlertItemsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/alert/alertitems/');
-  const { list } = BaseRestClient<AlertItem, AlertItem>(basePath, headers);
-  return {
-    list,
-  };
-};
-
-export const AlertEventsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/alert/events/');
-  const { list } = BaseRestClient<AlertItem, AlertItem>(basePath, headers);
-  return {
-    list,
   };
 };

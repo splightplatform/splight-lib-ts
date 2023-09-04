@@ -28,7 +28,6 @@ import {
 export const Engine = (headers: Headers) => {
   return {
     alerts: AlertsClient(headers),
-    alertItems: AlertItemsClient(headers),
     assets: AssetsClient(headers),
     attributes: AttributesClient(headers),
     components: ComponentsClient(headers),
