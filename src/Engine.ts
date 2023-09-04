@@ -1,7 +1,6 @@
 import { Headers } from './types.js';
 import {
   AlertsClient,
-  AlertItemsClient,
   AssetsClient,
   AttributesClient,
   CommunicationClient,
