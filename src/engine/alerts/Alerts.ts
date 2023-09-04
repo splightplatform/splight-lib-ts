@@ -52,7 +52,7 @@ export type AlertEvent = {
 
 export type AlertEvaluation = {
   timestamp: string;
-  time_window: string;
+  time_window: number;
   value: string;
 };
 
