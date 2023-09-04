@@ -69,8 +69,8 @@ export const AlertsClient = (headers: Headers) => {
         headers,
         ...[params]
       ),
-    test: async (pk: string) =>
-      post<Empty, Empty>(basePath.slash(pk).slash('test').url, {}, headers),
+    evaluate: async (pk: string) =>
+      post<Empty, Empty>(basePath.slash(pk).slash('evaluate').url, {}, headers),
   };
 };
 
