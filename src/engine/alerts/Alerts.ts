@@ -52,7 +52,8 @@ export type AlertEvent = {
 
 export type AlertEvaluation = {
   timestamp: string;
-  status: string;
+  time_window: string;
+  value: string;
 };
 
 export const AlertsClient = (headers: Headers) => {
