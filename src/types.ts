@@ -160,4 +160,4 @@ export {
   ItemProvisionDataName,
 } from './account/Provision.js';
 
-export { ACTIVE_MODE_KEY } from './constants/activeMode.js';
+export { MOCK_MODE_KEY } from './constants/mockMode.js';
