@@ -6,6 +6,7 @@ import { Path } from '../../Urls.js';
 export interface AttributeParams {
   name: string;
   asset?: string;
+  type?: string;
 }
 
 export interface Attribute extends AttributeParams {

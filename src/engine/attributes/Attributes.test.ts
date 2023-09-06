@@ -13,10 +13,12 @@ afterEach(() => {
 const MockAttribute: Attribute = {
   id: '123',
   name: 'test',
+  type: 'Number',
 };
 
 const MockAttributeParams: AttributeParams = {
   name: 'test',
+  type: 'Number',
 };
 
 test('List attributes', async () => {
