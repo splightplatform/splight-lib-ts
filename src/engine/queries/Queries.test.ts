@@ -1,8 +1,8 @@
 import { expect, test } from '@jest/globals';
-import { API_HOST } from '../../Urls.js';
 import { MockedAxios } from '../../test/MockedAxios.js';
 import { TestKeys, splight } from '../../test/setup.js';
 import { AnonymousQuery, Query, QueryParams } from './Queries.js';
+import { API_HOST } from '../../Global.js';
 
 const mockedAxios = MockedAxios();
 
