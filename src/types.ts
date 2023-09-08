@@ -161,3 +161,5 @@ export {
   ItemProvisionData,
   ItemProvisionDataName,
 } from './account/Provision.js';
+
+export { MOCK_MODE_KEY } from './constants/mockMode.js';
