@@ -11,6 +11,11 @@ export interface ComputeNode extends ComputeNodeParams {
   id: string;
   status: string;
   last_ping: string;
+  last_ip: string;
+}
+
+export interface ComputeNodeToken {
+  token: string;
 }
 
 export const ComputeNodeClient = (headers: Headers) => {
@@ -21,9 +26,9 @@ export const ComputeNodeClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    generateCommand: async (computeNodeId: string) =>
-      post<null, string>(
-        basePath.slash(computeNodeId).slash('generate_command').url,
+    generateToken: async (computeNodeId: string) =>
+      post<null, ComputeNodeToken>(
+        basePath.slash(computeNodeId).slash('generate_token').url,
         null,
         headers
       )
