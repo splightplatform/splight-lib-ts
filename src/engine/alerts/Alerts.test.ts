@@ -1,8 +1,8 @@
 import { MockedAxios } from '../../test/MockedAxios.js';
-import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
 import { Alert, AlertParams } from './Alerts.js';
+import { API_HOST } from '../../Global.js';
 
 const mockedAxios = MockedAxios();
 
@@ -12,20 +12,29 @@ afterEach(() => {
 
 const MockAlert: Alert = {
   id: '123',
+  status: 'no_alert',
   name: 'test',
   description: 'test',
-  message: 'test',
-  period: 10,
-  status: 'test',
-  active: true,
-  conditions: [],
-  severity: 'test',
+  severity: 'info',
+  stmt_frequency: 10,
+  stmt_time_window: 300,
+  stmt_target_variable: 'A',
+  stmt_operator: 'ge',
+  stmt_threshold: 10,
+  alert_items: [],
 };
 
 const MockAlertParams: AlertParams = {
   name: 'test',
   description: 'test',
-};
+  severity: 'critical',
+  alert_items: [],
+  stmt_frequency: 10,
+  stmt_time_window: 200,
+  stmt_target_variable: 'A',
+  stmt_operator: 'ge',
+  stmt_threshold: 10,
+} as AlertParams;
 
 test('List alerts', async () => {
   mockedAxios.mockResolvedValueOnce({

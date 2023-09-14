@@ -1,5 +1,4 @@
 import { MockedAxios } from '../../test/MockedAxios.js';
-import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
 import {
@@ -8,6 +7,7 @@ import {
   OrganizationDatalakeParams,
 } from './Organizations.js';
 import { OrganizationSubscriptionParams } from './Organizations.js';
+import { API_HOST } from '../../Global.js';
 
 const mockedAxios = MockedAxios();
 
@@ -16,6 +16,10 @@ afterEach(() => {
 });
 
 const MockOrganizationSubscription: OrganizationSubscriptionParams = {
+  assets_limit: 20,
+  dashboards_limit: 20,
+  files_limit: 20,
+  secrets_limit: 20,
   components_limit: 5,
   integrations_limit: 5,
   active_alerts: 10,

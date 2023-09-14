@@ -1,3 +1,3 @@
 export { OrganizationsClient } from './organizations/Organizations.js';
-export { AgreementsClient } from './agreements/Agreements.js';
+export { ContractsClient } from './contracts/Contracts.js';
 export { AssetsClient } from './Assets.js';

@@ -1,8 +1,8 @@
 import { MockedAxios } from '../../test/MockedAxios.js';
-import { API_HOST } from '../../Urls.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import { Agreement, AgreementParams } from './Agreements.js';
+import { Contract, ContractParams } from './Contracts.js';
+import { API_HOST } from '../../Global.js';
 
 const mockedAxios = MockedAxios();
 
@@ -10,7 +10,7 @@ afterEach(() => {
   mockedAxios.mockReset();
 });
 
-const MockAgreement: Agreement = {
+const MockContract: Contract = {
   id: '123',
   name: 'test',
   description: 'test',
@@ -20,35 +20,35 @@ const MockAgreement: Agreement = {
   updated_at: '2022-01-02T00:00:00Z',
 };
 
-const MockAgreementParams: AgreementParams = {
+const MockContractParams: ContractParams = {
   name: 'test',
   description: 'test',
   type: 'ECOSYSTEM',
   file: 'file',
 };
 
-test('List agreements', async () => {
+test('List contracts', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.agreements.list();
+  await splight.backoffice.contracts.list();
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/agreements/`,
+    `${API_HOST}v2/backoffice/contracts/`,
     {
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('List agreements with params', async () => {
+test('List contracts with params', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.agreements.list({ page_size: 10 });
+  await splight.backoffice.contracts.list({ page_size: 10 });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/agreements/`,
+    `${API_HOST}v2/backoffice/contracts/`,
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
@@ -56,63 +56,63 @@ test('List agreements with params', async () => {
   );
 });
 
-test('Retrieve agreement', async () => {
+test('Retrieve contract', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAgreement,
+    data: MockContract,
     status: 200,
   });
-  await splight.backoffice.agreements.retrieve('123');
+  await splight.backoffice.contracts.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/agreements/123/`,
+    `${API_HOST}v2/backoffice/contracts/123/`,
     {
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Create agreement', async () => {
+test('Create contract', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAgreement,
+    data: MockContract,
     status: 201,
   });
-  await splight.backoffice.agreements.create(MockAgreementParams);
+  await splight.backoffice.contracts.create(MockContractParams);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/agreements/`,
+    `${API_HOST}v2/backoffice/contracts/`,
     {
-      data: MockAgreementParams,
+      data: MockContractParams,
       method: 'post',
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Update agreement', async () => {
+test('Update contract', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...MockAgreement, name: 'updated' },
+    data: { ...MockContract, name: 'updated' },
     status: 200,
   });
-  await splight.backoffice.agreements.update('123', {
-    ...MockAgreementParams,
+  await splight.backoffice.contracts.update('123', {
+    ...MockContractParams,
     name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/agreements/123/`,
+    `${API_HOST}v2/backoffice/contracts/123/`,
     {
-      data: { ...MockAgreementParams, name: 'updated' },
+      data: { ...MockContractParams, name: 'updated' },
       method: 'patch',
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Delete agreement', async () => {
-  const mockAgreementId = '123';
+test('Delete contract', async () => {
+  const mockContractId = '123';
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.backoffice.agreements.destroy(mockAgreementId);
+  await splight.backoffice.contracts.destroy(mockContractId);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/agreements/${mockAgreementId}/`,
+    `${API_HOST}v2/backoffice/contracts/${mockContractId}/`,
     {
       method: 'delete',
       headers: { Authorization: TestKeys },
