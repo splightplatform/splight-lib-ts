@@ -23,6 +23,7 @@ import {
   FilesClient,
   QueriesClient,
   SecretsClient,
+  FunctionsClient,
 } from './engine/index.js';
 
 export const Engine = (headers: Headers) => {
@@ -31,6 +32,7 @@ export const Engine = (headers: Headers) => {
     alertItems: AlertItemsClient(headers),
     assets: AssetsClient(headers),
     attributes: AttributesClient(headers),
+    functions: FunctionsClient(headers),
     components: ComponentsClient(headers),
     files: FilesClient(headers),
     queries: QueriesClient(headers),
