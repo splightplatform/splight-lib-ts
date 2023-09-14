@@ -3,7 +3,7 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 
 export interface FunctionItem {
-  id: string;
+  id?: string;
   query_filter_asset: {
     id: string;
     name: string;
