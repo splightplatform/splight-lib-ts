@@ -47,7 +47,7 @@ export interface OutputSource extends AbstractComplexConfiguration {
 export type Empty = Record<string, never>;
 export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
 
-export { Organization } from './account/Me.js';
+export { Organization } from './account/User.js';
 
 export {
   Asset,
@@ -81,6 +81,7 @@ export {
   ObjectParameter,
   DeploymentType,
   ComponentLogEntry,
+  TypedComponentParameter,
 } from './engine/components/Components.js';
 export { _File as File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
@@ -93,7 +94,8 @@ export {
 export {
   Alert,
   AlertParams,
-  AlertHistory,
+  AlertEvent,
+  AlertEvaluation,
   AlertItem,
 } from './engine/alerts/Alerts.js';
 
@@ -164,3 +166,5 @@ export {
   ItemProvisionData,
   ItemProvisionDataName,
 } from './account/Provision.js';
+
+export { MOCK_MODE_KEY } from './constants/mockMode.js';

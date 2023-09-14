@@ -29,13 +29,20 @@ npm run autobundle
 
 ## Release
 
-IMPORTANT MESSAGE: Try to avoid changing directly the package.json version to release. Use the `npm version` command. Example:
+IMPORTANT MESSAGE: Try to avoid changing directly the package.json version to release. Use the `npm version` command as follows
 
 ```sh
 npm version prerelease
 ```
 
-will generate a prerelease version (X.X.X-1)
+This will generate a prerelease version (X.X.X-1) and when you push the package.json changes will be reflected automatically. In case you found an error try with a directory without changes in progress.
+
+```sh
+git reset
+git stash
+npm version prerelease
+git stash apply
+```
 
 ## Usage
 

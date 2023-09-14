@@ -57,11 +57,7 @@ export interface GetAttribute {
 
 export const AssetsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/assets/');
-  const baseClient = BaseRestClient<
-    AssetParams,
-    Asset,
-    Partial<{ unpaginated: boolean; page_size: number; page: number }>
-  >(basePath, headers);
+  const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
     setAttribute: async (assetId: string, setpoint: SetpointParams) =>
