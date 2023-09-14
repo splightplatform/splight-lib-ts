@@ -130,6 +130,11 @@ export { Contact } from './landing/Contact.js';
 export { Newsletter } from './landing/Newsletter.js';
 
 export { CapacityOptions } from './engine/Deployments.js';
+export {
+  FunctionsParams,
+  FunctionItem,
+  Functions,
+} from './engine/functions/Functions.js';
 
 export interface ApiFormField {
   type: string;
