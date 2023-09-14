@@ -1,5 +1,6 @@
 export { AlertsClient } from './alerts/Alerts.js';
 export { AssetsClient } from './assets/Assets.js';
+export { FunctionsClient } from './functions/Functions.js';
 export { AttributesClient } from './attributes/Attributes.js';
 export {
   ComponentsClient,
