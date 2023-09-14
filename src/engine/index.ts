@@ -19,13 +19,10 @@ export {
   DashboardChartItemsClient,
   DashboardGraphEdgesClient,
   DashboardGraphNodesClient,
-  DashboardChartFilters,
   DashboardGraphsEdgesBulkClient,
   DashboardGraphsNodesBulkClient,
-  DashboardChartAdvancedFilters,
 } from './dashboards/Dashboards.js';
 export { SecretsClient } from './secrets/Secrets.js';
 export { DatalakeDataClient } from './datalake/Data.js';
-export { SetPointsClient } from './SetPoints.js';
 export { DeploymentsClient } from './Deployments.js';
 export { ComputeNodeClient } from './computeNode/ComputeNode.js';

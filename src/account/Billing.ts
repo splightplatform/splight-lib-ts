@@ -26,6 +26,10 @@ export interface Subscription {
   active: boolean;
   start_date: string;
   end_date: string;
+  assets_limit: number;
+  dashboards_limit: number;
+  files_limit: number;
+  secrets_limit: number;
   components_limit: number;
   integrations_limit: number;
   active_alerts: number;

@@ -1,5 +1,5 @@
 import { get, patch } from '../rest/BaseMethods.js';
-import { Headers } from '../types.js';
+import { Headers, OrganizationProfile } from '../types.js';
 import { Path } from '../Urls.js';
 
 export interface Organization {
@@ -29,24 +29,24 @@ export interface UserPermissions {
 
 export type OrganizationParams = Omit<Organization, 'id'>;
 
-export const MeClient = (headers: Headers) => {
-  const basePath = Path('v2/account/user/me/');
+export const UserClient = (headers: Headers) => {
+  const basePath = Path('v2/account/user/');
   return {
-    profile: () => get<UserProfile>(basePath.url, headers),
-    editProfile: (data: UserProfile) =>
-      patch<Partial<UserProfile>, UserProfile>(
-        basePath.slash('edit').url,
-        data,
-        headers
-      ),
+    profile: () => ({
+      get: () => get<UserProfile>(basePath.slash('profile').url, headers),
+      update: (data: UserProfile) =>
+        patch<UserProfile, UserProfile>(
+          basePath.slash('profile').slash('edit').url,
+          data,
+          headers
+        ),
+    }),
     permissions: () =>
       get<UserPermissions>(basePath.slash('permissions').url, headers),
     organizationProfile: () =>
-      get<Organization[]>(
-        Path('v2/account/user/organization-profile/').url,
+      get<OrganizationProfile>(
+        basePath.slash('organization-profile').url,
         headers
       ),
-    organizations: () =>
-      get<Organization[]>(Path('v2/account/user/organizations/').url, headers),
   };
 };

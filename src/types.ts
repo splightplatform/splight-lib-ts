@@ -47,10 +47,19 @@ export interface OutputSource extends AbstractComplexConfiguration {
 export type Empty = Record<string, never>;
 export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
 
-export { Organization } from './account/Me.js';
+export { Organization } from './account/User.js';
 
-export { Asset, AssetParams } from './engine/assets/Assets.js';
-export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
+export {
+  Asset,
+  AssetParams,
+  GetAttributeParams,
+  GetAttribute,
+} from './engine/assets/Assets.js';
+export {
+  Attribute,
+  AttributeParams,
+  AttributeRelationships,
+} from './engine/attributes/Attributes.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
 export {
   LogLevel,
@@ -72,6 +81,7 @@ export {
   ObjectParameter,
   DeploymentType,
   ComponentLogEntry,
+  TypedComponentParameter,
 } from './engine/components/Components.js';
 export { _File as File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
@@ -84,15 +94,10 @@ export {
 export {
   Alert,
   AlertParams,
-  Condition,
-  Variable,
-  PopulatedVariable,
-  MathItem,
-  DataAddress,
-  PopulatedDataAddress,
-  AlertHistory,
+  AlertEvent,
+  AlertEvaluation,
+  AlertItem,
 } from './engine/alerts/Alerts.js';
-export { SetPoint as Setpoint } from './engine/SetPoints.js';
 
 export { Component as HubComponent } from './hub/components/Components.js';
 
@@ -111,15 +116,12 @@ export {
   OrganizationDatalake,
   OrganizationAlerts,
 } from './backoffice/organizations/Organizations.js';
-export {
-  Agreement,
-  AgreementParams,
-} from './backoffice/agreements/Agreements.js';
+export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
 
 export {
-  Agreement as AccountAgreement,
-  AgreementParams as AccountAgreementParams,
-} from './account/Agreements.js';
+  Contract as AccountContract,
+  ContractParams as AccountContractParams,
+} from './account/Contracts.js';
 
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
@@ -139,7 +141,10 @@ export interface ApiFormField {
   choices?: [{ value: string; display_name: string }];
 }
 
-export { SearchDataResponse } from './engine/datalake/Data.js';
+export {
+  SearchDataResponse,
+  SearchDataParams,
+} from './engine/datalake/Data.js';
 
 export { UserLogs, UserLogsDetails } from './account/Users.js';
 
@@ -147,8 +152,6 @@ export {
   EmailIntegration,
   EmailIntegrationParams,
   Integration,
-  SlackIntegration,
-  SlackIntegrationParams,
   TelegramIntegration,
   TelegramIntegrationParams,
 } from './account/Integrations.js';
@@ -162,3 +165,4 @@ export {
 export { ComputeNode, ComputeNodeParams } from './engine/computeNode/ComputeNode.js';
 
 export { AgentRelease } from './agent/release/Release.js';
+export { MOCK_MODE_KEY } from './constants/mockMode.js';

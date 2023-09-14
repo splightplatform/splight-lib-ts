@@ -100,6 +100,10 @@ export interface ComponentParameter {
   depends_on?: string;
 }
 
+export interface TypedComponentParameter extends ComponentParameter {
+  value_type?: string;
+}
+
 export interface Value {
   asset: string;
   attribute: string;

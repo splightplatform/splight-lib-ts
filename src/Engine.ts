@@ -8,8 +8,6 @@ import {
   ComponentObjectsClient,
   RoutineObjectsClient,
   ComponentsClient,
-  DashboardChartAdvancedFilters,
-  DashboardChartFilters,
   DashboardChartItemsClient,
   DashboardChartsClient,
   DashboardGraphEdgesClient,
@@ -25,7 +23,6 @@ import {
   ComputeNodeClient,
   QueriesClient,
   SecretsClient,
-  SetPointsClient,
 } from './engine/index.js';
 
 export const Engine = (headers: Headers) => {
@@ -44,8 +41,6 @@ export const Engine = (headers: Headers) => {
     dashboardTabs: DashboardTabsClient(headers),
     dashboardCharts: DashboardChartsClient(headers),
     dashboardChartItems: DashboardChartItemsClient(headers),
-    dashboardChartFilters: DashboardChartFilters(headers),
-    dashboardChartAdvancedFilters: DashboardChartAdvancedFilters(headers),
     graphsClient: DashboardGraphsClient(headers),
     graphNodesClient: DashboardGraphNodesClient(headers),
     graphNodesBulkClient: DashboardGraphsNodesBulkClient(headers),
@@ -53,7 +48,6 @@ export const Engine = (headers: Headers) => {
     graphEdgesBulkClient: DashboardGraphsEdgesBulkClient(headers),
     computeNode: ComputeNodeClient(headers),
     secrets: SecretsClient(headers),
-    setPoints: SetPointsClient(headers),
     deployments: DeploymentsClient(headers),
     datalakeData: DatalakeDataClient(headers),
   };
