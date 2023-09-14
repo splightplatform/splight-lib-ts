@@ -13,7 +13,6 @@ export interface OrganizationProfileParams {
   manager_email?: string;
   payment_account_id?: string;
   payout_account_id?: string;
-  enable_compute_nodes?: boolean;
 }
 
 export interface OrganizationProfile extends OrganizationProfileParams {
