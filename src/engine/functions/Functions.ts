@@ -8,11 +8,11 @@ export interface FunctionItem {
     id: string;
     name: string;
     description: string;
-  };
+  } | null;
   query_filter_attribute: {
     id: string;
     name: string;
-  };
+  } | null;
   ref_id: string;
   type: string;
   expression: string;
