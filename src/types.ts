@@ -168,7 +168,10 @@ export {
   ItemProvisionDataName,
 } from './account/Provision.js';
 
-export { ComputeNode, ComputeNodeParams } from './engine/computeNode/ComputeNode.js';
+export {
+  ComputeNode,
+  ComputeNodeParams,
+} from './engine/computeNode/ComputeNode.js';
 
 export { AgentRelease } from './agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';

@@ -12,10 +12,7 @@ export interface AgentRelease {
 export const AgentReleaseClient = (headers: Headers) => {
   const basePath = Path('v2/agent/release/');
 
-  const { retrieve } = BaseRestClient<null, AgentRelease>(
-    basePath,
-    headers
-  );
+  const { retrieve } = BaseRestClient<null, AgentRelease>(basePath, headers);
   return {
     retrieve,
   };

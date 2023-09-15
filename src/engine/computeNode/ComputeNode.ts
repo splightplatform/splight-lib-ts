@@ -31,6 +31,6 @@ export const ComputeNodeClient = (headers: Headers) => {
         basePath.slash(computeNodeId).slash('generate_token').url,
         null,
         headers
-      )
+      ),
   };
 };
