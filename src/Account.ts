@@ -1,5 +1,6 @@
 import { Headers } from './types.js';
 import { NotificationsClient } from './account/index.js';
+import { FeatureFlagsClient } from './account/FeatureFlags.js';
 import { UserClient } from './account/User.js';
 import { ApiKeysClient } from './account/ApiKeys.js';
 import { ActivityClient } from './account/Activity.js';
@@ -18,6 +19,7 @@ import {
 export const Account = (headers: Headers) => {
   return {
     notifications: NotificationsClient(headers),
+    featureFlags: FeatureFlagsClient(headers),
     user: UserClient(headers),
     apiKeys: ApiKeysClient(headers),
     activity: ActivityClient(headers),
