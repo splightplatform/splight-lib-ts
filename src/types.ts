@@ -134,6 +134,7 @@ export {
   FunctionsParams,
   FunctionItem,
   Functions,
+  FunctionEvaluation,
 } from './engine/functions/Functions.js';
 
 export interface ApiFormField {
