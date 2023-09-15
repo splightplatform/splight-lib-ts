@@ -1,6 +1,7 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
+import { get } from '../../rest/BaseMethods.js';
 
 export interface FunctionItem {
   id?: string;
@@ -47,6 +48,11 @@ export interface Functions extends FunctionsParams {
   active: boolean;
 }
 
+export type FunctionEvaluation = {
+  timestamp: string;
+  status: string;
+};
+
 export const FunctionsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/function/functions/');
   const baseClient = BaseRestClient<FunctionsParams, Functions>(
@@ -54,5 +60,12 @@ export const FunctionsClient = (headers: Headers) => {
     headers
   );
 
-  return baseClient;
+  return {
+    ...baseClient,
+    evaluations: async (pk: string) =>
+      await get<FunctionEvaluation[]>(
+        basePath.slash(pk).slash('evaluations').url,
+        headers
+      ),
+  };
 };
