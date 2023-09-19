@@ -32,7 +32,8 @@ export interface OrganizationSubscriptionParams {
   secrets_limit?: number;
   components_limit?: number;
   integrations_limit?: number;
-  active_alerts?: number;
+  alerts_limit?: number;
+  functions_limit?: number;
   compute_slots?: number;
   datalake_gb?: number;
   file_storage_gb?: number;
