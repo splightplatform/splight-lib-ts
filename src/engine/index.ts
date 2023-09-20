@@ -26,3 +26,4 @@ export {
 export { SecretsClient } from './secrets/Secrets.js';
 export { DatalakeDataClient } from './datalake/Data.js';
 export { DeploymentsClient } from './Deployments.js';
+export { ComputeNodeClient } from './computeNode/ComputeNode.js';
