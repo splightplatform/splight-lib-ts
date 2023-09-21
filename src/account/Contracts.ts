@@ -8,6 +8,7 @@ export interface ContractParams {
   type: 'ECOSYSTEM' | 'CUSTOMER' | 'DEVELOPER';
   file: string;
   organization_id?: string;
+  organization_name?: string;
 }
 
 export interface Contract extends ContractParams {
