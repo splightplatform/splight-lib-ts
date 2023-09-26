@@ -9,13 +9,11 @@ export const get = async <T>(
   params?: Record<string, string | number | boolean | undefined>,
   responseType?: ResponseType
 ): Promise<T> => {
-  const { data } = await withRetries(() => {
-    return withLogging(
-      'GET',
-      url,
-      axios<T>
-    )(url, { headers, params, responseType });
-  })();
+  const { data } = await withLogging(
+    'GET',
+    url,
+    axios<T>
+  )(url, { headers, params, responseType });
 
   return data;
 };
