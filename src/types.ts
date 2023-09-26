@@ -114,7 +114,7 @@ export {
   OrganizationProfile,
   OrganizationCompute,
   OrganizationDatalake,
-  OrganizationAlerts,
+  OrganizationStorage,
 } from './backoffice/organizations/Organizations.js';
 export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
 

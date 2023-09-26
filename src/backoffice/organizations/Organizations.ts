@@ -1,11 +1,6 @@
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import {
-  ApiFormField,
-  ExternalPortalLink,
-  Headers,
-  Subscription,
-} from '../../types.js';
+import { ApiFormField, Headers, Subscription } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface OrganizationProfileParams {
@@ -32,41 +27,30 @@ export interface OrganizationSubscriptionParams {
   secrets_limit?: number;
   components_limit?: number;
   integrations_limit?: number;
-  alerts_limit?: number;
   functions_limit?: number;
+  alerts_limit?: number;
   compute_slots?: number;
   datalake_gb?: number;
-  file_storage_gb?: number;
   end_date?: string | null;
 }
 
-export interface OrganizationComputeParams {
-  xlarge_nodes: number;
-}
-
-export interface OrganizationCompute extends OrganizationComputeParams {
+export interface OrganizationCompute {
   id: string;
   region: string;
   status: string;
   kubeconfig_command: string;
+  xlarge_nodes: number;
 }
 
-export interface OrganizationDatalakeParams {
+export interface OrganizationDatalake {
+  id: string;
+  status: string;
   size_in_gb: number;
 }
 
-export interface OrganizationDatalake extends OrganizationDatalakeParams {
+export interface OrganizationStorage {
   id: string;
-  status: string;
-}
-
-export interface OrganizationAlertsParams {
-  replicas: number;
-}
-
-export interface OrganizationAlerts extends OrganizationAlertsParams {
-  id: string;
-  status: string;
+  size_in_gb: number;
 }
 
 export const OrganizationProfilesClient = (
@@ -91,21 +75,9 @@ export const OrganizationProfilesClient = (
         organizationProfilesPath.slash(orgId).slash('subscription').url,
         headers
       ),
-    setCompute: (orgId: string, data: OrganizationComputeParams) =>
-      post(
-        organizationProfilesPath.slash(orgId).slash('compute').url,
-        data,
-        headers
-      ),
     compute: (orgId: string) =>
       get<OrganizationCompute>(
         organizationProfilesPath.slash(orgId).slash('compute').url,
-        headers
-      ),
-    setDatalake: (orgId: string, data: OrganizationDatalakeParams) =>
-      post(
-        organizationProfilesPath.slash(orgId).slash('datalake').url,
-        data,
         headers
       ),
     datalake: (orgId: string) =>
@@ -113,20 +85,9 @@ export const OrganizationProfilesClient = (
         organizationProfilesPath.slash(orgId).slash('datalake').url,
         headers
       ),
-    setAlerts: (orgId: string, data: OrganizationAlertsParams) =>
-      post(
-        organizationProfilesPath.slash(orgId).slash('alerts').url,
-        data,
-        headers
-      ),
-    alerts: (orgId: string) =>
-      get<OrganizationAlerts>(
-        organizationProfilesPath.slash(orgId).slash('alerts').url,
-        headers
-      ),
-    paymentsPortal: (orgId: string) =>
-      get<ExternalPortalLink>(
-        organizationProfilesPath.slash(orgId).slash('payments_portal').url,
+    storage: (orgId: string) =>
+      get<OrganizationStorage>(
+        organizationProfilesPath.slash(orgId).slash('datalake').url,
         headers
       ),
     activate: (orgId: string) =>
