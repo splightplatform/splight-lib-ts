@@ -85,8 +85,6 @@ test('Get compute', async () => {
     `${API_HOST}v2/backoffice/organization/profiles/123/compute/`,
     {
       headers: { Authorization: TestKeys },
-      method: 'get',
-      params: undefined,
     }
   );
 });
@@ -100,8 +98,6 @@ test('Get datalake', async () => {
     `${API_HOST}v2/backoffice/organization/profiles/123/datalake/`,
     {
       headers: { Authorization: TestKeys },
-      method: 'get',
-      params: undefined,
     }
   );
 });
@@ -112,11 +108,9 @@ test('Get storage', async () => {
   });
   await splight.backoffice.organizations.profiles.storage('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/backoffice/organization/profiles/123/alerts/`,
+    `${API_HOST}v2/backoffice/organization/profiles/123/storage/`,
     {
       headers: { Authorization: TestKeys },
-      method: 'get',
-      params: undefined,
     }
   );
 });

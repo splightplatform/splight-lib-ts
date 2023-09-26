@@ -87,7 +87,7 @@ export const OrganizationProfilesClient = (
       ),
     storage: (orgId: string) =>
       get<OrganizationStorage>(
-        organizationProfilesPath.slash(orgId).slash('datalake').url,
+        organizationProfilesPath.slash(orgId).slash('storage').url,
         headers
       ),
     activate: (orgId: string) =>
