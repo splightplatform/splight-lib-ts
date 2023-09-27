@@ -17,6 +17,7 @@ export interface UserProfile {
   theme: string;
   picture_color: string;
   timezone: string;
+  tour_progress: number;
   enable_email_notifications: boolean;
   enable_push_notifications: boolean;
   enable_sms_notifications: boolean;
