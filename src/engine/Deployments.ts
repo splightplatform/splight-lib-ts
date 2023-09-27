@@ -15,7 +15,7 @@ export interface DeploymentOptions {
 }
 
 export const DeploymentsClient = (headers: Headers) => {
-  const deploymentOptionsPath = Path('v2/engine/deployment/options');
+  const deploymentOptionsPath = Path('v2/engine/deployment/options/');
 
   return {
     options: () => get<DeploymentOptions>(deploymentOptionsPath.url, headers),
