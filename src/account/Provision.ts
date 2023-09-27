@@ -5,7 +5,7 @@ import { get } from '../rest/BaseMethods.js';
 export type ItemProvisionDataName =
   | 'Datalake'
   | 'Compute'
-  | 'Alerts'
+  | 'Alert'
   | 'Component'
   | 'Logs'
   | 'Storage'
