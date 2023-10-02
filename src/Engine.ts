@@ -25,6 +25,10 @@ import {
   SecretsClient,
   FunctionsClient,
 } from './engine/index.js';
+import {
+  SelfHostedComputeNodeClient,
+  SplightHostedComputeNodeClient,
+} from './engine/computeNode/ComputeNode.js';
 
 export const Engine = (headers: Headers) => {
   return {
@@ -49,6 +53,8 @@ export const Engine = (headers: Headers) => {
     graphEdgesClient: DashboardGraphEdgesClient(headers),
     graphEdgesBulkClient: DashboardGraphsEdgesBulkClient(headers),
     computeNode: ComputeNodeClient(headers),
+    selfHostedComputeNode: SelfHostedComputeNodeClient(headers),
+    splightHostedComputeNode: SplightHostedComputeNodeClient(headers),
     secrets: SecretsClient(headers),
     deployments: DeploymentsClient(headers),
     datalakeData: DatalakeDataClient(headers),
