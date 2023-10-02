@@ -17,6 +17,7 @@ const MockSplightHostedComputeNode: SplightHostedComputeNode = {
   id: '123',
   name: 'test',
   type: 'SPLIGHTHOSTED',
+  organization_id: 'orgjse',
   created_at: '2022-01-01T00:00:00Z',
   public_dns: 'DNS',
   region: 'us-east-1',
@@ -30,6 +31,7 @@ const MockSplightHostedComputeNode: SplightHostedComputeNode = {
 
 const MockSplightHostedComputeNodeParams: SplightHostedComputeNodeParams = {
   name: 'NewCompute',
+  organization_id: 'orgjse',
   instance_type: 't2.micro',
 };
 
