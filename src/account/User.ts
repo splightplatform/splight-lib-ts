@@ -8,20 +8,23 @@ export interface Organization {
   display_name: string;
 }
 
-export interface UserProfile {
-  id: string;
-  name: string;
-  username: string;
-  email: string;
-  language: string;
-  theme: string;
-  picture_color: string;
-  timezone: string;
-  enable_email_notifications: boolean;
-  enable_push_notifications: boolean;
-  enable_sms_notifications: boolean;
-  enable_web_notifications: boolean;
+export interface UserProfileParams {
+  id?: string;
+  name?: string;
+  username?: string;
+  email?: string;
+  language?: string;
+  theme?: string;
+  picture_color?: string;
+  timezone?: string;
+  tour_progress?: number;
+  enable_email_notifications?: boolean;
+  enable_push_notifications?: boolean;
+  enable_sms_notifications?: boolean;
+  enable_web_notifications?: boolean;
 }
+
+export type UserProfile = Required<UserProfileParams>;
 
 export interface UserPermissions {
   permissions: string[];
@@ -34,8 +37,8 @@ export const UserClient = (headers: Headers) => {
   return {
     profile: () => ({
       get: () => get<UserProfile>(basePath.slash('profile').url, headers),
-      update: (data: UserProfile) =>
-        patch<UserProfile, UserProfile>(
+      update: (data: UserProfileParams) =>
+        patch<UserProfileParams, UserProfile>(
           basePath.slash('profile').slash('edit').url,
           data,
           headers

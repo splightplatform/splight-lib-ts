@@ -14,6 +14,7 @@ export interface OrganizationProfile extends OrganizationProfileParams {
   id: string;
   subscription_plan?: string;
   status?: string;
+  created_at?: string;
 }
 
 export interface OptionsParams {
