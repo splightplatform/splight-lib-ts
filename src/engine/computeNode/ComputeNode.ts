@@ -1,6 +1,6 @@
 import { post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { Component, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface ComputeNodeParams {
@@ -12,6 +12,7 @@ export interface ComputeNode extends ComputeNodeParams {
   status: string;
   last_ping: string;
   last_ip: string;
+  components: Component[];
 }
 
 export interface ComputeNodeToken {
