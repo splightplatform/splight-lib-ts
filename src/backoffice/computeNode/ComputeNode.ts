@@ -22,6 +22,7 @@ export interface SplightHostedComputeNode
   last_ping: string;
   last_ip: string;
   type: string;
+  agent_version: string;
   provision_key_name: string;
   provision_private_ip: string;
   provision_instance_id: string;
