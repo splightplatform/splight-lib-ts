@@ -18,14 +18,14 @@ export interface SplightHostedComputeNode
   extends SplightHostedComputeNodeParams {
   id: string;
   created_at: string;
-  public_dns: string;
-  region: string;
-  subnet: string;
-  security_group: string;
   status: 'active' | 'inactive';
   last_ping: string;
   last_ip: string;
   type: string;
+  provision_key_name: string;
+  provision_private_ip: string;
+  provision_instance_id: string;
+  provision_status: 'pending' | 'in_progress' | 'ready' | 'failed';
 }
 
 export const ComputeNodeClient = (headers: Headers) => {
