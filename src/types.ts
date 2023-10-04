@@ -117,6 +117,10 @@ export {
   OrganizationStorage,
 } from './backoffice/organizations/Organizations.js';
 export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
+export {
+  SplightHostedComputeNode,
+  SplightHostedComputeNodeParams,
+} from './backoffice/computeNode/ComputeNode.js';
 
 export {
   Contract as AccountContract,
