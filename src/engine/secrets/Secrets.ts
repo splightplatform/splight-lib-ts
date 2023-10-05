@@ -24,8 +24,8 @@ export const SecretsClient = (headers: Headers) => {
     decrypt: (name: string) =>
       post<DecryptSecretParams, Secret>(
         basePath.slash('decrypt').url,
-        {name: name},
-        headers,
+        { name: name },
+        headers
       ),
   };
 };
