@@ -60,7 +60,7 @@ export {
   AttributeParams,
   AttributeRelationships,
 } from './engine/attributes/Attributes.js';
-export { Secret, SecretParams } from './engine/secrets/Secrets.js';
+export { Secret, SecretParams, DecryptSecretParams } from './engine/secrets/Secrets.js';
 export {
   LogLevel,
   RestartPolicy,
