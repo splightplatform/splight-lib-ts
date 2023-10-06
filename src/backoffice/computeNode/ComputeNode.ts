@@ -17,11 +17,12 @@ export interface SplightHostedComputeNodeParams {
 export interface SplightHostedComputeNode
   extends SplightHostedComputeNodeParams {
   id: string;
+  organization_name: string;
   created_at: string;
   status: 'active' | 'inactive';
   last_ping: string;
   last_ip: string;
-  type: string;
+  type: 'self_hosted' | 'splight_hosted';
   agent_version: string;
   provision_key_name: string;
   provision_private_ip: string;

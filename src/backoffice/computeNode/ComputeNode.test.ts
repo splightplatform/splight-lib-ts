@@ -16,8 +16,9 @@ afterEach(() => {
 const MockSplightHostedComputeNode: SplightHostedComputeNode = {
   id: '123',
   name: 'test',
-  type: 'SPLIGHTHOSTED',
+  type: 'splight_hosted',
   organization_id: 'orgjse',
+  organization_name: 'Splight',
   created_at: '2022-01-01T00:00:00Z',
   agent_version: '1.2.0',
   provision_key_name: '',
