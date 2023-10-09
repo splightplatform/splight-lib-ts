@@ -88,6 +88,7 @@ export interface Component {
   output: ComponentParameter[];
   filters?: ComponentParameter[];
   type?: string;
+  component_type?: string;
   verification: string;
   impact?: number;
   picture_url?: string;
