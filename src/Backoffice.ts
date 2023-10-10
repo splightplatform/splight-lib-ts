@@ -11,6 +11,6 @@ export const Backoffice = (headers: Headers) => ({
   organizations: OrganizationsClient(headers),
   contracts: ContractsClient(headers),
   features: FeaturesClient(headers),
-  computeNode: ComputeNodesClient(headers),
+  computeNodes: ComputeNodesClient(headers),
   assets: AssetsClient(headers),
 });
