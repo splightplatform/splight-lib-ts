@@ -54,6 +54,18 @@ export interface OrganizationStorage {
   size_in_gb: number;
 }
 
+export interface OrganizationDatabase {
+  id: string;
+  asset_limit: number;
+  alert_limit: number;
+  component_limit: number;
+  dashboard_limit: number;
+  file_limit: number;
+  function_limit: number;
+  integration_limit: number;
+  secret_limit: number;
+}
+
 export const OrganizationProfilesClient = (
   basePath: Path,
   headers: Headers
@@ -89,6 +101,11 @@ export const OrganizationProfilesClient = (
     storage: (orgId: string) =>
       get<OrganizationStorage>(
         organizationProfilesPath.slash(orgId).slash('storage').url,
+        headers
+      ),
+    database: (orgId: string) =>
+      get<OrganizationDatabase>(
+        organizationProfilesPath.slash(orgId).slash('database').url,
         headers
       ),
     activate: (orgId: string) =>

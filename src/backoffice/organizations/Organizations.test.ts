@@ -114,3 +114,16 @@ test('Get storage', async () => {
     }
   );
 });
+
+test('Get database', async () => {
+  mockedAxios.mockResolvedValueOnce({
+    status: 200,
+  });
+  await splight.backoffice.organizations.profiles.database('123');
+  expect(mockedAxios).toHaveBeenCalledWith(
+    `${API_HOST}v2/backoffice/organization/profiles/123/database/`,
+    {
+      headers: { Authorization: TestKeys },
+    }
+  );
+});
