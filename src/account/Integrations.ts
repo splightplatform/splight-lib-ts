@@ -27,7 +27,7 @@ export interface TelegramIntegration extends TelegramIntegrationParams {
   subclass: string;
 }
 
-export const IntegrationsClient = (headers: Headers) => {
+const AllIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/all/');
   const { list } = BaseRestClient<Integration>(basePath, headers);
   return {
@@ -35,7 +35,7 @@ export const IntegrationsClient = (headers: Headers) => {
   };
 };
 
-export const EmailIntegrationsClient = (headers: Headers) => {
+const EmailIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/email/');
   const { create, retrieve, update, destroy } = BaseRestClient<
     EmailIntegrationParams,
@@ -49,7 +49,7 @@ export const EmailIntegrationsClient = (headers: Headers) => {
   };
 };
 
-export const TelegramIntegrationsClient = (headers: Headers) => {
+const TelegramIntegrationsClient = (headers: Headers) => {
   const basePath = Path('v2/account/integrations/telegram/');
   const { create, retrieve, update, destroy } = BaseRestClient<
     TelegramIntegrationParams,
@@ -62,3 +62,9 @@ export const TelegramIntegrationsClient = (headers: Headers) => {
     destroy,
   };
 };
+
+export const IntegrationsClient = (headers: Headers) => ({
+  all: AllIntegrationsClient(headers),
+  email: EmailIntegrationsClient(headers),
+  telegram: TelegramIntegrationsClient(headers),
+});
