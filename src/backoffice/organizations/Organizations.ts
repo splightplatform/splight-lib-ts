@@ -37,6 +37,7 @@ export interface OrganizationSubscriptionParams {
 
 export interface OrganizationCompute {
   id: string;
+  deleted: boolean;
   region: string;
   status: string;
   kubeconfig_command: string;
@@ -45,17 +46,20 @@ export interface OrganizationCompute {
 
 export interface OrganizationDatalake {
   id: string;
+  deleted: boolean;
   status: string;
   size_in_gb: number;
 }
 
 export interface OrganizationStorage {
   id: string;
+  deleted: boolean;
   size_in_gb: number;
 }
 
 export interface OrganizationDatabase {
   id: string;
+  deleted: boolean;
   asset_limit: number;
   alert_limit: number;
   component_limit: number;
