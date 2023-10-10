@@ -42,7 +42,7 @@ test('List compute nodes', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.computeNode.list();
+  await splight.backoffice.computeNodes.list();
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/compute/nodes/splighthosted/`,
     {
@@ -56,7 +56,7 @@ test('List compute node with params', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.computeNode.list({ page_size: 10 });
+  await splight.backoffice.computeNodes.list({ page_size: 10 });
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/compute/nodes/splighthosted/`,
     {
@@ -71,7 +71,7 @@ test('Retrieve compute node', async () => {
     data: MockSplightHostedComputeNode,
     status: 200,
   });
-  await splight.backoffice.computeNode.retrieve('123');
+  await splight.backoffice.computeNodes.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/compute/nodes/splighthosted/123/`,
     {
@@ -85,7 +85,7 @@ test('Create compute node', async () => {
     data: MockSplightHostedComputeNode,
     status: 201,
   });
-  await splight.backoffice.computeNode.create(
+  await splight.backoffice.computeNodes.create(
     MockSplightHostedComputeNodeParams
   );
   expect(mockedAxios).toHaveBeenCalledWith(
@@ -103,7 +103,7 @@ test('Update compute node', async () => {
     data: { ...MockSplightHostedComputeNode, name: 'updated' },
     status: 200,
   });
-  await splight.backoffice.computeNode.update('123', {
+  await splight.backoffice.computeNodes.update('123', {
     ...MockSplightHostedComputeNodeParams,
     name: 'updated',
   });
@@ -122,7 +122,7 @@ test('Delete compute node', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.backoffice.computeNode.destroy(mockComputeNodeID);
+  await splight.backoffice.computeNodes.destroy(mockComputeNodeID);
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/compute/nodes/splighthosted/${mockComputeNodeID}/`,
     {
@@ -138,7 +138,7 @@ test('Connection compute node', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.backoffice.computeNode.connection(mockComputeNodeID);
+  await splight.backoffice.computeNodes.connection(mockComputeNodeID);
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/backoffice/compute/nodes/splighthosted/${mockComputeNodeID}/connection/`,
     {
