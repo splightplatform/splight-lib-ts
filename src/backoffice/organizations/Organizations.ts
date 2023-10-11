@@ -37,6 +37,7 @@ export interface OrganizationSubscriptionParams {
 
 export interface OrganizationCompute {
   id: string;
+  deleted: boolean;
   region: string;
   status: string;
   kubeconfig_command: string;
@@ -45,13 +46,28 @@ export interface OrganizationCompute {
 
 export interface OrganizationDatalake {
   id: string;
+  deleted: boolean;
   status: string;
   size_in_gb: number;
 }
 
 export interface OrganizationStorage {
   id: string;
+  deleted: boolean;
   size_in_gb: number;
+}
+
+export interface OrganizationDatabase {
+  id: string;
+  deleted: boolean;
+  asset_limit: number;
+  alert_limit: number;
+  component_limit: number;
+  dashboard_limit: number;
+  file_limit: number;
+  function_limit: number;
+  integration_limit: number;
+  secret_limit: number;
 }
 
 export const OrganizationProfilesClient = (
@@ -89,6 +105,11 @@ export const OrganizationProfilesClient = (
     storage: (orgId: string) =>
       get<OrganizationStorage>(
         organizationProfilesPath.slash(orgId).slash('storage').url,
+        headers
+      ),
+    database: (orgId: string) =>
+      get<OrganizationDatabase>(
+        organizationProfilesPath.slash(orgId).slash('database').url,
         headers
       ),
     activate: (orgId: string) =>

@@ -118,9 +118,16 @@ export {
   OrganizationProfile,
   OrganizationCompute,
   OrganizationDatalake,
+  OrganizationDatabase,
   OrganizationStorage,
 } from './backoffice/organizations/Organizations.js';
 export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
+export { Feature } from './backoffice/features/Features.js';
+export {
+  SplightHostedComputeNode,
+  SplightHostedComputeNodeParams,
+  SplightHostedComputeNodeConnection,
+} from './backoffice/computeNodes/ComputeNodes.js';
 
 export {
   Contract as AccountContract,
@@ -175,7 +182,7 @@ export {
 export {
   ComputeNode,
   ComputeNodeParams,
-} from './engine/computeNode/ComputeNode.js';
+} from './engine/computeNodes/ComputeNodes.js';
 
 export { AgentRelease } from './agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';
