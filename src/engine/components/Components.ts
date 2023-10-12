@@ -282,7 +282,11 @@ export const ComponentsClient = (headers: Headers) => {
         headers
       ),
     stop: (pk: string) =>
-      post(basePath.slash(pk).slash('stop').url, {}, headers),
+      post<Record<string, never>, Component>(
+        basePath.slash(pk).slash('stop').url,
+        {},
+        headers
+      ),
     commands: (pk: string) =>
       get<ComponentCommand[]>(
         basePath.slash(pk).slash('commands').url,
