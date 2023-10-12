@@ -14,14 +14,6 @@ export interface UserInvitation {
   organization_id: string;
   inviter: { name: string };
   invitee: { email: string };
-  app_metadata: {
-    is_manager: boolean;
-  };
-  user_metadata: {
-    picture_color: string;
-    theme: string;
-    language: string;
-  };
   invitation_url: string;
   created_at: string;
   expires_at: string;
