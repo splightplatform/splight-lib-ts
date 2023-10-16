@@ -4,11 +4,13 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
+import { Metadata, MetadataRelationships } from '../metadata/Metadata.js';
 
 export interface AssetParams {
   name: string;
   description?: string;
   attributes?: Attribute[];
+  asset_metadata?: Metadata[];
   organization?: string;
   verified?: boolean;
   geometry?: GeometryCollection;
@@ -17,6 +19,7 @@ export interface AssetParams {
 export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
+  asset_metadata?: Metadata[];
   verified: boolean;
   description: string;
   organization: string;
@@ -84,6 +87,15 @@ export const AssetsClient = (headers: Headers) => {
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<PaginatedCollection<Attribute>>(
         basePath.slash(pk).slash('attributes').url,
+        headers,
+        params
+      ),
+    assetmetadata: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<PaginatedCollection<Metadata>>(
+        basePath.slash(pk).slash('asset_metadata').url,
         headers,
         params
       ),

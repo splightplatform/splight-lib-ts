@@ -60,6 +60,11 @@ export {
   AttributeParams,
   AttributeRelationships,
 } from './engine/attributes/Attributes.js';
+export {
+  Metadata,
+  MetadataParams,
+  MetadataRelationships,
+} from './engine/metadata/Metadata.js';
 export { Secret, SecretParams } from './engine/secrets/Secrets.js';
 export {
   LogLevel,
