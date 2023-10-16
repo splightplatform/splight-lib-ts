@@ -6,6 +6,7 @@ import { Path } from '../../Urls.js';
 export interface SplightHostedComputeNodeParams {
   name: string;
   organization_id: string;
+  region: 'us-east-1' | 'us-east-2';
   instance_type:
     | 't2.nano'
     | 't2.micro'
