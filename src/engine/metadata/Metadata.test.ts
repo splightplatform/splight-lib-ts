@@ -27,7 +27,7 @@ test('List metadatas', async () => {
     status: 200,
   });
   await splight.engine.metadatas.list();
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assetmetadata/`, {
     headers: { Authorization: TestKeys },
   });
 });
@@ -40,7 +40,7 @@ test('List metadata with params', async () => {
   await splight.engine.metadatas.list({
     page_size: 10,
   });
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assetmetadata/`, {
     headers: { Authorization: TestKeys },
     params: { page_size: 10 },
   });
@@ -53,7 +53,7 @@ test('Retrieve metadata', async () => {
   });
   await splight.engine.metadatas.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/metadata/123/`,
+    `${API_HOST}v2/engine/assetmetadata/123/`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -66,7 +66,7 @@ test('Create metadata', async () => {
     status: 201,
   });
   await splight.engine.metadatas.create(MockMetadataParams);
-  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/assetmetadata/`, {
     data: MockMetadataParams,
     method: 'post',
     headers: { Authorization: TestKeys },
@@ -98,7 +98,7 @@ test('Delete metadata', async () => {
   });
   await splight.engine.metadatas.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/metadata/123/`,
+    `${API_HOST}v2/engine/assetmetadata/123/`,
     {
       method: 'delete',
       headers: { Authorization: TestKeys },
