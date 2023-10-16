@@ -7,6 +7,7 @@ export interface MetadataParams {
   name: string;
   asset?: string;
   type?: string;
+  value?: string;
 }
 
 export interface Metadata extends MetadataParams {
