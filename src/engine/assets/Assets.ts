@@ -4,7 +4,7 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
-import { Metadata, MetadataRelationships } from '../metadata/Metadata.js';
+import { Metadata } from '../metadata/Metadata.js';
 
 export interface AssetParams {
   name: string;

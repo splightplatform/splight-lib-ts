@@ -26,7 +26,7 @@ test('List metadatas', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.metadata.list();
+  await splight.engine.metadatas.list();
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
     headers: { Authorization: TestKeys },
   });
@@ -37,7 +37,7 @@ test('List metadata with params', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.metadata.list({
+  await splight.engine.metadatas.list({
     page_size: 10,
   });
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
@@ -51,7 +51,7 @@ test('Retrieve metadata', async () => {
     data: MockMetadata,
     status: 200,
   });
-  await splight.engine.metadata.retrieve('123');
+  await splight.engine.metadatas.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/metadata/123/`,
     {
@@ -65,7 +65,7 @@ test('Create metadata', async () => {
     data: MockMetadata,
     status: 201,
   });
-  await splight.engine.metadata.create(MockMetadataParams);
+  await splight.engine.metadatas.create(MockMetadataParams);
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
     data: MockMetadataParams,
     method: 'post',
@@ -78,12 +78,12 @@ test('Update metadata', async () => {
     data: { ...MockMetadata, name: 'updated' },
     status: 200,
   });
-  await splight.engine.metadata.update('123', {
+  await splight.engine.metadatas.update('123', {
     ...MockMetadataParams,
     name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/metadata/123/`,
+    `${API_HOST}v2/engine/assetmetadata/123/`,
     {
       data: { ...MockMetadataParams, name: 'updated' },
       method: 'patch',
@@ -96,7 +96,7 @@ test('Delete metadata', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.engine.metadata.destroy('123');
+  await splight.engine.metadatas.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/metadata/123/`,
     {
