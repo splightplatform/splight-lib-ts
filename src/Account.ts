@@ -10,11 +10,7 @@ import { UserInvitationsClient } from './account/UserInvitations.js';
 
 import { ProvisionClient } from './account/Provision.js';
 
-import {
-  IntegrationsClient,
-  EmailIntegrationsClient,
-  TelegramIntegrationsClient,
-} from './account/Integrations.js';
+import { IntegrationsClient } from './account/Integrations.js';
 
 export const Account = (headers: Headers) => {
   return {
@@ -27,8 +23,6 @@ export const Account = (headers: Headers) => {
     users: UsersClient(headers),
     userInvitations: UserInvitationsClient(headers),
     integrations: IntegrationsClient(headers),
-    emailIntegrations: EmailIntegrationsClient(headers),
-    telegramIntegrations: TelegramIntegrationsClient(headers),
     provision: ProvisionClient(headers),
   };
 };

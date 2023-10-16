@@ -65,7 +65,11 @@ export {
   MetadataParams,
   MetadataRelationships,
 } from './engine/metadata/Metadata.js';
-export { Secret, SecretParams } from './engine/secrets/Secrets.js';
+export {
+  Secret,
+  SecretParams,
+  DecryptSecretParams,
+} from './engine/secrets/Secrets.js';
 export {
   LogLevel,
   RestartPolicy,
@@ -119,9 +123,16 @@ export {
   OrganizationProfile,
   OrganizationCompute,
   OrganizationDatalake,
+  OrganizationDatabase,
   OrganizationStorage,
 } from './backoffice/organizations/Organizations.js';
 export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
+export { Feature } from './backoffice/features/Features.js';
+export {
+  SplightHostedComputeNode,
+  SplightHostedComputeNodeParams,
+  SplightHostedComputeNodeConnection,
+} from './backoffice/computeNodes/ComputeNodes.js';
 
 export {
   Contract as AccountContract,
@@ -176,7 +187,7 @@ export {
 export {
   ComputeNode,
   ComputeNodeParams,
-} from './engine/computeNode/ComputeNode.js';
+} from './engine/computeNodes/ComputeNodes.js';
 
 export { AgentRelease } from './agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';
