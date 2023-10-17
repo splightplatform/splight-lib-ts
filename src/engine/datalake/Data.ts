@@ -7,6 +7,7 @@ import { Path } from '../../Urls.js';
 export interface SearchDataParams {
   from_timestamp: string | null;
   to_timestamp: string | null;
+  sort_direction: number | null;
   traces: Array<{
     ref_id: string;
     type: string;
