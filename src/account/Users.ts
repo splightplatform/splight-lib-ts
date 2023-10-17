@@ -13,15 +13,6 @@ export interface User {
   last_login: string;
   last_ip: string;
   logins_count: number;
-  user_metadata: {
-    picture_color: string;
-    theme: string;
-    language: string;
-    timezone: string;
-  };
-  app_metadata: {
-    is_manager: boolean;
-  };
   picture: string;
   permissions: ('splightadmin' | 'admin' | 'editor')[];
   roles: string[];

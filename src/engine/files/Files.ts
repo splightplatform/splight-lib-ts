@@ -6,7 +6,6 @@ import { Path } from '../../Urls.js';
 export interface FileParams {
   file: File;
   description?: string;
-  encrypted: boolean;
 }
 
 export interface _File extends Omit<FileParams, 'file'> {

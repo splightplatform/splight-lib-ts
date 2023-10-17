@@ -28,12 +28,14 @@ const MockSplightHostedComputeNode: SplightHostedComputeNode = {
   status: 'active',
   last_ip: '193.2.1.2',
   last_ping: '2022-01-01T00:00:00Z',
+  region: 'us-east-2',
   instance_type: 't2.micro',
 };
 
 const MockSplightHostedComputeNodeParams: SplightHostedComputeNodeParams = {
   name: 'NewCompute',
   organization_id: 'orgjse',
+  region: 'us-east-2',
   instance_type: 't2.micro',
 };
 
