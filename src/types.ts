@@ -58,7 +58,9 @@ export {
 export {
   Attribute,
   AttributeParams,
-  AttributeRelationships,
+  RelationshipsResponse,
+  RelationshipEdge,
+  RelationshipNode,
 } from './engine/attributes/Attributes.js';
 export {
   Secret,
