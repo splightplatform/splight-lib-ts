@@ -27,12 +27,9 @@ test('List metadatas', async () => {
     status: 200,
   });
   await splight.engine.metadatas.list();
-  expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/metadata/`,
-    {
-      headers: { Authorization: TestKeys },
-    }
-  );
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
+    headers: { Authorization: TestKeys },
+  });
 });
 
 test('List metadata with params', async () => {
@@ -43,13 +40,10 @@ test('List metadata with params', async () => {
   await splight.engine.metadatas.list({
     page_size: 10,
   });
-  expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/metadata/`,
-    {
-      headers: { Authorization: TestKeys },
-      params: { page_size: 10 },
-    }
-  );
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
+    headers: { Authorization: TestKeys },
+    params: { page_size: 10 },
+  });
 });
 
 test('Retrieve metadata', async () => {
@@ -72,14 +66,11 @@ test('Create metadata', async () => {
     status: 201,
   });
   await splight.engine.metadatas.create(MockMetadataParams);
-  expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/metadata/`,
-    {
-      data: MockMetadataParams,
-      method: 'post',
-      headers: { Authorization: TestKeys },
-    }
-  );
+  expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/metadata/`, {
+    data: MockMetadataParams,
+    method: 'post',
+    headers: { Authorization: TestKeys },
+  });
 });
 
 test('Update metadata', async () => {
