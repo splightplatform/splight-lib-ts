@@ -10,7 +10,7 @@ export interface AssetParams {
   name: string;
   description?: string;
   attributes?: Attribute[];
-  asset_metadata?: Metadata[];
+  metadata?: Metadata[];
   organization?: string;
   verified?: boolean;
   geometry?: GeometryCollection;
@@ -19,7 +19,7 @@ export interface AssetParams {
 export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
-  asset_metadata?: Metadata[];
+  metadata?: Metadata[];
   verified: boolean;
   description: string;
   organization: string;
@@ -90,12 +90,12 @@ export const AssetsClient = (headers: Headers) => {
         headers,
         params
       ),
-    assetmetadata: ({
+    metadata: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<PaginatedCollection<Metadata>>(
-        basePath.slash(pk).slash('asset_metadata').url,
+        basePath.slash(pk).slash('metadata').url,
         headers,
         params
       ),
