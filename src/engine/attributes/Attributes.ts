@@ -31,7 +31,7 @@ export interface RelationshipEdge {
   targetType: NodeType;
 }
 
-export interface RelationshipsResponse {
+export interface RelationshipGraph {
   nodes: RelationshipNode[];
   edges: RelationshipEdge[];
 }
@@ -48,7 +48,7 @@ export const AttributesClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipsResponse>(
+      get<RelationshipGraph>(
         basePath.slash(pk).slash('relationship').url,
         headers,
         params

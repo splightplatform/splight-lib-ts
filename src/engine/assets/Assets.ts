@@ -3,7 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute, RelationshipsResponse } from '../attributes/Attributes.js';
+import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 
 export interface AssetParams {
   name: string;
@@ -91,7 +91,7 @@ export const AssetsClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipsResponse>(
+      get<RelationshipGraph>(
         basePath.slash(pk).slash('relationship').url,
         headers,
         params

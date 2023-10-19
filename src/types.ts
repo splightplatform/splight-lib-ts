@@ -58,7 +58,7 @@ export {
 export {
   Attribute,
   AttributeParams,
-  RelationshipsResponse,
+  RelationshipGraph,
   RelationshipEdge,
   RelationshipNode,
 } from './engine/attributes/Attributes.js';
