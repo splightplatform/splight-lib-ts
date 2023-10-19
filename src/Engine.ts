@@ -32,7 +32,7 @@ export const Engine = (headers: Headers) => {
     alerts: AlertsClient(headers),
     assets: AssetsClient(headers),
     attributes: AttributesClient(headers),
-    metadatas: MetadataClient(headers),
+    metadata: MetadataClient(headers),
     functions: FunctionsClient(headers),
     components: ComponentsClient(headers),
     files: FilesClient(headers),
