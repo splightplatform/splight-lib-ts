@@ -30,7 +30,6 @@ const MockSplightHostedComputeNode: SplightHostedComputeNode = {
   last_ping: '2022-01-01T00:00:00Z',
   region: 'us-east-2',
   instance_type: 't2.micro',
-  components: [],
 };
 
 const MockSplightHostedComputeNodeParams: SplightHostedComputeNodeParams = {
