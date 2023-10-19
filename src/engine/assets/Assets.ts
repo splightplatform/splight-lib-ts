@@ -92,7 +92,7 @@ export const AssetsClient = (headers: Headers) => {
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<RelationshipGraph>(
-        basePath.slash(pk).slash('relationship').url,
+        basePath.slash(pk).slash('relationships').url,
         headers,
         params
       ),
