@@ -54,5 +54,10 @@ export const ComputeNodesClient = (headers: Headers) => {
         basePath.slash(pk).slash('connection').url,
         headers
       ),
+    components: (pk: string) =>
+      get<Component[]>(
+        basePath.slash(pk).slash('components').url,
+        headers
+      ),
   };
 };
