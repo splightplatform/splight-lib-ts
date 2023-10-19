@@ -20,6 +20,7 @@ export interface RelationshipNode {
   data: {
     id: string;
     name: string;
+    [key: string]: string;
   };
 }
 
