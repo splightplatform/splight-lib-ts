@@ -13,19 +13,28 @@ export interface Attribute extends AttributeParams {
   id?: string;
 }
 
-export interface AttributeRelationships {
-  attribute: Attribute;
-  relationship: {
-    routine: {
-      id: string;
-      name: string;
-    };
-    component: {
-      id: string;
-      name: string;
-    };
-    type: 'input' | 'output';
-  }[];
+type NodeType = 'Asset' | 'Attribute' | 'Function' | 'RoutineObject';
+export interface RelationshipNode {
+  id: string;
+  type: NodeType;
+  data: {
+    id: string;
+    name: string;
+    [key: string]: string;
+  };
+}
+
+export interface RelationshipEdge {
+  id: string;
+  source: string;
+  sourceType: NodeType;
+  target: string;
+  targetType: NodeType;
+}
+
+export interface RelationshipGraph {
+  nodes: RelationshipNode[];
+  edges: RelationshipEdge[];
 }
 
 export const AttributesClient = (headers: Headers) => {
@@ -40,8 +49,8 @@ export const AttributesClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<AttributeRelationships>(
-        basePath.slash(pk).slash('relationship').url,
+      get<RelationshipGraph>(
+        basePath.slash(pk).slash('relationships').url,
         headers,
         params
       ),

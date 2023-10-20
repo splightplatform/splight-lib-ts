@@ -3,12 +3,14 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
+import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
+import { Metadata } from '../metadata/Metadata.js';
 
 export interface AssetParams {
   name: string;
   description?: string;
   attributes?: Attribute[];
+  metadata?: Metadata[];
   organization?: string;
   verified?: boolean;
   geometry?: GeometryCollection;
@@ -17,6 +19,7 @@ export interface AssetParams {
 export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
+  metadata?: Metadata[];
   verified: boolean;
   description: string;
   organization: string;
@@ -87,12 +90,21 @@ export const AssetsClient = (headers: Headers) => {
         headers,
         params
       ),
+    metadata: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<PaginatedCollection<Metadata>>(
+        basePath.slash(pk).slash('metadata').url,
+        headers,
+        params
+      ),
     relationships: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<Array<AttributeRelationships>>(
-        basePath.slash(pk).slash('relationship').url,
+      get<RelationshipGraph>(
+        basePath.slash(pk).slash('relationships').url,
         headers,
         params
       ),
