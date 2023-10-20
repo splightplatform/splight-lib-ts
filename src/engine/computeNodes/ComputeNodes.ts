@@ -1,4 +1,4 @@
-import { post } from '../../rest/BaseMethods.js';
+import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Component, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -15,7 +15,6 @@ export interface ComputeNode extends ComputeNodeParams {
   last_ip: string;
   type: string;
   agent_version: string;
-  components: Component[];
 }
 
 export interface ComputeNodeToken {
@@ -35,6 +34,11 @@ const AllComputeNodesClient = (headers: Headers) => {
       post<null, ComputeNodeToken>(
         basePath.slash(computeNodeId).slash('generate_token').url,
         null,
+        headers
+      ),
+    components: async (computeNodeId: string) =>
+      get<Component[]>(
+        basePath.slash(computeNodeId).slash('components').url,
         headers
       ),
   };

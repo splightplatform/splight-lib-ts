@@ -1,6 +1,6 @@
 import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { Component, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface SplightHostedComputeNodeParams {
@@ -54,5 +54,7 @@ export const ComputeNodesClient = (headers: Headers) => {
         basePath.slash(pk).slash('connection').url,
         headers
       ),
+    components: (pk: string) =>
+      get<Component[]>(basePath.slash(pk).slash('components').url, headers),
   };
 };
