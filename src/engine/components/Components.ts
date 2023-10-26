@@ -205,7 +205,7 @@ export interface ComponentParams {
   active?: boolean;
   deployment_log_level?: LogLevel;
   deployment_restart_policy?: RestartPolicy;
-  deployment_capacity: ComponentSize;
+  deployment_capacity?: ComponentSize;
   compute_node_id?: string;
 }
 
