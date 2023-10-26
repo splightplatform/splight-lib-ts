@@ -25,6 +25,7 @@ export type Asset = AssetParams & {
   organization: string;
   centroid_coordinates?: [number, number];
   geometry: GeometryCollection;
+  status: string;
 };
 
 export interface SetpointParams {
@@ -107,6 +108,20 @@ export const AssetsClient = (headers: Headers) => {
         basePath.slash(pk).slash('relationships').url,
         headers,
         params
+      ),
+    addAlerts: async (assetId: string, alerts: string[]) =>
+      post<Record<string, string[]>, null>(
+        basePath.slash(assetId).slash('add-alerts').url,
+        {'alerts': alerts},
+        headers,
+        {}
+      ),
+    removeAlerts: async (assetId: string, alerts: string[]) =>
+      post<Record<string, string[]>, null>(
+        basePath.slash(assetId).slash('remove-alerts').url,
+        {'alerts': alerts},
+        headers,
+        {}
       ),
   };
 };
