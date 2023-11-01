@@ -16,6 +16,14 @@ export interface AssetParams {
   geometry?: GeometryCollection;
 }
 
+export interface AlertAsset {
+  id: string;
+  name: string;
+  description: string;
+  status: string;
+  severity: string;
+}
+
 export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
@@ -26,6 +34,7 @@ export type Asset = AssetParams & {
   centroid_coordinates?: [number, number];
   geometry: GeometryCollection;
   status: string;
+  alerts: AlertAsset[];
 };
 
 export interface SetpointParams {
@@ -108,20 +117,6 @@ export const AssetsClient = (headers: Headers) => {
         basePath.slash(pk).slash('relationships').url,
         headers,
         params
-      ),
-    addAlerts: async (assetId: string, alerts: string[]) =>
-      post<Record<string, string[]>, null>(
-        basePath.slash(assetId).slash('add-alerts').url,
-        {'alerts': alerts},
-        headers,
-        {}
-      ),
-    removeAlerts: async (assetId: string, alerts: string[]) =>
-      post<Record<string, string[]>, null>(
-        basePath.slash(assetId).slash('remove-alerts').url,
-        {'alerts': alerts},
-        headers,
-        {}
       ),
   };
 };
