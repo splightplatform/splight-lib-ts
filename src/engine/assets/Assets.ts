@@ -16,14 +16,6 @@ export interface AssetParams {
   geometry?: GeometryCollection;
 }
 
-export interface AlertAsset {
-  id: string;
-  name: string;
-  description: string;
-  status: string;
-  severity: string;
-}
-
 export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
@@ -34,7 +26,6 @@ export type Asset = AssetParams & {
   centroid_coordinates?: [number, number];
   geometry: GeometryCollection;
   status: string;
-  alerts: AlertAsset[];
 };
 
 export interface SetpointParams {

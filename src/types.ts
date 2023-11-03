@@ -51,7 +51,6 @@ export { Organization } from './account/User.js';
 
 export {
   Asset,
-  AlertAsset,
   AssetParams,
   GetAttributeParams,
   GetAttribute,
