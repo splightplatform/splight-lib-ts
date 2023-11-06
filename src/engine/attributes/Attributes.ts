@@ -55,13 +55,13 @@ export const AttributesClient = (headers: Headers) => {
         params
       ),
     data: ({
-        pk,
-        ...params
-      }: { pk: string } & Record<string, string | boolean | number>) =>
-        get<RelationshipGraph>(
-          basePath.slash(pk).slash('data').url,
-          headers,
-          params
-        ),
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<RelationshipGraph>(
+        basePath.slash(pk).slash('data').url,
+        headers,
+        params
+      ),
   };
 };
