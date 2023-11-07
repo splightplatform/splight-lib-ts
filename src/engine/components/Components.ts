@@ -186,6 +186,7 @@ export interface Component {
   min_component_capacity: ComponentSize;
   hub_component: Component;
   compute_node?: ComputeNode;
+  component_type: string;
 }
 
 export interface ComponentParams {
