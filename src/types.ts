@@ -84,6 +84,7 @@ export {
   Routine,
   RoutineObject,
   RoutineObjectParams,
+  RoutineEvaluation,
   DataAddressValue,
   Command,
   CommandParams,
