@@ -25,6 +25,7 @@ export type Asset = AssetParams & {
   organization: string;
   centroid_coordinates?: [number, number];
   geometry: GeometryCollection;
+  status: string;
 };
 
 export interface SetpointParams {

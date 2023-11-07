@@ -1,6 +1,6 @@
 import { options, get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Empty, Headers } from '../../types.js';
+import { ApiFormField, Asset, Empty, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export type AlertItem = {
@@ -35,6 +35,7 @@ export interface AlertParams {
   stmt_operator: string; // TODO choices
   stmt_threshold: number;
   alert_items: AlertItem[];
+  assets?: Asset[];
 }
 
 export type Alert = AlertParams & {
