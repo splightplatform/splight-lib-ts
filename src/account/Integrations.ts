@@ -4,7 +4,7 @@ import { Path } from '../Urls.js';
 
 export interface Integration {
   id: string;
-  subclass: string;
+  type: string;
 }
 
 export interface EmailIntegrationParams {
@@ -14,7 +14,7 @@ export interface EmailIntegrationParams {
 }
 
 export interface EmailIntegration extends EmailIntegrationParams {
-  subclass: string;
+  type: string;
 }
 
 export interface TelegramIntegrationParams {
@@ -24,7 +24,7 @@ export interface TelegramIntegrationParams {
 }
 
 export interface TelegramIntegration extends TelegramIntegrationParams {
-  subclass: string;
+  type: string;
 }
 
 const AllIntegrationsClient = (headers: Headers) => {
