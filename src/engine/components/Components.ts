@@ -239,7 +239,7 @@ export type RoutineObjectParams = Optional<
 export type RoutineEvaluation = {
   timestamp: string;
   routine: string;
-  value: string;
+  status: string;
   status_text?: string;
 };
 
