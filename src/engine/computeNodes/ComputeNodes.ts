@@ -3,6 +3,13 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Component, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
+export interface ComputeNodeUsage {
+  compute_node: string;
+  timestamp: string;
+  cpu_percent: number;
+  memory_percent: number;
+}
+
 export interface ComputeNodeParams {
   name: string;
 }
@@ -15,6 +22,7 @@ export interface ComputeNode extends ComputeNodeParams {
   last_ip: string;
   type: string;
   agent_version: string;
+  usage?: ComputeNodeUsage;
 }
 
 export interface ComputeNodeToken {
@@ -39,6 +47,11 @@ const AllComputeNodesClient = (headers: Headers) => {
     components: async (computeNodeId: string) =>
       get<Component[]>(
         basePath.slash(computeNodeId).slash('components').url,
+        headers
+      ),
+    usage: async (computeNodeId: string) =>
+      get<ComputeNodeUsage[]>(
+        basePath.slash(computeNodeId).slash('usage').url,
         headers
       ),
   };
