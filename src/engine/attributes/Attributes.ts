@@ -13,7 +13,12 @@ export interface Attribute extends AttributeParams {
   id?: string;
 }
 
-type NodeType = 'Asset' | 'Attribute' | 'Function' | 'RoutineObject' | 'Component';
+type NodeType =
+  | 'Asset'
+  | 'Attribute'
+  | 'Function'
+  | 'RoutineObject'
+  | 'Component';
 export interface RelationshipNode {
   id: string;
   type: NodeType;
