@@ -5,7 +5,7 @@ import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
-import {_File} from '../files/Files.js'
+import { _File } from '../files/Files.js';
 
 export interface AssetParams {
   name: string;

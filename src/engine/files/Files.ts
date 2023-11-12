@@ -6,7 +6,7 @@ import { Path } from '../../Urls.js';
 export interface FileParams {
   file?: File;
   description?: string;
-  Assets?: Asset[]
+  Assets?: Asset[];
 }
 
 export interface _File extends Omit<FileParams, 'file'> {
@@ -15,7 +15,7 @@ export interface _File extends Omit<FileParams, 'file'> {
   extension: string;
   created_at?: string;
   file?: string;
-  Assets?: Asset[]
+  Assets?: Asset[];
 }
 
 export const FilesClient = (headers: Headers) => {
