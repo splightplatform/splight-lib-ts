@@ -5,6 +5,7 @@ import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
+import {_File} from '../files/Files.js'
 
 export interface AssetParams {
   name: string;
@@ -20,6 +21,7 @@ export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
   metadata?: Metadata[];
+  files?: _File[];
   verified: boolean;
   description: string;
   organization: string;
