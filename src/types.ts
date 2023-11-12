@@ -58,7 +58,9 @@ export {
 export {
   Attribute,
   AttributeParams,
-  AttributeRelationships,
+  RelationshipGraph,
+  RelationshipEdge,
+  RelationshipNode,
 } from './engine/attributes/Attributes.js';
 export {
   Metadata,
@@ -82,6 +84,7 @@ export {
   Routine,
   RoutineObject,
   RoutineObjectParams,
+  RoutineEvaluation,
   DataAddressValue,
   Command,
   CommandParams,

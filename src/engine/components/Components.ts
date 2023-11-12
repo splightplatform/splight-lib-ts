@@ -205,7 +205,7 @@ export interface ComponentParams {
   active?: boolean;
   deployment_log_level?: LogLevel;
   deployment_restart_policy?: RestartPolicy;
-  deployment_capacity: ComponentSize;
+  deployment_capacity?: ComponentSize;
   compute_node_id?: string;
 }
 
@@ -230,10 +230,18 @@ export interface ComponentLogEntry {
   traceback?: string;
   tags: string;
 }
+
 export type RoutineObjectParams = Optional<
   Omit<RoutineObject, 'id'>,
   'description'
 >;
+
+export type RoutineEvaluation = {
+  timestamp: string;
+  routine: string;
+  status: string;
+  status_text?: string;
+};
 
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/components/');
@@ -355,5 +363,12 @@ export const RoutineObjectsClient = (headers: Headers) => {
     basePath,
     headers
   );
-  return baseClient;
+  return {
+    ...baseClient,
+    evaluations: async (pk: string) =>
+      await get<RoutineEvaluation[]>(
+        basePath.slash(pk).slash('evaluations').url,
+        headers
+      ),
+  };
 };

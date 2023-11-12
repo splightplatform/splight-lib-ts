@@ -21,6 +21,7 @@ const MockAsset: Asset = {
   organization: 'Splight',
   verified: false,
   description: 'test',
+  status: 'no_alert',
 };
 
 const MockAssetParams: AssetParams = {

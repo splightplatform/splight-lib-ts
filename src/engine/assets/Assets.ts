@@ -3,7 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute, AttributeRelationships } from '../attributes/Attributes.js';
+import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
 import {_File} from '../files/Files.js'
 
@@ -27,6 +27,7 @@ export type Asset = AssetParams & {
   organization: string;
   centroid_coordinates?: [number, number];
   geometry: GeometryCollection;
+  status: string;
 };
 
 export interface SetpointParams {
@@ -105,8 +106,8 @@ export const AssetsClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<Array<AttributeRelationships>>(
-        basePath.slash(pk).slash('relationship').url,
+      get<RelationshipGraph>(
+        basePath.slash(pk).slash('relationships').url,
         headers,
         params
       ),
