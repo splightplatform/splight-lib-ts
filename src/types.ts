@@ -145,9 +145,6 @@ export {
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
 
-export { Contact } from './landing/Contact.js';
-export { Newsletter } from './landing/Newsletter.js';
-
 export { CapacityOptions } from './engine/Deployments.js';
 export {
   FunctionsParams,
