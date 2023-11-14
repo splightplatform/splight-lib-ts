@@ -25,6 +25,7 @@ import {
   QueriesClient,
   SecretsClient,
   FunctionsClient,
+  WeatherClient,
 } from './engine/index.js';
 
 export const Engine = (headers: Headers) => {
@@ -54,5 +55,6 @@ export const Engine = (headers: Headers) => {
     secrets: SecretsClient(headers),
     deployments: DeploymentsClient(headers),
     datalakeData: DatalakeDataClient(headers),
+    weather: WeatherClient(headers),
   };
 };

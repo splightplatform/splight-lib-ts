@@ -194,3 +194,10 @@ export {
 
 export { AgentRelease } from './agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';
+
+// Weather
+export {
+  CurrentWeather,
+  DailyForecast,
+  HourlyForecast,
+} from './engine/weather/Weather.js';
