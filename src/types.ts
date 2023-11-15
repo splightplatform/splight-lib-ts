@@ -145,9 +145,6 @@ export {
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
 
-export { Contact } from './landing/Contact.js';
-export { Newsletter } from './landing/Newsletter.js';
-
 export { CapacityOptions } from './engine/Deployments.js';
 export {
   FunctionsParams,
@@ -194,3 +191,10 @@ export {
 
 export { AgentRelease } from './agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';
+
+// Weather
+export {
+  CurrentWeather,
+  DailyForecast,
+  HourlyForecast,
+} from './engine/weather/Weather.js';

@@ -46,6 +46,7 @@ export interface Functions extends FunctionsParams {
   id: string;
   deleted: boolean;
   active: boolean;
+  status: string;
 }
 
 export type FunctionEvaluation = {
