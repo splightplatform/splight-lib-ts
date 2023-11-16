@@ -190,6 +190,7 @@ export {
 export {
   ComputeNode,
   ComputeNodeParams,
+  ComputeNodeUsage,
 } from './engine/computeNodes/ComputeNodes.js';
 
 export { AgentRelease } from './agent/release/Release.js';

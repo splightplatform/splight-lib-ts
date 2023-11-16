@@ -1,6 +1,6 @@
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Component, Headers } from '../../types.js';
+import { Component, Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface ComputeNodeUsage {
@@ -49,10 +49,13 @@ const AllComputeNodesClient = (headers: Headers) => {
         basePath.slash(computeNodeId).slash('components').url,
         headers
       ),
-    usage: async (computeNodeId: string) =>
-      get<ComputeNodeUsage[]>(
+    usage: async (computeNodeId: string, limit?: number) =>
+      get<PaginatedCollection<ComputeNodeUsage>>(
         basePath.slash(computeNodeId).slash('usage').url,
-        headers
+        headers,
+        {
+          limit_: limit
+        }
       ),
   };
 };
