@@ -62,7 +62,7 @@ export interface GetAttribute {
 }
 
 export const AssetsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/assets/');
+  const basePath = Path('v2/engine/asset/assets/');
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
@@ -80,7 +80,7 @@ export const AssetsClient = (headers: Headers) => {
       ),
     geojson: async (params?: { name__icontains?: string }) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
-        basePath.slash('geojson').url,
+        Path('v2/engine/asset/geojson/').url,
         headers,
         params
       ),
