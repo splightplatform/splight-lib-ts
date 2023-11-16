@@ -19,7 +19,7 @@ export interface _File extends Omit<FileParams, 'file'> {
 }
 
 export const FilesClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/files/');
+  const basePath = Path('v2/engine/file/files');
   const baseClient = BaseRestClient<FileParams, _File>(basePath, headers);
   const responseType = 'blob';
   return {

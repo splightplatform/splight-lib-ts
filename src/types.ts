@@ -147,10 +147,12 @@ export { UserInvitation } from './account/UserInvitations.js';
 
 export { CapacityOptions } from './engine/Deployments.js';
 export {
-  FunctionsParams,
-  FunctionItem,
-  Functions,
+  CronFunctionParams,
+  RateFunctionParams,
+  RateFunction,
+  CronFunction,
   FunctionEvaluation,
+  FunctionItem,
 } from './engine/functions/Functions.js';
 
 export interface ApiFormField {
