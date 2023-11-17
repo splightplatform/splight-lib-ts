@@ -104,8 +104,10 @@ export {
 } from './engine/dashboards/Dashboards.js';
 
 export {
-  Alert,
-  AlertParams,
+  CronAlertParams,
+  RateAlertParams,
+  RateAlert,
+  CronAlert,
   AlertEvent,
   AlertEvaluation,
   AlertItem,

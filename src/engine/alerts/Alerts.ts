@@ -29,7 +29,8 @@ export interface AlertParams {
   name: string;
   description?: string;
   severity: string; // TODO choices
-  stmt_frequency: number; // TODO choices
+  type: 'cron' | 'rate';
+  stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
   stmt_operator: string; // TODO choices
@@ -38,9 +39,27 @@ export interface AlertParams {
   assets?: Asset[];
 }
 
-export type Alert = AlertParams & {
+export interface RateAlertParams extends AlertParams {
+  rate_unit: string;
+  rate_value: number;
+}
+
+export interface CronAlertParams extends AlertParams {
+  cron_minutes: string;
+  cron_hours: string;
+  cron_dom: string;
+  cron_month: string;
+  cron_dow: string;
+  cron_year: string;
+}
+
+export type CronAlert = CronAlertParams & {
   id: string;
-  description: string;
+  status: string;
+};
+
+export type RateAlert = RateAlertParams & {
+  id: string;
   status: string;
 };
 
@@ -59,7 +78,10 @@ export type AlertEvaluation = {
 
 export const AlertsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/alert/alerts/');
-  const baseClient = BaseRestClient<AlertParams, Alert>(basePath, headers);
+  const baseClient = BaseRestClient<
+    CronAlertParams | RateAlertParams,
+    CronAlert | RateAlert
+  >(basePath, headers);
   return {
     ...baseClient,
     options: async () =>

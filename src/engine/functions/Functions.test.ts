@@ -1,8 +1,8 @@
 import { MockedAxios } from '../../test/MockedAxios.js';
 import { expect, test } from '@jest/globals';
 import { splight, TestKeys } from '../../test/setup.js';
-import { RateAlert, RateAlertParams } from './Alerts.js';
 import { API_HOST } from '../../Global.js';
+import { RateFunction, RateFunctionParams } from './Functions.js';
 
 const mockedAxios = MockedAxios();
 
@@ -10,60 +10,68 @@ afterEach(() => {
   mockedAxios.mockReset();
 });
 
-const MockAlert: RateAlert = {
+const Mockfunction: RateFunction = {
   id: '123',
-  status: 'no_alert',
+  status: 'data',
   name: 'test',
   description: 'test',
   type: 'rate',
+  time_window: 300,
   rate_unit: 'minute',
   rate_value: 10,
-  severity: 'info',
-  stmt_time_window: 300,
-  stmt_target_variable: 'A',
-  stmt_operator: 'ge',
-  stmt_threshold: 10,
-  alert_items: [],
-  assets: [],
+  target_variable: 'A',
+  target_asset: {
+    name: 'A',
+    id: 'ABC',
+  },
+  target_attribute: {
+    name: 'A',
+    id: 'ABC',
+  },
+  function_items: [],
 };
 
-const MockAlertParams: RateAlertParams = {
+const MockfunctionParams: RateFunctionParams = {
   name: 'test',
   description: 'test',
-  severity: 'critical',
-  alert_items: [],
-  assets: [],
   type: 'rate',
+  time_window: 300,
   rate_unit: 'minute',
   rate_value: 10,
-  stmt_time_window: 200,
-  stmt_target_variable: 'A',
-  stmt_operator: 'ge',
-  stmt_threshold: 10,
-} as RateAlertParams;
+  target_variable: 'A',
+  target_asset: {
+    name: 'A',
+    id: 'ABC',
+  },
+  target_attribute: {
+    name: 'A',
+    id: 'ABC',
+  },
+  function_items: [],
+} as RateFunctionParams;
 
-test('List alerts', async () => {
+test('List functions', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.alerts.list();
+  await splight.engine.functions.list();
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/alert/alerts/`,
+    `${API_HOST}v2/engine/function/functions/`,
     {
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('List alerts with params', async () => {
+test('List functions with params', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.alerts.list({ page_size: 10 });
+  await splight.engine.functions.list({ page_size: 10 });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/alert/alerts/`,
+    `${API_HOST}v2/engine/function/functions/`,
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
@@ -71,44 +79,44 @@ test('List alerts with params', async () => {
   );
 });
 
-test('Retrieve alert', async () => {
+test('Retrieve function', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAlert,
+    data: Mockfunction,
     status: 200,
   });
-  await splight.engine.alerts.retrieve('123');
+  await splight.engine.functions.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/alert/alerts/123/`,
+    `${API_HOST}v2/engine/function/functions/123/`,
     {
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Create alert', async () => {
+test('Create function', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAlert,
+    data: Mockfunction,
     status: 201,
   });
-  await splight.engine.alerts.create(MockAlertParams);
+  await splight.engine.functions.create(MockfunctionParams);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/alert/alerts/`,
+    `${API_HOST}v2/engine/function/functions/`,
     {
       headers: { Authorization: TestKeys },
       method: 'post',
-      data: MockAlertParams,
+      data: MockfunctionParams,
     }
   );
 });
 
-test('Update alert', async () => {
+test('Update function', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...MockAlert, name: 'updated' },
+    data: { ...Mockfunction, name: 'updated' },
     status: 200,
   });
-  await splight.engine.alerts.update('123', { name: 'updated' });
+  await splight.engine.functions.update('123', { name: 'updated' });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/alert/alerts/123/`,
+    `${API_HOST}v2/engine/function/functions/123/`,
     {
       headers: { Authorization: TestKeys },
       method: 'patch',
@@ -117,14 +125,14 @@ test('Update alert', async () => {
   );
 });
 
-test('Delete alert', async () => {
+test('Delete function', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: {},
     status: 204,
   });
-  await splight.engine.alerts.destroy('123');
+  await splight.engine.functions.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/alert/alerts/123/`,
+    `${API_HOST}v2/engine/function/functions/123/`,
     {
       headers: { Authorization: TestKeys },
       method: 'delete',
