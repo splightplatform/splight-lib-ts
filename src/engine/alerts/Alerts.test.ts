@@ -10,7 +10,7 @@ afterEach(() => {
   mockedAxios.mockReset();
 });
 
-const MockAlert: RateAlert = {
+const mockAlert: RateAlert = {
   id: '123',
   status: 'no_alert',
   name: 'test',
@@ -27,7 +27,7 @@ const MockAlert: RateAlert = {
   assets: [],
 };
 
-const MockAlertParams: RateAlertParams = {
+const mockAlertParams: RateAlertParams = {
   name: 'test',
   description: 'test',
   severity: 'critical',
@@ -73,7 +73,7 @@ test('List alerts with params', async () => {
 
 test('Retrieve alert', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAlert,
+    data: mockAlert,
     status: 200,
   });
   await splight.engine.alerts.retrieve('123');
@@ -87,23 +87,23 @@ test('Retrieve alert', async () => {
 
 test('Create alert', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAlert,
+    data: mockAlert,
     status: 201,
   });
-  await splight.engine.alerts.create(MockAlertParams);
+  await splight.engine.alerts.create(mockAlertParams);
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/alert/alerts/`,
     {
       headers: { Authorization: TestKeys },
       method: 'post',
-      data: MockAlertParams,
+      data: mockAlertParams,
     }
   );
 });
 
 test('Update alert', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...MockAlert, name: 'updated' },
+    data: { ...mockAlert, name: 'updated' },
     status: 200,
   });
   await splight.engine.alerts.update('123', { name: 'updated' });

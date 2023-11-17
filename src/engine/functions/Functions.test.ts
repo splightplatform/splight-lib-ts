@@ -10,7 +10,7 @@ afterEach(() => {
   mockedAxios.mockReset();
 });
 
-const Mockfunction: RateFunction = {
+const mockFuntion: RateFunction = {
   id: '123',
   status: 'data',
   name: 'test',
@@ -31,7 +31,7 @@ const Mockfunction: RateFunction = {
   function_items: [],
 };
 
-const MockfunctionParams: RateFunctionParams = {
+const mockFuntionParams: RateFunctionParams = {
   name: 'test',
   description: 'test',
   type: 'rate',
@@ -81,7 +81,7 @@ test('List functions with params', async () => {
 
 test('Retrieve function', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: Mockfunction,
+    data: mockFuntion,
     status: 200,
   });
   await splight.engine.functions.retrieve('123');
@@ -95,23 +95,23 @@ test('Retrieve function', async () => {
 
 test('Create function', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: Mockfunction,
+    data: mockFuntion,
     status: 201,
   });
-  await splight.engine.functions.create(MockfunctionParams);
+  await splight.engine.functions.create(mockFuntionParams);
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/function/functions/`,
     {
       headers: { Authorization: TestKeys },
       method: 'post',
-      data: MockfunctionParams,
+      data: mockFuntionParams,
     }
   );
 });
 
 test('Update function', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...Mockfunction, name: 'updated' },
+    data: { ...mockFuntion, name: 'updated' },
     status: 200,
   });
   await splight.engine.functions.update('123', { name: 'updated' });
