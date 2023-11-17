@@ -15,7 +15,7 @@ export interface FunctionItem {
     name: string;
   } | null;
   ref_id: string;
-  type: 'cron' | 'rate';
+  type: 'QUERY' | 'EXPRESSION';
   expression: string;
   expression_plain: string;
   query_group_unit: string;
@@ -40,7 +40,7 @@ export interface FunctionsParams {
   description: string;
   time_window: number;
   target_variable: string;
-  type: string;
+  type: 'cron' | 'rate';
 
   frequency?: number;
 }

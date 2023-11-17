@@ -6,7 +6,7 @@ import { Path } from '../../Urls.js';
 export type AlertItem = {
   id?: string;
   ref_id: string;
-  type: string;
+  type: 'QUERY' | 'EXPRESSION';
   expression: string;
   expression_plain: string | null;
   query_filter_asset: {
