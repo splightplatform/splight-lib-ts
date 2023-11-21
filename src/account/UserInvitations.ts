@@ -32,7 +32,5 @@ export const UserInvitationsClient = (headers: Headers) => {
     list,
     create,
     destroy,
-    assignableRoles: () =>
-      get<string[]>(basePath.slash('assignable_roles', true).url, headers),
   };
 };
