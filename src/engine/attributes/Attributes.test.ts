@@ -28,7 +28,7 @@ test('List attributes', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.attributes.list();
+  await splight.engine.assetAttributes.list();
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/attributes/`, {
     headers: { Authorization: TestKeys },
   });
@@ -39,7 +39,7 @@ test('List attributes with params', async () => {
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.attributes.list({
+  await splight.engine.assetAttributes.list({
     page_size: 10,
   });
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/attributes/`, {
@@ -53,7 +53,7 @@ test('Retrieve attribute', async () => {
     data: MockAttribute,
     status: 200,
   });
-  await splight.engine.attributes.retrieve('123');
+  await splight.engine.assetAttributes.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/attributes/123/`,
     {
@@ -67,7 +67,7 @@ test('Create attribute', async () => {
     data: MockAttribute,
     status: 201,
   });
-  await splight.engine.attributes.create(MockAttributeParams);
+  await splight.engine.assetAttributes.create(MockAttributeParams);
   expect(mockedAxios).toHaveBeenCalledWith(`${API_HOST}v2/engine/attributes/`, {
     data: MockAttributeParams,
     method: 'post',
@@ -80,7 +80,7 @@ test('Update attribute', async () => {
     data: { ...MockAttribute, name: 'updated' },
     status: 200,
   });
-  await splight.engine.attributes.update('123', {
+  await splight.engine.assetAttributes.update('123', {
     ...MockAttributeParams,
     name: 'updated',
   });
@@ -98,7 +98,7 @@ test('Delete attribute', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.engine.attributes.destroy('123');
+  await splight.engine.assetAttributes.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
     `${API_HOST}v2/engine/attributes/123/`,
     {
