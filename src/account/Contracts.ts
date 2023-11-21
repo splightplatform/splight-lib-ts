@@ -19,8 +19,12 @@ export interface Contract extends ContractParams {
 
 export const ContractsClient = (headers: Headers) => {
   const basePath = Path('v2/account/contracts/');
-  const { list } = BaseRestClient<ContractParams, Contract>(basePath, headers);
+  const { list, retrieve } = BaseRestClient<ContractParams, Contract>(
+    basePath,
+    headers
+  );
   return {
     list,
+    retrieve,
   };
 };

@@ -104,10 +104,9 @@ export {
 } from './engine/dashboards/Dashboards.js';
 
 export {
-  CronAlertParams,
-  RateAlertParams,
-  RateAlert,
   CronAlert,
+  RateAlert,
+  AlertParams,
   AlertEvent,
   AlertEvaluation,
   AlertItem,
@@ -123,21 +122,6 @@ export {
   Subscription,
   ExternalPortalLink,
 } from './account/Billing.js';
-
-export {
-  OrganizationProfile,
-  OrganizationCompute,
-  OrganizationDatalake,
-  OrganizationDatabase,
-  OrganizationStorage,
-} from './backoffice/organizations/Organizations.js';
-export { Contract, ContractParams } from './backoffice/contracts/Contracts.js';
-export { Feature } from './backoffice/features/Features.js';
-export {
-  SplightHostedComputeNode,
-  SplightHostedComputeNodeParams,
-  SplightHostedComputeNodeConnection,
-} from './backoffice/computeNodes/ComputeNodes.js';
 
 export {
   Contract as AccountContract,
@@ -172,7 +156,11 @@ export {
   SearchDataParams,
 } from './engine/datalake/Data.js';
 
-export { UserLogs, UserLogsDetails } from './account/Users.js';
+export {
+  UserLogs,
+  UserLogsDetails,
+  OrganizationProfile,
+} from './account/Users.js';
 
 export {
   EmailIntegration,

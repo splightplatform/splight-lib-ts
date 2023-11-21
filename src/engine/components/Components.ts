@@ -357,7 +357,7 @@ export const ComponentObjectsClient = (headers: Headers) => {
   };
 };
 
-export const RoutineObjectsClient = (headers: Headers) => {
+export const ComponentRoutinesClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/routines/');
   const baseClient = BaseRestClient<RoutineObjectParams, RoutineObject>(
     basePath,
