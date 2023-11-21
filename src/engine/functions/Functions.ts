@@ -15,7 +15,7 @@ export interface FunctionItem {
     name: string;
   } | null;
   ref_id: string;
-  type: string;
+  type: 'QUERY' | 'EXPRESSION';
   expression: string;
   expression_plain: string;
   query_group_unit: string;
@@ -38,14 +38,35 @@ export interface FunctionsParams {
   };
   name: string;
   description: string;
-  frequency: number;
   time_window: number;
   target_variable: string;
+  type: 'cron' | 'rate';
+
+  frequency?: number;
 }
-export interface Functions extends FunctionsParams {
+
+export interface RateFunctionParams extends FunctionsParams {
+  rate_unit: string;
+  rate_value: number;
+}
+
+export interface CronFunctionParams extends FunctionsParams {
+  cron_minutes: string;
+  cron_hours: string;
+  cron_dom: string;
+  cron_month: string;
+  cron_dow: string;
+  cron_year: string;
+}
+
+export interface CronFunction extends CronFunctionParams {
   id: string;
-  deleted: boolean;
-  active: boolean;
+  status: string;
+}
+
+export interface RateFunction extends RateFunctionParams {
+  id: string;
+  status: string;
 }
 
 export type FunctionEvaluation = {
@@ -55,10 +76,10 @@ export type FunctionEvaluation = {
 
 export const FunctionsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/function/functions/');
-  const baseClient = BaseRestClient<FunctionsParams, Functions>(
-    basePath,
-    headers
-  );
+  const baseClient = BaseRestClient<
+    CronFunctionParams | RateFunctionParams,
+    CronFunction | RateFunction
+  >(basePath, headers);
 
   return {
     ...baseClient,
