@@ -54,7 +54,7 @@ const AllComputeNodesClient = (headers: Headers) => {
         basePath.slash(computeNodeId).slash('usage').url,
         headers,
         {
-          limit_: limit
+          limit_: limit,
         }
       ),
   };
