@@ -1,4 +1,3 @@
-import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';

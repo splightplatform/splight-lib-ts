@@ -1,4 +1,4 @@
-import { get, post, patch } from '../rest/BaseMethods.js';
+import { get, patch } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers, OrganizationProfile } from '../types.js';
 import { Path } from '../Urls.js';
@@ -8,7 +8,6 @@ export interface Organization {
   name: string;
   display_name: string;
 }
-
 
 export interface Permission {
   id: string;
@@ -24,7 +23,7 @@ export interface Permission {
 
 export type PermissionParams = Omit<Permission, 'id' | 'is_system'>;
 
-export interface Role{
+export interface Role {
   id: string;
   name: string;
   description: string;
@@ -32,7 +31,7 @@ export interface Role{
   is_system: boolean;
 }
 
-export type RoleParams = Omit<Role, 'id'| 'is_system'>;
+export type RoleParams = Omit<Role, 'id' | 'is_system'>;
 
 export interface Action {
   name: string;
@@ -41,17 +40,15 @@ export interface Action {
   generic: boolean;
 }
 
-
 export interface Service {
   name: string;
-  actions : Action[];
+  actions: Action[];
 }
 
 export interface Application {
   name: string;
   services: Service[];
 }
-
 
 export interface UserProfileParams {
   id?: string;
@@ -101,13 +98,16 @@ export const UserClient = (headers: Headers) => {
 
 export const PermissionsClient = (headers: Headers) => {
   const basePath = Path('v2/account/authorization/permissions/');
-  const baseClient = BaseRestClient<PermissionParams, Permission>(basePath, headers);
+  const baseClient = BaseRestClient<PermissionParams, Permission>(
+    basePath,
+    headers
+  );
   return {
     ...baseClient,
     structure: () =>
       get<Application[]>(Path('v2/permission-structure').url, headers),
-  }
-}
+  };
+};
 
 export const RolesClient = (headers: Headers) => {
   const basePath = Path('v2/account/authorization/roles/');
@@ -116,5 +116,5 @@ export const RolesClient = (headers: Headers) => {
     ...baseClient,
     permissions: (pk: string) =>
       get<Permission[]>(basePath.slash(pk).slash('permissions').url, headers),
-    }
-} 
+  };
+};
