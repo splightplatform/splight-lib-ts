@@ -173,6 +173,15 @@ export {
 } from './engine/datalake/Data.js';
 
 export { UserLogs, UserLogsDetails } from './account/Users.js';
+export {
+  Permission,
+  PermissionParams,
+  Role,
+  RoleParams,
+  Application,
+  Service,
+  Action,
+} from './account/User.js';
 
 export {
   EmailIntegration,
