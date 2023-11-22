@@ -19,7 +19,6 @@ export interface SearchDataParams {
 export type SearchDataResponse = {
   timestamp: string;
   [key: string]: string | number;
-  file: string;
 }[];
 
 export const DatalakeDataClient = (headers: Headers) => {
