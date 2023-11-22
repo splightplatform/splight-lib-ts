@@ -30,7 +30,7 @@ export interface SplightHostedComputeNode
   provision_private_ip: string;
   provision_instance_id: string;
   provision_status: 'pending' | 'in_progress' | 'ready' | 'failed';
-  usage: ComputeNodeUsage;
+  usage?: ComputeNodeUsage;
 }
 
 export interface SplightHostedComputeNodeConnection {
