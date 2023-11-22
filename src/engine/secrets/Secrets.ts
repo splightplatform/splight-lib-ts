@@ -17,7 +17,7 @@ export interface DecryptSecretParams {
 }
 
 export const SecretsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/secrets/');
+  const basePath = Path('v2/engine/secret/secrets/');
   const baseClient = BaseRestClient<SecretParams, Secret>(basePath, headers);
   return {
     ...baseClient,

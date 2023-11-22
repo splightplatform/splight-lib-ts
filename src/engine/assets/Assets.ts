@@ -5,6 +5,7 @@ import { Headers, PaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
+import { _File } from '../files/Files.js';
 
 export interface AssetParams {
   name: string;
@@ -20,6 +21,7 @@ export type Asset = AssetParams & {
   id: string;
   attributes: Attribute[];
   metadata?: Metadata[];
+  files?: _File[];
   verified: boolean;
   description: string;
   organization: string;
@@ -60,7 +62,7 @@ export interface GetAttribute {
 }
 
 export const AssetsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/assets/');
+  const basePath = Path('v2/engine/asset/assets/');
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
@@ -78,7 +80,7 @@ export const AssetsClient = (headers: Headers) => {
       ),
     geojson: async (params?: { name__icontains?: string }) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
-        basePath.slash('geojson').url,
+        Path('v2/engine/asset/geojson/').url,
         headers,
         params
       ),

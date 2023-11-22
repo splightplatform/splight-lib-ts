@@ -28,3 +28,4 @@ export { SecretsClient } from './secrets/Secrets.js';
 export { DatalakeDataClient } from './datalake/Data.js';
 export { DeploymentsClient } from './Deployments.js';
 export { ComputeNodesClient } from './computeNodes/ComputeNodes.js';
+export { WeatherClient } from './weather/Weather.js';

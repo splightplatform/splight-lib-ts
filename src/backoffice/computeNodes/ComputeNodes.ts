@@ -1,6 +1,6 @@
 import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Component, Headers } from '../../types.js';
+import { Component, ComputeNodeUsage, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface SplightHostedComputeNodeParams {
@@ -30,6 +30,7 @@ export interface SplightHostedComputeNode
   provision_private_ip: string;
   provision_instance_id: string;
   provision_status: 'pending' | 'in_progress' | 'ready' | 'failed';
+  usage?: ComputeNodeUsage;
 }
 
 export interface SplightHostedComputeNodeConnection {

@@ -104,8 +104,10 @@ export {
 } from './engine/dashboards/Dashboards.js';
 
 export {
-  Alert,
-  AlertParams,
+  CronAlertParams,
+  RateAlertParams,
+  RateAlert,
+  CronAlert,
   AlertEvent,
   AlertEvaluation,
   AlertItem,
@@ -145,15 +147,14 @@ export {
 export { UserActivity } from './account/Activity.js';
 export { UserInvitation } from './account/UserInvitations.js';
 
-export { Contact } from './landing/Contact.js';
-export { Newsletter } from './landing/Newsletter.js';
-
 export { CapacityOptions } from './engine/Deployments.js';
 export {
-  FunctionsParams,
-  FunctionItem,
-  Functions,
+  CronFunctionParams,
+  RateFunctionParams,
+  RateFunction,
+  CronFunction,
   FunctionEvaluation,
+  FunctionItem,
 } from './engine/functions/Functions.js';
 
 export interface ApiFormField {
@@ -199,7 +200,15 @@ export {
 export {
   ComputeNode,
   ComputeNodeParams,
+  ComputeNodeUsage,
 } from './engine/computeNodes/ComputeNodes.js';
 
 export { AgentRelease } from './agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';
+
+// Weather
+export {
+  CurrentWeather,
+  DailyForecast,
+  HourlyForecast,
+} from './engine/weather/Weather.js';

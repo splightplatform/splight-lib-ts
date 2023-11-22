@@ -5,6 +5,7 @@ import { Path } from '../../Urls.js';
 
 export interface AttributeParams {
   name: string;
+  pinned?: boolean;
   asset?: string;
   type?: string;
 }
