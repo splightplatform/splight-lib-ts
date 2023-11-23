@@ -14,6 +14,7 @@ const MockAsset: Asset = {
   id: '123',
   attributes: [],
   name: 'test',
+  pinned_at: null,
   geometry: {
     type: 'GeometryCollection',
     geometries: [],
@@ -27,6 +28,7 @@ const MockAsset: Asset = {
 const MockAssetParams: AssetParams = {
   name: 'test',
   description: 'test',
+  pinned_at: null,
 };
 
 test('List assets', async () => {

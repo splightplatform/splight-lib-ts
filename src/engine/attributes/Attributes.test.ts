@@ -12,14 +12,14 @@ afterEach(() => {
 
 const MockAttribute: Attribute = {
   id: '123',
-  pinned: false,
+  pinned_at: null,
   name: 'test',
   type: 'Number',
 };
 
 const MockAttributeParams: AttributeParams = {
   name: 'test',
-  pinned: false,
+  pinned_at: null,
   type: 'Number',
 };
 
