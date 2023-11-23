@@ -80,6 +80,7 @@ export interface Chart extends ChartParams {
   last_updated_by?: string;
   timestamp_gte: string;
   timestamp_lte: string;
+  show_beyond_data: boolean;
 }
 
 export interface TabParams {

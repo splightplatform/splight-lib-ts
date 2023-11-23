@@ -156,11 +156,16 @@ export {
   SearchDataParams,
 } from './engine/datalake/Data.js';
 
+export { UserLogs, UserLogsDetails } from './account/Users.js';
 export {
-  UserLogs,
-  UserLogsDetails,
-  OrganizationProfile,
-} from './account/Users.js';
+  Permission,
+  PermissionParams,
+  Role,
+  RoleParams,
+  Application,
+  Service,
+  Action,
+} from './account/User.js';
 
 export {
   EmailIntegration,
@@ -179,6 +184,7 @@ export {
 export {
   ComputeNode,
   ComputeNodeParams,
+  ComputeNodeUsage,
 } from './engine/computeNodes/ComputeNodes.js';
 
 export { AgentRelease } from './agent/release/Release.js';

@@ -1,4 +1,3 @@
-import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
@@ -32,7 +31,5 @@ export const UserInvitationsClient = (headers: Headers) => {
     list,
     create,
     destroy,
-    assignableRoles: () =>
-      get<string[]>(basePath.slash('assignable_roles', true).url, headers),
   };
 };
