@@ -106,6 +106,8 @@ export {
 export {
   CronAlert,
   RateAlert,
+  CronAlertParams,
+  RateAlertParams,
   AlertParams,
   AlertEvent,
   AlertEvaluation,
@@ -156,7 +158,11 @@ export {
   SearchDataParams,
 } from './engine/datalake/Data.js';
 
-export { UserLogs, UserLogsDetails } from './account/Users.js';
+export {
+  UserLogs,
+  UserLogsDetails,
+  OrganizationProfile,
+} from './account/Users.js';
 export {
   Permission,
   PermissionParams,
