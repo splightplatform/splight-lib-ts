@@ -15,6 +15,7 @@ export interface AssetParams {
   organization?: string;
   verified?: boolean;
   geometry?: GeometryCollection;
+  pinned_at?: string | null;
 }
 
 export type Asset = AssetParams & {
