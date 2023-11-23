@@ -3,7 +3,6 @@ import { Headers } from './types.js';
 import { Engine } from './Engine.js';
 import { Account } from './Account.js';
 import { Hub } from './Hub.js';
-import { Backoffice } from './Backoffice.js';
 import { Agent } from './Agent.js';
 
 export const Splight = (requestHeaders?: Headers) => {
@@ -13,7 +12,6 @@ export const Splight = (requestHeaders?: Headers) => {
     engine: Engine(headers),
     account: Account(headers),
     hub: Hub(headers),
-    backoffice: Backoffice(headers),
     agent: Agent(headers),
   };
 };

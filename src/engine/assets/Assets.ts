@@ -79,12 +79,6 @@ export const AssetsClient = (headers: Headers) => {
         { attribute: attributeId },
         headers
       ),
-    geojson: async (params?: { name__icontains?: string }) =>
-      await get<FeatureCollection<GeometryCollection, Asset>>(
-        Path('v2/engine/asset/geojson/').url,
-        headers,
-        params
-      ),
     attributes: ({
       pk,
       ...params
@@ -109,6 +103,12 @@ export const AssetsClient = (headers: Headers) => {
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<RelationshipGraph>(
         basePath.slash(pk).slash('relationships').url,
+        headers,
+        params
+      ),
+    geojson: async (params?: { name__icontains?: string }) =>
+      await get<FeatureCollection<GeometryCollection, Asset>>(
+        Path('v2/engine/asset/geojson/').url,
         headers,
         params
       ),

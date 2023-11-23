@@ -1,7 +1,21 @@
 import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
-import { Headers, OrganizationProfile } from '../types.js';
+import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
+
+export interface OrganizationProfileParams {
+  name: string;
+  manager_email?: string;
+  payment_account_id?: string;
+  payout_account_id?: string;
+}
+
+export interface OrganizationProfile extends OrganizationProfileParams {
+  id: string;
+  subscription_plan?: string;
+  status?: string;
+  created_at?: string;
+}
 
 export interface User {
   organization_id: string;

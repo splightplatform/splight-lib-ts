@@ -162,29 +162,3 @@ export const DashboardsClient = (headers: Headers) => {
 
   return baseClient;
 };
-
-export const DashboardGraphsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/graphs/');
-  const baseClient = BaseRestClient<GraphParams, Graph>(basePath, headers);
-  return baseClient;
-};
-export const DashboardGraphNodesClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/nodes/');
-  const baseClient = BaseRestClient<NodeParams, Node>(basePath, headers);
-  return baseClient;
-};
-export const DashboardGraphsNodesBulkClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/nodes/bulk/');
-  const baseClient = BaseRestClient<NodeParams[], Node[]>(basePath, headers);
-  return baseClient;
-};
-export const DashboardGraphEdgesClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/edges/');
-  const baseClient = BaseRestClient<EdgeParams, Edge>(basePath, headers);
-  return baseClient;
-};
-export const DashboardGraphsEdgesBulkClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/dashboard/edges/bulk/');
-  const baseClient = BaseRestClient<EdgeParams[], Edge[]>(basePath, headers);
-  return baseClient;
-};

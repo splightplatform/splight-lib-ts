@@ -6,7 +6,7 @@ export { MetadataClient } from './metadata/Metadata.js';
 export {
   ComponentsClient,
   ComponentObjectsClient,
-  RoutineObjectsClient,
+  ComponentRoutinesClient,
   ComponentCommandsClient,
   ComponentSize,
 } from './components/Components.js';
@@ -17,12 +17,7 @@ export {
   DashboardsClient,
   DashboardTabsClient,
   DashboardChartsClient,
-  DashboardGraphsClient,
   DashboardChartItemsClient,
-  DashboardGraphEdgesClient,
-  DashboardGraphNodesClient,
-  DashboardGraphsEdgesBulkClient,
-  DashboardGraphsNodesBulkClient,
 } from './dashboards/Dashboards.js';
 export { SecretsClient } from './secrets/Secrets.js';
 export { DatalakeDataClient } from './datalake/Data.js';
