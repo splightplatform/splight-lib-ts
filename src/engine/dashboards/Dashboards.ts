@@ -59,7 +59,8 @@ export interface ChartParams {
   name: string;
   chart_items: ChartItem[];
   refresh_interval: string | null;
-  relative_window_time: string | null;
+  timestamp_gte: string | null;
+  timestamp_lte: string | null;
   position_x: number;
   position_y: number;
   height: number;
@@ -78,8 +79,6 @@ export interface Chart extends ChartParams {
   external_resource_type?: string;
   config: Record<string, string>;
   last_updated_by?: string;
-  timestamp_gte: string;
-  timestamp_lte: string;
   show_beyond_data: boolean;
 }
 
