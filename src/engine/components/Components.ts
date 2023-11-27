@@ -282,7 +282,7 @@ export const ComponentsClient = (headers: Headers) => {
     ...baseClient,
     fromHubComponent,
     hubComponent: (pk: string) =>
-      get<Component>(basePath.slash(pk).slash('hub-component').url, headers),
+      get<HubComponent>(basePath.slash(pk).slash('hub-component').url, headers),
     start: (pk: string) =>
       post<Record<string, never>, Component>(
         basePath.slash(pk).slash('start').url,
