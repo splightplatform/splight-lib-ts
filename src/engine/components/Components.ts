@@ -1,6 +1,6 @@
 import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, ComputeNode, Optional } from '../../types.js';
+import { Headers, ComputeNode, Optional, HubComponent } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 // Components
@@ -184,7 +184,7 @@ export interface Component {
   commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
-  hub_component: Component;
+  hub_component: HubComponent;
   compute_node?: ComputeNode;
 }
 
