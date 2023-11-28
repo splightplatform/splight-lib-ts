@@ -77,10 +77,7 @@ export {
   RestartPolicy,
   Component,
   ComponentParams,
-  ComponentParameter,
-  ComponentCommand,
   ComponentParameterType,
-  ComponentObject,
   Routine,
   RoutineObject,
   RoutineObjectParams,
@@ -88,9 +85,7 @@ export {
   DataAddressValue,
   Command,
   CommandParams,
-  ComponentSize,
   ComponentObjectParams,
-  ObjectParameter,
   DeploymentType,
   ComponentLogEntry,
   TypedComponentParameter,
@@ -114,7 +109,14 @@ export {
   AlertItem,
 } from './engine/alerts/Alerts.js';
 
-export { Component as HubComponent } from './hub/components/Components.js';
+export {
+  HubComponent,
+  ComponentSize,
+  ComponentParameter,
+  ComponentCommand,
+  ObjectParameter,
+  ComponentObject,
+} from './hub/components/Components.js';
 
 export {
   PaymentAccount,

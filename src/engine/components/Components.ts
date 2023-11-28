@@ -1,17 +1,17 @@
+import {
+  Binding,
+  ComponentCommand,
+  ComponentObject,
+  ComponentParameter,
+  ComponentSize,
+  CustomType,
+  HubComponent,
+  ObjectParameter,
+} from '../../hub/components/Components.js';
 import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, ComputeNode, Optional, HubComponent } from '../../types.js';
+import { Headers, ComputeNode, Optional } from '../../types.js';
 import { Path } from '../../Urls.js';
-
-// Components
-export interface ComponentObject {
-  id: string;
-  name: string;
-  description: string;
-  component_id: string;
-  type?: string;
-  data: ComponentParameter[];
-}
 
 export interface RoutineObject {
   id: string;
@@ -23,17 +23,6 @@ export interface RoutineObject {
   config: ComponentParameter[];
   input: ComponentParameter[];
   output: ComponentParameter[];
-}
-
-export interface Binding {
-  name: string;
-  object_type: string;
-  object_action: 'CREATE' | 'UPDATE' | 'DELETE';
-}
-
-export interface ComponentCommand {
-  name: string;
-  fields: ComponentParameter[];
 }
 
 interface CommandResponse {
@@ -57,21 +46,9 @@ interface Endpoint {
   port: number;
 }
 
-export enum ComponentSize {
-  SMALL = 'small',
-  MEDIUM = 'medium',
-  LARGE = 'large',
-  VERY_LARGE = 'very_large',
-}
 export interface DataAddressValue {
   asset: string;
   attribute: string;
-}
-
-export interface ObjectParameter {
-  name: string;
-  id: string;
-  original_value: string | DataAddressValue;
 }
 
 export type ComponentParameterType =
@@ -80,25 +57,6 @@ export type ComponentParameterType =
   | boolean
   | DataAddressValue
   | ObjectParameter;
-
-export interface ComponentParameter {
-  type: string;
-  name: string;
-  description: string;
-  required: boolean;
-  value:
-    | ComponentParameterType
-    | ComponentParameterType[]
-    | ComponentParameter[]
-    | ComponentParameter[][]
-    | ObjectParameter
-    | ObjectParameter[]
-    | ObjectParameter[][];
-  fields?: OutputField[];
-  multiple: boolean;
-  choices?: Array<string | number>;
-  depends_on?: string;
-}
 
 export interface TypedComponentParameter extends ComponentParameter {
   value_type?: string;
@@ -122,10 +80,6 @@ export interface OutputField {
   type: string;
   filterable?: boolean;
   depends_on?: string;
-}
-export interface CustomType {
-  name: string;
-  fields: ComponentParameter[];
 }
 
 export interface Routine {
