@@ -76,7 +76,7 @@ export interface CustomType {
   fields: ComponentParameter[];
 }
 
-export interface Component {
+export interface HubComponent {
   id: string;
   name: string;
   description: string;
@@ -107,6 +107,7 @@ export interface Component {
   commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
+  splight_cli_version: string;
 }
 
 export interface ComponentParams {
@@ -130,13 +131,13 @@ export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 
 export const ComponentVersionsClient = (headers: Headers) => {
   const basePath = Path('v2/hub/component/versions/');
-  const baseClient = BaseRestClient<Component>(basePath, headers);
+  const baseClient = BaseRestClient<HubComponent>(basePath, headers);
   return baseClient;
 };
 
 export const ComponentsClient = (headers: Headers) => {
   const basePath = Path('v2/hub/component/components/');
-  const baseClient = BaseRestClient<ComponentParams, Component>(
+  const baseClient = BaseRestClient<ComponentParams, HubComponent>(
     basePath,
     headers
   );
