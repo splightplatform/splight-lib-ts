@@ -1,4 +1,4 @@
-import { FeatureCollection, GeometryCollection } from 'geojson';
+import { FeatureCollection, Geometry, GeometryCollection } from 'geojson';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, PaginatedCollection } from '../../types.js';
@@ -27,6 +27,7 @@ export type Asset = AssetParams & {
   description: string;
   organization: string;
   centroid_coordinates?: [number, number];
+  centroid?: Geometry;
   geometry: GeometryCollection;
   status: string;
 };
