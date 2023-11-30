@@ -31,7 +31,7 @@ export type AlertThreshold = {
   value: number;
   desired_status: string; // TODO choices
   desired_status_text: string;
-}
+};
 
 export interface AlertParams {
   name: string;
