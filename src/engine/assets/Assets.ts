@@ -27,7 +27,7 @@ export type Asset = AssetParams & {
   description: string;
   organization: string;
   centroid_coordinates?: [number, number];
-  centroid: Geometry;
+  centroid?: Geometry;
   geometry: GeometryCollection;
   status: string;
 };
