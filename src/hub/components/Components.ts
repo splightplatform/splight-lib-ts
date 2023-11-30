@@ -10,7 +10,13 @@ export interface ComponentObject {
   name: string;
   description: string;
   component_id: string;
+  type?: string;
   data: ComponentParameter[];
+}
+
+export interface DataAddressValue {
+  asset: string;
+  attribute: string;
 }
 
 export interface Binding {
@@ -24,7 +30,7 @@ export interface ComponentCommand {
   fields: ComponentParameter[];
 }
 
-interface Endpoint {
+export interface Endpoint {
   name: string;
   port: number;
 }
@@ -36,33 +42,42 @@ export enum ComponentSize {
   VERY_LARGE = 'very_large',
 }
 
+export interface DataAddressValue {
+  asset: string;
+  attribute: string;
+}
+
 export interface ObjectParameter {
   name: string;
   id: string;
+  original_value?: string | DataAddressValue;
 }
 
 export type ComponentParameterType =
   | string
   | number
   | boolean
+  | DataAddressValue
   | ObjectParameter;
 
 export interface ComponentParameter {
   type: string;
   name: string;
+  description: string;
   required: boolean;
   value:
     | ComponentParameterType
     | ComponentParameterType[]
     | ComponentParameter[]
-    | ComponentParameter[][]
-    | ObjectParameter
-    | ObjectParameter[]
-    | ObjectParameter[][];
+    | ComponentParameter[][];
   fields?: OutputField[];
   multiple: boolean;
   choices?: Array<string | number>;
   depends_on?: string;
+}
+
+export interface TypedComponentParameter extends ComponentParameter {
+  value_type?: string;
 }
 
 export interface OutputField {
@@ -71,6 +86,7 @@ export interface OutputField {
   filterable?: boolean;
   depends_on?: string;
 }
+
 export interface CustomType {
   name: string;
   fields: ComponentParameter[];

@@ -5,8 +5,8 @@ import {
   ComponentParameter,
   ComponentSize,
   CustomType,
+  Endpoint,
   HubComponent,
-  ObjectParameter,
 } from '../../hub/components/Components.js';
 import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
@@ -39,47 +39,6 @@ export interface Command {
   fields?: ComponentParameter[];
   command: ComponentCommand;
   response?: CommandResponse;
-}
-
-interface Endpoint {
-  name: string;
-  port: number;
-}
-
-export interface DataAddressValue {
-  asset: string;
-  attribute: string;
-}
-
-export type ComponentParameterType =
-  | string
-  | number
-  | boolean
-  | DataAddressValue
-  | ObjectParameter;
-
-export interface TypedComponentParameter extends ComponentParameter {
-  value_type?: string;
-}
-
-export interface Value {
-  asset: string;
-  attribute: string;
-}
-
-export interface Parameter {
-  type: string;
-  name: string;
-  description: string;
-  required: boolean;
-  value: Value;
-}
-
-export interface OutputField {
-  name: string;
-  type: string;
-  filterable?: boolean;
-  depends_on?: string;
 }
 
 export interface Routine {

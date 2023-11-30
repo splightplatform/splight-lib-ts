@@ -77,18 +77,15 @@ export {
   RestartPolicy,
   Component,
   ComponentParams,
-  ComponentParameterType,
   Routine,
   RoutineObject,
   RoutineObjectParams,
   RoutineEvaluation,
-  DataAddressValue,
   Command,
   CommandParams,
   ComponentObjectParams,
   DeploymentType,
   ComponentLogEntry,
-  TypedComponentParameter,
 } from './engine/components/Components.js';
 export { _File as File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
@@ -116,6 +113,9 @@ export {
   ComponentCommand,
   ObjectParameter,
   ComponentObject,
+  ComponentParameterType,
+  DataAddressValue,
+  TypedComponentParameter,
 } from './hub/components/Components.js';
 
 export {
