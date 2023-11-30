@@ -95,9 +95,9 @@ export const UserClient = (headers: Headers) => {
           headers
         ),
       uploadLogo: (logo: File) =>
-        patch<File, OrganizationProfile>(
+        patch<{ logo: File }, OrganizationProfile>(
           basePath.slash('organization-profile').slash('upload-logo').url,
-          logo,
+          { logo },
           headers
         ),
     }),
