@@ -8,6 +8,7 @@ export interface OrganizationProfileParams {
   manager_email?: string;
   payment_account_id?: string;
   payout_account_id?: string;
+  logo?: string;
 }
 
 export interface OrganizationProfile extends OrganizationProfileParams {

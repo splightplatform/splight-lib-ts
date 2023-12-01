@@ -88,11 +88,19 @@ export const UserClient = (headers: Headers) => {
     }),
     permissions: () =>
       get<UserPermissions>(basePath.slash('permissions').url, headers),
-    organizationProfile: () =>
-      get<OrganizationProfile>(
-        basePath.slash('organization-profile').url,
-        headers
-      ),
+    organizationProfile: () => ({
+      get: () =>
+        get<OrganizationProfile>(
+          basePath.slash('organization-profile').url,
+          headers
+        ),
+      uploadLogo: (logo: File) =>
+        patch<{ logo: File }, { logo: string }>(
+          basePath.slash('organization-profile').slash('upload-logo').url,
+          { logo },
+          headers
+        ),
+    }),
   };
 };
 
