@@ -26,11 +26,8 @@ export type AlertItem = {
 };
 
 export type AlertThreshold = {
-  target_variable: string;
-  operator: string; // TODO choices
   value: number;
   desired_status: string; // TODO choices
-  desired_status_text: string;
 };
 
 export interface AlertParams {
@@ -40,6 +37,9 @@ export interface AlertParams {
   type: 'cron' | 'rate';
   stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
+  stmt_target_variable: string;
+  stmt_operator: string;
+  stmt_aggregation: string;
   stmt_thresholds: AlertThreshold[];
   alert_items: AlertItem[];
   assets?: Asset[];
