@@ -21,8 +21,9 @@ const mockAlert: RateAlert = {
   severity: 'info',
   stmt_time_window: 300,
   stmt_target_variable: 'A',
-  stmt_operator: 'ge',
-  stmt_threshold: 10,
+  stmt_operator: 'eq',
+  stmt_aggregation: 'any',
+  stmt_thresholds: [],
   alert_items: [],
   assets: [],
 };
@@ -38,8 +39,9 @@ const mockAlertParams: RateAlertParams = {
   rate_value: 10,
   stmt_time_window: 200,
   stmt_target_variable: 'A',
-  stmt_operator: 'ge',
-  stmt_threshold: 10,
+  stmt_operator: 'eq',
+  stmt_aggregation: 'any',
+  stmt_thresholds: [],
 } as RateAlertParams;
 
 test('List alerts', async () => {

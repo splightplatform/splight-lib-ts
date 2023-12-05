@@ -25,6 +25,11 @@ export type AlertItem = {
   query_plain: string | null;
 };
 
+export type AlertThreshold = {
+  value: number;
+  desired_status: string; // TODO choices
+};
+
 export interface AlertParams {
   name: string;
   description?: string;
@@ -33,8 +38,9 @@ export interface AlertParams {
   stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
-  stmt_operator: string; // TODO choices
-  stmt_threshold: number;
+  stmt_operator: string;
+  stmt_aggregation: string;
+  stmt_thresholds: AlertThreshold[];
   alert_items: AlertItem[];
   assets?: Asset[];
 }

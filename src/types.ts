@@ -104,6 +104,7 @@ export {
   AlertEvent,
   AlertEvaluation,
   AlertItem,
+  AlertThreshold,
 } from './engine/alerts/Alerts.js';
 
 export {
