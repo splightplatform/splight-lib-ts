@@ -96,13 +96,11 @@ export const AlertsClient = (headers: Headers) => {
         headers
       ),
     events: async (
-      pk?: string,
-      params?: Partial<{ page_size: number; page: number }>
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
     ) =>
       await get<{ results: AlertEvent[]; next: string | null }>(
-        pk
-          ? basePath.slash(pk).slash('events').url
-          : basePath.slash('events').url,
+        basePath.slash(pk).slash('events').url,
         headers,
         ...[params]
       ),
@@ -114,4 +112,11 @@ export const AlertsClient = (headers: Headers) => {
     evaluate: async (pk: string) =>
       post<Empty, Empty>(basePath.slash(pk).slash('evaluate').url, {}, headers),
   };
+};
+
+export const AlertEventsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/alert/events/');
+  const baseClient = BaseRestClient<AlertEvent, AlertEvent>(basePath, headers);
+
+  return baseClient;
 };
