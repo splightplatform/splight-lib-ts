@@ -96,11 +96,13 @@ export const AlertsClient = (headers: Headers) => {
         headers
       ),
     events: async (
-      pk: string,
-      params: Partial<{ page_size: number; page: number }>
+      pk?: string,
+      params?: Partial<{ page_size: number; page: number }>
     ) =>
       await get<{ results: AlertEvent[]; next: string | null }>(
-        basePath.slash(pk).slash('events').url,
+        pk
+          ? basePath.slash(pk).slash('events').url
+          : basePath.slash('events').url,
         headers,
         ...[params]
       ),
