@@ -8,6 +8,7 @@ export interface AttributeParams {
   pinned_at?: string | null;
   asset?: string;
   type?: string;
+  unit?: string;
 }
 
 export interface Attribute extends AttributeParams {
