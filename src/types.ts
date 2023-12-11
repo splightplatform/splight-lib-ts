@@ -87,7 +87,14 @@ export {
   DeploymentType,
   ComponentLogEntry,
 } from './engine/components/Components.js';
-export { _File as File, FileParams } from './engine/files/Files.js';
+export {
+  _File as File,
+  FileParams,
+  Folder,
+  FolderParams,
+  FileSystemObject,
+  FileSystemFolder,
+} from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
   EdgeParams,
