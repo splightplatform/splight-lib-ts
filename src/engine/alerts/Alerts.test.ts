@@ -26,6 +26,12 @@ const mockAlert: RateAlert = {
   stmt_thresholds: [],
   alert_items: [],
   assets: [],
+  notify_error: true,
+  notify_no_data: true,
+  notify_timeout: true,
+  custom_message: null,
+  email_list: [],
+  telegram_list: [],
 };
 
 const mockAlertParams: RateAlertParams = {
@@ -42,6 +48,12 @@ const mockAlertParams: RateAlertParams = {
   stmt_operator: 'eq',
   stmt_aggregation: 'any',
   stmt_thresholds: [],
+  notify_error: true,
+  notify_no_data: true,
+  notify_timeout: true,
+  custom_message: null,
+  email_list: [],
+  telegram_list: [],
 } as RateAlertParams;
 
 test('List alerts', async () => {

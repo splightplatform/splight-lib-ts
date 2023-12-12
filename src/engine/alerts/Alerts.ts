@@ -28,6 +28,7 @@ export type AlertItem = {
 export type AlertThreshold = {
   value: number;
   desired_status: string; // TODO choices
+  status_text?: string | null;
 };
 
 export interface AlertParams {
@@ -43,6 +44,12 @@ export interface AlertParams {
   stmt_thresholds: AlertThreshold[];
   alert_items: AlertItem[];
   assets?: Asset[];
+  email_list: string[];
+  telegram_list: string[];
+  custom_message: string | null;
+  notify_no_data: boolean;
+  notify_timeout: boolean;
+  notify_error: boolean;
 }
 
 export interface RateAlertParams extends AlertParams {
@@ -80,6 +87,7 @@ export type AlertEvaluation = {
   timestamp: string;
   time_window: number;
   value: string;
+  status_text?: string;
 };
 
 export const AlertsClient = (headers: Headers) => {
