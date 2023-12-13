@@ -21,10 +21,12 @@ import {
   FunctionsClient,
   WeatherClient,
 } from './engine/index.js';
+import { AlertEventsClient } from './engine/alerts/Alerts.js';
 
 export const Engine = (headers: Headers) => {
   return {
     alerts: AlertsClient(headers),
+    alertEvents: AlertEventsClient(headers),
     assets: AssetsClient(headers),
     assetAttributes: AttributesClient(headers),
     assetMetadata: MetadataClient(headers),

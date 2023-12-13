@@ -21,10 +21,17 @@ const mockAlert: RateAlert = {
   severity: 'info',
   stmt_time_window: 300,
   stmt_target_variable: 'A',
-  stmt_operator: 'ge',
-  stmt_threshold: 10,
+  stmt_operator: 'eq',
+  stmt_aggregation: 'any',
+  stmt_thresholds: [],
   alert_items: [],
   assets: [],
+  notify_error: true,
+  notify_no_data: true,
+  notify_timeout: true,
+  custom_message: null,
+  email_list: [],
+  telegram_list: [],
 };
 
 const mockAlertParams: RateAlertParams = {
@@ -38,8 +45,15 @@ const mockAlertParams: RateAlertParams = {
   rate_value: 10,
   stmt_time_window: 200,
   stmt_target_variable: 'A',
-  stmt_operator: 'ge',
-  stmt_threshold: 10,
+  stmt_operator: 'eq',
+  stmt_aggregation: 'any',
+  stmt_thresholds: [],
+  notify_error: true,
+  notify_no_data: true,
+  notify_timeout: true,
+  custom_message: null,
+  email_list: [],
+  telegram_list: [],
 } as RateAlertParams;
 
 test('List alerts', async () => {

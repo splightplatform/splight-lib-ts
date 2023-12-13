@@ -25,6 +25,12 @@ export type AlertItem = {
   query_plain: string | null;
 };
 
+export type AlertThreshold = {
+  value: number;
+  desired_status: string; // TODO choices
+  status_text?: string | null;
+};
+
 export interface AlertParams {
   name: string;
   description?: string;
@@ -33,10 +39,17 @@ export interface AlertParams {
   stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
-  stmt_operator: string; // TODO choices
-  stmt_threshold: number;
+  stmt_operator: string;
+  stmt_aggregation: string;
+  stmt_thresholds: AlertThreshold[];
   alert_items: AlertItem[];
   assets?: Asset[];
+  email_list: string[];
+  telegram_list: string[];
+  custom_message: string | null;
+  notify_no_data: boolean;
+  notify_timeout: boolean;
+  notify_error: boolean;
 }
 
 export interface RateAlertParams extends AlertParams {
@@ -74,6 +87,7 @@ export type AlertEvaluation = {
   timestamp: string;
   time_window: number;
   value: string;
+  status_text?: string;
 };
 
 export const AlertsClient = (headers: Headers) => {
@@ -106,4 +120,11 @@ export const AlertsClient = (headers: Headers) => {
     evaluate: async (pk: string) =>
       post<Empty, Empty>(basePath.slash(pk).slash('evaluate').url, {}, headers),
   };
+};
+
+export const AlertEventsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/alert/events/');
+  const baseClient = BaseRestClient<AlertEvent, AlertEvent>(basePath, headers);
+
+  return baseClient;
 };
