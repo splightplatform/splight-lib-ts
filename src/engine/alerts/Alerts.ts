@@ -27,7 +27,7 @@ export type AlertItem = {
 
 export type AlertThreshold = {
   value: number;
-  desired_status: string; // TODO choices
+  status: string; // TODO choices
   status_text?: string | null;
 };
 
@@ -36,6 +36,7 @@ export interface AlertParams {
   description?: string;
   severity: string; // TODO choices
   type: 'cron' | 'rate';
+  status_text?: string;
   stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
@@ -44,8 +45,7 @@ export interface AlertParams {
   stmt_thresholds: AlertThreshold[];
   alert_items: AlertItem[];
   assets?: Asset[];
-  email_list: string[];
-  telegram_list: string[];
+  destinations_list: string[];
   custom_message: string | null;
   notify_no_data: boolean;
   notify_timeout: boolean;
@@ -81,6 +81,7 @@ export type AlertEvent = {
   timestamp: string;
   old_status: string;
   new_status: string;
+  new_status_text?: string;
 };
 
 export type AlertEvaluation = {
