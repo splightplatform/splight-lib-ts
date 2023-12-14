@@ -30,8 +30,7 @@ const mockAlert: RateAlert = {
   notify_no_data: true,
   notify_timeout: true,
   custom_message: null,
-  email_list: [],
-  telegram_list: [],
+  destination_list: [],
 };
 
 const mockAlertParams: RateAlertParams = {
@@ -52,8 +51,7 @@ const mockAlertParams: RateAlertParams = {
   notify_no_data: true,
   notify_timeout: true,
   custom_message: null,
-  email_list: [],
-  telegram_list: [],
+  destination_list: [],
 } as RateAlertParams;
 
 test('List alerts', async () => {
