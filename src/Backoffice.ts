@@ -5,6 +5,7 @@ import {
   ComputeNodesClient,
   FeaturesClient,
 } from './backoffice/index.js';
+import { SplightAdminsClient } from './backoffice/splightAdmins/SplightAdmins.js';
 import { Headers } from './types.js';
 
 export const Backoffice = (headers: Headers) => ({
@@ -13,4 +14,5 @@ export const Backoffice = (headers: Headers) => ({
   features: FeaturesClient(headers),
   computeNodes: ComputeNodesClient(headers),
   assets: AssetsClient(headers),
+  splightadmins: SplightAdminsClient(headers),
 });
