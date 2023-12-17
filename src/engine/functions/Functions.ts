@@ -41,6 +41,7 @@ export interface FunctionsParams {
   time_window: number;
   target_variable: string;
   type: 'cron' | 'rate';
+  active?: boolean;
 
   frequency?: number;
 }

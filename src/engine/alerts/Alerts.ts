@@ -37,6 +37,7 @@ export interface AlertParams {
   severity: string; // TODO choices
   type: 'cron' | 'rate';
   status_text?: string;
+  active?: boolean;
   stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
