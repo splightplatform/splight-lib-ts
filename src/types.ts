@@ -55,6 +55,12 @@ export {
   GetAttributeParams,
   GetAttribute,
 } from './engine/assets/Assets.js';
+
+export {
+  SplightComment,
+  SplightCommentParams,
+} from './engine/comments/Comments.js';
+
 export {
   Attribute,
   AttributeParams,
@@ -166,6 +172,7 @@ export {
   UserLogsDetails,
   OrganizationProfile,
 } from './account/Users.js';
+
 export {
   Permission,
   PermissionParams,
