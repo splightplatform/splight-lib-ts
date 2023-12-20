@@ -96,10 +96,36 @@ export {
 export { _File as File, FileParams } from './engine/files/Files.js';
 export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
-  EdgeParams,
-  NodeParams,
+  LineInterpolationStyle,
+  Orientation,
+  TimeSeriesType,
+  ChartItemType,
+  ChartTypes,
+  ChartItemTypes,
+  LineInterpolationStyleTypes,
+  OrientationTypes,
+  TimeSeriesTypes,
+  ChartItemBase,
+  ExpressionChartItem,
+  QueryChartItem,
+  ChartItem,
+  ChartBase,
+  ChartType,
+  ChartParams,
+  Chart,
+  BarChart,
+  ImageChart,
+  TextChart,
+  StatChart,
+  AlertListChart,
+  AlertEventsChart,
+  TimeseriesChart,
+  BarGaugeChart,
+  GaugeChart,
+  TableChart,
   TabParams,
 } from './engine/dashboards/Dashboards.js';
+export { EdgeParams, NodeParams } from './engine/graphs/Graphs.js';
 
 export {
   CronAlert,
