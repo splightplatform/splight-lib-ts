@@ -55,6 +55,7 @@ export const TimeSeriesTypes = {
 export interface DashboardParams {
   name: string;
   description?: string;
+  pinned_at?: string | null;
 }
 
 export interface Dashboard extends DashboardParams {
