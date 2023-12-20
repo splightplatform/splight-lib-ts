@@ -99,6 +99,7 @@ export interface Component {
   min_component_capacity: ComponentSize;
   hub_component: HubComponent;
   compute_node?: ComputeNode;
+  pinned_at?: string | null;
 }
 
 export interface ComponentParams {
@@ -120,6 +121,7 @@ export interface ComponentParams {
   deployment_restart_policy?: RestartPolicy;
   deployment_capacity?: ComponentSize;
   compute_node_id?: string;
+  pinned_at?: string | null;
 }
 
 export type DeploymentType = 'SELF_HOSTED' | 'SPLIGHT_HOSTED';
