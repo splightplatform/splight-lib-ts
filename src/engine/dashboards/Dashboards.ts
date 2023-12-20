@@ -2,6 +2,56 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
+export type Orientation = 'horizontal' | 'vertical';
+export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
+export type ChartType =
+  | 'image'
+  | 'text'
+  | 'timeseries'
+  | 'table'
+  | 'stat'
+  | 'gauge'
+  | 'bar'
+  | 'bargauge'
+  | 'alertlist'
+  | 'alertevents';
+export type ChartItemType = 'EXPRESSION' | 'QUERY';
+export type TimeSeriesType = 'line' | 'bar';
+
+export const OrientationTypes = {
+  HORIZONTAL: 'horizontal' as Orientation,
+  VERTICAL: 'vertical' as Orientation,
+};
+
+export const LineInterpolationStyleTypes = {
+  ROUNDED: 'rounded' as LineInterpolationStyle,
+  RECT: 'rect' as LineInterpolationStyle,
+  SQUARED: 'squared' as LineInterpolationStyle,
+};
+
+export const ChartTypes = {
+  IMAGE: 'image' as ChartType,
+  TEXT: 'text' as ChartType,
+  TIMESERIES: 'timeseries' as ChartType,
+  BAR: 'bar' as ChartType,
+  TABLE: 'table' as ChartType,
+  STAT: 'stat' as ChartType,
+  GAUGE: 'gauge' as ChartType,
+  BARGAUGE: 'bargauge' as ChartType,
+  ALERTLIST: 'alertlist' as ChartType,
+  ALERTEVENTS: 'alertevents' as ChartType,
+};
+
+export const ChartItemTypes = {
+  EXPRESSION: 'EXPRESSION' as ChartItemType,
+  QUERY: 'QUERY' as ChartItemType,
+};
+
+export const TimeSeriesTypes = {
+  LINE: 'line' as TimeSeriesType,
+  BAR: 'bar' as TimeSeriesType,
+};
+
 export interface DashboardParams {
   name: string;
   description?: string;
@@ -21,16 +71,26 @@ export interface Configuration {
   relativeStartTime?: string;
 }
 
-export interface ChartItem {
+export interface ChartItemBase {
   id?: string;
+  chart?: string;
   ref_id: string;
-  type: string;
-  color: string;
-  order: number;
-  hidden: boolean;
   label: string;
+  order: number;
+  color: string;
+  hidden: boolean;
+  width?: string;
+  height?: string;
+}
+
+export interface ExpressionChartItem extends ChartItemBase {
+  type: 'EXPRESSION';
   expression: string;
-  expression_plain: string | null;
+  expression_plain: string;
+}
+
+export interface QueryChartItem extends ChartItemBase {
+  type: 'QUERY';
   query_filter_asset: {
     id: string;
     name?: string;
@@ -44,13 +104,10 @@ export interface ChartItem {
   query_sort_field: string;
   query_sort_direction: number;
   query_limit: number;
-  query_plain: string | null;
-  query_params?: string;
-  position_x?: number;
-  position_y?: number;
-  width?: string;
-  height?: string;
+  query_plain: string;
 }
+
+export type ChartItem = ExpressionChartItem | QueryChartItem;
 
 export interface ChartParams {
   description?: string;
@@ -68,19 +125,96 @@ export interface ChartParams {
   min_height?: number;
   min_width?: number;
 }
-export interface Chart extends ChartParams {
+
+export interface ChartBase extends ChartParams {
   id: string;
+  tab: string;
   name: string;
-  asset_id: string;
-  attribute_id: string;
-  timeConfiguration: Configuration;
-  externalResource: string;
-  external_resource?: string;
-  external_resource_type?: string;
-  config: Record<string, string>;
+  relative_window_time?: string;
   last_updated_by?: string;
-  show_beyond_data: boolean;
+  show_beyond_data?: boolean;
 }
+
+export interface BarChart extends ChartBase {
+  type: 'bar';
+  y_axis_max_limit: string;
+  y_axis_min_limit: string;
+  y_axis_unit: string;
+  number_of_decimals?: string;
+  orientation: Orientation;
+}
+
+export interface ImageChart extends ChartBase {
+  type: 'image';
+  image_url?: File | null;
+  image_file: string;
+}
+
+export interface TextChart extends ChartBase {
+  type: 'text';
+  text: string;
+}
+
+export interface StatChart extends ChartBase {
+  type: 'stat';
+  border: boolean;
+  number_of_decimals: string;
+}
+
+export interface AlertListChart extends ChartBase {
+  type: 'alertlist';
+  filter_name: string;
+  filter_status: string[];
+}
+
+export interface AlertEventsChart extends ChartBase {
+  type: 'alertevents';
+  filter_name: string;
+  filter_old_status: string[];
+  filter_new_status: string[];
+}
+
+export interface TimeseriesChart extends ChartBase {
+  type: 'timeseries';
+  y_axis_max_limit: string;
+  y_axis_min_limit: string;
+  y_axis_unit: string;
+  number_of_decimals?: string;
+  line_interpolation_style: LineInterpolationStyle;
+  timeseries_type: TimeSeriesType;
+  fill: boolean;
+  show_line: boolean;
+}
+
+export interface BarGaugeChart extends ChartBase {
+  type: 'bargauge';
+  max_limit?: string;
+  number_of_decimals?: string;
+  orientation: Orientation;
+}
+
+export interface GaugeChart extends ChartBase {
+  type: 'gauge';
+  max_limit?: string;
+  number_of_decimals?: string;
+}
+
+export interface TableChart extends ChartBase {
+  type: 'table';
+  number_of_decimals?: string;
+}
+
+export type Chart =
+  | ImageChart
+  | TextChart
+  | StatChart
+  | AlertListChart
+  | AlertEventsChart
+  | TableChart
+  | TimeseriesChart
+  | BarChart
+  | BarGaugeChart
+  | GaugeChart;
 
 export interface TabParams {
   name: string;
@@ -93,51 +227,12 @@ export interface Tab extends TabParams {
   charts: Chart[];
 }
 
-export type Graph = {
-  id: string;
-  title: string;
-  description: string;
-};
-
-export interface GraphParams {
-  title: string;
-  description?: string;
-}
-
-export interface EdgeParams {
-  directed: boolean;
-  graph_id: string;
-  asset_id: string;
-  source_id: string;
-  target_id: string;
-  color: string;
-  source_handle: string;
-  target_handle: string;
-}
-export interface Edge extends EdgeParams {
-  id: string;
-}
-
-export interface NodeParams {
-  type: string;
-  position_x: string;
-  position_y: string;
-  width: string;
-  height: string;
-  asset_id: string;
-  color: string;
-  text: string;
-  fill_color: string;
-}
-export interface Node extends NodeParams {
-  id: string;
-}
-
 export const DashboardTabsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/tabs/');
   const baseClient = BaseRestClient<TabParams, Tab>(basePath, headers);
   return baseClient;
 };
+
 export const DashboardChartsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/dashboard/charts/');
   const baseClient = BaseRestClient<ChartParams, Chart>(basePath, headers);
