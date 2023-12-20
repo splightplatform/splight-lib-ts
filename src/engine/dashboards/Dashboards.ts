@@ -165,6 +165,7 @@ export interface AlertListChart extends ChartBase {
   type: 'alertlist';
   filter_name: string;
   filter_status: string[];
+  alert_list_type: string;
 }
 
 export interface AlertEventsChart extends ChartBase {
