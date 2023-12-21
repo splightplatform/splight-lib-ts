@@ -24,6 +24,10 @@ type NodeType =
 export interface RelationshipNode {
   id: string;
   type: NodeType;
+  children_count: number;
+  resource_index: number;
+  child_index?: number;
+  parent_id?: string;
   data: {
     id: string;
     name: string;
