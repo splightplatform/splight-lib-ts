@@ -188,6 +188,7 @@ export interface TextChart extends ChartBase {
 export interface StatChart extends ChartBase {
   type: 'stat';
   border: boolean;
+  y_axis_unit: string;
   number_of_decimals: string;
 }
 
@@ -232,6 +233,7 @@ export interface GaugeChart extends ChartBase {
 
 export interface TableChart extends ChartBase {
   type: 'table';
+  y_axis_unit: string;
   number_of_decimals?: string;
 }
 
