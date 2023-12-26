@@ -122,14 +122,14 @@ interface ValueMappingBase {
   display_text: string;
 }
 
-interface ExactMatchValueMapping extends ValueMappingBase {
+export interface ExactMatchValueMapping extends ValueMappingBase {
   match_value: string;
 }
-interface RangeValueMapping extends ValueMappingBase {
-  range_start: string;
-  range_end: string;
+export interface RangeValueMapping extends ValueMappingBase {
+  range_start: number;
+  range_end: number;
 }
-interface RegexValueMapping extends ValueMappingBase {
+export interface RegexValueMapping extends ValueMappingBase {
   regular_expression: string;
 }
 
