@@ -16,6 +16,7 @@ export interface SplightComment extends SplightCommentParams {
   created_at: string;
   user_id: string;
   username: string;
+  name: string;
   email: string;
 }
 
