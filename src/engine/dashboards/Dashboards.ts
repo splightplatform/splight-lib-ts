@@ -140,10 +140,9 @@ export type ValueMapping =
 
 export type Threshold = {
   id?: string;
-  order: number;
   color: string;
-  value: string;
-  label: string;
+  value: number;
+  display_text: string;
 };
 
 export interface ChartParams {
