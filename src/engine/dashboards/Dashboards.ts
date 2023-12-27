@@ -138,6 +138,14 @@ export type ValueMapping =
   | RangeValueMapping
   | RegexValueMapping;
 
+export type Threshold = {
+  id?: string;
+  order: number;
+  color: string;
+  value: string;
+  label: string;
+};
+
 export interface ChartParams {
   description?: string;
   tab: string;
@@ -145,6 +153,7 @@ export interface ChartParams {
   name: string;
   chart_items: ChartItem[];
   value_mappings: ValueMapping[];
+  thresholds: Threshold[];
   refresh_interval: string | null;
   timestamp_gte: string | null;
   timestamp_lte: string | null;

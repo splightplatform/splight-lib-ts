@@ -108,6 +108,7 @@ export {
   OrientationTypes,
   TimeSeriesTypes,
   ValueMappingTypes,
+  Threshold,
   ChartItemBase,
   ExpressionChartItem,
   QueryChartItem,
