@@ -14,6 +14,7 @@ export interface SearchDataParams {
     expression: string | null;
     pipeline: string | null;
   }>;
+  aggregation?: string | null;
 }
 
 export type SearchDataResponse = {
