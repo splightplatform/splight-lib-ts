@@ -17,6 +17,7 @@ export type ChartType =
   | 'alertevents';
 export type ChartItemType = 'EXPRESSION' | 'QUERY';
 export type TimeSeriesType = 'line' | 'bar';
+export type ValueMappingType = 'exact_match' | 'range' | 'regex';
 
 export const OrientationTypes = {
   HORIZONTAL: 'horizontal' as Orientation,
@@ -51,6 +52,11 @@ export const TimeSeriesTypes = {
   LINE: 'line' as TimeSeriesType,
   BAR: 'bar' as TimeSeriesType,
 };
+export const ValueMappingTypes = {
+  EXACT_MATCH: 'exact_match' as ValueMappingType,
+  RANGE: 'range' as ValueMappingType,
+  REGEX: 'regex' as ValueMappingType,
+};
 
 export interface DashboardParams {
   name: string;
@@ -74,7 +80,6 @@ export interface Configuration {
 
 export interface ChartItemBase {
   id?: string;
-  chart?: string;
   ref_id: string;
   label: string;
   order: number;
@@ -110,12 +115,36 @@ export interface QueryChartItem extends ChartItemBase {
 
 export type ChartItem = ExpressionChartItem | QueryChartItem;
 
+interface ValueMappingBase {
+  id?: string;
+  type: ValueMappingType;
+  order: number;
+  display_text: string;
+}
+
+export interface ExactMatchValueMapping extends ValueMappingBase {
+  match_value: string;
+}
+export interface RangeValueMapping extends ValueMappingBase {
+  range_start: number;
+  range_end: number;
+}
+export interface RegexValueMapping extends ValueMappingBase {
+  regular_expression: string;
+}
+
+export type ValueMapping =
+  | ExactMatchValueMapping
+  | RangeValueMapping
+  | RegexValueMapping;
+
 export interface ChartParams {
   description?: string;
   tab: string;
   type: string;
   name: string;
   chart_items: ChartItem[];
+  value_mappings: ValueMapping[];
   refresh_interval: string | null;
   timestamp_gte: string | null;
   timestamp_lte: string | null;
