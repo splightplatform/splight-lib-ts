@@ -122,14 +122,14 @@ interface ValueMappingBase {
   display_text: string;
 }
 
-interface ExactMatchValueMapping extends ValueMappingBase {
+export interface ExactMatchValueMapping extends ValueMappingBase {
   match_value: string;
 }
-interface RangeValueMapping extends ValueMappingBase {
-  range_start: string;
-  range_end: string;
+export interface RangeValueMapping extends ValueMappingBase {
+  range_start: number;
+  range_end: number;
 }
-interface RegexValueMapping extends ValueMappingBase {
+export interface RegexValueMapping extends ValueMappingBase {
   regular_expression: string;
 }
 
@@ -197,6 +197,7 @@ export interface TextChart extends ChartBase {
 export interface StatChart extends ChartBase {
   type: 'stat';
   border: boolean;
+  y_axis_unit: string;
   number_of_decimals: string;
 }
 
@@ -241,6 +242,7 @@ export interface GaugeChart extends ChartBase {
 
 export interface TableChart extends ChartBase {
   type: 'table';
+  y_axis_unit: string;
   number_of_decimals?: string;
 }
 
