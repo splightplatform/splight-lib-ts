@@ -3,7 +3,6 @@ import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
 
-
 export interface Permission {
   id: string;
   name: string;
@@ -29,23 +28,21 @@ export interface Role {
 export type RoleParams = Omit<Role, 'id' | 'is_system'>;
 
 export interface Action {
-    name: string;
-    display_name: string;
-    description: string;
-    generic: boolean;
-  }
-  
-  export interface Service {
-    name: string;
-    actions: Action[];
-  }
-  
-  export interface Application {
-    name: string;
-    services: Service[];
-  }
-  
+  name: string;
+  display_name: string;
+  description: string;
+  generic: boolean;
+}
 
+export interface Service {
+  name: string;
+  actions: Action[];
+}
+
+export interface Application {
+  name: string;
+  services: Service[];
+}
 
 export const PermissionsClient = (headers: Headers) => {
   const basePath = Path('v2/account/authorization/permissions/');

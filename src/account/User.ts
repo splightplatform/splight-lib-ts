@@ -1,5 +1,5 @@
 import { get, patch } from '../rest/BaseMethods.js';
-import { Role , Permission} from './Roles.js';
+import { Role, Permission } from './Roles.js';
 import { Headers, OrganizationProfile } from '../types.js';
 import { Path } from '../Urls.js';
 
@@ -60,4 +60,3 @@ export const UserClient = (headers: Headers) => {
     }),
   };
 };
-
