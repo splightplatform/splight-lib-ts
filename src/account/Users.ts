@@ -2,6 +2,7 @@ import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
+import { Role } from './Roles.js';
 
 export interface OrganizationProfileParams {
   name: string;
@@ -30,7 +31,7 @@ export interface User {
   logins_count: number;
   picture: string;
   permissions: ('splightadmin' | 'admin' | 'editor')[];
-  roles: string[];
+  roles: Role[];
 }
 
 export interface UserLogsDetails {
@@ -58,11 +59,6 @@ export const UsersClient = (headers: Headers) => {
     update,
     retrieve,
     destroy,
-    assignableRoles: (pk: string) =>
-      get<string[]>(
-        basePath.slash(pk).slash('assignable_roles', true).url,
-        headers
-      ),
     organizations: ({
       pk,
       ...params

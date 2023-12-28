@@ -17,7 +17,6 @@ import {
   DatalakeDataClient,
   FilesClient,
   ComputeNodesClient,
-  QueriesClient,
   SecretsClient,
   FunctionsClient,
   WeatherClient,
@@ -47,6 +46,5 @@ export const Engine = (headers: Headers) => {
     secrets: SecretsClient(headers),
     weather: WeatherClient(headers),
     datalakeData: DatalakeDataClient(headers), // TO RENAME
-    queries: QueriesClient(headers), // TO DEPRECATE
   };
 };
