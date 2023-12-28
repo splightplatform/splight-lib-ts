@@ -32,8 +32,10 @@ export interface Folder extends FolderParams {
 export interface FileSystemObject {
   id: string;
   name: string;
+  description: string;
   created_at: string;
   content_type: string;
+  url: string;
   type: 'file' | 'folder';
 }
 
