@@ -94,7 +94,6 @@ export {
   ComponentLogEntry,
 } from './engine/components/Components.js';
 export { _File as File, FileParams } from './engine/files/Files.js';
-export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
   LineInterpolationStyle,
   Orientation,
@@ -214,7 +213,7 @@ export {
   Application,
   Service,
   Action,
-} from './account/User.js';
+} from './account/Roles.js';
 
 export {
   EmailIntegration,
