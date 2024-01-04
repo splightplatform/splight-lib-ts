@@ -1,9 +1,5 @@
 name: snyk
-on:
-  push:
-    branches:
-      - "**"
-
+on: pull_request
 jobs:
   run-snyk:
     runs-on: ubuntu-latest

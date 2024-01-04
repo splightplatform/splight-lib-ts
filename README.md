@@ -1,5 +1,10 @@
 # Splight TypeScript Library
 
+![snyk_code](https://github.com/splightplatform/splight-lib-ts/blob/gh-pages/snyk_code.svg?raw=True)
+![snyk_dependencies](https://github.com/splightplatform/splight-lib-ts/blob/gh-pages/snyk_dependencies.svg?raw=True)
+
+---
+
 ![npm](https://img.shields.io/npm/v/@splightplatform/splight-lib-ts)
 ![build](https://github.com/splightplatform/splight-lib-ts/actions/workflows/build.yml/badge.svg 'build')
 ![lint](https://github.com/splightplatform/splight-lib-ts/actions/workflows/lint.yml/badge.svg 'lint')
