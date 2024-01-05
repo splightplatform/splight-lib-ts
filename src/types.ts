@@ -244,6 +244,4 @@ export {
   HourlyForecast,
 } from './engine/weather/Weather.js';
 
-export {
-  LogEntry,
-} from './engine/logs/Logs.js';
+export { LogEntry } from './engine/logs/Logs.js';
