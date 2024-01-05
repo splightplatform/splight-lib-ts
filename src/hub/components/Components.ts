@@ -61,6 +61,7 @@ export type ComponentParameterType =
   | ObjectParameter;
 
 export interface ComponentParameter {
+  id?: string;
   type: string;
   name: string;
   description: string;
