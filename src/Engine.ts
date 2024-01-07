@@ -3,6 +3,7 @@ import {
   AlertsClient,
   AssetsClient,
   AttributesClient,
+  CommentsClient,
   MetadataClient,
   CommunicationClient,
   ComponentCommandsClient,
@@ -16,7 +17,6 @@ import {
   DatalakeDataClient,
   FilesClient,
   ComputeNodesClient,
-  QueriesClient,
   SecretsClient,
   FunctionsClient,
   WeatherClient,
@@ -30,6 +30,7 @@ export const Engine = (headers: Headers) => {
     assets: AssetsClient(headers),
     assetAttributes: AttributesClient(headers),
     assetMetadata: MetadataClient(headers),
+    comments: CommentsClient(headers),
     functions: FunctionsClient(headers),
     files: FilesClient(headers),
     communication: CommunicationClient(headers),
@@ -45,6 +46,5 @@ export const Engine = (headers: Headers) => {
     secrets: SecretsClient(headers),
     weather: WeatherClient(headers),
     datalakeData: DatalakeDataClient(headers), // TO RENAME
-    queries: QueriesClient(headers), // TO DEPRECATE
   };
 };

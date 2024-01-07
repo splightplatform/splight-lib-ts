@@ -55,6 +55,12 @@ export {
   GetAttributeParams,
   GetAttribute,
 } from './engine/assets/Assets.js';
+
+export {
+  SplightComment,
+  SplightCommentParams,
+} from './engine/comments/Comments.js';
+
 export {
   Attribute,
   AttributeParams,
@@ -88,12 +94,44 @@ export {
   ComponentLogEntry,
 } from './engine/components/Components.js';
 export { _File as File, FileParams } from './engine/files/Files.js';
-export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
-  EdgeParams,
-  NodeParams,
+  LineInterpolationStyle,
+  Orientation,
+  TimeSeriesType,
+  ValueMappingType,
+  ValueMapping,
+  ExactMatchValueMapping,
+  RangeValueMapping,
+  RegexValueMapping,
+  ChartItemType,
+  ChartTypes,
+  ChartItemTypes,
+  LineInterpolationStyleTypes,
+  OrientationTypes,
+  TimeSeriesTypes,
+  ValueMappingTypes,
+  Threshold,
+  ChartItemBase,
+  ExpressionChartItem,
+  QueryChartItem,
+  ChartItem,
+  ChartBase,
+  ChartType,
+  ChartParams,
+  Chart,
+  BarChart,
+  ImageChart,
+  TextChart,
+  StatChart,
+  AlertListChart,
+  AlertEventsChart,
+  TimeseriesChart,
+  BarGaugeChart,
+  GaugeChart,
+  TableChart,
   TabParams,
 } from './engine/dashboards/Dashboards.js';
+export { EdgeParams, NodeParams } from './engine/graphs/Graphs.js';
 
 export {
   CronAlert,
@@ -166,6 +204,7 @@ export {
   UserLogsDetails,
   OrganizationProfile,
 } from './account/Users.js';
+
 export {
   Permission,
   PermissionParams,
@@ -174,7 +213,7 @@ export {
   Application,
   Service,
   Action,
-} from './account/User.js';
+} from './account/Roles.js';
 
 export {
   EmailIntegration,

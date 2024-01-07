@@ -1,5 +1,6 @@
 export { AlertsClient, AlertEventsClient } from './alerts/Alerts.js';
 export { AssetsClient } from './assets/Assets.js';
+export { CommentsClient } from './comments/Comments.js';
 export { FunctionsClient } from './functions/Functions.js';
 export { AttributesClient } from './attributes/Attributes.js';
 export { MetadataClient } from './metadata/Metadata.js';
@@ -10,7 +11,6 @@ export {
   ComponentCommandsClient,
 } from './components/Components.js';
 export { FilesClient } from './files/Files.js';
-export { QueriesClient } from './queries/Queries.js';
 export { CommunicationClient } from './communication/Communication.js';
 export {
   DashboardsClient,
