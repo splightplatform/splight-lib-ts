@@ -10,7 +10,7 @@ import {
 } from '../../hub/components/Components.js';
 import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, ComputeNode, Optional } from '../../types.js';
+import { Headers, ComputeNode, Optional, LogEntry } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface RoutineObject {
@@ -137,15 +137,6 @@ export type ComponentObjectParams = Optional<
   'description'
 >;
 
-export interface ComponentLogEntry {
-  loglevel: string;
-  filename: string;
-  timestamp: string;
-  message: string;
-  traceback?: string;
-  tags: string;
-}
-
 export type RoutineObjectParams = Optional<
   Omit<RoutineObject, 'id'>,
   'description'
@@ -233,7 +224,7 @@ export const ComponentsClient = (headers: Headers) => {
        * @remarks
        * The `since` and `until` parameters should be in ISO format
        */
-      get<ComponentLogEntry[]>(
+      get<LogEntry[]>(
         basePath.slash(pk).slash('elastic_logs').url,
         headers,
         params
