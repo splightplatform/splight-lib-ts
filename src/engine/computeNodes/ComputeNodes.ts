@@ -1,6 +1,11 @@
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Component, Headers, PaginatedCollection } from '../../types.js';
+import {
+  Component,
+  Headers,
+  LogEntry,
+  PaginatedCollection,
+} from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface ComputeNodeUsage {
@@ -56,6 +61,24 @@ const AllComputeNodesClient = (headers: Headers) => {
         {
           limit_: limit,
         }
+      ),
+    logs: (
+      pk: string,
+      params: {
+        since?: string;
+        until?: string;
+        limit?: number;
+        offset?: number;
+      }
+    ) =>
+      /**
+       * @remarks
+       * The `since` and `until` parameters should be in ISO format
+       */
+      get<LogEntry[]>(
+        basePath.slash(pk).slash('elastic_logs').url,
+        headers,
+        params
       ),
   };
 };
