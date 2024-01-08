@@ -150,6 +150,7 @@ export {
   ComponentParameter,
   ComponentCommand,
   ObjectParameter,
+  BaseComponentResource,
   ComponentObject,
   ComponentParameterType,
   DataAddressValue,
