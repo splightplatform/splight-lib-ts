@@ -1,4 +1,5 @@
 import {
+  BaseComponentResource,
   Binding,
   ComponentCommand,
   ComponentObject,
@@ -13,12 +14,7 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, ComputeNode, Optional } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface RoutineObject {
-  id: string;
-  name: string;
-  description: string;
-  component_id: string;
-  type: string;
+export interface RoutineObject extends BaseComponentResource {
   status?: string;
   config: ComponentParameter[];
   input: ComponentParameter[];
