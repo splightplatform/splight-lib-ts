@@ -37,7 +37,7 @@ export interface SetpointParams {
   attribute: string;
 }
 
-export interface setAttributecsvParams {
+export interface SetAttributecsvParams {
   file: File;
   attributeid: string;
 }
@@ -79,8 +79,8 @@ export const AssetsClient = (headers: Headers) => {
         setpoint,
         headers
       ),
-    setAttributecsv: async (assetId: string, setAttributecsv: setAttributecsvParams) =>
-      post<{ setAttributecsv: setAttributecsvParams }, void>(
+    setAttributecsv: async (assetId: string, setAttributecsv: SetAttributecsvParams) =>
+      post<{ setAttributecsv: SetAttributecsvParams }, void>(
         basePath.slash(assetId).slash('set-attribute-csv').url,
         {setAttributecsv},
         headers
