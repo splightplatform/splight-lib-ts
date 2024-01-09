@@ -55,6 +55,12 @@ export {
   GetAttributeParams,
   GetAttribute,
 } from './engine/assets/Assets.js';
+
+export {
+  SplightComment,
+  SplightCommentParams,
+} from './engine/comments/Comments.js';
+
 export {
   Attribute,
   AttributeParams,
@@ -85,7 +91,6 @@ export {
   CommandParams,
   ComponentObjectParams,
   DeploymentType,
-  ComponentLogEntry,
 } from './engine/components/Components.js';
 export {
   _File as File,
@@ -95,12 +100,44 @@ export {
   FileSystemObject,
   FileSystemFolder,
 } from './engine/files/Files.js';
-export { Query, QueryParams } from './engine/queries/Queries.js';
 export {
-  EdgeParams,
-  NodeParams,
+  LineInterpolationStyle,
+  Orientation,
+  TimeSeriesType,
+  ValueMappingType,
+  ValueMapping,
+  ExactMatchValueMapping,
+  RangeValueMapping,
+  RegexValueMapping,
+  ChartItemType,
+  ChartTypes,
+  ChartItemTypes,
+  LineInterpolationStyleTypes,
+  OrientationTypes,
+  TimeSeriesTypes,
+  ValueMappingTypes,
+  Threshold,
+  ChartItemBase,
+  ExpressionChartItem,
+  QueryChartItem,
+  ChartItem,
+  ChartBase,
+  ChartType,
+  ChartParams,
+  Chart,
+  BarChart,
+  ImageChart,
+  TextChart,
+  StatChart,
+  AlertListChart,
+  AlertEventsChart,
+  TimeseriesChart,
+  BarGaugeChart,
+  GaugeChart,
+  TableChart,
   TabParams,
 } from './engine/dashboards/Dashboards.js';
+export { EdgeParams, NodeParams } from './engine/graphs/Graphs.js';
 
 export {
   CronAlert,
@@ -120,6 +157,7 @@ export {
   ComponentParameter,
   ComponentCommand,
   ObjectParameter,
+  BaseComponentResource,
   ComponentObject,
   ComponentParameterType,
   DataAddressValue,
@@ -173,6 +211,7 @@ export {
   UserLogsDetails,
   OrganizationProfile,
 } from './account/Users.js';
+
 export {
   Permission,
   PermissionParams,
@@ -181,7 +220,7 @@ export {
   Application,
   Service,
   Action,
-} from './account/User.js';
+} from './account/Roles.js';
 
 export {
   EmailIntegration,
@@ -212,3 +251,5 @@ export {
   DailyForecast,
   HourlyForecast,
 } from './engine/weather/Weather.js';
+
+export { LogEntry } from './engine/logs/Logs.js';
