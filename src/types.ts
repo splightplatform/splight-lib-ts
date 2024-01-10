@@ -54,6 +54,7 @@ export {
   AssetParams,
   GetAttributeParams,
   GetAttribute,
+  SetAttributeCsvParams,
 } from './engine/assets/Assets.js';
 
 export {
