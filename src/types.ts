@@ -91,7 +91,6 @@ export {
   CommandParams,
   ComponentObjectParams,
   DeploymentType,
-  ComponentLogEntry,
 } from './engine/components/Components.js';
 export { _File as File, FileParams } from './engine/files/Files.js';
 export {
@@ -152,6 +151,7 @@ export {
   ComponentParameter,
   ComponentCommand,
   ObjectParameter,
+  BaseComponentResource,
   ComponentObject,
   ComponentParameterType,
   DataAddressValue,
@@ -245,3 +245,5 @@ export {
   DailyForecast,
   HourlyForecast,
 } from './engine/weather/Weather.js';
+
+export { LogEntry } from './engine/logs/Logs.js';
