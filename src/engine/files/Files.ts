@@ -35,6 +35,7 @@ export interface FileSystemObject {
   description: string;
   created_at: string;
   content_type: string;
+  path: string;
   url: string;
   type: 'file' | 'folder';
 }
