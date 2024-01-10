@@ -5,12 +5,15 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface ComponentObject {
+export interface BaseComponentResource {
   id: string;
   name: string;
   description: string;
   component_id: string;
-  type?: string;
+  type: string;
+}
+
+export interface ComponentObject extends BaseComponentResource {
   data: ComponentParameter[];
 }
 
