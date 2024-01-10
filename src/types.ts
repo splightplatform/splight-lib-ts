@@ -119,6 +119,7 @@ export {
   ChartType,
   ChartParams,
   Chart,
+  Dashboard,
   BarChart,
   ImageChart,
   TextChart,
