@@ -16,6 +16,7 @@ export interface AssetParams {
   verified?: boolean;
   geometry?: GeometryCollection;
   pinned_at?: string | null;
+  related_assets?: { id: string; name: string }[];
 }
 
 export type Asset = AssetParams & {
