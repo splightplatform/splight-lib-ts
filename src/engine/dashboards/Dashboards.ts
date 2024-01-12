@@ -40,6 +40,7 @@ export const ChartTypes = {
   GAUGE: 'gauge' as ChartType,
   BARGAUGE: 'bargauge' as ChartType,
   ALERTLIST: 'alertlist' as ChartType,
+  ASSETLIST: 'assetlist' as ChartType,
   ALERTEVENTS: 'alertevents' as ChartType,
 };
 
@@ -208,6 +209,13 @@ export interface AlertListChart extends ChartBase {
   alert_list_type: string;
 }
 
+export interface AssetListChart extends ChartBase {
+  type: 'assetlist';
+  filter_name: string;
+  filter_status: string[];
+  asset_list_type: string;
+}
+
 export interface AlertEventsChart extends ChartBase {
   type: 'alertevents';
   filter_name: string;
@@ -251,6 +259,7 @@ export type Chart =
   | TextChart
   | StatChart
   | AlertListChart
+  | AssetListChart
   | AlertEventsChart
   | TableChart
   | TimeseriesChart

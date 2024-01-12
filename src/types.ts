@@ -125,6 +125,7 @@ export {
   TextChart,
   StatChart,
   AlertListChart,
+  AssetListChart,
   AlertEventsChart,
   TimeseriesChart,
   BarGaugeChart,
