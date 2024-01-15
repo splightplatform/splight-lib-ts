@@ -60,6 +60,7 @@ export {
   AssetParams,
   GetAttributeParams,
   GetAttribute,
+  SetAttributeCsvParams,
 } from './engine/assets/Assets.js';
 
 export {
@@ -131,11 +132,13 @@ export {
   ChartType,
   ChartParams,
   Chart,
+  Dashboard,
   BarChart,
   ImageChart,
   TextChart,
   StatChart,
   AlertListChart,
+  AssetListChart,
   AlertEventsChart,
   TimeseriesChart,
   BarGaugeChart,

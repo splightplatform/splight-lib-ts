@@ -16,6 +16,7 @@ export interface AssetParams {
   verified?: boolean;
   geometry?: GeometryCollection;
   pinned_at?: string | null;
+  related_assets?: { id: string; name: string }[];
 }
 
 export type Asset = AssetParams & {
@@ -35,6 +36,11 @@ export type Asset = AssetParams & {
 export interface SetpointParams {
   value: string;
   attribute: string;
+}
+
+export interface SetAttributeCsvParams {
+  file: File;
+  attributeid: string;
 }
 
 export interface Setpoint {
@@ -72,6 +78,15 @@ export const AssetsClient = (headers: Headers) => {
       post<SetpointParams, Setpoint>(
         basePath.slash(assetId).slash('set-attribute').url,
         setpoint,
+        headers
+      ),
+    setAttributeCsv: async (
+      assetId: string,
+      setAttributeCsv: SetAttributeCsvParams
+    ) =>
+      post<{ setAttributeCsv: SetAttributeCsvParams }, void>(
+        basePath.slash(assetId).slash('set-attribute-csv').url,
+        { setAttributeCsv },
         headers
       ),
     getAttribute: async (assetId: string, attributeId: string) =>
