@@ -8,7 +8,7 @@ export type Input<
 
 export type Headers = Record<string, string>;
 
-export type WithoutPagination<T> = T extends PaginatedCollection<infer U>
+export type WithoutPagination<T> = T extends BasePaginatedCollection<infer U>
   ? U
   : T;
 
@@ -23,11 +23,17 @@ export interface BaseListParams {
 }
 export type Params<T> = BaseListParams & Partial<WithContainsFilters<T>>;
 
-export interface PaginatedCollection<T> {
+export interface BasePaginatedCollection<T> {
   count: number;
   next: string;
+  next_page?: number;
   previous: string | null;
+  previous_page?: number;
   results: T[];
+}
+
+export interface PaginatedCollection<T> extends BasePaginatedCollection<T> {
+  getNext: (headers: Headers) => Promise<PaginatedCollection<T>>;
 }
 
 export interface Filter extends AbstractComplexConfiguration {

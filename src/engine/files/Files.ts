@@ -1,6 +1,6 @@
 import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, Asset, PaginatedCollection } from '../../types.js';
+import { Headers, Asset, BasePaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface FolderParams {
@@ -20,6 +20,7 @@ export interface _File extends Omit<FileParams, 'file'> {
   url: string;
   name: string;
   extension: string;
+  path?: string;
   created_at?: string;
   assets?: Asset[];
 }
@@ -41,7 +42,7 @@ export interface FileSystemObject {
 }
 
 export interface FileSystemFolder
-  extends PaginatedCollection<FileSystemObject> {
+  extends BasePaginatedCollection<FileSystemObject> {
   current_folder: Folder;
 }
 
@@ -71,10 +72,11 @@ const FoldersClient = (headers: Headers) => {
 
 const FileSystemClient = (headers: Headers) => {
   const basePath = Path('v2/engine/file/filesystem/');
-  return {
-    listContent: (folderId?: string) =>
-      get<FileSystemFolder>(basePath.url, headers, { folder: folderId }),
-  };
+  const { list } = BaseRestClient<FileSystemObject, FileSystemObject>(
+    basePath,
+    headers
+  );
+  return { list };
 };
 
 export const FileClient = (headers: Headers) => {

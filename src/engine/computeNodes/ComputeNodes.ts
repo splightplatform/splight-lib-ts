@@ -4,7 +4,7 @@ import {
   Component,
   Headers,
   LogEntry,
-  PaginatedCollection,
+  BasePaginatedCollection,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
 
@@ -55,7 +55,7 @@ const AllComputeNodesClient = (headers: Headers) => {
         headers
       ),
     usage: async (computeNodeId: string, limit?: number) =>
-      get<PaginatedCollection<ComputeNodeUsage>>(
+      get<BasePaginatedCollection<ComputeNodeUsage>>(
         basePath.slash(computeNodeId).slash('usage').url,
         headers,
         {
