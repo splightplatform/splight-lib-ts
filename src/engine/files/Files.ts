@@ -1,12 +1,12 @@
 import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, Asset } from '../../types.js';
+import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
+import { BaseRelatedAssetObj } from '../assets/Assets.js';
 
-export interface FileParams {
+export interface FileParams extends Partial<BaseRelatedAssetObj> {
   file?: File;
   description?: string;
-  assets?: Asset[];
 }
 
 export interface _File extends Omit<FileParams, 'file'> {
@@ -15,7 +15,6 @@ export interface _File extends Omit<FileParams, 'file'> {
   extension: string;
   created_at?: string;
   file?: string;
-  assets?: Asset[];
 }
 
 export const FilesClient = (headers: Headers) => {

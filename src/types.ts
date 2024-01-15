@@ -55,6 +55,7 @@ export {
   GetAttributeParams,
   GetAttribute,
   SetAttributeCsvParams,
+  BaseRelatedAssetObj,
 } from './engine/assets/Assets.js';
 
 export {
