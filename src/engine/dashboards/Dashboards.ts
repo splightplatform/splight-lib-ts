@@ -1,6 +1,7 @@
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Asset, Headers } from '../../types.js';
+import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
+import { BaseRelatedAssetObj } from '../assets/Assets.js';
 
 export type Orientation = 'horizontal' | 'vertical';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
@@ -63,10 +64,9 @@ export interface DashboardParams {
   name: string;
   description?: string;
   pinned_at?: string | null;
-  assets?: Asset[];
 }
 
-export interface Dashboard extends DashboardParams {
+export interface Dashboard extends DashboardParams, BaseRelatedAssetObj {
   id: string;
   name: string;
   description: string;

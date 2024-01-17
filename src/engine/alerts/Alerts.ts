@@ -1,6 +1,12 @@
 import { options, get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { ApiFormField, Asset, Empty, Headers } from '../../types.js';
+import {
+  ApiFormField,
+  Asset,
+  BaseRelatedAssetObj,
+  Empty,
+  Headers,
+} from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export type AlertItem = {
@@ -67,15 +73,17 @@ export interface CronAlertParams extends AlertParams {
   cron_year: string;
 }
 
-export type CronAlert = CronAlertParams & {
-  id: string;
-  status: string;
-};
+export type CronAlert = CronAlertParams &
+  BaseRelatedAssetObj & {
+    id: string;
+    status: string;
+  };
 
-export type RateAlert = RateAlertParams & {
-  id: string;
-  status: string;
-};
+export type RateAlert = RateAlertParams &
+  BaseRelatedAssetObj & {
+    id: string;
+    status: string;
+  };
 
 export type AlertEvent = {
   id: string;

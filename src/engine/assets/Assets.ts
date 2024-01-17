@@ -7,6 +7,11 @@ import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
 import { _File } from '../files/Files.js';
 
+export interface BaseRelatedAssetObj {
+  id: string;
+  assets?: Asset[];
+}
+
 export interface AssetParams {
   name: string;
   description?: string;
@@ -19,19 +24,20 @@ export interface AssetParams {
   related_assets?: { id: string; name: string }[];
 }
 
-export type Asset = AssetParams & {
-  id: string;
-  attributes: Attribute[];
-  metadata?: Metadata[];
-  files?: _File[];
-  verified: boolean;
-  description: string;
-  organization: string;
-  centroid_coordinates?: [number, number];
-  centroid?: Geometry;
-  geometry: GeometryCollection;
-  status: string;
-};
+export type Asset = AssetParams &
+  BaseRelatedAssetObj & {
+    id: string;
+    attributes: Attribute[];
+    metadata?: Metadata[];
+    files?: _File[];
+    verified: boolean;
+    description: string;
+    organization: string;
+    centroid_coordinates?: [number, number];
+    centroid?: Geometry;
+    geometry: GeometryCollection;
+    status: string;
+  };
 
 export interface SetpointParams {
   value: string;

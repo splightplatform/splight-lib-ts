@@ -2,13 +2,14 @@ import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, Asset, BasePaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
+import { BaseRelatedAssetObj } from '../assets/Assets.js';
 
 export interface FolderParams {
   name: string;
   parent?: string;
 }
 
-export interface FileParams {
+export interface FileParams extends Partial<BaseRelatedAssetObj> {
   file?: File;
   description?: string;
   assets?: Asset[];
@@ -23,6 +24,7 @@ export interface _File extends Omit<FileParams, 'file'> {
   path?: string;
   created_at?: string;
   assets?: Asset[];
+  file?: string;
 }
 
 export interface Folder extends FolderParams {
