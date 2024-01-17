@@ -1,7 +1,7 @@
 import { FeatureCollection, Geometry, GeometryCollection } from 'geojson';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, PaginatedCollection } from '../../types.js';
+import { Headers, BasePaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
@@ -105,7 +105,7 @@ export const AssetsClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<PaginatedCollection<Attribute>>(
+      get<BasePaginatedCollection<Attribute>>(
         basePath.slash(pk).slash('attributes').url,
         headers,
         params
@@ -114,7 +114,7 @@ export const AssetsClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<PaginatedCollection<Metadata>>(
+      get<BasePaginatedCollection<Metadata>>(
         basePath.slash(pk).slash('metadata').url,
         headers,
         params

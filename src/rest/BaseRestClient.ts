@@ -1,5 +1,9 @@
 import { get, post, patch, del } from './BaseMethods.js';
-import { Headers, PaginatedCollection } from '../types.js';
+import {
+  Headers,
+  BasePaginatedCollection,
+  PaginatedCollection,
+} from '../types.js';
 import { Path } from '../Urls.js';
 
 export interface SplightCredentials {
@@ -24,6 +28,18 @@ export const getHeaders = () => {
 
 export type BaseRestClient<T> = ReturnType<typeof BaseRestClient<T>>;
 
+const withGetNext = <T>(
+  baseCollection: BasePaginatedCollection<T>
+): PaginatedCollection<T> => {
+  return {
+    ...baseCollection,
+    getNext: (headers: Headers) =>
+      get<PaginatedCollection<T>>(baseCollection.next, headers).then(
+        (results) => withGetNext(results)
+      ),
+  };
+};
+
 export const BaseRestClient = <
   I,
   O = I,
@@ -36,8 +52,10 @@ export const BaseRestClient = <
   headers: Headers
 ) => {
   return {
-    list: (params?: Q) =>
-      get<PaginatedCollection<O>>(base_path.url, headers, ...[params]),
+    list: (params?: Q): Promise<PaginatedCollection<O>> =>
+      get<BasePaginatedCollection<O>>(base_path.url, headers, params).then(
+        (response) => withGetNext(response)
+      ),
     retrieve: (pk: string): Promise<O> => get(base_path.slash(pk).url, headers),
     create: (data: I, params?: Q): Promise<O> =>
       post(base_path.url, data, headers, ...[params]),
