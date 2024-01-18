@@ -27,7 +27,12 @@ export interface UserProfileParams {
   permissions?: Permission[];
 }
 
-export type UserProfile = Required<UserProfileParams>;
+export type UserProfile = Required<UserProfileParams> & {
+  user_id?: string;
+  organization_id?: string;
+  original_organization_id?: string;
+  is_splight_admin?: boolean;
+};
 
 export type OrganizationParams = Omit<Organization, 'id'>;
 
