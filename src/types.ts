@@ -53,7 +53,7 @@ export interface OutputSource extends AbstractComplexConfiguration {
 export type Empty = Record<string, never>;
 export type AsyncFunction<T extends unknown[], R> = (...args: T) => Promise<R>;
 
-export { Organization } from './account/User.js';
+export { Organization, UserProfile } from './account/User.js';
 
 export {
   Asset,
