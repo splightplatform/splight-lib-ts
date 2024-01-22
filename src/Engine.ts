@@ -15,13 +15,17 @@ import {
   DashboardsClient,
   DashboardTabsClient,
   DatalakeDataClient,
-  FileClient,
   ComputeNodesClient,
   SecretsClient,
   FunctionsClient,
   WeatherClient,
 } from './engine/index.js';
 import { AlertEventsClient } from './engine/alerts/Alerts.js';
+import {
+  FileSystemClient,
+  FilesClient,
+  FoldersClient,
+} from './engine/files/Files.js';
 
 export const Engine = (headers: Headers) => {
   return {
@@ -32,7 +36,9 @@ export const Engine = (headers: Headers) => {
     assetMetadata: MetadataClient(headers),
     comments: CommentsClient(headers),
     functions: FunctionsClient(headers),
-    file: FileClient(headers),
+    files: FilesClient(headers),
+    folders: FoldersClient(headers),
+    fileSystem: FileSystemClient(headers),
     communication: CommunicationClient(headers),
     components: ComponentsClient(headers),
     componentObjects: ComponentObjectsClient(headers),

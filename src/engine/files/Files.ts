@@ -48,7 +48,7 @@ export interface FileSystemFolder
   current_folder: Folder;
 }
 
-const FilesClient = (headers: Headers) => {
+export const FilesClient = (headers: Headers) => {
   const basePath = Path('v2/engine/file/files/');
   const baseClient = BaseRestClient<FileParams, _File>(basePath, headers);
   const responseType = 'blob';
@@ -64,7 +64,7 @@ const FilesClient = (headers: Headers) => {
   };
 };
 
-const FoldersClient = (headers: Headers) => {
+export const FoldersClient = (headers: Headers) => {
   const basePath = Path('v2/engine/file/folders/');
   const baseClient = BaseRestClient<FolderParams, Folder>(basePath, headers);
   return {
@@ -72,19 +72,11 @@ const FoldersClient = (headers: Headers) => {
   };
 };
 
-const FileSystemClient = (headers: Headers) => {
+export const FileSystemClient = (headers: Headers) => {
   const basePath = Path('v2/engine/file/filesystem/');
   const { list } = BaseRestClient<FileSystemObject, FileSystemObject>(
     basePath,
     headers
   );
   return { list };
-};
-
-export const FileClient = (headers: Headers) => {
-  return {
-    files: FilesClient(headers),
-    folders: FoldersClient(headers),
-    fileSystem: FileSystemClient(headers),
-  };
 };
