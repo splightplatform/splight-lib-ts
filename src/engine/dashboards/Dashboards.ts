@@ -158,6 +158,7 @@ export interface ChartParams {
   refresh_interval: string | null;
   timestamp_gte: string | null;
   timestamp_lte: string | null;
+  display_time_range: boolean;
   position_x: number;
   position_y: number;
   height: number;
