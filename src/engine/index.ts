@@ -10,7 +10,7 @@ export {
   ComponentRoutinesClient,
   ComponentCommandsClient,
 } from './components/Components.js';
-export { FileClient } from './files/Files.js';
+export { FilesClient } from './files/Files.js';
 export { CommunicationClient } from './communication/Communication.js';
 export {
   DashboardsClient,
