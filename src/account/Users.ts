@@ -30,8 +30,8 @@ export interface User {
   last_ip: string;
   logins_count: number;
   picture: string;
-  permissions: ('splightadmin' | 'admin' | 'editor')[];
   roles: Role[];
+  sso_roles:Role[];
 }
 
 export interface UserLogsDetails {
