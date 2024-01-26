@@ -6,7 +6,11 @@ import { ApiKeysClient } from './account/ApiKeys.js';
 import { ActivityClient } from './account/Activity.js';
 import { ContractsClient } from './account/Contracts.js';
 import { UsersClient } from './account/Users.js';
-import { PermissionsClient, RolesClient } from './account/Roles.js';
+import {
+  PermissionsClient,
+  RolesClient,
+  SsoRoleMappingsClient,
+} from './account/Roles.js';
 import { UserInvitationsClient } from './account/UserInvitations.js';
 
 import { ProvisionClient } from './account/Provision.js';
@@ -27,5 +31,6 @@ export const Account = (headers: Headers) => {
     provision: ProvisionClient(headers),
     permissions: PermissionsClient(headers),
     roles: RolesClient(headers),
+    ssoRoleMappings: SsoRoleMappingsClient(headers),
   };
 };

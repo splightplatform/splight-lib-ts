@@ -44,6 +44,15 @@ export interface Application {
   services: Service[];
 }
 
+export interface SsoRoleMapping {
+  id: string;
+  name: string;
+  description: string;
+  roles: Role[];
+  sso_role: string;
+}
+export type SsoRoleMappingParams = Omit<SsoRoleMapping, 'id'>;
+
 export const PermissionsClient = (headers: Headers) => {
   const basePath = Path('v2/account/authorization/permissions/');
   const baseClient = BaseRestClient<PermissionParams, Permission>(
@@ -64,5 +73,16 @@ export const RolesClient = (headers: Headers) => {
     ...baseClient,
     permissions: (pk: string) =>
       get<Permission[]>(basePath.slash(pk).slash('permissions').url, headers),
+  };
+};
+
+export const SsoRoleMappingsClient = (headers: Headers) => {
+  const basePath = Path('v2/account/authorization/sso-role-mappings/');
+  const baseClient = BaseRestClient<SsoRoleMappingParams, SsoRoleMapping>(
+    basePath,
+    headers
+  );
+  return {
+    ...baseClient,
   };
 };

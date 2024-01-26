@@ -230,6 +230,8 @@ export {
   Application,
   Service,
   Action,
+  SsoRoleMapping,
+  SsoRoleMappingParams,
 } from './account/Roles.js';
 
 export {
