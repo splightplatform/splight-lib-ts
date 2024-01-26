@@ -31,7 +31,7 @@ export interface User {
   logins_count: number;
   picture: string;
   roles: Role[];
-  sso_roles:Role[];
+  sso_roles: Role[];
 }
 
 export interface UserLogsDetails {
