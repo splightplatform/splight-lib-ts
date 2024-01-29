@@ -13,6 +13,7 @@ export interface AttributeParams {
 
 export interface Attribute extends AttributeParams {
   id?: string;
+  connected_status: string;
 }
 
 type NodeType =
