@@ -15,6 +15,7 @@ const MockAttribute: Attribute = {
   pinned_at: null,
   name: 'test',
   type: 'Number',
+  status: 'Connected',
 };
 
 const MockAttributeParams: AttributeParams = {
