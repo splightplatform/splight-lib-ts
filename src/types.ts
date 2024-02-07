@@ -137,6 +137,7 @@ export {
   SimpleChart,
   ResoruceChart,
   Aggregation,
+  Placement,
   Dashboard,
   BarChart,
   ImageChart,
