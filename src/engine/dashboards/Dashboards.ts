@@ -161,7 +161,7 @@ export interface ChartParams {
   timestamp_gte: string | null;
   timestamp_lte: string | null;
   display_time_range: boolean;
-  labels_aggregation: Aggregation;
+  labels_aggregation?: Aggregation;
   labels_display: boolean;
   labels_placement: Placement;
   position_x: number;
