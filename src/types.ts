@@ -58,6 +58,8 @@ export { Organization, UserProfile } from './account/User.js';
 export {
   Asset,
   AssetParams,
+  AssetKind,
+  AssetKindParams,
   GetAttributeParams,
   GetAttribute,
   SetAttributeCsvParams,
