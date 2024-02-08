@@ -1,10 +1,6 @@
 {
   "name": "@splightplatform/splight-lib-ts",
-<<<<<<< HEAD
-  "version": "0.0.7-163",
-=======
   "version": "0.0.7-167",
->>>>>>> master
   "type": "module",
   "license": "MIT",
   "repository": "https://github.com/splightplatform/splight-lib-ts.git",
