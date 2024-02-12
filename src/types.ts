@@ -217,8 +217,9 @@ export interface ApiFormField {
 }
 
 export {
-  SearchDataResponse,
-  SearchDataParams,
+  DataRequest,
+  DataRecord,
+  DataRecords,
 } from './engine/datalake/Data.js';
 
 export {
