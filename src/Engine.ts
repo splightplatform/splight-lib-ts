@@ -2,6 +2,7 @@ import { Headers } from './types.js';
 import {
   AlertsClient,
   AssetsClient,
+  AssetKindsClient,
   AttributesClient,
   CommentsClient,
   MetadataClient,
@@ -32,6 +33,7 @@ export const Engine = (headers: Headers) => {
     alerts: AlertsClient(headers),
     alertEvents: AlertEventsClient(headers),
     assets: AssetsClient(headers),
+    assetKinds: AssetKindsClient(headers),
     assetAttributes: AttributesClient(headers),
     assetMetadata: MetadataClient(headers),
     comments: CommentsClient(headers),
