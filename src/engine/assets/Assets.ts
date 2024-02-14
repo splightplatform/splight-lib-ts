@@ -22,7 +22,7 @@ export type AssetKindParams = Omit<AssetKind, 'id'>;
 export interface AssetParams {
   name: string;
   description?: string;
-  kind?: AssetKind;
+  kind?: AssetKind | null;
   attributes?: Attribute[];
   metadata?: Metadata[];
   organization?: string;
