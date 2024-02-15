@@ -11,7 +11,6 @@ export {
   ComponentCommandsClient,
 } from './components/Components.js';
 export { FilesClient } from './files/Files.js';
-export { CommunicationClient } from './communication/Communication.js';
 export {
   DashboardsClient,
   DashboardTabsClient,
@@ -22,4 +21,3 @@ export { SecretsClient } from './secrets/Secrets.js';
 export { DatalakeDataClient } from './datalake/Data.js';
 export { DeploymentsClient } from './Deployments.js';
 export { ComputeNodesClient } from './computeNodes/ComputeNodes.js';
-export { WeatherClient } from './weather/Weather.js';
