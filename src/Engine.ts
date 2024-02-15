@@ -2,10 +2,10 @@ import { Headers } from './types.js';
 import {
   AlertsClient,
   AssetsClient,
+  AssetKindsClient,
   AttributesClient,
   CommentsClient,
   MetadataClient,
-  CommunicationClient,
   ComponentCommandsClient,
   ComponentObjectsClient,
   ComponentRoutinesClient,
@@ -18,7 +18,6 @@ import {
   ComputeNodesClient,
   SecretsClient,
   FunctionsClient,
-  WeatherClient,
 } from './engine/index.js';
 import { AlertEventsClient } from './engine/alerts/Alerts.js';
 import {
@@ -32,6 +31,7 @@ export const Engine = (headers: Headers) => {
     alerts: AlertsClient(headers),
     alertEvents: AlertEventsClient(headers),
     assets: AssetsClient(headers),
+    assetKinds: AssetKindsClient(headers),
     assetAttributes: AttributesClient(headers),
     assetMetadata: MetadataClient(headers),
     comments: CommentsClient(headers),
@@ -39,7 +39,6 @@ export const Engine = (headers: Headers) => {
     files: FilesClient(headers),
     folders: FoldersClient(headers),
     fileSystem: FileSystemClient(headers),
-    communication: CommunicationClient(headers),
     components: ComponentsClient(headers),
     componentObjects: ComponentObjectsClient(headers),
     componentRoutines: ComponentRoutinesClient(headers),
@@ -50,7 +49,6 @@ export const Engine = (headers: Headers) => {
     dashboardChartItems: DashboardChartItemsClient(headers),
     computeNodes: ComputeNodesClient(headers),
     secrets: SecretsClient(headers),
-    weather: WeatherClient(headers),
     datalakeData: DatalakeDataClient(headers), // TO RENAME
   };
 };

@@ -4,6 +4,7 @@ import { Path } from '../../Urls.js';
 import { BaseRelatedAssetObj } from '../assets/Assets.js';
 
 export type Aggregation = 'avg' | 'sum' | 'min' | 'max' | 'last';
+export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
 export type ChartType =
@@ -160,8 +161,9 @@ export interface ChartParams {
   timestamp_gte: string | null;
   timestamp_lte: string | null;
   display_time_range: boolean;
-  labels_aggregation: Aggregation;
+  labels_aggregation?: Aggregation | null;
   labels_display: boolean;
+  labels_placement: Placement;
   position_x: number;
   position_y: number;
   height: number;
