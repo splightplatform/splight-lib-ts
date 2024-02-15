@@ -21,7 +21,7 @@ export interface SplightComment extends SplightCommentParams {
 }
 
 export const CommentsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/comment/comments');
+  const basePath = Path('v2/engine/comment/comments/');
   const baseClient = BaseRestClient<SplightCommentParams, SplightComment>(
     basePath,
     headers
