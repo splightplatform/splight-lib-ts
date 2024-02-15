@@ -30,7 +30,7 @@ export interface HourlyForecast {
 }
 
 export const WeatherClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/weather/');
+  const basePath = Path('v2/plugin/weather/');
 
   return {
     currentWeather: (latitude: number, longitude: number) =>

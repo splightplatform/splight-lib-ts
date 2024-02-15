@@ -262,7 +262,7 @@ export {
   ComputeNodeUsage,
 } from './engine/computeNodes/ComputeNodes.js';
 
-export { AgentRelease } from './agent/release/Release.js';
+export { AgentRelease } from './plugin/agent/release/Release.js';
 export { MOCK_MODE_KEY } from './constants/mockMode.js';
 
 // Weather
@@ -270,6 +270,6 @@ export {
   CurrentWeather,
   DailyForecast,
   HourlyForecast,
-} from './engine/weather/Weather.js';
+} from './plugin/weather/Weather.js';
 
 export { LogEntry } from './engine/logs/Logs.js';
