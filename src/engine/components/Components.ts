@@ -203,11 +203,6 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('commands').url,
         headers
       ),
-    connections: (pk: string) =>
-      get<ComponentConnections[]>(
-        basePath.slash(pk).slash('connections').url,
-        headers
-      ),
     logs: (
       pk: string,
       params: {

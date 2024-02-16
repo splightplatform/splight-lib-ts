@@ -4,7 +4,12 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface SearchDataParams {
+export type DataRecord = {
+  timestamp: string;
+  [key: string]: string | number;
+};
+
+export interface DataRequest {
   from_timestamp: string | null;
   to_timestamp: string | null;
   sort_direction: number | null;
@@ -17,25 +22,25 @@ export interface SearchDataParams {
   aggregation?: string | null;
 }
 
-export type SearchDataResponse = {
-  timestamp: string;
-  [key: string]: string | number;
-}[];
+export type DataRecords = {
+  collection: string;
+  records: DataRecord[];
+};
 
 export const DatalakeDataClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/datalake/data/');
+  const basePath = Path('data');
   const baseClient = {
-    ...BaseRestClient<SearchDataParams, SearchDataResponse>(basePath, headers),
-    requestJson: (data: SearchDataParams) =>
-      post<SearchDataParams, SearchDataResponse>(
-        basePath.slash('request').slash('json').url,
-        data,
+    ...BaseRestClient<DataRequest, DataRecord[]>(basePath, headers),
+    read: (request: DataRequest) =>
+      post<DataRequest, DataRecord[]>(
+        basePath.slash('read', false).url,
+        request,
         headers
       ),
-    requestCsv: (data: SearchDataParams) =>
-      post<SearchDataParams, Blob>(
-        basePath.slash('request').slash('csv').url,
-        data,
+    write: (records: DataRecords) =>
+      post<DataRecords, Blob>(
+        basePath.slash('write', false).url,
+        records,
         headers,
         {},
         'blob'

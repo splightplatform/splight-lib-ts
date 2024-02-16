@@ -12,9 +12,17 @@ export interface BaseRelatedAssetObj {
   assets?: Asset[];
 }
 
+export interface AssetKind {
+  id: string;
+  name: string;
+}
+
+export type AssetKindParams = Omit<AssetKind, 'id'>;
+
 export interface AssetParams {
   name: string;
   description?: string;
+  kind?: AssetKind | null;
   attributes?: Attribute[];
   metadata?: Metadata[];
   organization?: string;
@@ -134,5 +142,16 @@ export const AssetsClient = (headers: Headers) => {
         headers,
         params
       ),
+  };
+};
+
+export const AssetKindsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/asset/kinds/');
+  const baseClient = BaseRestClient<AssetKindParams, AssetKind>(
+    basePath,
+    headers
+  );
+  return {
+    ...baseClient,
   };
 };
