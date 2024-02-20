@@ -86,7 +86,8 @@ export interface Component {
   deployment_restart_policy?: string;
   connections_active: boolean;
   connections_updated_at: string;
-  splight_cli_version: string;
+  splight_cli_version: string | null;
+  splight_lib_version: string | null;
   organization_id?: string;
   usage_count?: number;
   bindings?: Binding[];
@@ -200,11 +201,6 @@ export const ComponentsClient = (headers: Headers) => {
     commands: (pk: string) =>
       get<ComponentCommand[]>(
         basePath.slash(pk).slash('commands').url,
-        headers
-      ),
-    connections: (pk: string) =>
-      get<ComponentConnections[]>(
-        basePath.slash(pk).slash('connections').url,
         headers
       ),
     logs: (
