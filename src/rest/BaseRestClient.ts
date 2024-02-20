@@ -28,7 +28,7 @@ export const getHeaders = () => {
 
 export type BaseRestClient<T> = ReturnType<typeof BaseRestClient<T>>;
 
-const withGetNext = <T>(
+export const withGetNext = <T>(
   baseCollection: BasePaginatedCollection<T>
 ): PaginatedCollection<T> => {
   return {
