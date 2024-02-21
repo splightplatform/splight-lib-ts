@@ -6,6 +6,8 @@ import { BaseRelatedAssetObj } from '../assets/Assets.js';
 
 export interface FolderParams {
   name: string;
+  description?: string;
+  assets?: Asset[];
   parent?: string;
 }
 
@@ -25,11 +27,13 @@ export interface _File extends Omit<FileParams, 'file'> {
   created_at?: string;
   assets?: Asset[];
   file?: string;
+  type: string;
 }
 
 export interface Folder extends FolderParams {
   id: string;
   path: Folder[];
+  type: string;
 }
 
 export interface FileSystemObject {

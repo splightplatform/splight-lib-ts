@@ -127,7 +127,8 @@ export interface HubComponent {
   commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
-  splight_cli_version: string;
+  splight_cli_version: string | null;
+  splight_lib_version: string | null;
 }
 
 export interface ComponentParams {
