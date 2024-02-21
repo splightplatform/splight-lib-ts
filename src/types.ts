@@ -67,9 +67,9 @@ export {
 } from './engine/assets/Assets.js';
 
 export {
-  AssetRelationship,
-  AssetRelationshipParams,
-} from './engine/assetRelationship/AssetRelationship.js';
+  AssetRelation,
+  AssetRelationParam,
+} from './engine/assetRelations/AssetRelations.js';
 
 export {
   SplightComment,

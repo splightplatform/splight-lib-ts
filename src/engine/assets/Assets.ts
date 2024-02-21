@@ -5,7 +5,7 @@ import { Headers, BasePaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
-import { AssetRelationship } from '../assetRelationship/AssetRelationship.js';
+import { AssetRelation } from '../assetRelations/AssetRelations.js';
 import { _File } from '../files/Files.js';
 
 export interface BaseRelatedAssetObj {
@@ -26,8 +26,8 @@ export interface AssetParams {
   kind?: AssetKind | null;
   attributes?: Attribute[];
   metadata?: Metadata[];
-  related_to?: AssetRelationship[];
-  related_from?: AssetRelationship[];
+  related_to?: AssetRelation[];
+  related_from?: AssetRelation[];
   organization?: string;
   verified?: boolean;
   geometry?: GeometryCollection;

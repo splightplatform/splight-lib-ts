@@ -3,7 +3,7 @@ import { Asset, AssetKind } from '../assets/Assets.js';
 import { Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
-export interface AssetRelationshipParams {
+export interface AssetRelationParam {
   name: string;
   description?: string;
   asset?: Asset;
@@ -11,13 +11,13 @@ export interface AssetRelationshipParams {
   related_asset_kind?: AssetKind | null;
 }
 
-export interface AssetRelationship extends AssetRelationshipParams {
+export interface AssetRelation extends AssetRelationParam {
   id?: string;
 }
 
-export const AssetRelationshipClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/asset/relationships');
-  const baseClient = BaseRestClient<AssetRelationshipParams, AssetRelationship>(
+export const AssetRelationsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/asset/relations');
+  const baseClient = BaseRestClient<AssetRelationParam, AssetRelation>(
     basePath,
     headers
   );

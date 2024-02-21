@@ -1,10 +1,7 @@
 import { expect, test } from '@jest/globals';
 import { MockedAxios } from '../../test/MockedAxios.js';
 import { splight, TestKeys } from '../../test/setup.js';
-import {
-  AssetRelationship,
-  AssetRelationshipParams,
-} from './AssetRelationship.js';
+import { AssetRelation, AssetRelationParam } from './AssetRelations.js';
 import { API_HOST } from '../../Global.js';
 
 const mockedAxios = MockedAxios();
@@ -13,39 +10,39 @@ afterEach(() => {
   mockedAxios.mockReset();
 });
 
-const MockAssetRelationship: AssetRelationship = {
+const MockAssetRelations: AssetRelation = {
   id: '123',
   name: 'test',
 };
 
-const MockAssetRelationshipParams: AssetRelationshipParams = {
+const MockAssetRelationsParam: AssetRelationParam = {
   name: 'test',
 };
 
-test('List asset relationships', async () => {
+test('List asset relations', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.assetRelationship.list();
+  await splight.engine.AssetRelations.list();
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relationships/`,
+    `${API_HOST}v2/engine/asset/relations/`,
     {
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('List asset relationship with params', async () => {
+test('List asset relations with params', async () => {
   mockedAxios.mockResolvedValueOnce({
     data: { results: [], next: 'something' },
     status: 200,
   });
-  await splight.engine.assetRelationship.list({
+  await splight.engine.AssetRelations.list({
     page_size: 10,
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relationships/`,
+    `${API_HOST}v2/engine/asset/relations/`,
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
@@ -53,62 +50,62 @@ test('List asset relationship with params', async () => {
   );
 });
 
-test('Retrieve asset relationship', async () => {
+test('Retrieve asset relations', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAssetRelationship,
+    data: MockAssetRelations,
     status: 200,
   });
-  await splight.engine.assetRelationship.retrieve('123');
+  await splight.engine.AssetRelations.retrieve('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relationships/123/`,
+    `${API_HOST}v2/engine/asset/relations/123/`,
     {
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Create asset relationship', async () => {
+test('Create asset relations', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: MockAssetRelationship,
+    data: MockAssetRelations,
     status: 201,
   });
-  await splight.engine.assetRelationship.create(MockAssetRelationshipParams);
+  await splight.engine.AssetRelations.create(MockAssetRelationsParam);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relationships/`,
+    `${API_HOST}v2/engine/asset/relations/`,
     {
-      data: MockAssetRelationshipParams,
+      data: MockAssetRelationsParam,
       method: 'post',
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Update asset relationship', async () => {
+test('Update asset relations', async () => {
   mockedAxios.mockResolvedValueOnce({
-    data: { ...MockAssetRelationship, name: 'updated' },
+    data: { ...MockAssetRelations, name: 'updated' },
     status: 200,
   });
-  await splight.engine.assetRelationship.update('123', {
-    ...MockAssetRelationshipParams,
+  await splight.engine.AssetRelations.update('123', {
+    ...MockAssetRelationsParam,
     name: 'updated',
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relationships/123/`,
+    `${API_HOST}v2/engine/asset/relations/123/`,
     {
-      data: { ...MockAssetRelationshipParams, name: 'updated' },
+      data: { ...MockAssetRelationsParam, name: 'updated' },
       method: 'patch',
       headers: { Authorization: TestKeys },
     }
   );
 });
 
-test('Delete asset relationship', async () => {
+test('Delete asset relations', async () => {
   mockedAxios.mockResolvedValueOnce({
     status: 204,
   });
-  await splight.engine.assetRelationship.destroy('123');
+  await splight.engine.AssetRelations.destroy('123');
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relationships/123/`,
+    `${API_HOST}v2/engine/asset/relations/123/`,
     {
       method: 'delete',
       headers: { Authorization: TestKeys },
