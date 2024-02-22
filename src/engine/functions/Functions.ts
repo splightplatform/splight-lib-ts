@@ -10,6 +10,7 @@ export interface FunctionItem {
     name: string;
     description: string;
   } | null;
+  label: string;
   query_filter_attribute: {
     id: string;
     name: string;
