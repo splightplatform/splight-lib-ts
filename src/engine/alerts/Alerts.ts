@@ -92,6 +92,7 @@ export type AlertEvent = {
   old_status: string;
   new_status: string;
   new_status_text?: string;
+  old_status_text?: string;
 };
 
 export type AlertEvaluation = {
