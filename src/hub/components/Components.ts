@@ -153,7 +153,11 @@ export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
 export const ComponentVersionsClient = (headers: Headers) => {
   const basePath = Path('v2/hub/component/versions/');
   const baseClient = BaseRestClient<HubComponent>(basePath, headers);
-  return baseClient;
+  return {
+    ...baseClient,
+    buildLogs: (pk: string) =>
+      get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
+  };
 };
 
 export const ComponentsClient = (headers: Headers) => {
