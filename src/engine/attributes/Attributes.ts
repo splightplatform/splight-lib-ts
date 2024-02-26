@@ -22,14 +22,12 @@ type NodeType =
   | 'Function'
   | 'RoutineObject'
   | 'Component';
+
 export interface RelationshipNode {
   id: string;
-  type: NodeType;
-  data: {
-    id: string;
-    name: string;
-    [key: string]: string;
-  };
+  node_type: NodeType;
+  name: string;
+  [key: string]: string;
 }
 
 export interface RelationshipEdge {
