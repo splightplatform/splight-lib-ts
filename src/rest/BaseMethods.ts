@@ -62,6 +62,26 @@ export const patch = async <I, O>(
   return response;
 };
 
+export const put = async <I, O>(
+  url: string,
+  data: I,
+  headers: Headers
+): Promise<O> => {
+  const { data: response } = await withRetries(() => {
+    return withLogging(
+      'PUT',
+      url,
+      axios<O>
+    )(url, {
+      method: 'put',
+      data,
+      headers,
+    });
+  })();
+
+  return response;
+};
+
 export const del = async <T>(url: string, headers: Headers): Promise<T> => {
   const { data: response } = await withRetries(() => {
     return withLogging(
