@@ -44,7 +44,7 @@ export interface RelationshipGraph {
 }
 
 export const AttributesClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/attributes/');
+  const basePath = Path('v2/engine/asset/attributes/');
   const baseClient = BaseRestClient<AttributeParams, Attribute>(
     basePath,
     headers

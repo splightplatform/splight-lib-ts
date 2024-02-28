@@ -31,7 +31,7 @@ export interface MetadataRelationships {
 }
 
 export const MetadataClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/metadata/');
+  const basePath = Path('v2/engine/asset/metadata/');
   const baseClient = BaseRestClient<MetadataParams, Metadata>(
     basePath,
     headers
