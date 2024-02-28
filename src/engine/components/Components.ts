@@ -11,7 +11,13 @@ import {
 } from '../../hub/components/Components.js';
 import { get, post, patch } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, ComputeNode, Optional, LogEntry } from '../../types.js';
+import {
+  Headers,
+  ComputeNode,
+  Optional,
+  LogEntry,
+  RelationshipGraph,
+} from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface RoutineObject extends BaseComponentResource {
@@ -218,6 +224,15 @@ export const ComponentsClient = (headers: Headers) => {
        */
       get<LogEntry[]>(
         basePath.slash(pk).slash('elastic_logs').url,
+        headers,
+        params
+      ),
+    relationships: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<RelationshipGraph>(
+        basePath.slash(pk).slash('relationships').url,
         headers,
         params
       ),

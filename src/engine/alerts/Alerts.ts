@@ -13,6 +13,7 @@ export type AlertItem = {
   id?: string;
   ref_id: string;
   type: 'QUERY' | 'EXPRESSION';
+  label: string;
   expression: string;
   expression_plain: string | null;
   query_filter_asset: {
@@ -91,6 +92,7 @@ export type AlertEvent = {
   old_status: string;
   new_status: string;
   new_status_text?: string;
+  old_status_text?: string;
 };
 
 export type AlertEvaluation = {

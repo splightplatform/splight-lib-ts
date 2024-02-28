@@ -1,6 +1,6 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { Headers, RelationshipGraph } from '../../types.js';
 import { get } from '../../rest/BaseMethods.js';
 
 export interface FunctionItem {
@@ -10,6 +10,7 @@ export interface FunctionItem {
     name: string;
     description: string;
   } | null;
+  label: string;
   query_filter_attribute: {
     id: string;
     name: string;
@@ -88,6 +89,15 @@ export const FunctionsClient = (headers: Headers) => {
       await get<FunctionEvaluation[]>(
         basePath.slash(pk).slash('evaluations').url,
         headers
+      ),
+    relationships: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<RelationshipGraph>(
+        basePath.slash(pk).slash('relationships').url,
+        headers,
+        params
       ),
   };
 };
