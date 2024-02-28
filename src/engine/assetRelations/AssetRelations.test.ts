@@ -26,7 +26,7 @@ test('List asset relations', async () => {
   });
   await splight.engine.assetRelations.list();
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relations/`,
+    `${API_HOST}v2/engine/asset/relations`,
     {
       headers: { Authorization: TestKeys },
     }
@@ -42,7 +42,7 @@ test('List asset relations with params', async () => {
     page_size: 10,
   });
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relations/`,
+    `${API_HOST}v2/engine/asset/relations`,
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
@@ -71,7 +71,7 @@ test('Create asset relations', async () => {
   });
   await splight.engine.assetRelations.create(MockAssetRelationsParam);
   expect(mockedAxios).toHaveBeenCalledWith(
-    `${API_HOST}v2/engine/asset/relations/`,
+    `${API_HOST}v2/engine/asset/relations`,
     {
       data: MockAssetRelationsParam,
       method: 'post',
