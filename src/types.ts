@@ -110,10 +110,9 @@ export {
 export {
   _File as File,
   FileParams,
-  Folder,
+  _Folder as Folder,
   FolderParams,
   FileSystemObject,
-  FileSystemFolder,
 } from './engine/files/Files.js';
 export {
   LineInterpolationStyle,
