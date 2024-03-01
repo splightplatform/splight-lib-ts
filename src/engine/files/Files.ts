@@ -1,3 +1,4 @@
+import { AxiosProgressEvent } from 'axios';
 import { get, put } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
@@ -57,18 +58,27 @@ export const FilesClient = (headers: Headers) => {
         headers,
         {}
       ),
-    upload: (fileId: string, data: Blob) =>
+    upload: (
+      fileId: string,
+      data: Blob,
+      onUploadProgress?: (progress: AxiosProgressEvent) => void
+    ) =>
       get<FileURL>(
         basePath.slash(fileId).slash('upload_url').url,
         headers,
         {}
-      ).then((response) => put(response.url, data, {})),
-    download: (fileId: string) =>
+      ).then((response) => put(response.url, data, {}, onUploadProgress)),
+    download: (
+      fileId: string,
+      onDownloadProgress?: (progress: AxiosProgressEvent) => void
+    ) =>
       get<FileURL>(
         basePath.slash(fileId).slash('download_url').url,
         headers,
         {}
-      ).then((response) => get<Blob>(response.url, {}, {}, 'blob')),
+      ).then((response) =>
+        get<Blob>(response.url, {}, {}, 'blob', onDownloadProgress)
+      ),
   };
 };
 
