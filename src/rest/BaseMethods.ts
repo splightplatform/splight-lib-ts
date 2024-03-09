@@ -1,4 +1,4 @@
-import axios, { ResponseType } from 'axios';
+import axios, { AxiosProgressEvent, ResponseType } from 'axios';
 import { withLogging } from '../decorators/WithLogging.js';
 import { withRetries } from '../decorators/WithRetries.js';
 import { Headers } from '../types.js';
@@ -7,13 +7,14 @@ export const get = async <T>(
   url: string,
   headers: Headers,
   params?: Record<string, string | number | boolean | undefined>,
-  responseType?: ResponseType
+  responseType?: ResponseType,
+  onDownloadProgress?: (progress: AxiosProgressEvent) => void
 ): Promise<T> => {
   const { data } = await withLogging(
     'GET',
     url,
     axios<T>
-  )(url, { headers, params, responseType });
+  )(url, { headers, params, responseType, onDownloadProgress });
 
   return data;
 };
@@ -65,7 +66,8 @@ export const patch = async <I, O>(
 export const put = async <I, O>(
   url: string,
   data: I,
-  headers: Headers
+  headers: Headers,
+  onUploadProgress?: (progress: AxiosProgressEvent) => void
 ): Promise<O> => {
   const { data: response } = await withRetries(() => {
     return withLogging(
@@ -76,6 +78,7 @@ export const put = async <I, O>(
       method: 'put',
       data,
       headers,
+      onUploadProgress,
     });
   })();
 
