@@ -15,6 +15,7 @@ export type ChartType =
   | 'stat'
   | 'gauge'
   | 'bar'
+  | 'histogram'
   | 'bargauge'
   | 'alertlist'
   | 'alertevents';
@@ -38,6 +39,7 @@ export const ChartTypes = {
   TEXT: 'text' as ChartType,
   TIMESERIES: 'timeseries' as ChartType,
   BAR: 'bar' as ChartType,
+  HISTOGRAM: 'histogram' as ChartType,
   TABLE: 'table' as ChartType,
   STAT: 'stat' as ChartType,
   GAUGE: 'gauge' as ChartType,
@@ -183,6 +185,7 @@ export interface ChartBase extends ChartParams {
 
 export type DataChart =
   | BarChart
+  | HistogramChart
   | GaugeChart
   | BarGaugeChart
   | TimeseriesChart
@@ -199,6 +202,14 @@ export interface BarChart extends ChartBase {
   y_axis_unit: string;
   number_of_decimals?: string;
   orientation: Orientation;
+}
+
+export interface HistogramChart extends ChartBase {
+  type: 'histogram';
+  number_of_decimals?: string;
+  orientation: Orientation;
+  bucket_count: number;
+  bucket_size?: number;
 }
 
 export interface ImageChart extends ChartBase {

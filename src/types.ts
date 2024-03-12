@@ -146,6 +146,7 @@ export {
   Placement,
   Dashboard,
   BarChart,
+  HistogramChart,
   ImageChart,
   TextChart,
   StatChart,
