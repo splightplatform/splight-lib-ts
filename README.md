@@ -5,8 +5,6 @@
 ![lint](https://github.com/splightplatform/splight-lib-ts/actions/workflows/lint.yml/badge.svg 'lint')
 ![test](https://github.com/splightplatform/splight-lib-ts/actions/workflows/test.yml/badge.svg 'test')
 ![npm](https://img.shields.io/npm/dw/@splightplatform/splight-lib-ts)
-![snyk_code](https://github.com/splightplatform/splight-lib-ts/blob/gh-pages/snyk_code.svg?raw=True)
-![snyk_dependencies](https://github.com/splightplatform/splight-lib-ts/blob/gh-pages/snyk_dependencies.svg?raw=True)
 
 The Splight TypeScript library provides convenient access to the Splight API from applications written in TypeScript both in the client and the server.
 
