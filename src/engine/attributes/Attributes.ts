@@ -23,14 +23,14 @@ type NodeType =
   | 'RoutineObject'
   | 'Component';
 
-export interface RelationshipNode {
+export interface FlowNode {
   id: string;
   node_type: NodeType;
   name: string;
   [key: string]: string;
 }
 
-export interface RelationshipEdge {
+export interface FlowEdge {
   id: string;
   source: string;
   sourceType: NodeType;
@@ -38,9 +38,9 @@ export interface RelationshipEdge {
   targetType: NodeType;
 }
 
-export interface RelationshipGraph {
-  nodes: RelationshipNode[];
-  edges: RelationshipEdge[];
+export interface FlowGraph {
+  nodes: FlowNode[];
+  edges: FlowEdge[];
 }
 
 export const AttributesClient = (headers: Headers) => {
@@ -55,7 +55,7 @@ export const AttributesClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
+      get<FlowGraph>(
         basePath.slash(pk).slash('relationships').url,
         headers,
         params
@@ -64,10 +64,6 @@ export const AttributesClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
-        basePath.slash(pk).slash('data').url,
-        headers,
-        params
-      ),
+      get<FlowGraph>(basePath.slash(pk).slash('data').url, headers, params),
   };
 };

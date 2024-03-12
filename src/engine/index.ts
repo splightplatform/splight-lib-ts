@@ -4,7 +4,7 @@ export { CommentsClient } from './comments/Comments.js';
 export { FunctionsClient } from './functions/Functions.js';
 export { AttributesClient } from './attributes/Attributes.js';
 export { MetadataClient } from './metadata/Metadata.js';
-export { AssetRelationsClient } from './assetRelations/AssetRelations.js';
+export { AssetFlowClient } from './assetFlow/AssetFlow.js';
 export {
   ComponentsClient,
   ComponentObjectsClient,

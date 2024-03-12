@@ -15,9 +15,9 @@ export interface Metadata extends MetadataParams {
   id?: string;
 }
 
-export interface MetadataRelationships {
+export interface MetadataFlow {
   metadata: Metadata;
-  relationship: {
+  flow: {
     routine: {
       id: string;
       name: string;
@@ -38,11 +38,11 @@ export const MetadataClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    relationships: ({
+    flow: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<MetadataRelationships>(
+      get<MetadataFlow>(
         basePath.slash(pk).slash('relationship').url,
         headers,
         params

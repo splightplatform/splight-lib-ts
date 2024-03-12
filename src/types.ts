@@ -66,10 +66,7 @@ export {
   BaseRelatedAssetObj,
 } from './engine/assets/Assets.js';
 
-export {
-  AssetRelation,
-  AssetRelationParam,
-} from './engine/assetRelations/AssetRelations.js';
+export { AssetFlow, AssetFlowParam } from './engine/assetFlow/AssetFlow.js';
 
 export {
   SplightComment,
@@ -79,14 +76,14 @@ export {
 export {
   Attribute,
   AttributeParams,
-  RelationshipGraph,
-  RelationshipEdge,
-  RelationshipNode,
+  FlowGraph,
+  FlowEdge,
+  FlowNode,
 } from './engine/attributes/Attributes.js';
 export {
   Metadata,
   MetadataParams,
-  MetadataRelationships,
+  MetadataFlow,
 } from './engine/metadata/Metadata.js';
 export {
   Secret,

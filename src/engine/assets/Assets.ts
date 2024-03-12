@@ -3,9 +3,9 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, BasePaginatedCollection } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
+import { Attribute, FlowGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
-import { AssetRelation } from '../assetRelations/AssetRelations.js';
+import { AssetFlow } from '../assetFlow/AssetFlow.js';
 import { _File } from '../files/Files.js';
 
 export interface BaseRelatedAssetObj {
@@ -26,8 +26,8 @@ export interface AssetParams {
   kind?: AssetKind | null;
   attributes?: Attribute[];
   metadata?: Metadata[];
-  related_to?: AssetRelation[];
-  related_from?: AssetRelation[];
+  related_to?: AssetFlow[];
+  related_from?: AssetFlow[];
   organization?: string;
   verified?: boolean;
   geometry?: GeometryCollection;
@@ -134,7 +134,7 @@ export const AssetsClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
+      get<FlowGraph>(
         basePath.slash(pk).slash('relationships').url,
         headers,
         params

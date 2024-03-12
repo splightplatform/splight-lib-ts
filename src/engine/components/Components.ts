@@ -16,7 +16,7 @@ import {
   ComputeNode,
   Optional,
   LogEntry,
-  RelationshipGraph,
+  FlowGraph,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
 
@@ -231,7 +231,7 @@ export const ComponentsClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
+      get<FlowGraph>(
         basePath.slash(pk).slash('relationships').url,
         headers,
         params
