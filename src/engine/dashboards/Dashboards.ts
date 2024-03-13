@@ -234,7 +234,7 @@ export interface StatChart extends ChartBase {
   type: 'stat';
   border: boolean;
   y_axis_unit: string;
-  number_of_decimals: string;
+  number_of_decimals?: number;
 }
 
 export interface AlertListChart extends ChartBase {
