@@ -6,7 +6,7 @@ import { BaseRelatedAssetObj } from '../assets/Assets.js';
 export type Aggregation = 'avg' | 'sum' | 'min' | 'max' | 'last';
 export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
-export type BucketType = 'numerical' | 'categorical';
+export type HistogramType = 'numerical' | 'categorical';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
 export type ChartType =
   | 'image'
@@ -29,9 +29,9 @@ export const OrientationTypes = {
   VERTICAL: 'vertical' as Orientation,
 };
 
-export const BucketTypes = {
-  NUMERICAL: 'numerical' as BucketType,
-  CATEGORICAL: 'categorical' as BucketType,
+export const HistogramTypes = {
+  NUMERICAL: 'numerical' as HistogramType,
+  CATEGORICAL: 'categorical' as HistogramType,
 };
 
 export const LineInterpolationStyleTypes = {
@@ -216,7 +216,7 @@ export interface HistogramChart extends ChartBase {
   orientation: Orientation;
   bucket_count: number;
   bucket_size?: number;
-  bucket_type: BucketType;
+  histogram_type: HistogramType;
 }
 
 export interface ImageChart extends ChartBase {

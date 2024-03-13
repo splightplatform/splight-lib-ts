@@ -128,7 +128,7 @@ export {
   ChartItemTypes,
   LineInterpolationStyleTypes,
   OrientationTypes,
-  BucketTypes,
+  HistogramType,
   TimeSeriesTypes,
   ValueMappingTypes,
   Threshold,
