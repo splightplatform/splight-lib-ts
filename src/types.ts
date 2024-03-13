@@ -117,6 +117,7 @@ export {
 export {
   LineInterpolationStyle,
   Orientation,
+  HistogramType,
   TimeSeriesType,
   ValueMappingType,
   ValueMapping,
@@ -128,7 +129,7 @@ export {
   ChartItemTypes,
   LineInterpolationStyleTypes,
   OrientationTypes,
-  HistogramType,
+  HistogramTypes,
   TimeSeriesTypes,
   ValueMappingTypes,
   Threshold,
