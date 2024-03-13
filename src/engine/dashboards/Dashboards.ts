@@ -1,5 +1,5 @@
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { Headers, Tag } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { BaseRelatedAssetObj } from '../assets/Assets.js';
 
@@ -66,6 +66,7 @@ export interface DashboardParams {
   name: string;
   description?: string;
   pinned_at?: string | null;
+  tags: Tag[];
 }
 
 export interface Dashboard extends DashboardParams, BaseRelatedAssetObj {
