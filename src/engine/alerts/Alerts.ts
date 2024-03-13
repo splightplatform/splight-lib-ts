@@ -130,7 +130,7 @@ export const AlertsClient = (headers: Headers) => {
         basePath.slash(pk).slash('evaluations').url,
         headers
       ),
-      test: async (pk: string, alertParams: AlertParams) =>
+    test: async (pk: string, alertParams: AlertParams) =>
       await post<AlertParams, DataRecords[]>(
         basePath.slash(pk).slash('test').url,
         alertParams,
