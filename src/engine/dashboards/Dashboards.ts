@@ -6,6 +6,7 @@ import { BaseRelatedAssetObj } from '../assets/Assets.js';
 export type Aggregation = 'avg' | 'sum' | 'min' | 'max' | 'last';
 export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
+export type BucketType = 'numerical' | 'categorical';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
 export type ChartType =
   | 'image'
@@ -26,6 +27,11 @@ export type ValueMappingType = 'exact_match' | 'range' | 'regex';
 export const OrientationTypes = {
   HORIZONTAL: 'horizontal' as Orientation,
   VERTICAL: 'vertical' as Orientation,
+};
+
+export const BucketTypes = {
+  NUMERICAL: 'numerical' as BucketType,
+  CATEGORICAL: 'categorical' as BucketType,
 };
 
 export const LineInterpolationStyleTypes = {
@@ -197,19 +203,20 @@ export type ResoruceChart = AlertListChart | AssetListChart | AlertEventsChart;
 
 export interface BarChart extends ChartBase {
   type: 'bar';
-  y_axis_max_limit: string;
-  y_axis_min_limit: string;
+  y_axis_max_limit: number;
+  y_axis_min_limit: number;
   y_axis_unit: string;
-  number_of_decimals?: string;
+  number_of_decimals?: number;
   orientation: Orientation;
 }
 
 export interface HistogramChart extends ChartBase {
   type: 'histogram';
-  number_of_decimals?: string;
+  number_of_decimals?: number;
   orientation: Orientation;
   bucket_count: number;
   bucket_size?: number;
+  bucket_type: BucketType;
 }
 
 export interface ImageChart extends ChartBase {
@@ -253,10 +260,10 @@ export interface AlertEventsChart extends ChartBase {
 
 export interface TimeseriesChart extends ChartBase {
   type: 'timeseries';
-  y_axis_max_limit: string;
-  y_axis_min_limit: string;
+  y_axis_max_limit: number;
+  y_axis_min_limit: number;
   y_axis_unit: string;
-  number_of_decimals?: string;
+  number_of_decimals?: number;
   line_interpolation_style: LineInterpolationStyle;
   timeseries_type: TimeSeriesType;
   fill: boolean;
@@ -265,21 +272,21 @@ export interface TimeseriesChart extends ChartBase {
 
 export interface BarGaugeChart extends ChartBase {
   type: 'bargauge';
-  max_limit?: string;
-  number_of_decimals?: string;
+  max_limit?: number;
+  number_of_decimals?: number;
   orientation: Orientation;
 }
 
 export interface GaugeChart extends ChartBase {
   type: 'gauge';
-  max_limit?: string;
-  number_of_decimals?: string;
+  max_limit?: number;
+  number_of_decimals?: number;
 }
 
 export interface TableChart extends ChartBase {
   type: 'table';
   y_axis_unit: string;
-  number_of_decimals?: string;
+  number_of_decimals?: number;
 }
 
 export type Chart =
@@ -292,6 +299,7 @@ export type Chart =
   | TableChart
   | TimeseriesChart
   | BarChart
+  | HistogramChart
   | BarGaugeChart
   | GaugeChart;
 
