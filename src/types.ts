@@ -267,7 +267,6 @@ export {
 } from './engine/computeNodes/ComputeNodes.js';
 
 export { AgentRelease } from './plugin/agent/release/Release.js';
-export { MOCK_MODE_KEY } from './constants/mockMode.js';
 
 // Weather
 export {
