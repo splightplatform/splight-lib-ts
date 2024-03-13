@@ -28,15 +28,13 @@ export interface Subscription {
   end_date: string;
   assets_limit: number;
   dashboards_limit: number;
-  files_limit: number;
   secrets_limit: number;
   components_limit: number;
   integrations_limit: number;
   alerts_limit: number;
   functions_limit: number;
-  compute_slots: number;
   datalake_gb: number;
-  file_storage_gb: number;
+  storage_gb: number;
   cost_per_month: number;
 }
 
