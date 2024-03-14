@@ -66,7 +66,7 @@ export interface DashboardParams {
   name: string;
   description?: string;
   pinned_at?: string | null;
-  tags: Tag[];
+  tags?: Tag[];
 }
 
 export interface Dashboard extends DashboardParams, BaseRelatedAssetObj {
