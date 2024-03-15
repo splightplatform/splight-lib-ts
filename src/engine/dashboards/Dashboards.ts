@@ -213,7 +213,6 @@ export interface BarChart extends ChartBase {
 export interface HistogramChart extends ChartBase {
   type: 'histogram';
   number_of_decimals?: number;
-  orientation: Orientation;
   bucket_count: number;
   bucket_size?: number;
   histogram_type: HistogramType;
