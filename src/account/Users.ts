@@ -59,15 +59,6 @@ export const UsersClient = (headers: Headers) => {
     update,
     retrieve,
     destroy,
-    organizations: ({
-      pk,
-      ...params
-    }: Record<string, string | number | boolean>) =>
-      get<OrganizationProfile>(
-        basePath.slash(pk as string).slash('organizations', true).url,
-        headers,
-        params
-      ),
     logs: ({ pk, ...params }: Record<string, string | number | boolean>) =>
       get<{ results: UserLogs[]; next: string; count: number }>(
         basePath.slash(pk as string).slash('logs', true).url,
