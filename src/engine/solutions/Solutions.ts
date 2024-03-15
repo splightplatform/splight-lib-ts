@@ -3,10 +3,16 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 
+export interface SolutionResourceChange {
+  actions: string[]; //TODO add choices
+  before: any;
+  after: any;
+}
+
 export interface SolutionResource {
   name: string;
   type: string; //TODO add choices
-  actions: string[]; //TODO add choices
+  change: SolutionResourceChange;
 }
 
 export interface SolutionPlan {
@@ -18,8 +24,8 @@ export interface SolutionParams {
   name: string;
   description: string;
   hub_solution: string;
-  // TODO add values_file
   pinned_at: string | null;
+  values_file: string | null;
 }
 
 export interface Solution extends SolutionParams {
