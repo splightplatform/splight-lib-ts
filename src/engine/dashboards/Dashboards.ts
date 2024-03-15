@@ -216,6 +216,8 @@ export interface HistogramChart extends ChartBase {
   bucket_count: number;
   bucket_size?: number;
   histogram_type: HistogramType;
+  categories_top_max_limit?: number;
+  stacked: boolean;
 }
 
 export interface ImageChart extends ChartBase {
