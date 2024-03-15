@@ -277,4 +277,4 @@ export {
 
 export { LogEntry } from './engine/logs/Logs.js';
 
-export { Tag, TagParams } from './tags/Tags.js';
+export { Tag, TagParams } from './account/Tags.js';

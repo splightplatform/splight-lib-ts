@@ -11,7 +11,7 @@ export interface Tag extends TagParams {
 }
 
 export const TagsClient = (headers: Headers) => {
-  const basePath = Path('v2/tags/tags/');
+  const basePath = Path('v2/account/tags/');
   const baseClient = BaseRestClient<TagParams, Tag>(basePath, headers);
   return {
     ...baseClient,
