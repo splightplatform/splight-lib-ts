@@ -1,6 +1,6 @@
 import { Path } from '../Urls.js';
-import { Headers } from '../types.js';
 import { get } from '../rest/BaseMethods.js';
+import { Headers } from '../types.js';
 
 export type ItemProvisionDataName =
   | 'Datalake'
@@ -11,7 +11,7 @@ export type ItemProvisionDataName =
   | 'Storage'
   | 'Integrations'
   | 'Asset'
-  | 'File'
+  | 'Function'
   | 'Secret'
   | 'Dashboard';
 
