@@ -117,6 +117,7 @@ export {
 export {
   LineInterpolationStyle,
   Orientation,
+  HistogramType,
   TimeSeriesType,
   ValueMappingType,
   ValueMapping,
@@ -128,6 +129,7 @@ export {
   ChartItemTypes,
   LineInterpolationStyleTypes,
   OrientationTypes,
+  HistogramTypes,
   TimeSeriesTypes,
   ValueMappingTypes,
   Threshold,
@@ -146,6 +148,7 @@ export {
   Placement,
   Dashboard,
   BarChart,
+  HistogramChart,
   ImageChart,
   TextChart,
   StatChart,
@@ -276,3 +279,5 @@ export {
 } from './plugin/weather/Weather.js';
 
 export { LogEntry } from './engine/logs/Logs.js';
+
+export { Tag, TagParams } from './account/Tags.js';
