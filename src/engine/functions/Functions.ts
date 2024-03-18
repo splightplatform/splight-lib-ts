@@ -1,13 +1,8 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-<<<<<<< HEAD
-import { Headers, RelationshipGraph, DataRecord } from '../../types.js';
+import { Headers, RelationshipGraph, DataRecord, Tag } from '../../types.js';
 import { get, post } from '../../rest/BaseMethods.js';
-=======
-import { Headers, RelationshipGraph, Tag } from '../../types.js';
-import { get } from '../../rest/BaseMethods.js';
->>>>>>> 829145d44ec7e57d17ea69b454c3f2db410fa8b2
-
+  
 export interface FunctionItem {
   id?: string;
   query_filter_asset: {
