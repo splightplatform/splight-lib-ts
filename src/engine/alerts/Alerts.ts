@@ -4,8 +4,10 @@ import {
   ApiFormField,
   Asset,
   BaseRelatedAssetObj,
+  DataRecord,
   Empty,
   Headers,
+  Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
 
@@ -58,6 +60,7 @@ export interface AlertParams {
   notify_no_data: boolean;
   notify_timeout: boolean;
   notify_error: boolean;
+  tags?: Tag[];
 }
 
 export interface RateAlertParams extends AlertParams {
@@ -127,6 +130,12 @@ export const AlertsClient = (headers: Headers) => {
     evaluations: async (pk: string) =>
       await get<AlertEvaluation[]>(
         basePath.slash(pk).slash('evaluations').url,
+        headers
+      ),
+    test: async (pk: string, alertParams: Partial<AlertParams>) =>
+      await post<Partial<AlertParams>, DataRecord[]>(
+        basePath.slash(pk).slash('test').url,
+        alertParams,
         headers
       ),
     evaluate: async (pk: string) =>

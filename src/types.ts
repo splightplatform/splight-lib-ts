@@ -283,3 +283,5 @@ export {
   SolutionResource,
 } from './engine/solutions/Solutions.js';
 export { HubSolution, HubSolutionParams } from './hub/solutions/Solutions.js';
+
+export { Tag, TagParams } from './account/Tags.js';

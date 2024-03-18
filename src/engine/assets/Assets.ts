@@ -1,7 +1,7 @@
 import { FeatureCollection, Geometry, GeometryCollection } from 'geojson';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, BasePaginatedCollection } from '../../types.js';
+import { Headers, BasePaginatedCollection, Tag } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
@@ -33,6 +33,7 @@ export interface AssetParams {
   geometry?: GeometryCollection;
   pinned_at?: string | null;
   related_assets?: { id: string; name: string }[];
+  tags?: Tag[];
 }
 
 export type Asset = AssetParams &

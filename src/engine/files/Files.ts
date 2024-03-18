@@ -1,7 +1,7 @@
 import { AxiosProgressEvent } from 'axios';
 import { get, put } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { Headers, Tag } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Asset } from '../assets/Assets.js';
 
@@ -10,6 +10,7 @@ export interface FolderParams {
   description?: string;
   parent?: string;
   assets?: Asset[];
+  tags?: Tag[];
 }
 
 export interface FileParams {
@@ -17,6 +18,7 @@ export interface FileParams {
   description?: string;
   parent?: string;
   assets?: Asset[];
+  tags?: Tag[];
 }
 
 export interface _File extends Omit<FileParams, 'file'> {

@@ -1,6 +1,6 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, RelationshipGraph } from '../../types.js';
+import { Headers, RelationshipGraph, Tag } from '../../types.js';
 import { get } from '../../rest/BaseMethods.js';
 
 export interface FunctionItem {
@@ -43,8 +43,8 @@ export interface FunctionsParams {
   target_variable: string;
   type: 'cron' | 'rate';
   active?: boolean;
-
   frequency?: number;
+  tags?: Tag[];
 }
 
 export interface RateFunctionParams extends FunctionsParams {
