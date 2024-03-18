@@ -1,7 +1,7 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, RelationshipGraph } from '../../types.js';
-import { get } from '../../rest/BaseMethods.js';
+import { Headers, RelationshipGraph, DataRecord } from '../../types.js';
+import { get, post } from '../../rest/BaseMethods.js';
 
 export interface FunctionItem {
   id?: string;
@@ -88,6 +88,12 @@ export const FunctionsClient = (headers: Headers) => {
     evaluations: async (pk: string) =>
       await get<FunctionEvaluation[]>(
         basePath.slash(pk).slash('evaluations').url,
+        headers
+      ),
+    test: async (functionParams: Partial<FunctionsParams>) =>
+      await post<Partial<FunctionsParams>, DataRecord[]>(
+        basePath.slash('test').url,
+        functionParams,
         headers
       ),
     relationships: ({
