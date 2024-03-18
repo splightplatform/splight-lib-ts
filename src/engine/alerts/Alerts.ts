@@ -4,6 +4,7 @@ import {
   ApiFormField,
   Asset,
   BaseRelatedAssetObj,
+  DataRecord,
   Empty,
   Headers,
 } from '../../types.js';
@@ -127,6 +128,12 @@ export const AlertsClient = (headers: Headers) => {
     evaluations: async (pk: string) =>
       await get<AlertEvaluation[]>(
         basePath.slash(pk).slash('evaluations').url,
+        headers
+      ),
+    test: async (pk: string, alertParams: Partial<AlertParams>) =>
+      await post<Partial<AlertParams>, DataRecord[]>(
+        basePath.slash(pk).slash('test').url,
+        alertParams,
         headers
       ),
     evaluate: async (pk: string) =>
