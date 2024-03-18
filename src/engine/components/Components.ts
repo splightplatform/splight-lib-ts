@@ -17,6 +17,7 @@ import {
   Optional,
   LogEntry,
   RelationshipGraph,
+  Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
 
@@ -80,7 +81,6 @@ export interface Component {
   picture_url?: string;
   last_modified: string;
   privacy_policy?: string;
-  tags: string[];
   build_status: string;
   output: ComponentParameter[];
   service_name: string;
@@ -103,6 +103,7 @@ export interface Component {
   hub_component: HubComponent;
   compute_node?: ComputeNode;
   pinned_at?: string | null;
+  tags?: Tag[];
 }
 
 export interface ComponentParams {
@@ -125,6 +126,7 @@ export interface ComponentParams {
   deployment_capacity?: ComponentSize;
   compute_node_id?: string;
   pinned_at?: string | null;
+  tags?: Tag[];
 }
 
 export type DeploymentType = 'SELF_HOSTED' | 'SPLIGHT_HOSTED';

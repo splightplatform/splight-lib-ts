@@ -7,6 +7,7 @@ import {
   DataRecord,
   Empty,
   Headers,
+  Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
 
@@ -59,6 +60,7 @@ export interface AlertParams {
   notify_no_data: boolean;
   notify_timeout: boolean;
   notify_error: boolean;
+  tags?: Tag[];
 }
 
 export interface RateAlertParams extends AlertParams {
