@@ -2,7 +2,7 @@ import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, RelationshipGraph, DataRecord, Tag } from '../../types.js';
 import { get, post } from '../../rest/BaseMethods.js';
-  
+
 export interface FunctionItem {
   id?: string;
   query_filter_asset: {
