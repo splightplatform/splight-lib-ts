@@ -4,14 +4,28 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 
 export interface SolutionResourceChange {
-  actions: string[]; //TODO add choices
+  actions: ('no-op' | 'create' | 'read' | 'update' | 'delete')[];
   before: any;
   after: any;
 }
 
 export interface SolutionResource {
   name: string;
-  type: string; //TODO add choices
+  type:
+    | 'Alert'
+    | 'Asset'
+    | 'Attribute'
+    | 'Metadata'
+    | 'Component'
+    | 'ComponentRoutine'
+    | 'Dashboard'
+    | 'Chart'
+    | 'Tab'
+    | 'File'
+    | 'Folder'
+    | 'Function'
+    | 'Secret'
+    | 'Solution';
   change: SolutionResourceChange;
 }
 
@@ -30,7 +44,7 @@ export interface SolutionParams {
 
 export interface Solution extends SolutionParams {
   id: string;
-  status: string; // TODO enum
+  status: 'NOT_APPLIED' | 'PENDING' | 'IN_PROGRESS' | 'SUCCESS' | 'FAILED';
 }
 
 export const SolutionsClient = (headers: Headers) => {
