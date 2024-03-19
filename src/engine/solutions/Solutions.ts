@@ -5,8 +5,8 @@ import { Headers } from '../../types.js';
 
 export interface SolutionResourceChange {
   actions: ('no-op' | 'create' | 'read' | 'update' | 'delete')[];
-  before: any;
-  after: any;
+  before: Record<string, any>;
+  after: Record<string, any>;
 }
 
 export interface SolutionResource {
