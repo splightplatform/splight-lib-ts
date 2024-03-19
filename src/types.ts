@@ -208,6 +208,7 @@ export {
   CronFunctionParams,
   FunctionEvaluation,
   FunctionItem,
+  FunctionsParams,
   RateFunction,
   RateFunctionParams,
 } from './engine/functions/Functions.js';
