@@ -55,18 +55,18 @@ export const SolutionsClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    apply_plan: (solutionId: string) =>
+    applyPlan: (solutionId: string) =>
       post(basePath.slash(solutionId).slash('apply').url, null, headers),
-    destroy_plan: (solutionId: string) =>
+    destroPlan: (solutionId: string) =>
       post(basePath.slash(solutionId).slash('destroy').url, null, headers),
     plan: (solutionId: string) =>
       post(basePath.slash(solutionId).slash('plan').url, null, headers),
     getPlan: (solutionId: string) =>
       get<SolutionPlan>(basePath.slash(solutionId).slash('plan').url, headers),
-    uploadValues: (logo: File) =>
+    uploadValues: (solutionId: string, values: File) =>
       patch<{ values: File }, Solution>(
-        basePath.slash('organization-profile').slash('upload-logo').url,
-        { logo },
+        basePath.slash(solutionId).slash('upload-values').url,
+        { values },
         headers
       ),
   };
