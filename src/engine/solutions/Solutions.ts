@@ -44,7 +44,7 @@ export interface SolutionParams {
 
 export interface Solution extends SolutionParams {
   id: string;
-  status: 'NOT_APPLIED' | 'PENDING' | 'IN_PROGRESS' | 'SUCCESS' | 'FAILED';
+  status: 'not_applied' | 'pending' | 'in_progress' | 'success' | 'failed';
 }
 
 export const SolutionsClient = (headers: Headers) => {
