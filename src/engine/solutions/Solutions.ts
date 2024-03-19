@@ -1,5 +1,5 @@
 import { Path } from '../../Urls.js';
-import { get, post } from '../../rest/BaseMethods.js';
+import { get, patch, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 
@@ -39,7 +39,7 @@ export interface SolutionParams {
   description: string;
   hub_solution: string;
   pinned_at: string | null;
-  values_file: string | null;
+  values_file: File | null;
 }
 
 export interface Solution extends SolutionParams {
@@ -63,5 +63,11 @@ export const SolutionsClient = (headers: Headers) => {
       post(basePath.slash(solutionId).slash('plan').url, null, headers),
     getPlan: (solutionId: string) =>
       get<SolutionPlan>(basePath.slash(solutionId).slash('plan').url, headers),
+    uploadValues: (logo: File) =>
+      patch<{ values: File }, Solution>(
+        basePath.slash('organization-profile').slash('upload-logo').url,
+        { logo },
+        headers
+      ),
   };
 };
