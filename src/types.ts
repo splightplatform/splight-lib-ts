@@ -211,6 +211,7 @@ export {
   RateFunctionParams,
   RateFunction,
   CronFunction,
+  FunctionsParams,
   FunctionEvaluation,
   FunctionItem,
 } from './engine/functions/Functions.js';
