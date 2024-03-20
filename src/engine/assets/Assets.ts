@@ -3,7 +3,7 @@ import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, BasePaginatedCollection, Tag } from '../../types.js';
 import { Path } from '../../Urls.js';
-import { Attribute, RelationshipGraph } from '../attributes/Attributes.js';
+import { Attribute, DataFlowGraph } from '../attributes/Attributes.js';
 import { Metadata } from '../metadata/Metadata.js';
 import { AssetRelation } from '../assetRelations/AssetRelations.js';
 import { _File } from '../files/Files.js';
@@ -131,12 +131,12 @@ export const AssetsClient = (headers: Headers) => {
         headers,
         params
       ),
-    relationships: ({
+    dataFlow: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
-        basePath.slash(pk).slash('relationships').url,
+      get<DataFlowGraph>(
+        basePath.slash(pk).slash('data-flow').url,
         headers,
         params
       ),
