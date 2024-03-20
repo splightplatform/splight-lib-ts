@@ -38,12 +38,12 @@ export const MetadataClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    relationships: ({
+    dataFlow: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
       get<MetadataRelationships>(
-        basePath.slash(pk).slash('relationship').url,
+        basePath.slash(pk).slash('data-flow').url,
         headers,
         params
       ),

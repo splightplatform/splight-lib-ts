@@ -23,14 +23,14 @@ type NodeType =
   | 'RoutineObject'
   | 'Component';
 
-export interface RelationshipNode {
+export interface DataFlowNode {
   id: string;
   node_type: NodeType;
   name: string;
   [key: string]: string;
 }
 
-export interface RelationshipEdge {
+export interface DataFlowEdge {
   id: string;
   source: string;
   sourceType: NodeType;
@@ -38,9 +38,9 @@ export interface RelationshipEdge {
   targetType: NodeType;
 }
 
-export interface RelationshipGraph {
-  nodes: RelationshipNode[];
-  edges: RelationshipEdge[];
+export interface DataFlowGraph {
+  nodes: DataFlowNode[];
+  edges: DataFlowEdge[];
 }
 
 export const AttributesClient = (headers: Headers) => {
@@ -51,12 +51,12 @@ export const AttributesClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    relationships: ({
+    dataFlow: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
-        basePath.slash(pk).slash('relationships').url,
+      get<DataFlowGraph>(
+        basePath.slash(pk).slash('data-flow').url,
         headers,
         params
       ),
@@ -64,10 +64,6 @@ export const AttributesClient = (headers: Headers) => {
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
-        basePath.slash(pk).slash('data').url,
-        headers,
-        params
-      ),
+      get<DataFlowGraph>(basePath.slash(pk).slash('data').url, headers, params),
   };
 };
