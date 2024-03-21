@@ -1,6 +1,6 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, RelationshipGraph, DataRecord, Tag } from '../../types.js';
+import { Headers, DataFlowGraph, DataRecord, Tag } from '../../types.js';
 import { get, post } from '../../rest/BaseMethods.js';
 
 export interface FunctionItem {
@@ -97,12 +97,12 @@ export const FunctionsClient = (headers: Headers) => {
         functionParams,
         headers
       ),
-    relationships: ({
+    dataFlow: ({
       pk,
       ...params
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<RelationshipGraph>(
-        basePath.slash(pk).slash('relationships').url,
+      get<DataFlowGraph>(
+        basePath.slash(pk).slash('data-flow').url,
         headers,
         params
       ),
