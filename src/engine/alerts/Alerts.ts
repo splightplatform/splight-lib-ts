@@ -115,8 +115,9 @@ export type AlertEvent = {
 export type AlertEvaluation = {
   timestamp: string;
   time_window: number;
-  value: string;
+  status: string;
   status_text?: string;
+  aggregation_value?: number;
 };
 
 export const AlertsClient = (headers: Headers) => {
