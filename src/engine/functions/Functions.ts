@@ -74,6 +74,7 @@ export interface RateFunction extends RateFunctionParams {
 export type FunctionEvaluation = {
   timestamp: string;
   status: string;
+  aggregation_value?: number;
 };
 
 export const FunctionsClient = (headers: Headers) => {
