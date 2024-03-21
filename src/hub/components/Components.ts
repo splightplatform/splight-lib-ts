@@ -1,5 +1,5 @@
 // Components
-
+import { AxiosProgressEvent } from 'axios';
 import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
@@ -146,6 +146,10 @@ export interface ComponentParams {
   active?: boolean;
 }
 
+export interface HubURL {
+  url: string;
+}
+
 export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
 export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
@@ -157,6 +161,20 @@ export const ComponentVersionsClient = (headers: Headers) => {
     ...baseClient,
     buildLogs: (pk: string) =>
       get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
+    downloadURL: (pk: string, type: string) =>
+      get<HubURL>(basePath.slash(pk).slash('download_url').url, headers, {
+        type: type,
+      }),
+    download: (
+      pk: string,
+      type: string,
+      onDownloadProgress?: (progress: AxiosProgressEvent) => void
+    ) =>
+      get<HubURL>(basePath.slash(pk).slash('download_url').url, headers, {
+        type: type,
+      }).then((response) =>
+        get<Blob>(response.url, {}, {}, 'blob', onDownloadProgress)
+      ),
   };
 };
 

@@ -79,9 +79,9 @@ export {
 export {
   Attribute,
   AttributeParams,
-  RelationshipEdge,
-  RelationshipGraph,
-  RelationshipNode,
+  DataFlowEdge,
+  DataFlowGraph,
+  DataFlowNode,
 } from './engine/attributes/Attributes.js';
 export {
   Command,

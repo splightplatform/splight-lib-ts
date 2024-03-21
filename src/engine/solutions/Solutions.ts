@@ -1,5 +1,5 @@
 import { Path } from '../../Urls.js';
-import { get, patch, post } from '../../rest/BaseMethods.js';
+import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
 
@@ -57,16 +57,16 @@ export const SolutionsClient = (headers: Headers) => {
     ...baseClient,
     applyPlan: (solutionId: string) =>
       post(basePath.slash(solutionId).slash('apply').url, null, headers),
-    destroPlan: (solutionId: string) =>
+    destroyPlan: (solutionId: string) =>
       post(basePath.slash(solutionId).slash('destroy').url, null, headers),
     plan: (solutionId: string) =>
       post(basePath.slash(solutionId).slash('plan').url, null, headers),
     getPlan: (solutionId: string) =>
       get<SolutionPlan>(basePath.slash(solutionId).slash('plan').url, headers),
     uploadValues: (solutionId: string, values: File) =>
-      patch<{ values: File }, Solution>(
+      post<{ values_file: File }, Solution>(
         basePath.slash(solutionId).slash('upload-values').url,
-        { values },
+        { values_file: values },
         headers
       ),
   };
