@@ -45,7 +45,7 @@ export interface SolutionParams {
   description: string;
   hub_solution: SolutionHubSolution;
   pinned_at: string | null;
-  values_file: File | null;
+  values_file: string;
 }
 
 export interface Solution extends SolutionParams {
