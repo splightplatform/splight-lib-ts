@@ -160,7 +160,7 @@ export const ComponentVersionsClient = (headers: Headers) => {
   return {
     ...baseClient,
     buildLogs: (pk: string) =>
-      get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
+      get<string[]>(basePath.slash(pk).slash('build-logs').url, headers),
     downloadURL: (pk: string, type: string) =>
       get<HubURL>(basePath.slash(pk).slash('download_url').url, headers, {
         type: type,
@@ -187,7 +187,7 @@ export const ComponentsClient = (headers: Headers) => {
   return {
     ...baseClient,
     buildLogs: (pk: string) =>
-      get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
+      get<string[]>(basePath.slash(pk).slash('build-logs').url, headers),
     versions: ComponentVersionsClient(headers),
   };
 };

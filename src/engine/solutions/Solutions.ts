@@ -76,6 +76,6 @@ export const SolutionsClient = (headers: Headers) => {
         headers
       ),
     buildLogs: (pk: string) =>
-      get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
+      get<string[]>(basePath.slash(pk).slash('build-logs').url, headers),
   };
 };
