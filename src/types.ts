@@ -118,6 +118,7 @@ export {
   ExactMatchValueMapping,
   ExpressionChartItem,
   GaugeChart,
+  HistogramChart,
   HistogramType,
   HistogramTypes,
   ImageChart,
