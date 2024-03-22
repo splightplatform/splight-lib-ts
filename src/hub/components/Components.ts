@@ -1,9 +1,9 @@
 // Components
 import { AxiosProgressEvent } from 'axios';
+import { Path } from '../../Urls.js';
 import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
-import { Path } from '../../Urls.js';
 
 export interface BaseComponentResource {
   id: string;

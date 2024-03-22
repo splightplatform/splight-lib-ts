@@ -118,6 +118,8 @@ export {
   ExactMatchValueMapping,
   ExpressionChartItem,
   GaugeChart,
+  HistogramType,
+  HistogramTypes,
   ImageChart,
   LineInterpolationStyle,
   LineInterpolationStyleTypes,
@@ -279,6 +281,7 @@ export {
 export { LogEntry } from './engine/logs/Logs.js';
 export {
   Solution,
+  SolutionHubSolution,
   SolutionParams,
   SolutionPlan,
   SolutionResource,

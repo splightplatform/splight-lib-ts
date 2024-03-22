@@ -34,10 +34,16 @@ export interface SolutionPlan {
   resources: SolutionResource[];
 }
 
+export interface SolutionHubSolution {
+  id: string;
+  name: string;
+  version: string;
+}
+
 export interface SolutionParams {
   name: string;
   description: string;
-  hub_solution: string;
+  hub_solution: SolutionHubSolution;
   pinned_at: string | null;
   values_file: File | null;
 }
@@ -69,5 +75,7 @@ export const SolutionsClient = (headers: Headers) => {
         { values_file: values },
         headers
       ),
+    buildLogs: (pk: string) =>
+      get<string[]>(basePath.slash(pk).slash('build_logs').url, headers),
   };
 };
