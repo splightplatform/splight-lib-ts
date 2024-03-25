@@ -246,14 +246,14 @@ export const ComponentsClient = (headers: Headers) => {
         params
       ),
     events: async (
-        pk: string,
-        params: Partial<{ page_size: number; page: number }>
-      ) =>
-        await get<{ results: ComponentEvent[]; next: string | null }>(
-          basePath.slash(pk).slash('events').url,
-          headers,
-          ...[params]
-        ),
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
+    ) =>
+      await get<{ results: ComponentEvent[]; next: string | null }>(
+        basePath.slash(pk).slash('events').url,
+        headers,
+        ...[params]
+      ),
   };
 };
 
