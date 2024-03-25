@@ -1,4 +1,4 @@
-import { options, get, post } from '../../rest/BaseMethods.js';
+import { get, options, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import {
   ApiFormField,
@@ -36,14 +36,29 @@ export type AlertItem = {
 
 export type AlertThreshold = {
   value: number;
-  status: string; // TODO choices
+  status:
+    | 'alert'
+    | 'no_alert'
+    | 'no_data'
+    | 'timeout'
+    | 'disabled'
+    | 'error'
+    | 'warning';
   status_text?: string | null;
 };
 
 export interface AlertParams {
   name: string;
   description?: string;
-  severity: string; // TODO choices
+  severity:
+    | 'sev1'
+    | 'sev2'
+    | 'sev3'
+    | 'sev4'
+    | 'sev5'
+    | 'sev6'
+    | 'sev7'
+    | 'sev8';
   type: 'cron' | 'rate';
   status_text?: string;
   active?: boolean;
@@ -102,8 +117,9 @@ export type AlertEvent = {
 export type AlertEvaluation = {
   timestamp: string;
   time_window: number;
-  value: string;
+  status: string;
   status_text?: string;
+  aggregation_value?: number;
 };
 
 export const AlertsClient = (headers: Headers) => {

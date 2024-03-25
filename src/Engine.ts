@@ -1,31 +1,32 @@
-import { Headers } from './types.js';
-import {
-  AlertsClient,
-  AssetsClient,
-  AssetKindsClient,
-  AttributesClient,
-  AssetRelationsClient,
-  CommentsClient,
-  MetadataClient,
-  ComponentCommandsClient,
-  ComponentObjectsClient,
-  ComponentRoutinesClient,
-  ComponentsClient,
-  DashboardChartItemsClient,
-  DashboardChartsClient,
-  DashboardsClient,
-  DashboardTabsClient,
-  DatalakeDataClient,
-  ComputeNodesClient,
-  SecretsClient,
-  FunctionsClient,
-} from './engine/index.js';
 import { AlertEventsClient } from './engine/alerts/Alerts.js';
 import {
   FileSystemClient,
   FilesClient,
   FoldersClient,
 } from './engine/files/Files.js';
+import {
+  AlertsClient,
+  AssetKindsClient,
+  AssetRelationsClient,
+  AssetsClient,
+  AttributesClient,
+  CommentsClient,
+  ComponentCommandsClient,
+  ComponentObjectsClient,
+  ComponentRoutinesClient,
+  ComponentsClient,
+  ComputeNodesClient,
+  DashboardChartItemsClient,
+  DashboardChartsClient,
+  DashboardTabsClient,
+  DashboardsClient,
+  DatalakeDataClient,
+  FunctionsClient,
+  MetadataClient,
+  SecretsClient,
+  SolutionsClient,
+} from './engine/index.js';
+import { Headers } from './types.js';
 
 export const Engine = (headers: Headers) => {
   return {
@@ -51,6 +52,7 @@ export const Engine = (headers: Headers) => {
     dashboardChartItems: DashboardChartItemsClient(headers),
     computeNodes: ComputeNodesClient(headers),
     secrets: SecretsClient(headers),
-    datalakeData: DatalakeDataClient(headers), // TO RENAME
+    datalakeData: DatalakeDataClient(headers), // TODO rename this
+    solutions: SolutionsClient(headers),
   };
 };

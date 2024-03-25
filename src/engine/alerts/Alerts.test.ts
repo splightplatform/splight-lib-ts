@@ -1,8 +1,8 @@
-import { MockedAxios } from '../../test/MockedAxios.js';
 import { expect, test } from '@jest/globals';
-import { splight, TestKeys } from '../../test/setup.js';
-import { RateAlert, RateAlertParams } from './Alerts.js';
 import { API_HOST } from '../../Global.js';
+import { MockedAxios } from '../../test/MockedAxios.js';
+import { TestKeys, splight } from '../../test/setup.js';
+import { RateAlert, RateAlertParams } from './Alerts.js';
 
 const mockedAxios = MockedAxios();
 
@@ -18,7 +18,7 @@ const mockAlert: RateAlert = {
   type: 'rate',
   rate_unit: 'minute',
   rate_value: 10,
-  severity: 'info',
+  severity: 'sev1',
   stmt_time_window: 300,
   stmt_target_variable: 'A',
   stmt_operator: 'eq',
@@ -36,7 +36,7 @@ const mockAlert: RateAlert = {
 const mockAlertParams: RateAlertParams = {
   name: 'test',
   description: 'test',
-  severity: 'critical',
+  severity: 'sev1',
   alert_items: [],
   assets: [],
   type: 'rate',
