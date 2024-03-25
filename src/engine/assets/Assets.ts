@@ -49,6 +49,7 @@ export type Asset = AssetParams &
     centroid?: Geometry;
     geometry: GeometryCollection;
     status: string;
+    timezone?: string;
   };
 
 export interface SetpointParams {
