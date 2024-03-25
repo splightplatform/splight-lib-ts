@@ -27,6 +27,7 @@ export interface FunctionItem {
 }
 
 export interface FunctionsParams {
+  collection?: string;
   function_items: FunctionItem[];
   target_asset: {
     id: string;
