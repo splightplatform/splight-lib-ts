@@ -8,18 +8,7 @@ export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
 export type HistogramType = 'numerical' | 'categorical';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
-export type ChartType =
-  | 'image'
-  | 'text'
-  | 'timeseries'
-  | 'table'
-  | 'stat'
-  | 'gauge'
-  | 'bar'
-  | 'histogram'
-  | 'bargauge'
-  | 'alertlist'
-  | 'alertevents';
+
 export type ChartItemType = 'EXPRESSION' | 'QUERY';
 export type TimeSeriesType = 'line' | 'bar';
 export type ValueMappingType = 'exact_match' | 'range' | 'regex';
@@ -304,6 +293,8 @@ export type Chart =
   | HistogramChart
   | BarGaugeChart
   | GaugeChart;
+
+export type ChartType = Chart['type'];
 
 export interface TabParams {
   name: string;
