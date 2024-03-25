@@ -77,6 +77,13 @@ export type FunctionEvaluation = {
   aggregation_value?: number;
 };
 
+export type FunctionEvent = {
+  id: string;
+  timestamp: string;
+  old_status: string;
+  new_status: string;
+};
+
 export const FunctionsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/function/functions/');
   const baseClient = BaseRestClient<
@@ -105,6 +112,15 @@ export const FunctionsClient = (headers: Headers) => {
         basePath.slash(pk).slash('data-flow').url,
         headers,
         params
+      ),
+    events: async (
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
+    ) =>
+      await get<{ results: FunctionEvent[]; next: string | null }>(
+        basePath.slash(pk).slash('events').url,
+        headers,
+        ...[params]
       ),
   };
 };

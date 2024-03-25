@@ -129,6 +129,13 @@ export interface ComponentParams {
   tags?: Tag[];
 }
 
+export type ComponentEvent = {
+  id: string;
+  timestamp: string;
+  old_status: string;
+  new_status: string;
+};
+
 export type DeploymentType = 'SELF_HOSTED' | 'SPLIGHT_HOSTED';
 
 export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
@@ -237,6 +244,15 @@ export const ComponentsClient = (headers: Headers) => {
         basePath.slash(pk).slash('data-flow').url,
         headers,
         params
+      ),
+    events: async (
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
+    ) =>
+      await get<{ results: ComponentEvent[]; next: string | null }>(
+        basePath.slash(pk).slash('events').url,
+        headers,
+        ...[params]
       ),
   };
 };
