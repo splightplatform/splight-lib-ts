@@ -62,6 +62,8 @@ export interface AlertParams {
   type: 'cron' | 'rate';
   status_text?: string;
   active?: boolean;
+  collection?: string;
+  stmt_frequency?: number; // TODO choices
   stmt_time_window: number;
   stmt_target_variable: string;
   stmt_operator: string;
