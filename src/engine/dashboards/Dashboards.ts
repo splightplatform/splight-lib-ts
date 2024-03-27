@@ -153,6 +153,7 @@ export interface ChartParams {
   type: string;
   name: string;
   chart_items: ChartItem[];
+  collection?: string;
   value_mappings: ValueMapping[];
   thresholds: Threshold[];
   refresh_interval: string | null;
