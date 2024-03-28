@@ -13,6 +13,7 @@ export interface DataRequest {
   from_timestamp: string | null;
   to_timestamp: string | null;
   sort_direction: number | null;
+  collection: string | null;
   traces: Array<{
     ref_id: string;
     type: string;
