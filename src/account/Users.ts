@@ -14,6 +14,7 @@ export interface OrganizationProfileParams {
 
 export interface OrganizationProfile extends OrganizationProfileParams {
   id: string;
+  logo_thumbnail?: string;
   subscription_plan?: string;
   status?: string;
   created_at?: string;
