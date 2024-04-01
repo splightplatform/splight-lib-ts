@@ -179,6 +179,7 @@ export interface ChartParams {
   width: number;
   min_height?: number;
   min_width?: number;
+  timezone?: string | null;
 }
 
 export interface ChartBase extends ChartParams {

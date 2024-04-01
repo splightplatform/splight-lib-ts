@@ -1,6 +1,6 @@
 {
   "name": "@splightplatform/splight-lib-ts",
-  "version": "0.0.7-202",
+  "version": "0.0.7-201",
   "type": "module",
   "license": "MIT",
   "repository": "https://github.com/splightplatform/splight-lib-ts.git",
@@ -89,3 +89,4 @@
     }
   }
 }
+  
