@@ -19,7 +19,7 @@ jobs:
           ref: master
 
       - name: Get version from master branch
-        run: echo "MASTER_VERSION=$(grep -E 'version' package.json | awk '{print $3}' | tr -d '\"\,')" >> "$GITHUB_ENV"
+        run: echo "MASTER_VERSION=$(grep -E 'version' package.json | awk '{print $2}' | tr -d '\"\,')" >> "$GITHUB_ENV"
 
       # get current branch version
       - name: Checkout to feature branch
@@ -31,7 +31,7 @@ jobs:
           python-version: "3.8"
 
       - name: Get version from feature branch
-        run: echo "CURRENT_VERSION=$(grep -E 'version' package.json | awk '{print $3}' | tr -d '\"\,')" >> "$GITHUB_ENV"
+        run: echo "CURRENT_VERSION=$(grep -E 'version' package.json | awk '{print $2}' | tr -d '\"\,')" >> "$GITHUB_ENV"
 
       - name: Step
         run: echo ${{ env.MASTER_VERSION }} ${{ env.CURRENT_VERSION }}
