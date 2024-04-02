@@ -3,9 +3,10 @@ on:
   pull_request:
     types:
       [opened, synchronize]
+    paths:
+      - src/**
     branches:
       - master
-
 
 jobs:
   verify_version:
