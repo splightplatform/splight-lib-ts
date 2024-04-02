@@ -33,5 +33,8 @@ jobs:
       - name: Get version from feature branch
         run: echo "CURRENT_VERSION=$(grep -E 'version' package.json | awk '{print $3}' | tr -d '\"\,')" >> "$GITHUB_ENV"
 
+      - name: Step
+        run: echo ${{ env.MASTER_VERSION }} ${{ env.CURRENT_VERSION }}
+
       - name: Verify version is greater than master version
         run: python .github/workflows/scripts/check_master_version.py ${{ env.MASTER_VERSION }} ${{ env.CURRENT_VERSION }}
