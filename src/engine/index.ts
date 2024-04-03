@@ -8,7 +8,9 @@ export {
   ComponentCommandsClient,
   ComponentObjectsClient,
   ComponentRoutinesClient,
+  AlgorithmsClient,
   ComponentsClient,
+  ConnectorsClient,
 } from './components/Components.js';
 export { ComputeNodesClient } from './computeNodes/ComputeNodes.js';
 export {
