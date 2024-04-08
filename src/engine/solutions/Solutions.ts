@@ -1,7 +1,7 @@
 import { Path } from '../../Urls.js';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { Headers, HubSolution } from '../../types.js';
 
 export interface SolutionResourceChange {
   actions: ('no-op' | 'create' | 'read' | 'update' | 'delete')[];
@@ -34,16 +34,10 @@ export interface SolutionPlan {
   resources: SolutionResource[];
 }
 
-export interface SolutionHubSolution {
-  id: string;
-  name: string;
-  version: string;
-}
-
 export interface SolutionParams {
   name: string;
   description: string;
-  hub_solution: SolutionHubSolution;
+  hub_solution: HubSolution;
   pinned_at: string | null;
   values_file: string;
 }
