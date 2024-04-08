@@ -6,12 +6,16 @@ export interface HubSolutionParams {
   name: string;
   description: string;
   version: string;
+
+  privacy_policy?: string;
+  tags: string[];
   main_file: File;
   values_file: File;
   variables_file: File;
 }
 
 export interface HubSolution extends HubSolutionParams {
+  last_modified: string;
   id: string;
 }
 
