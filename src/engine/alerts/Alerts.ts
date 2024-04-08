@@ -144,10 +144,17 @@ export const AlertsClient = (headers: Headers) => {
         headers,
         ...[params]
       ),
-    evaluations: async (pk: string) =>
+    evaluations: async (
+      pk: string,
+      params?: {
+        since?: string;
+        until?: string;
+      }
+    ) =>
       await get<AlertEvaluation[]>(
         basePath.slash(pk).slash('evaluations').url,
-        headers
+        headers,
+        params
       ),
     test: async (alertParams: Partial<AlertParams>) =>
       await post<Partial<AlertParams>, DataRecord[]>(
