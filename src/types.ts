@@ -284,7 +284,6 @@ export {
 export { LogEntry } from './engine/logs/Logs.js';
 export {
   Solution,
-  SolutionHubSolution,
   SolutionParams,
   SolutionPlan,
   SolutionResource,
