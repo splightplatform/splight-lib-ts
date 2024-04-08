@@ -54,13 +54,18 @@ const AllComputeNodesClient = (headers: Headers) => {
         basePath.slash(computeNodeId).slash('components').url,
         headers
       ),
-    usage: async (computeNodeId: string, limit?: number) =>
+    usage: async (
+      computeNodeId: string,
+      params: {
+        since?: string;
+        until?: string;
+        limit?: number;
+      }
+    ) =>
       get<BasePaginatedCollection<ComputeNodeUsage>>(
         basePath.slash(computeNodeId).slash('usage').url,
         headers,
-        {
-          limit_: limit,
-        }
+        params
       ),
     logs: (
       pk: string,

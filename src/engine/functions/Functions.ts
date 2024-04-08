@@ -94,10 +94,17 @@ export const FunctionsClient = (headers: Headers) => {
 
   return {
     ...baseClient,
-    evaluations: async (pk: string) =>
+    evaluations: async (
+      pk: string,
+      params?: {
+        since?: string;
+        until?: string;
+      }
+    ) =>
       await get<FunctionEvaluation[]>(
         basePath.slash(pk).slash('evaluations').url,
-        headers
+        headers,
+        params
       ),
     test: async (functionParams: Partial<FunctionsParams>) =>
       await post<Partial<FunctionsParams>, DataRecord[]>(
