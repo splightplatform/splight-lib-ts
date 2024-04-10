@@ -18,6 +18,7 @@ import {
   LogEntry,
   DataFlowGraph,
   Tag,
+  PaginatedCollection,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
 
@@ -313,10 +314,18 @@ export const ComponentRoutinesClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    evaluations: async (pk: string) =>
-      await get<RoutineEvaluation[]>(
+    evaluations: async (
+      pk: string,
+      params?: {
+        page_size?: number;
+        since?: string;
+        until?: string;
+      }
+    ) =>
+      await get<PaginatedCollection<RoutineEvaluation>>(
         basePath.slash(pk).slash('evaluations').url,
-        headers
+        headers,
+        params
       ),
   };
 };
