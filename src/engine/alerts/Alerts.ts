@@ -7,6 +7,7 @@ import {
   DataRecord,
   Empty,
   Headers,
+  PaginatedCollection,
   Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -147,11 +148,12 @@ export const AlertsClient = (headers: Headers) => {
     evaluations: async (
       pk: string,
       params?: {
+        page_size?: number;
         since?: string;
         until?: string;
       }
     ) =>
-      await get<AlertEvaluation[]>(
+      await get<PaginatedCollection<AlertEvaluation>>(
         basePath.slash(pk).slash('evaluations').url,
         headers,
         params

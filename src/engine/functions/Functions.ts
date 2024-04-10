@@ -1,6 +1,12 @@
 import { Path } from '../../Urls.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, DataFlowGraph, DataRecord, Tag } from '../../types.js';
+import {
+  Headers,
+  DataFlowGraph,
+  DataRecord,
+  Tag,
+  PaginatedCollection,
+} from '../../types.js';
 import { get, post } from '../../rest/BaseMethods.js';
 
 export interface FunctionItem {
@@ -97,11 +103,12 @@ export const FunctionsClient = (headers: Headers) => {
     evaluations: async (
       pk: string,
       params?: {
+        page_size?: number;
         since?: string;
         until?: string;
       }
     ) =>
-      await get<FunctionEvaluation[]>(
+      await get<PaginatedCollection<FunctionEvaluation>>(
         basePath.slash(pk).slash('evaluations').url,
         headers,
         params
