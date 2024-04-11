@@ -257,6 +257,8 @@ export interface TimeseriesChart extends ChartBase {
   y_axis_min_limit: number;
   y_axis_unit: string;
   x_axis_format?: string | null;
+  x_axis_auto_skip: boolean;
+  x_axis_max_ticks_limit?: number | null;
   number_of_decimals?: number;
   line_interpolation_style: LineInterpolationStyle;
   timeseries_type: TimeSeriesType;
