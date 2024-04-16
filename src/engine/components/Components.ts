@@ -1,7 +1,6 @@
 import {
   BaseComponentResource,
   Binding,
-  ComponentCommand,
   ComponentObject,
   ComponentParameter,
   ComponentSize,
@@ -9,14 +8,14 @@ import {
   Endpoint,
   HubComponent,
 } from '../../hub/components/Components.js';
-import { get, post, patch } from '../../rest/BaseMethods.js';
+import { get, patch, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import {
-  Headers,
   ComputeNode,
-  Optional,
-  LogEntry,
   DataFlowGraph,
+  Headers,
+  LogEntry,
+  Optional,
   Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -26,22 +25,6 @@ export interface RoutineObject extends BaseComponentResource {
   config: ComponentParameter[];
   input: ComponentParameter[];
   output: ComponentParameter[];
-}
-
-interface CommandResponse {
-  id: string;
-  return_value: string;
-  error_detail: string;
-}
-
-export interface Command {
-  id: string;
-  description: string;
-  status: string;
-  component_id: string;
-  fields?: ComponentParameter[];
-  command: ComponentCommand;
-  response?: CommandResponse;
 }
 
 export interface Routine {
@@ -97,7 +80,6 @@ export interface Component {
   organization_id?: string;
   usage_count?: number;
   bindings?: Binding[];
-  commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
   hub_component: HubComponent;
@@ -117,7 +99,6 @@ export interface ComponentParams {
   custom_types?: CustomType[];
   input?: ComponentParameter[];
   output: ComponentParameter[];
-  commands?: ComponentCommand[];
   bindings?: Binding[];
   endpoints?: Endpoint[];
   active?: boolean;
@@ -141,8 +122,6 @@ export type DeploymentType = 'SELF_HOSTED' | 'SPLIGHT_HOSTED';
 export type RestartPolicy = 'Always' | 'OnFailure' | 'Never';
 
 export type LogLevel = 'DEBUG' | 'INFO' | 'WARNING' | 'ERROR' | 'CRITICAL';
-
-export type CommandParams = Optional<Command, 'fields' | 'id' | 'status'>;
 
 export type ComponentObjectParams = Optional<
   Omit<ComponentObject, 'id'>,
@@ -187,7 +166,6 @@ const BaseComponentsClient = (url: string) => {
         type: component.type,
         version: `${component.name}-${component.version}`,
         bindings: component.bindings,
-        commands: component.commands,
         endpoints: component.endpoints,
       };
       return post<ComponentParams, Component>(
@@ -215,11 +193,6 @@ const BaseComponentsClient = (url: string) => {
         post<Record<string, never>, Component>(
           basePath.slash(pk).slash('stop').url,
           {},
-          headers
-        ),
-      commands: (pk: string) =>
-        get<ComponentCommand[]>(
-          basePath.slash(pk).slash('commands').url,
           headers
         ),
       logs: (
@@ -273,12 +246,6 @@ export const ComponentsClient = BaseComponentsClient(
 export const ConnectorsClient = BaseComponentsClient(
   'v2/engine/component/connectors'
 );
-
-export const ComponentCommandsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/component/commands/');
-  const baseClient = BaseRestClient<CommandParams, Command>(basePath, headers);
-  return baseClient;
-};
 
 export const ComponentObjectsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/objects/');

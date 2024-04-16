@@ -84,8 +84,6 @@ export {
   DataFlowNode,
 } from './engine/attributes/Attributes.js';
 export {
-  Command,
-  CommandParams,
   Component,
   ComponentEvent,
   ComponentObjectParams,
@@ -178,7 +176,6 @@ export {
 
 export {
   BaseComponentResource,
-  ComponentCommand,
   ComponentObject,
   ComponentParameter,
   ComponentParameterType,
@@ -291,3 +288,10 @@ export {
 export { HubSolution, HubSolutionParams } from './hub/solutions/Solutions.js';
 
 export { Tag, TagParams } from './account/Tags.js';
+
+export {
+  Command,
+  CommandAction,
+  CommandActionParams,
+  CommandParams,
+} from './engine/commands/Commands.js';

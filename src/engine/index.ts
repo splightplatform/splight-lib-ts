@@ -3,12 +3,12 @@ export { AlertEventsClient, AlertsClient } from './alerts/Alerts.js';
 export { AssetRelationsClient } from './assetRelations/AssetRelations.js';
 export { AssetKindsClient, AssetsClient } from './assets/Assets.js';
 export { AttributesClient } from './attributes/Attributes.js';
+export { CommandsClient } from './commands/Commands.js';
 export { CommentsClient } from './comments/Comments.js';
 export {
-  ComponentCommandsClient,
+  AlgorithmsClient,
   ComponentObjectsClient,
   ComponentRoutinesClient,
-  AlgorithmsClient,
   ComponentsClient,
   ConnectorsClient,
 } from './components/Components.js';
