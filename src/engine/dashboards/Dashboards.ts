@@ -7,6 +7,7 @@ export type Aggregation = 'avg' | 'sum' | 'min' | 'max' | 'last';
 export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
 export type HistogramType = 'numerical' | 'categorical';
+export type SortingType = 'alphabetical' | 'count';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
 
 export type ChartItemType = 'EXPRESSION' | 'QUERY';
@@ -21,6 +22,11 @@ export const OrientationTypes = {
 export const HistogramTypes = {
   NUMERICAL: 'numerical' as HistogramType,
   CATEGORICAL: 'categorical' as HistogramType,
+};
+
+export const SortingTypes = {
+  ALPHABETICAL: 'alphabetical' as SortingType,
+  COUNT: 'count' as SortingType,
 };
 
 export const LineInterpolationStyleTypes = {
@@ -208,6 +214,7 @@ export interface HistogramChart extends ChartBase {
   bucket_count: number;
   bucket_size?: number;
   histogram_type: HistogramType;
+  sorting?: SortingType;
   categories_top_max_limit?: number;
   stacked: boolean;
 }

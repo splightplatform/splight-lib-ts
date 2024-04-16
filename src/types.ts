@@ -121,6 +121,8 @@ export {
   GaugeChart,
   HistogramChart,
   HistogramType,
+  SortingType,
+  SortingTypes,
   HistogramTypes,
   ImageChart,
   LineInterpolationStyle,
