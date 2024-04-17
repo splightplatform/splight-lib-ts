@@ -2,7 +2,7 @@ import { get } from '../rest/BaseMethods.js';
 import { BaseRestClient } from '../rest/BaseRestClient.js';
 import { Headers } from '../types.js';
 import { Path } from '../Urls.js';
-
+import { Tag } from './Tags.js';
 export interface Permission {
   id: string;
   name: string;
@@ -12,6 +12,7 @@ export interface Permission {
   service: string;
   resource: string;
   actions: string[];
+  tags: Tag[];
   is_system: boolean;
 }
 
