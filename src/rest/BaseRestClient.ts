@@ -46,7 +46,7 @@ export const BaseRestClient = <
   Q extends Record<string, string | number | boolean | undefined> = Record<
     string,
     string | number | boolean | undefined
-  >
+  >,
 >(
   base_path: Path,
   headers: Headers

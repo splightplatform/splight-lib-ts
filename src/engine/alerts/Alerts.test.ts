@@ -66,7 +66,7 @@ test('List alerts', async () => {
     `${API_HOST}v2/engine/alert/alerts/`,
     {
       headers: { Authorization: TestKeys },
-    },
+    }
   );
 });
 
@@ -81,7 +81,7 @@ test('List alerts with params', async () => {
     {
       headers: { Authorization: TestKeys },
       params: { page_size: 10 },
-    },
+    }
   );
 });
 
@@ -95,7 +95,7 @@ test('Retrieve alert', async () => {
     `${API_HOST}v2/engine/alert/alerts/123/`,
     {
       headers: { Authorization: TestKeys },
-    },
+    }
   );
 });
 
@@ -111,7 +111,7 @@ test('Create alert', async () => {
       headers: { Authorization: TestKeys },
       method: 'post',
       data: mockAlertParams,
-    },
+    }
   );
 });
 
@@ -127,7 +127,7 @@ test('Update alert', async () => {
       headers: { Authorization: TestKeys },
       method: 'patch',
       data: { name: 'updated' },
-    },
+    }
   );
 });
 
@@ -142,6 +142,6 @@ test('Delete alert', async () => {
     {
       headers: { Authorization: TestKeys },
       method: 'delete',
-    },
+    }
   );
 });
