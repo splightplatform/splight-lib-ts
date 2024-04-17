@@ -135,16 +135,16 @@ export const AlertsClient = (headers: Headers) => {
     options: async () =>
       await options<{ actions: { POST: { [key: string]: ApiFormField } } }>(
         basePath.url,
-        headers
+        headers,
       ),
     events: async (
       pk: string,
-      params: Partial<{ page_size: number; page: number }>
+      params: Partial<{ page_size: number; page: number }>,
     ) =>
       await get<{ results: AlertEvent[]; next: string | null }>(
         basePath.slash(pk).slash('events').url,
         headers,
-        ...[params]
+        ...[params],
       ),
     evaluations: async (
       pk: string,
@@ -152,18 +152,18 @@ export const AlertsClient = (headers: Headers) => {
         page_size?: number;
         since?: string;
         until?: string;
-      }
+      },
     ) =>
       await get<PaginatedCollection<AlertEvaluation>>(
         basePath.slash(pk).slash('evaluations').url,
         headers,
-        params
+        params,
       ),
     test: async (alertParams: Partial<AlertParams>) =>
       await post<Partial<AlertParams>, DataRecord[]>(
         basePath.slash('test').url,
         alertParams,
-        headers
+        headers,
       ),
     evaluate: async (pk: string) =>
       post<Empty, Empty>(basePath.slash(pk).slash('evaluate').url, {}, headers),
