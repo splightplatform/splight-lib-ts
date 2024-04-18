@@ -77,7 +77,7 @@ export const AssetsClient = (headers: Headers) => {
   return {
     ...baseClient,
     setAttribute: async (assetId: string, setpoint: SetpointParams) =>
-      post<SetpointParams, undefined>(
+      post<SetpointParams, void>(
         basePath.slash(assetId).slash('set-attribute').url,
         setpoint,
         headers
