@@ -128,6 +128,12 @@ export const FunctionsClient = (headers: Headers) => {
         headers,
         params
       ),
+    delayedExecution: async (funcId: string, dates: Partial<{from_date: string, to_date: string}>) =>
+      post<Partial<{from_date: string, to_date: string}>, string[]>(
+        basePath.slash(funcId).slash('delayed-execution').url,
+        dates,
+        headers
+      ),
     events: async (
       pk: string,
       params: Partial<{ page_size: number; page: number }>
