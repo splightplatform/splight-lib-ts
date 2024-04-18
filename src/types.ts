@@ -293,5 +293,6 @@ export {
   Command,
   CommandAction,
   CommandActionParams,
+  CommandEvent,
   CommandParams,
 } from './engine/commands/Commands.js';

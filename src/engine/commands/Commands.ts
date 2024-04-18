@@ -1,7 +1,13 @@
-import { post } from '../../rest/BaseMethods.js';
+import { Path } from '../../Urls.js';
+import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers } from '../../types.js';
-import { Path } from '../../Urls.js';
+
+export type CommandEvent = {
+  id: string;
+  timestamp: string;
+  value: string;
+};
 
 export interface CommandActionParams {
   name?: string;
@@ -35,6 +41,7 @@ export interface CommandParams {
 
 export interface Command extends CommandParams {
   id: string;
+  last_event_timestamp?: string;
 }
 
 export const CommandsClient = (headers: Headers) => {
@@ -45,6 +52,15 @@ export const CommandsClient = (headers: Headers) => {
     trigger: ({
       pk,
     }: { pk: string } & Record<string, string | boolean | number>) =>
-      post(basePath.slash(pk).slash('trigger').url, headers, {}),
+      post(basePath.slash(pk).slash('trigger').url, {}, headers, {}),
+    events: async (
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
+    ) =>
+      await get<{ results: CommandEvent[]; next: string | null }>(
+        basePath.slash(pk).slash('events').url,
+        headers,
+        ...[params]
+      ),
   };
 };
