@@ -62,22 +62,6 @@ export interface SetAttributeCsvParams {
   attributeid: string;
 }
 
-export interface Setpoint {
-  id: string;
-  value: string;
-  asset: Asset;
-  attribute: Attribute;
-  created_at: string;
-}
-
-export interface SetpointResponse {
-  id: string;
-  setpoint: string;
-  component: string;
-  status: string;
-  created_at: string;
-}
-
 export interface GetAttributeParams {
   attribute: string;
 }
@@ -93,7 +77,7 @@ export const AssetsClient = (headers: Headers) => {
   return {
     ...baseClient,
     setAttribute: async (assetId: string, setpoint: SetpointParams) =>
-      post<SetpointParams, Setpoint>(
+      post<SetpointParams, undefined>(
         basePath.slash(assetId).slash('set-attribute').url,
         setpoint,
         headers
