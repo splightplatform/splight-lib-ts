@@ -7,6 +7,7 @@ import {
   DataRecord,
   Empty,
   Headers,
+  PaginatedCollection,
   Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -74,6 +75,7 @@ export interface AlertParams {
   destinations_list: string[];
   custom_message: string | null;
   notify_no_data: boolean;
+  no_data_as_alert: boolean;
   notify_timeout: boolean;
   notify_error: boolean;
   tags?: Tag[];
@@ -144,10 +146,18 @@ export const AlertsClient = (headers: Headers) => {
         headers,
         ...[params]
       ),
-    evaluations: async (pk: string) =>
-      await get<AlertEvaluation[]>(
+    evaluations: async (
+      pk: string,
+      params?: {
+        page_size?: number;
+        since?: string;
+        until?: string;
+      }
+    ) =>
+      await get<PaginatedCollection<AlertEvaluation>>(
         basePath.slash(pk).slash('evaluations').url,
-        headers
+        headers,
+        params
       ),
     test: async (alertParams: Partial<AlertParams>) =>
       await post<Partial<AlertParams>, DataRecord[]>(

@@ -16,6 +16,7 @@ import {
   Headers,
   LogEntry,
   Optional,
+  PaginatedCollection,
   Tag,
 } from '../../types.js';
 import { Path } from '../../Urls.js';
@@ -140,112 +141,109 @@ export type RoutineEvaluation = {
   status_text?: string;
 };
 
-const BaseComponentsClient = (url: string) => {
-  return (headers: Headers) => {
-    const basePath = Path(url);
-    const baseClient = BaseRestClient<ComponentParams, Component>(
-      basePath,
+const BaseComponentsClient = (basePath: Path, headers: Headers) => {
+  const baseClient = BaseRestClient<ComponentParams, Component>(
+    basePath,
+    headers
+  );
+
+  const fromHubComponent = (
+    name: string,
+    description: string,
+    component: Component
+  ) => {
+    const new_component: ComponentParams = {
+      name,
+      description,
+      deployment_capacity: component.min_component_capacity,
+      routines: component.routines,
+      custom_types: component.custom_types,
+      picture_url: component.picture_url,
+      deployment_type: component.deployment_type,
+      input: component.input,
+      output: component.output,
+      type: component.type,
+      version: `${component.name}-${component.version}`,
+      bindings: component.bindings,
+      endpoints: component.endpoints,
+    };
+    return post<ComponentParams, Component>(
+      basePath.url,
+      new_component,
       headers
     );
+  };
 
-    const fromHubComponent = (
-      name: string,
-      description: string,
-      component: Component
-    ) => {
-      const new_component: ComponentParams = {
-        name,
-        description,
-        deployment_capacity: component.min_component_capacity,
-        routines: component.routines,
-        custom_types: component.custom_types,
-        picture_url: component.picture_url,
-        deployment_type: component.deployment_type,
-        input: component.input,
-        output: component.output,
-        type: component.type,
-        version: `${component.name}-${component.version}`,
-        bindings: component.bindings,
-        endpoints: component.endpoints,
-      };
-      return post<ComponentParams, Component>(
-        basePath.url,
-        new_component,
+  return {
+    ...baseClient,
+    fromHubComponent,
+    hubComponent: (pk: string) =>
+      get<HubComponent>(basePath.slash(pk).slash('hub-component').url, headers),
+    start: (pk: string) =>
+      post<Record<string, never>, Component>(
+        basePath.slash(pk).slash('start').url,
+        {},
         headers
-      );
-    };
-
-    return {
-      ...baseClient,
-      fromHubComponent,
-      hubComponent: (pk: string) =>
-        get<HubComponent>(
-          basePath.slash(pk).slash('hub-component').url,
-          headers
-        ),
-      start: (pk: string) =>
-        post<Record<string, never>, Component>(
-          basePath.slash(pk).slash('start').url,
-          {},
-          headers
-        ),
-      stop: (pk: string) =>
-        post<Record<string, never>, Component>(
-          basePath.slash(pk).slash('stop').url,
-          {},
-          headers
-        ),
-      logs: (
-        pk: string,
-        params: {
-          since?: string;
-          until?: string;
-          limit?: number;
-          offset?: number;
-        }
-      ) =>
-        /**
-         * @remarks
-         * The `since` and `until` parameters should be in ISO format
-         */
-        get<LogEntry[]>(
-          basePath.slash(pk).slash('elastic_logs').url,
-          headers,
-          params
-        ),
-      dataFlow: ({
-        pk,
-        ...params
-      }: { pk: string } & Record<string, string | boolean | number>) =>
-        get<DataFlowGraph>(
-          basePath.slash(pk).slash('data-flow').url,
-          headers,
-          params
-        ),
-      events: async (
-        pk: string,
-        params: Partial<{ page_size: number; page: number }>
-      ) =>
-        await get<{ results: ComponentEvent[]; next: string | null }>(
-          basePath.slash(pk).slash('events').url,
-          headers,
-          ...[params]
-        ),
-    };
+      ),
+    stop: (pk: string) =>
+      post<Record<string, never>, Component>(
+        basePath.slash(pk).slash('stop').url,
+        {},
+        headers
+      ),
+    logs: (
+      pk: string,
+      params: {
+        since?: string;
+        until?: string;
+        limit?: number;
+        offset?: number;
+      }
+    ) =>
+      /**
+       * @remarks
+       * The `since` and `until` parameters should be in ISO format
+       */
+      get<LogEntry[]>(
+        basePath.slash(pk).slash('elastic_logs').url,
+        headers,
+        params
+      ),
+    dataFlow: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<DataFlowGraph>(
+        basePath.slash(pk).slash('data-flow').url,
+        headers,
+        params
+      ),
+    events: async (
+      pk: string,
+      params: Partial<{ page_size: number; page: number }>
+    ) =>
+      await get<{ results: ComponentEvent[]; next: string | null }>(
+        basePath.slash(pk).slash('events').url,
+        headers,
+        ...[params]
+      ),
   };
 };
 
-export const AlgorithmsClient = BaseComponentsClient(
-  'v2/engine/component/algorithms'
-);
+export const AlgorithmsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/algorithms/');
+  return BaseComponentsClient(basePath, headers);
+};
 
-export const ComponentsClient = BaseComponentsClient(
-  'v2/engine/component/components'
-);
+export const ConnectorsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/connectors/');
+  return BaseComponentsClient(basePath, headers);
+};
 
-export const ConnectorsClient = BaseComponentsClient(
-  'v2/engine/component/connectors'
-);
+export const ComponentsClient = (headers: Headers) => {
+  const basePath = Path('v2/engine/component/components/');
+  return BaseComponentsClient(basePath, headers);
+};
 
 export const ComponentObjectsClient = (headers: Headers) => {
   const basePath = Path('v2/engine/component/objects/');
@@ -280,10 +278,18 @@ export const ComponentRoutinesClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
-    evaluations: async (pk: string) =>
-      await get<RoutineEvaluation[]>(
+    evaluations: async (
+      pk: string,
+      params?: {
+        page_size?: number;
+        since?: string;
+        until?: string;
+      }
+    ) =>
+      await get<PaginatedCollection<RoutineEvaluation>>(
         basePath.slash(pk).slash('evaluations').url,
-        headers
+        headers,
+        params
       ),
   };
 };

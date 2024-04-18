@@ -85,7 +85,6 @@ export interface GetAttribute {
   attribute: Attribute;
   value: string;
   timestamp: string;
-  created_at: string;
 }
 
 export const AssetsClient = (headers: Headers) => {

@@ -5,8 +5,8 @@ import { Headers, HubSolution } from '../../types.js';
 
 export interface SolutionResourceChange {
   actions: ('no-op' | 'create' | 'read' | 'update' | 'delete')[];
-  before: Record<string, any>;
-  after: Record<string, any>;
+  before: Record<string, unknown>;
+  after: Record<string, unknown>;
 }
 
 export interface SolutionResource {

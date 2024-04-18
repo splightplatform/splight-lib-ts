@@ -7,6 +7,7 @@ export type Aggregation = 'avg' | 'sum' | 'min' | 'max' | 'last';
 export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
 export type HistogramType = 'numerical' | 'categorical';
+export type SortingType = 'alphabetical' | 'count';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
 
 export type ChartItemType = 'EXPRESSION' | 'QUERY';
@@ -21,6 +22,11 @@ export const OrientationTypes = {
 export const HistogramTypes = {
   NUMERICAL: 'numerical' as HistogramType,
   CATEGORICAL: 'categorical' as HistogramType,
+};
+
+export const SortingTypes = {
+  ALPHABETICAL: 'alphabetical' as SortingType,
+  COUNT: 'count' as SortingType,
 };
 
 export const LineInterpolationStyleTypes = {
@@ -208,6 +214,7 @@ export interface HistogramChart extends ChartBase {
   bucket_count: number;
   bucket_size?: number;
   histogram_type: HistogramType;
+  sorting?: SortingType;
   categories_top_max_limit?: number;
   stacked: boolean;
 }
@@ -256,6 +263,9 @@ export interface TimeseriesChart extends ChartBase {
   y_axis_max_limit: number;
   y_axis_min_limit: number;
   y_axis_unit: string;
+  x_axis_format?: string | null;
+  x_axis_auto_skip: boolean;
+  x_axis_max_ticks_limit?: number | null;
   number_of_decimals?: number;
   line_interpolation_style: LineInterpolationStyle;
   timeseries_type: TimeSeriesType;
