@@ -50,11 +50,22 @@ export const WeatherClient = (headers: Headers) => {
           .slash(longitude.toString()).url,
         headers
       ),
-    hourlyForecast: (latitude: number, longitude: number) =>
+    twoDayHourlyForecast: (latitude: number, longitude: number) =>
       get<HourlyForecast[]>(
         basePath
           .slash('forecast')
           .slash('hourly')
+          .slash('2day')
+          .slash(latitude.toString())
+          .slash(longitude.toString()).url,
+        headers
+      ),
+    fifteenDayHourlyForecast: (latitude: number, longitude: number) =>
+      get<HourlyForecast[]>(
+        basePath
+          .slash('forecast')
+          .slash('hourly')
+          .slash('15day')
           .slash(latitude.toString())
           .slash(longitude.toString()).url,
         headers
