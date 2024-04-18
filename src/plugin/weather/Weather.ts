@@ -29,6 +29,9 @@ export interface HourlyForecast {
   time?: string;
 }
 
+export interface TwoDayHourlyForecast extends HourlyForecast {}
+export interface FifteenDayHourlyForecast extends HourlyForecast {}
+
 export const WeatherClient = (headers: Headers) => {
   const basePath = Path('v2/plugin/weather/');
 
@@ -50,11 +53,22 @@ export const WeatherClient = (headers: Headers) => {
           .slash(longitude.toString()).url,
         headers
       ),
-    hourlyForecast: (latitude: number, longitude: number) =>
-      get<HourlyForecast[]>(
+    twoDayHourlyForecast: (latitude: number, longitude: number) =>
+      get<TwoDayHourlyForecast[]>(
         basePath
           .slash('forecast')
           .slash('hourly')
+          .slash('2day')
+          .slash(latitude.toString())
+          .slash(longitude.toString()).url,
+        headers
+      ),
+    fifteenDayHourlyForecast: (latitude: number, longitude: number) =>
+      get<FifteenDayHourlyForecast[]>(
+        basePath
+          .slash('forecast')
+          .slash('hourly')
+          .slash('15day')
           .slash(latitude.toString())
           .slash(longitude.toString()).url,
         headers
