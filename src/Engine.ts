@@ -39,7 +39,7 @@ export const Engine = (headers: Headers) => {
     assetAttributes: AttributesClient(headers),
     assetMetadata: MetadataClient(headers),
     assetRelations: AssetRelationsClient(headers),
-    assetCommands: CommandsClient(headers),
+    commands: CommandsClient(headers),
     comments: CommentsClient(headers),
     functions: FunctionsClient(headers),
     files: FilesClient(headers),

@@ -1,16 +1,15 @@
 import { Path } from '../../Urls.js';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { DataFlowGraph, Headers } from '../../types.js';
 
 export type CommandEvent = {
   id: string;
   timestamp: string;
-  value: string;
+  actions_triggered: number;
 };
 
 export interface CommandActionParams {
-  name?: string;
   asset: {
     id: string;
     name: string;
@@ -21,7 +20,6 @@ export interface CommandActionParams {
     type: string;
   };
   value: string;
-  conditional_input_value: string;
 }
 
 export interface CommandAction extends CommandActionParams {
@@ -30,12 +28,7 @@ export interface CommandAction extends CommandActionParams {
 
 export interface CommandParams {
   name: string;
-  asset: {
-    id: string;
-    name: string;
-  };
-  input_type?: string;
-  input_value?: string;
+  description: string;
   actions?: CommandAction[];
 }
 
@@ -45,7 +38,7 @@ export interface Command extends CommandParams {
 }
 
 export const CommandsClient = (headers: Headers) => {
-  const basePath = Path('v2/engine/asset/commands/');
+  const basePath = Path('v2/engine/command/commands/');
   const baseClient = BaseRestClient<CommandParams, Command>(basePath, headers);
   return {
     ...baseClient,
@@ -61,6 +54,15 @@ export const CommandsClient = (headers: Headers) => {
         basePath.slash(pk).slash('events').url,
         headers,
         ...[params]
+      ),
+    dataFlow: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<DataFlowGraph>(
+        basePath.slash(pk).slash('data-flow').url,
+        headers,
+        params
       ),
   };
 };
