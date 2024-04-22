@@ -134,6 +134,12 @@ export const FunctionsClient = (headers: Headers) => {
         dates,
         headers
       ),
+    planAsyncExecution: async (funcId: string, dates: Partial<{from_date: string, to_date: string}>) =>
+      post<Partial<{from_date: string, to_date: string}>, string[]>(
+        basePath.slash(funcId).slash('plan-async-execution').url,
+        dates,
+        headers
+      ),
     events: async (
       pk: string,
       params: Partial<{ page_size: number; page: number }>
