@@ -78,7 +78,7 @@ export interface RateFunction extends RateFunctionParams {
   status: string;
 }
 
-export interface AsyncExecutionParams {
+interface AsyncExecutionParams {
   from_date: string;
   to_date: string;
   type: string;
