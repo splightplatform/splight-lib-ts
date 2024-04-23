@@ -21,7 +21,8 @@ type NodeType =
   | 'Attribute'
   | 'Function'
   | 'RoutineObject'
-  | 'Component';
+  | 'Component'
+  | 'Command';
 
 export interface DataFlowNode {
   id: string;
