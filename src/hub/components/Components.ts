@@ -28,11 +28,6 @@ export interface Binding {
   object_action: 'CREATE' | 'UPDATE' | 'DELETE';
 }
 
-export interface ComponentCommand {
-  name: string;
-  fields: ComponentParameter[];
-}
-
 export interface Endpoint {
   name: string;
   port: number;
@@ -124,7 +119,6 @@ export interface HubComponent {
   organization?: { id: string; name: string };
   usage_count?: number;
   bindings?: Binding[];
-  commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   min_component_capacity: ComponentSize;
   splight_cli_version: string | null;
@@ -141,7 +135,6 @@ export interface ComponentParams {
   version: string;
   custom_types?: CustomType[];
   input?: ComponentParameter[];
-  commands?: ComponentCommand[];
   endpoints?: Endpoint[];
   active?: boolean;
 }
