@@ -144,9 +144,9 @@ export const FunctionsClient = (headers: Headers) => {
       ),
     futureExecutions: async (
       funcId: string,
-      params: Partial<CronFunctionParams>,
-    ) => 
-      post<Partial<CronFunctionParams> , string[]>(
+      params: Partial<CronFunctionParams>
+    ) =>
+      post<Partial<CronFunctionParams>, string[]>(
         basePath.slash(funcId).slash('future-executions').url,
         params,
         headers
