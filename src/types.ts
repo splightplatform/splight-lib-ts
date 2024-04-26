@@ -212,6 +212,7 @@ export { UserInvitation } from './account/UserInvitations.js';
 
 export { CapacityOptions } from './engine/Deployments.js';
 export {
+  AsyncExecutionParams,
   CronFunction,
   CronFunctionParams,
   FunctionEvaluation,

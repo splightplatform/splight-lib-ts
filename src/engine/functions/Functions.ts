@@ -78,6 +78,20 @@ export interface RateFunction extends RateFunctionParams {
   status: string;
 }
 
+export interface AsyncExecutionParams {
+  from_date: string;
+  to_date: string;
+  type: string;
+  cron_minutes?: string;
+  cron_hours?: string;
+  cron_dom?: string;
+  cron_month?: string;
+  cron_dow?: string;
+  cron_year?: string;
+  rate_value?: string;
+  rate_unit?: string;
+}
+
 export type FunctionEvaluation = {
   timestamp: string;
   status: string;
@@ -127,6 +141,30 @@ export const FunctionsClient = (headers: Headers) => {
         basePath.slash(pk).slash('data-flow').url,
         headers,
         params
+      ),
+    futureExecutions: async (params: Partial<CronFunctionParams>) =>
+      post<Partial<CronFunctionParams>, string[]>(
+        basePath.slash('future_executions').url,
+        params,
+        headers
+      ),
+    asyncExecution: async (
+      funcId: string,
+      params: Partial<AsyncExecutionParams>
+    ) =>
+      post<Partial<AsyncExecutionParams>, string[]>(
+        basePath.slash(funcId).slash('async-execution').url,
+        params,
+        headers
+      ),
+    planAsyncExecution: async (
+      funcId: string,
+      params: Partial<AsyncExecutionParams>
+    ) =>
+      post<Partial<AsyncExecutionParams>, string[]>(
+        basePath.slash(funcId).slash('plan-async-execution').url,
+        params,
+        headers
       ),
     events: async (
       pk: string,
