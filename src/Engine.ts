@@ -5,6 +5,7 @@ import {
   FoldersClient,
 } from './engine/files/Files.js';
 import {
+  ActionsClient,
   AlertsClient,
   AlgorithmsClient,
   AssetKindsClient,
@@ -38,6 +39,7 @@ export const Engine = (headers: Headers) => {
     assetKinds: AssetKindsClient(headers),
     assetAttributes: AttributesClient(headers),
     assetMetadata: MetadataClient(headers),
+    assetActions: ActionsClient(headers),
     assetRelations: AssetRelationsClient(headers),
     commands: CommandsClient(headers),
     comments: CommentsClient(headers),

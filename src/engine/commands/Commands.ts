@@ -9,21 +9,13 @@ export type CommandEvent = {
   actions_triggered: number;
 };
 
-export interface CommandActionParams {
+export interface CommandAction {
+  name: string;
   asset: {
     id: string;
     name: string;
   };
-  attribute: {
-    id: string;
-    name: string;
-    type: string;
-  };
-  value: string;
-}
-
-export interface CommandAction extends CommandActionParams {
-  id?: string;
+  setpoint_count: number;
 }
 
 export interface CommandParams {
