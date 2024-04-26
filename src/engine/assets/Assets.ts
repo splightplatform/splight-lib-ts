@@ -26,6 +26,7 @@ export interface AssetParams {
   description?: string;
   kind?: AssetKind | null;
   attributes?: Attribute[];
+  actions?: AssetAction[];
   metadata?: Metadata[];
   related_to?: AssetRelation[];
   related_from?: AssetRelation[];

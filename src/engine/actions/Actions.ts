@@ -31,6 +31,7 @@ export interface AssetActionParams {
 
 export interface AssetAction extends AssetActionParams {
   id: string;
+  last_event_timestamp: string;
 }
 
 export const ActionsClient = (headers: Headers) => {

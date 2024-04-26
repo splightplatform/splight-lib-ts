@@ -299,7 +299,6 @@ export { Tag, TagParams } from './account/Tags.js';
 
 export {
   Command,
-  CommandAction,
   CommandEvent,
   CommandParams,
 } from './engine/commands/Commands.js';

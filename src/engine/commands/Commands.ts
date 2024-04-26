@@ -1,7 +1,7 @@
 import { Path } from '../../Urls.js';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { DataFlowGraph, Headers } from '../../types.js';
+import { AssetAction, DataFlowGraph, Headers } from '../../types.js';
 
 export type CommandEvent = {
   id: string;
@@ -9,19 +9,10 @@ export type CommandEvent = {
   actions_triggered: number;
 };
 
-export interface CommandAction {
-  name: string;
-  asset: {
-    id: string;
-    name: string;
-  };
-  setpoint_count: number;
-}
-
 export interface CommandParams {
   name: string;
   description: string;
-  actions?: CommandAction[];
+  actions?: AssetAction[];
 }
 
 export interface Command extends CommandParams {
