@@ -77,6 +77,11 @@ export {
 } from './engine/comments/Comments.js';
 
 export {
+  AssetAction,
+  AssetActionEvent,
+  AssetActionSetpoint,
+} from './engine/actions/Actions.js';
+export {
   Attribute,
   AttributeParams,
   DataFlowEdge,
@@ -119,8 +124,6 @@ export {
   GaugeChart,
   HistogramChart,
   HistogramType,
-  SortingType,
-  SortingTypes,
   HistogramTypes,
   ImageChart,
   LineInterpolationStyle,
@@ -133,6 +136,8 @@ export {
   RegexValueMapping,
   ResoruceChart,
   SimpleChart,
+  SortingType,
+  SortingTypes,
   StatChart,
   TabParams,
   TableChart,
@@ -294,8 +299,6 @@ export { Tag, TagParams } from './account/Tags.js';
 
 export {
   Command,
-  CommandAction,
-  CommandActionParams,
   CommandEvent,
   CommandParams,
 } from './engine/commands/Commands.js';

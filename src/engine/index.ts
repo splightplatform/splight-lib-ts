@@ -1,4 +1,5 @@
 export { DeploymentsClient } from './Deployments.js';
+export { ActionsClient } from './actions/Actions.js';
 export { AlertEventsClient, AlertsClient } from './alerts/Alerts.js';
 export { AssetRelationsClient } from './assetRelations/AssetRelations.js';
 export { AssetKindsClient, AssetsClient } from './assets/Assets.js';

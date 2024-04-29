@@ -1,12 +1,13 @@
 import { FeatureCollection, Geometry, GeometryCollection } from 'geojson';
+import { Path } from '../../Urls.js';
 import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, BasePaginatedCollection, Tag } from '../../types.js';
-import { Path } from '../../Urls.js';
-import { Attribute, DataFlowGraph } from '../attributes/Attributes.js';
-import { Metadata } from '../metadata/Metadata.js';
+import { BasePaginatedCollection, Headers, Tag } from '../../types.js';
+import { AssetAction } from '../actions/Actions.js';
 import { AssetRelation } from '../assetRelations/AssetRelations.js';
+import { Attribute, DataFlowGraph } from '../attributes/Attributes.js';
 import { _File } from '../files/Files.js';
+import { Metadata } from '../metadata/Metadata.js';
 
 export interface BaseRelatedAssetObj {
   id: string;
@@ -25,6 +26,7 @@ export interface AssetParams {
   description?: string;
   kind?: AssetKind | null;
   attributes?: Attribute[];
+  actions?: AssetAction[];
   metadata?: Metadata[];
   related_to?: AssetRelation[];
   related_from?: AssetRelation[];
@@ -41,6 +43,7 @@ export type Asset = AssetParams &
     id: string;
     attributes: Attribute[];
     metadata?: Metadata[];
+    actions?: AssetAction[];
     files?: _File[];
     verified: boolean;
     description: string;
