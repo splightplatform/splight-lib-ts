@@ -188,6 +188,7 @@ export {
   ComponentParameterType,
   ComponentSize,
   DataAddressValue,
+  MetadataValue,
   HubComponent,
   ObjectParameter,
   TypedComponentParameter,

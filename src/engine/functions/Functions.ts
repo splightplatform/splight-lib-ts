@@ -21,8 +21,12 @@ export interface FunctionItem {
     id: string;
     name: string;
   } | null;
+  query_filter_metadata: {
+    id: string;
+    name: string;
+  } | null;
   ref_id: string;
-  type: 'QUERY' | 'EXPRESSION';
+  type: 'QUERY' | 'EXPRESSION' | 'METADATA';
   expression: string;
   expression_plain: string;
   query_group_unit: string;
