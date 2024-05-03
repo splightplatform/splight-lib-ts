@@ -53,6 +53,7 @@ export const ChartTypes = {
 export const ChartItemTypes = {
   EXPRESSION: 'EXPRESSION' as ChartItemType,
   QUERY: 'QUERY' as ChartItemType,
+  METADATA: 'METADATA' as ChartItemType,
 };
 
 export const TimeSeriesTypes = {

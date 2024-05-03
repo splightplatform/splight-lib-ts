@@ -15,7 +15,7 @@ import { Path } from '../../Urls.js';
 export type AlertItem = {
   id?: string;
   ref_id: string;
-  type: 'QUERY' | 'EXPRESSION';
+  type: 'QUERY' | 'EXPRESSION' | 'METADATA';
   label: string;
   expression: string;
   expression_plain: string | null;
@@ -26,6 +26,10 @@ export type AlertItem = {
   query_filter_attribute: {
     id: string;
     name?: string;
+  } | null;
+  query_filter_metadata: {
+    id: string;
+    name: string;
   } | null;
   query_group_unit: string;
   query_group_function: string;

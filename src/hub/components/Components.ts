@@ -45,6 +45,11 @@ export interface DataAddressValue {
   attribute: string;
 }
 
+export interface MetadataValue {
+  asset: string;
+  metadata: string;
+}
+
 export interface ObjectParameter {
   name: string;
   id: string;
