@@ -278,6 +278,15 @@ export const ComponentRoutinesClient = (headers: Headers) => {
   );
   return {
     ...baseClient,
+    dataFlow: ({
+      pk,
+      ...params
+    }: { pk: string } & Record<string, string | boolean | number>) =>
+      get<DataFlowGraph>(
+        basePath.slash(pk).slash('data-flow').url,
+        headers,
+        params
+      ),
     evaluations: async (
       pk: string,
       params?: {
