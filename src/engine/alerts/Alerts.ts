@@ -82,6 +82,7 @@ export interface AlertParams {
   no_data_as_alert: boolean;
   notify_timeout: boolean;
   notify_error: boolean;
+  notify_using_push: boolean;
   tags?: Tag[];
 }
 
