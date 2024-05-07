@@ -111,6 +111,7 @@ export {
   ChartParams,
   ChartType,
   ChartTypes,
+  CommandListChart,
   Dashboard,
   DataChart,
   ExactMatchValueMapping,
