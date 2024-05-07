@@ -19,8 +19,6 @@ export interface Attribute extends AttributeParams {
 export interface AttributeSetParams {
   value: string;
 }
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface AttributeGetParams {}
 
 export interface AttributeGet {
   attribute: Attribute;
