@@ -57,13 +57,13 @@ export { Organization, UserProfile } from './account/User.js';
 
 export {
   Asset,
+  AssetGetAttribute,
+  AssetGetAttributeParams,
   AssetKind,
   AssetKindParams,
   AssetParams,
+  AssetSetAttributeCsvParams,
   BaseRelatedAssetObj,
-  GetAttribute,
-  GetAttributeParams,
-  SetAttributeCsvParams,
 } from './engine/assets/Assets.js';
 
 export {
@@ -81,13 +81,7 @@ export {
   AssetActionEvent,
   AssetActionSetpoint,
 } from './engine/actions/Actions.js';
-export {
-  Attribute,
-  AttributeParams,
-  DataFlowEdge,
-  DataFlowGraph,
-  DataFlowNode,
-} from './engine/attributes/Attributes.js';
+export { Attribute, AttributeParams } from './engine/attributes/Attributes.js';
 export {
   Component,
   ComponentEvent,
@@ -151,13 +145,17 @@ export {
   ValueMappingTypes,
 } from './engine/dashboards/Dashboards.js';
 export {
+  DataFlowEdge,
+  DataFlowGraph,
+  DataFlowNode,
+} from './engine/dataFlow/DataFlow.js';
+export {
   _File as File,
   FileParams,
   FileSystemObject,
   _Folder as Folder,
   FolderParams,
 } from './engine/files/Files.js';
-export { EdgeParams, NodeParams } from './engine/graphs/Graphs.js';
 export {
   Metadata,
   MetadataParams,
@@ -188,8 +186,8 @@ export {
   ComponentParameterType,
   ComponentSize,
   DataAddressValue,
-  MetadataValue,
   HubComponent,
+  MetadataValue,
   ObjectParameter,
   TypedComponentParameter,
 } from './hub/components/Components.js';

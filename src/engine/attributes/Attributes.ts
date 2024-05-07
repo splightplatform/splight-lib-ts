@@ -1,6 +1,6 @@
-import { get } from '../../rest/BaseMethods.js';
+import { get, post } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers } from '../../types.js';
+import { DataFlowGraph, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface AttributeParams {
@@ -16,32 +16,14 @@ export interface Attribute extends AttributeParams {
   status: string;
 }
 
-type NodeType =
-  | 'Asset'
-  | 'Attribute'
-  | 'Function'
-  | 'RoutineObject'
-  | 'Component'
-  | 'Command';
-
-export interface DataFlowNode {
-  id: string;
-  node_type: NodeType;
-  name: string;
-  [key: string]: string;
+export interface AttributeSetParams {
+  value: string;
 }
 
-export interface DataFlowEdge {
-  id: string;
-  source: string;
-  sourceType: NodeType;
-  target: string;
-  targetType: NodeType;
-}
-
-export interface DataFlowGraph {
-  nodes: DataFlowNode[];
-  edges: DataFlowEdge[];
+export interface AttributeGet {
+  attribute: Attribute;
+  value: string;
+  timestamp: string;
 }
 
 export const AttributesClient = (headers: Headers) => {
@@ -61,10 +43,13 @@ export const AttributesClient = (headers: Headers) => {
         headers,
         params
       ),
-    data: ({
-      pk,
-      ...params
-    }: { pk: string } & Record<string, string | boolean | number>) =>
-      get<DataFlowGraph>(basePath.slash(pk).slash('data').url, headers, params),
+    set: async (attributeId: string, setpoint: AttributeSetParams) =>
+      post<AttributeSetParams, void>(
+        basePath.slash(attributeId).slash('set').url,
+        setpoint,
+        headers
+      ),
+    get: async (attributeId: string) =>
+      get<AttributeGet>(basePath.slash(attributeId).slash('get').url, headers),
   };
 };
