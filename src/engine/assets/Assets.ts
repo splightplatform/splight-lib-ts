@@ -128,7 +128,11 @@ export const AssetsClient = (headers: Headers) => {
         headers,
         params
       ),
-    geojson: async (params?: { name__icontains?: string }) =>
+    geojson: async (
+      params?:
+        | Record<string, string | number | boolean | undefined>
+        | URLSearchParams
+    ) =>
       await get<FeatureCollection<GeometryCollection, Asset>>(
         Path('v2/engine/asset/geojson/').url,
         headers,

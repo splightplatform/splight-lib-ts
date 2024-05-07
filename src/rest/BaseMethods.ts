@@ -6,7 +6,9 @@ import { Headers } from '../types.js';
 export const get = async <T>(
   url: string,
   headers: Headers,
-  params?: Record<string, string | number | boolean | undefined>,
+  params?:
+    | Record<string, string | number | boolean | undefined>
+    | URLSearchParams,
   responseType?: ResponseType,
   onDownloadProgress?: (progress: AxiosProgressEvent) => void
 ): Promise<T> => {
