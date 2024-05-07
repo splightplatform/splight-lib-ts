@@ -5,7 +5,8 @@ import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { BasePaginatedCollection, Headers, Tag } from '../../types.js';
 import { AssetAction } from '../actions/Actions.js';
 import { AssetRelation } from '../assetRelations/AssetRelations.js';
-import { Attribute, DataFlowGraph } from '../attributes/Attributes.js';
+import { Attribute } from '../attributes/Attributes.js';
+import { DataFlowGraph } from '../dataFlow/DataFlow.js';
 import { _File } from '../files/Files.js';
 import { Metadata } from '../metadata/Metadata.js';
 
@@ -55,20 +56,20 @@ export type Asset = AssetParams &
     timezone?: string;
   };
 
-export interface SetpointParams {
+export interface AssetSetAttributeParams {
   value: string;
   attribute: string;
 }
 
-export interface SetAttributeCsvParams {
+export interface AssetSetAttributeCsvParams {
   file: File;
   attributeid: string;
 }
 
-export interface GetAttributeParams {
+export interface AssetGetAttributeParams {
   attribute: string;
 }
-export interface GetAttribute {
+export interface AssetGetAttribute {
   attribute: Attribute;
   value: string;
   timestamp: string;
@@ -79,23 +80,23 @@ export const AssetsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<AssetParams, Asset>(basePath, headers);
   return {
     ...baseClient,
-    setAttribute: async (assetId: string, setpoint: SetpointParams) =>
-      post<SetpointParams, void>(
+    setAttribute: async (assetId: string, setpoint: AssetSetAttributeParams) =>
+      post<AssetSetAttributeParams, void>(
         basePath.slash(assetId).slash('set-attribute').url,
         setpoint,
         headers
       ),
     setAttributeCsv: async (
       assetId: string,
-      setAttributeCsv: SetAttributeCsvParams
+      setAttributeCsv: AssetSetAttributeCsvParams
     ) =>
-      post<{ setAttributeCsv: SetAttributeCsvParams }, void>(
+      post<{ setAttributeCsv: AssetSetAttributeCsvParams }, void>(
         basePath.slash(assetId).slash('set-attribute-csv').url,
         { setAttributeCsv },
         headers
       ),
     getAttribute: async (assetId: string, attributeId: string) =>
-      post<GetAttributeParams, GetAttribute>(
+      post<AssetGetAttributeParams, AssetGetAttribute>(
         basePath.slash(assetId).slash('get-attribute').url,
         { attribute: attributeId },
         headers
