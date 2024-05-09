@@ -80,6 +80,7 @@ export interface Dashboard extends DashboardParams, BaseRelatedAssetObj {
   name: string;
   description: string;
   created_at: string;
+  solution?: { id: string; name: string };
 }
 
 export interface Configuration {
