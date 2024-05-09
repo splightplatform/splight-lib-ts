@@ -76,10 +76,10 @@ export interface AlertParams {
   stmt_thresholds: AlertThreshold[];
   alert_items: AlertItem[];
   assets?: Asset[];
+  mute: boolean;
   destinations_list: string[];
   custom_message: string | null;
   notify_no_data: boolean;
-  no_data_as_alert: boolean;
   notify_timeout: boolean;
   notify_error: boolean;
   notify_using_push?: boolean;
