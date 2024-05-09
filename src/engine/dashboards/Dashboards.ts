@@ -49,6 +49,7 @@ export const ChartTypes = {
   ASSETLIST: 'assetlist' as ChartType,
   ALERTEVENTS: 'alertevents' as ChartType,
   COMMANDLIST: 'commandlist' as ChartType,
+  ACTIONLIST: 'actionlist' as ChartType,
 };
 
 export const ChartItemTypes = {
@@ -249,7 +250,12 @@ export interface AlertListChart extends ChartBase {
 export interface CommandListChart extends ChartBase {
   type: 'commandlist';
   filter_name: string;
-  filter_actions_asset: string;
+}
+
+export interface ActionListChart extends ChartBase {
+  type: 'actionlist';
+  filter_name: string;
+  filter_asset: string;
 }
 
 export interface AssetListChart extends ChartBase {
@@ -306,6 +312,7 @@ export type Chart =
   | StatChart
   | AlertListChart
   | AssetListChart
+  | ActionListChart
   | CommandListChart
   | AlertEventsChart
   | TableChart
