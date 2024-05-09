@@ -255,7 +255,7 @@ export interface CommandListChart extends ChartBase {
 export interface ActionListChart extends ChartBase {
   type: 'actionlist';
   filter_name: string;
-  filter_asset: string;
+  filter_asset_name: string;
 }
 
 export interface AssetListChart extends ChartBase {
