@@ -14,6 +14,7 @@ export interface AttributeParams {
 export interface Attribute extends AttributeParams {
   id?: string;
   status: string;
+  solution?: { id: string; name: string };
 }
 
 export interface AttributeSetParams {

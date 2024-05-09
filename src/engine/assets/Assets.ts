@@ -40,20 +40,21 @@ export interface AssetParams {
 }
 
 export type Asset = AssetParams &
-  BaseRelatedAssetObj & {
-    id: string;
-    attributes: Attribute[];
-    metadata?: Metadata[];
-    actions?: AssetAction[];
-    files?: _File[];
-    verified: boolean;
-    description: string;
-    organization: string;
-    centroid_coordinates?: [number, number];
-    centroid?: Geometry;
-    geometry: GeometryCollection;
-    status: string;
-    timezone?: string;
+BaseRelatedAssetObj & {
+  id: string;
+  attributes: Attribute[];
+  metadata?: Metadata[];
+  actions?: AssetAction[];
+  files?: _File[];
+  verified: boolean;
+  description: string;
+  organization: string;
+  centroid_coordinates?: [number, number];
+  centroid?: Geometry;
+  geometry: GeometryCollection;
+  status: string;
+  timezone?: string;
+  solution?: { id: string; name: string };
   };
 
 export interface AssetSetAttributeParams {
