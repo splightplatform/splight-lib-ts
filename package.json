@@ -1,6 +1,6 @@
 {
   "name": "@splightplatform/splight-lib-ts",
-  "version": "0.0.7-240",
+  "version": "0.0.7-242",
   "type": "module",
   "license": "MIT",
   "repository": "https://github.com/splightplatform/splight-lib-ts.git",
@@ -31,7 +31,6 @@
     "prettier": "^2.8.4"
   },
   "devDependencies": {
-    "@microsoft/api-extractor": "^7.34.4",
     "@types/geojson": "^7946.0.10",
     "@types/jest": "^29.4.0",
     "@types/node": "*",

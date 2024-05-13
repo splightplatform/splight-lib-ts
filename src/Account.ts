@@ -17,6 +17,7 @@ import { ProvisionClient } from './account/Provision.js';
 
 import { IntegrationsClient } from './account/Integrations.js';
 import { TagsClient } from './account/Tags.js';
+import { ReleasesClient } from './account/Releases.js';
 
 export const Account = (headers: Headers) => {
   return {
@@ -34,5 +35,6 @@ export const Account = (headers: Headers) => {
     roles: RolesClient(headers),
     ssoRoleMappings: SsoRoleMappingsClient(headers),
     tags: TagsClient(headers),
+    releases: ReleasesClient(headers),
   };
 };

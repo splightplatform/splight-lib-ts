@@ -155,6 +155,7 @@ export {
   _File as File,
   FileParams,
   FileSystemObject,
+  FileURL,
   _Folder as Folder,
   FolderParams,
 } from './engine/files/Files.js';

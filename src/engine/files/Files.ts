@@ -23,7 +23,6 @@ export interface FileParams {
 
 export interface _File extends Omit<FileParams, 'file'> {
   id: string;
-  path?: string;
   created_at?: string;
   extension: string;
 }
