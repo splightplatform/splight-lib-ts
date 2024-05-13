@@ -56,6 +56,7 @@ export interface FunctionsParams {
   active?: boolean;
   frequency?: number;
   tags?: Tag[];
+  solution?: { id: string; name: string };
 }
 
 export interface RateFunctionParams extends FunctionsParams {
