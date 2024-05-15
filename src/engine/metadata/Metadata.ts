@@ -13,6 +13,7 @@ export interface MetadataParams {
 
 export interface Metadata extends MetadataParams {
   id?: string;
+  solution?: { id: string; name: string };
 }
 
 export interface MetadataRelationships {

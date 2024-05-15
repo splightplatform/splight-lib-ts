@@ -84,6 +84,7 @@ export interface AlertParams {
   notify_error: boolean;
   notify_using_push?: boolean;
   tags?: Tag[];
+  solution?: { id: string; name: string };
 }
 
 export interface RateAlertParams extends AlertParams {

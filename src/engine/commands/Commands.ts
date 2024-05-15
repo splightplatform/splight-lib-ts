@@ -18,6 +18,7 @@ export interface CommandParams {
 export interface Command extends CommandParams {
   id: string;
   last_event_timestamp?: string;
+  solution?: { id: string; name: string };
 }
 
 export const CommandsClient = (headers: Headers) => {
