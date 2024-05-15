@@ -12,8 +12,8 @@ export interface ChatMessage extends ChatMessageParams {
   role: 'user' | 'assistant';
 }
 
-export const GepettoClient = (headers: Headers) => {
-  const basePath = Path('v2/plugin/gepetto/');
+export const AIClient = (headers: Headers) => {
+  const basePath = Path('v2/plugin/ai/');
   return {
     getMessages: (params?: { thread_id?: string }) =>
       get<BasePaginatedCollection<ChatMessage>>(
