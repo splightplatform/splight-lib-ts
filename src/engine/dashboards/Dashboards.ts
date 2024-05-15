@@ -7,6 +7,8 @@ export type Aggregation = 'avg' | 'sum' | 'min' | 'max' | 'last';
 export type Placement = 'right' | 'bottom';
 export type Orientation = 'horizontal' | 'vertical';
 export type HistogramType = 'numerical' | 'categorical';
+export type CommandListType = 'table' | 'button_list';
+export type ActionListType = 'table' | 'button_list';
 export type SortingType = 'alphabetical' | 'count';
 export type LineInterpolationStyle = 'rounded' | 'rect' | 'squared';
 
@@ -22,6 +24,16 @@ export const OrientationTypes = {
 export const HistogramTypes = {
   NUMERICAL: 'numerical' as HistogramType,
   CATEGORICAL: 'categorical' as HistogramType,
+};
+
+export const CommandListTypes = {
+  TABLE: 'table' as CommandListType,
+  BUTTON_LIST: 'button_list' as CommandListType,
+};
+
+export const ActionListTypes = {
+  TABLE: 'table' as ActionListType,
+  BUTTON_LIST: 'button_list' as ActionListType,
 };
 
 export const SortingTypes = {
@@ -250,11 +262,13 @@ export interface AlertListChart extends ChartBase {
 
 export interface CommandListChart extends ChartBase {
   type: 'commandlist';
+  command_list_type: string;
   filter_name: string;
 }
 
 export interface ActionListChart extends ChartBase {
   type: 'actionlist';
+  action_list_type: string;
   filter_name: string;
   filter_asset_name: string;
 }
