@@ -121,6 +121,8 @@ export {
   HistogramChart,
   HistogramType,
   HistogramTypes,
+  ActionListTypes,
+  CommandListTypes,
   ImageChart,
   LineInterpolationStyle,
   LineInterpolationStyleTypes,
