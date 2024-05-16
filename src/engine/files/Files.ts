@@ -1,7 +1,7 @@
 import { AxiosProgressEvent } from 'axios';
-import { get, put } from '../../rest/BaseMethods.js';
+import { get, post, put } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, Tag } from '../../types.js';
+import { Empty, Headers, Tag } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Asset } from '../assets/Assets.js';
 
@@ -51,6 +51,12 @@ export const FilesClient = (headers: Headers) => {
   const baseClient = BaseRestClient<FileParams, _File>(basePath, headers);
   return {
     ...baseClient,
+    enableAI: (fileId: string) =>
+      post<Empty, Empty>(
+        basePath.slash(fileId).slash('ai-process').url,
+        {},
+        headers
+      ),
     uploadURL: (fileId: string) =>
       get<FileURL>(basePath.slash(fileId).slash('upload_url').url, headers, {}),
     downloadURL: (fileId: string) =>
