@@ -26,6 +26,7 @@ export interface RoutineObject extends BaseComponentResource {
   config: ComponentParameter[];
   input: ComponentParameter[];
   output: ComponentParameter[];
+  solution?: { id: string; name: string };
 }
 
 export interface Routine {
@@ -33,6 +34,7 @@ export interface Routine {
   config: ComponentParameter[];
   input: ComponentParameter[];
   output: ComponentParameter[];
+  solution?: { id: string; name: string };
 }
 
 export interface Deployment {
@@ -87,6 +89,7 @@ export interface Component {
   compute_node?: ComputeNode;
   pinned_at?: string | null;
   tags?: Tag[];
+  solution?: { id: string; name: string };
 }
 
 export interface ComponentParams {

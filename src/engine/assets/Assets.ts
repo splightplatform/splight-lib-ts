@@ -54,6 +54,7 @@ export type Asset = AssetParams &
     geometry: GeometryCollection;
     status: string;
     timezone?: string;
+    solution?: { id: string; name: string };
   };
 
 export interface AssetSetAttributeParams {

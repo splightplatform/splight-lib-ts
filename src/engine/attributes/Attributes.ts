@@ -13,7 +13,8 @@ export interface AttributeParams {
 
 export interface Attribute extends AttributeParams {
   id?: string;
-  status?: string;
+  status: string;
+  solution?: { id: string; name: string };
   connector_readers?: number;
   connector_writers?: number;
   algorithm_readers?: number;
