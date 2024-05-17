@@ -1,7 +1,7 @@
 import { AxiosProgressEvent } from 'axios';
-import { get, put } from '../../rest/BaseMethods.js';
+import { get, post, put } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
-import { Headers, Tag } from '../../types.js';
+import { Empty, Headers, Tag } from '../../types.js';
 import { Path } from '../../Urls.js';
 import { Asset } from '../assets/Assets.js';
 
@@ -25,6 +25,7 @@ export interface _File extends Omit<FileParams, 'file'> {
   id: string;
   created_at?: string;
   extension: string;
+  ai_status: 'disabled' | 'enabled' | 'pending' | 'error';
 }
 
 export interface _Folder extends FolderParams {
@@ -51,6 +52,12 @@ export const FilesClient = (headers: Headers) => {
   const baseClient = BaseRestClient<FileParams, _File>(basePath, headers);
   return {
     ...baseClient,
+    enableAI: (fileId: string) =>
+      post<Empty, _File>(
+        basePath.slash(fileId).slash('enable-ai').url,
+        {},
+        headers
+      ),
     uploadURL: (fileId: string) =>
       get<FileURL>(basePath.slash(fileId).slash('upload_url').url, headers, {}),
     downloadURL: (fileId: string) =>
