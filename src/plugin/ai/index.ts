@@ -1,1 +1,1 @@
-export { AIClient } from './Ai.js';
+export { AIClient, ChatMessage } from './Ai.js';

@@ -306,3 +306,5 @@ export {
   CommandEvent,
   CommandParams,
 } from './engine/commands/Commands.js';
+
+export { ChatMessage } from './plugin/ai/Ai.js';
