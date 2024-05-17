@@ -12,6 +12,7 @@ export interface HubSolutionParams {
   main_file: File;
   values_file: File;
   variables_file: File;
+  readme_file: File;
 }
 
 export interface HubSolution extends HubSolutionParams {
