@@ -25,6 +25,7 @@ export interface _File extends Omit<FileParams, 'file'> {
   id: string;
   created_at?: string;
   extension: string;
+  ai_status: 'disabled' | 'enabled' | 'pending' | 'error';
 }
 
 export interface _Folder extends FolderParams {
@@ -52,8 +53,8 @@ export const FilesClient = (headers: Headers) => {
   return {
     ...baseClient,
     enableAI: (fileId: string) =>
-      post<Empty, Empty>(
-        basePath.slash(fileId).slash('ai-process').url,
+      post<Empty, _File>(
+        basePath.slash(fileId).slash('enable-ai').url,
         {},
         headers
       ),
