@@ -1,6 +1,8 @@
 import { Path } from '../../Urls.js';
+import { get } from '../../rest/BaseMethods.js';
 import { BaseRestClient } from '../../rest/BaseRestClient.js';
 import { Headers, Solution } from '../../types.js';
+import { HubURL } from '../components/Components.js';
 
 export interface HubSolutionParams {
   name: string;
@@ -25,6 +27,10 @@ export const SolutionsVersionsClient = (headers: Headers) => {
   const baseClient = BaseRestClient<Solution>(basePath, headers);
   return {
     ...baseClient,
+    downloadURL: (pk: string, type: string) =>
+      get<HubURL>(basePath.slash(pk).slash('download_url').url, headers, {
+        type: type,
+      }),
   };
 };
 
