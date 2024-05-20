@@ -1,6 +1,6 @@
 import { get, post } from '../../rest/BaseMethods.js';
 import { withGetNext } from '../../rest/BaseRestClient.js';
-import { BasePaginatedCollection, Headers } from '../../types.js';
+import { BasePaginatedCollection, Empty, Headers } from '../../types.js';
 import { Path } from '../../Urls.js';
 
 export interface ChatMessageParams {
@@ -27,6 +27,12 @@ export const AIClient = (headers: Headers) => {
       post<ChatMessageParams, ChatMessage>(
         basePath.slash('ask').url,
         message,
+        headers
+      ),
+    clearThread: (thread_id: string) =>
+      post<{ thread_id: string }, Empty>(
+        basePath.slash('clear-thread').url,
+        { thread_id },
         headers
       ),
   };
