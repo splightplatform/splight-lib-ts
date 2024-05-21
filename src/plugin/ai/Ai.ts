@@ -12,6 +12,10 @@ export interface ChatMessage extends ChatMessageParams {
   id: string;
   role: 'user' | 'assistant';
   name?: string;
+  user_id?: string;
+  email?: string;
+  username?: string;
+  picture_color?: string;
 }
 
 export const AIClient = (headers: Headers) => {
